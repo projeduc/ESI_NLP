@@ -43,7 +43,7 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
     - Morphology
         - Word formation
         - Form reducing
-1. **Langage models**
+1. **Language models**
     - N-gram language models
         - Formulation
         - Smoothing
@@ -70,7 +70,7 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
     - Dependency parsing
         - Transition-based
         - Graph-based
-1. **Word sematics**
+1. **Word semantics**
     - Lexical databases
         - Semantic relations
         - Wordnet
@@ -160,10 +160,11 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
 ## Licence
 
 Copyright (C) 2022-2023  Abdelkrime Aries (english version)
+
 Copyright (C) 2020-2021  Abdelkrime Aries (french version)
 
 
-Attribution 4.0 International (CC BY 4.0)
+[Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.en)
 
 **You are free to:**
 - **Share** — copy and redistribute the material in any medium or format
