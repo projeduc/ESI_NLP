@@ -1,7 +1,7 @@
 # "Natural language processing" course (ESI, Alger)
 
-[![Type](https://img.shields.io/badge/Type-Course-0014A8.svg?style=flat)](https://github.com/projeduc/ESI_NLP)
-[![License](https://img.shields.io/badge/Licence-CC--BY_4.0-0014A8.svg?style=flat)](https://creativecommons.org/licenses/by/4.0/deed.en)
+[![Type](https://img.shields.io/badge/type-Course-0014A8.svg?style=flat)](https://github.com/projeduc/ESI_NLP)
+[![License](https://img.shields.io/badge/license-CC--BY_4.0-0014A8.svg?style=flat)](https://creativecommons.org/licenses/by/4.0/deed.en)
 [![GitHub release](https://img.shields.io/github/release/projeduc/ESI_NLP.svg)](https://github.com/projeduc/ESI_NLP/releases)
 [![Github All Releases](https://img.shields.io/github/downloads/projeduc/ESI_NLP/total.svg)](https://github.com/projeduc/ESI_NLP/releases)
 [![Github Release](https://img.shields.io/github/downloads/projeduc/ESI_NLP/latest/total.svg)](https://github.com/projeduc/ESI_NLP/releases/latest)
