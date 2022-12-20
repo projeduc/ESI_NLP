@@ -1,0 +1,45 @@
+% Copyright 2007 by Till Tantau
+% Copyright 2015 by Vedran Mileti\'c, Joseph Wright
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+\mode<presentation>
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{items}[ball]
+\setbeamertemplate{sections/subsections in toc}[ball]
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true,shadow=true]
+\setbeamertemplate{part page}[default][colsep=-4bp,rounded=true,shadow=true]
+\setbeamertemplate{section page}[default][colsep=-4bp,rounded=true,shadow=true]
+\setbeamertemplate{subsection page}[default][colsep=-4bp,rounded=true,shadow=true]
+
+% Section page: default
+
+\defbeamertemplate*{section page}{kborders}[1][]
+{
+	\begingroup
+	\setbeamertemplate{headline}{}
+	\centering
+	{\usebeamerfont{section name}\usebeamercolor[fg]{section name}\sectionname~\insertsectionnumber}
+	\usebeamercolor{section title}\vskip1em\par
+	\begin{tikzpicture}
+		\node [draw=\beamer@thc@fg, line width=2pt, rounded corners=0.5cm, 
+		       inner sep=10pt, align=center, minimum height=2cm] {
+			\begin{minipage}[b]{\dimexpr\textwidth-24pt\relax}%
+				\centering\color{\beamer@thc@fg}\usebeamerfont{section title}\insertsection\par
+			\end{minipage}
+		};
+	\end{tikzpicture}
+%	\begin{beamercolorbox}[sep=12pt,center,#1]{section title}
+%		\usebeamerfont{section title}--\insertsection\par
+%	\end{beamercolorbox}
+	\endgroup
+}
+  
+\mode<all>
