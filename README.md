@@ -31,6 +31,26 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
         - Language understanding
         - EEvaluation
         - Ethics
+1. **ML for NLP**
+    - Machine learning
+        - Traditional ML
+        - MLP
+        - CNN
+        - RNN
+    - Text classification
+        - Traditional ML and MLP
+        - CNN
+        - RNN
+    - Sequences classification
+        - IOB notation
+        - HMM
+        - MEMM
+        - RNN
+    - Attention
+        - Seq2Seq
+        - Seq2Seq with attention
+        - Attention types
+        - Transformers
 1. **Basic text processing**
     - Character processing
         - Regular expressions
@@ -60,7 +80,7 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
         - Hidden Markov models (HMM)
         - Maximum entropy
         - Neural networks
-1. **Syntactic analysis**
+1. **Parsing**
     - Syntactic structures
         - Constituency formalisms
         - Dependency formalisms
@@ -157,7 +177,7 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
     - Speech synthesis
 
 
-## Licence
+## License
 
 Copyright (C) 2022-2023  Abdelkrime Aries (english version)
 

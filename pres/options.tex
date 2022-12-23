@@ -39,6 +39,7 @@
 \definecolor{darkgreen}{HTML}{008B45} %009B55
 \definecolor{violet}{HTML}{6600CC}
 \definecolor{deeppink}{HTML}{FF1493}
+\definecolor{orangey}{HTML}{FFBB00}
 
 \usetheme{Karim} % Antibes Boadilla Warsaw
 
@@ -89,7 +90,7 @@ Laboratoire de la Communication dans les Systèmes Informatiques (LCSI)
 
 %\setbeamertemplate{headline}{}
 
-
+\newcommand{\kurl}[1]{{\scriptsize\bfseries\color{orangey}\url{#1}}}
 
 \newcommand{\keyword}[1]{\textcolor{red}{\bfseries\itshape #1}}
 \newcommand{\expword}[1]{\textcolor{olivegreen}{#1}}
@@ -256,3 +257,6 @@ Laboratoire de la Communication dans les Systèmes Informatiques (LCSI)
 \usefonttheme{structurebold}
 %\usefonttheme{professionalfonts}
 
+
+% figure caption
+\setlength\abovecaptionskip{-5pt}

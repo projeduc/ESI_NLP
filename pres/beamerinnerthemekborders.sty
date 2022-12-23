@@ -74,6 +74,28 @@
 \end{tcolorbox}
 }
 
+\defbeamertemplate*{block begin}{kborders theme}
+{
+	\usebeamerfont*{block title}
+	\usebeamercolor*{block title}
+	\begin{tcolorbox}[
+		title=\insertblocktitle,
+		coltitle=\beamer@thc@fg,
+		colback=white,
+		colbacktitle=\beamer@thc@bg,
+		colframe=\beamer@thc@fg,  
+		boxrule=2pt,
+		valign=top, 
+		halign=center,
+		width=\textwidth]
+		\usebeamercolor{block body}
+	}
+	
+	\defbeamertemplate*{block end}{kborders theme}
+	{
+	\end{tcolorbox}
+}
+
 \defbeamertemplate*{title page}{kborders theme}[1][]
 {
 	\vbox{}
