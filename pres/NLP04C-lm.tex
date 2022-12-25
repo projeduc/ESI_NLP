@@ -1,0 +1,483 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+
+\documentclass[xcolor=table]{beamer}
+
+\input{options}
+
+\title[ESI - NLP: 04- Language models]%
+{Natural Language Processing\\Chapter 04\\Language models} 
+
+\changegraphpath{../img/lm/}
+
+\begin{document}
+	
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Language models: Introduction}
+
+\begin{itemize}
+	\item \optword{Sentence probability}: $\color{red} P(S) = P(w_1, w_2, ..., w_n) $
+	\begin{itemize}
+		\item Machine translation: \\
+		\expword{My tall brother \textrightarrow\ P(Mon grand frère) \textgreater\ P(Mon haut frère)}
+		\item Spell checking: \\
+		\expword{P(They say something.) \textgreater\ P(They says something.)}
+		\item Speech recognition: \\
+		\expword{P(I say) \textgreater\ P(Eye say)}
+	\end{itemize}
+	\item \optword{word occurrence probability}: $\color{red} P(w_i | w_1, \ldots, w_{i-1}) $
+	\begin{itemize}
+		\item Auto-completion: \\
+		\expword{P(automatic information system) \textgreater\ P(automatic information processing)}
+		\item Automatic text generation
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Language models: Plan}
+
+\begin{multicols}{2}
+%	\small
+\tableofcontents
+\end{multicols}
+\end{frame}
+
+%===================================================================================
+\section{N-gram model}
+%===================================================================================
+
+\begin{frame}
+\frametitle{Language models}
+\framesubtitle{N-gram model}
+
+\begin{block}{Compound probability formula}
+	\[ P(w_1 \ldots w_m) =  P(w_1) P(w_2 | w_1) P(w_3 | w_1, w_2) \ldots P(w_n | w_1, \ldots, w_{m-1}) \]
+\end{block}
+
+
+\begin{exampleblock}{Example of a sentence's probability}
+	\[ P(\text{\textit{I work at ESI}}) =  P(I) P(work | I) P(\text{\textit{at}} | \text{\textit{I work}}) P(ESI | \text{\textit{I work at}}) \]
+	
+	\[ P(ESI | \text{\textit{I work at}}) = \frac{C(\text{\textit{I work at ESI}})}{C( \text{\textit{I work at}})} \] 
+	
+	where 
+	
+	$C$: returns the frequency of an expression in a training corpus
+\end{exampleblock}
+
+\begin{itemize}
+	\item Many possible sentences
+	\item A big corpus is needed to estimate this probability (infinity of possible sentences)
+\end{itemize}
+
+\end{frame}
+
+\subsection{Formulation}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Formulation: Markov property}
+
+\begin{block}{Markov property}
+	A present state depends only on the past one. 
+	\[%
+	P(w_i | w_1,\ldots, w_{i-1}) \approx P(w_i | w_{i-1})
+	\]
+	General case with $n-1$ past states
+	\[%
+	P(w_i | w_1,\ldots, w_{i-1}) \approx P(w_i | w_{i-n+1}, \ldots, w_{i-1})
+	\]
+\end{block}
+
+\begin{block}{Proability estimation using N-grams}
+	\[
+	P(w_1,\ldots, w_{m}) \approx \prod_{i=1}^m P(w_i | w_{i-k+1}, \ldots, w_{i-1})
+	\]
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Formulation: Some models}
+
+\begin{itemize}
+	\item \optword{Uni-gram model}: $P(w_i | w_1,\ldots, w_{i-1}) \approx P(w_i)$
+	\item \optword{Bi-gram model}: $P(w_i | w_1,\ldots, w_{i-1}) \approx P(w_i | w_{i-1})$
+	\item \optword{Tri-gram model}:  $P(w_i | w_1,\ldots, w_{i-1}) \approx P(w_i | w_{i-2}, w_{i-1})$
+	\item Google Books Ngram Viewer
+	\begin{itemize}
+		\item \url{https://books.google.com/ngrams}
+		\item Character-based language models from books 
+		\item Free download: \url{https://storage.googleapis.com/books/ngrams/books/datasetsv3.html}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Formulation: Google Books Ngram Viewer (Humor)}
+
+\begin{center}
+	\vgraphpage{humor/humor-ngram.png}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Formulation: Estimation}
+
+\begin{itemize}
+	\item Using a training corpus with enough data
+	\item The beginning and ending of each sentence is marked by \keyword{\textless s\textgreater} and \keyword{\textless/s\textgreater} respectively (one time of bi-grams, 2 times for tri-grams, etc.)
+	\item \keyword{Maximum likelihood estimator (MLE)}
+\end{itemize}
+
+\begin{block}{Proability estimation using MLE}
+	{\small \[%
+	P(w_i | w_{i-n+1},\ldots, w_{i-1}) = \frac{C(w_{i-n+1} \ldots w_{i-1} w_i)}{\sum_i C(w_{i-n+1} \ldots w_{i-1} w_i)}
+	= \frac{C(w_{i-n+1} \ldots w_{i-1} w_i)}{C(w_{i-n+1} \ldots w_{i-1})}
+	\]}
+	Where $C$ is the frequency of N-grams in the training corpus
+	\[%
+	\text{Bi-grams: } P(w_i | w_{i-1}) = \frac{C(w_{i-1} w_i)}{C(w_{i-1})}
+	\]
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Formulation: Example}
+
+\begin{exampleblock}{Example of a training corpus (Bi-grams)}
+	\begin{itemize}
+		\item \textless s\textgreater a computer can help you \textless/s\textgreater
+		\item \textless s\textgreater he wants to help you \textless/s\textgreater
+		\item \textless s\textgreater he wants a computer \textless/s\textgreater
+		\item \textless s\textgreater he can swim \textless/s\textgreater
+	\end{itemize}
+\end{exampleblock}
+
+\begin{itemize}
+	\item $P(can | he) = \frac{C(he\ can)}{C(he)} = \frac{1}{3}$
+	\item $P(\text{\textit{\textless s\textgreater he can help you \textless/s\textgreater}}) = 
+	\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{\frac{3}{4}}
+	\underbrace{P(can|he)}_{\frac{1}{3}} 
+	\underbrace{P(help|can)}_{\frac{1}{2}} 
+	\underbrace{P(you|help)}_{\frac{2}{2}}
+	\underbrace{P(\text{\textit{\textless/s\textgreater}}|you)}_{\frac{2}{2}} = 
+	\frac{1}{8}
+	$
+\end{itemize}
+
+
+\end{frame}
+
+\subsection{Smoothing}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Smoothing}
+
+\begin{itemize}
+	
+	\item Using little Ns $ \Longrightarrow $ Information loss
+	\begin{itemize}
+		\item Languages allow long term dependencies
+		\item \expword{\underline{The computer} which I used yesterday at ESI during the course session \underline{has crashed}}
+	\end{itemize}
+
+	\item Using big Ns $ \Longrightarrow $ High model complexity
+	\begin{itemize}
+		\item This needs a bigger corpus
+		\item N-grams representation: $V^N$ where $V$ is the vocabulary size and $N$ is the number of grams
+	\end{itemize}
+
+	\item Problem of missing N-grams in the training corpus
+	\begin{itemize}
+		\item $P(\text{\textit{\textless s\textgreater he wants to swim \textless/s\textgreater}}) = 
+		P(he|\text{\textit{\textless s\textgreater}}) P(wants|he) P(to|wants) P(swim|to)  P(\text{\textit{\textless/s\textgreater}}|swim) = $
+		
+		$\frac{3}{4} \frac{2}{3} \frac{1}{2} \frac{0}{1} \frac{1}{1} = 0$
+	\end{itemize}
+	\item The intuition is to borrow a small portion of the existing N-gram probabilities to form the missing N-gram probability
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Smoothing: Lidstone}
+
+\begin{block}{Lidstone smoothing (Bi-grams as example)}
+	\[%
+	P(w_i | w_{i-1}) = \frac{C(w_{i-1} w_i) + \alpha}{C(w_{i-1}) + \alpha V}
+	\]
+	Where $V$ is the vocabulary size of the model
+	
+	$\alpha = 1$ : \keyword{Laplace smoothing} 
+	
+	$\alpha = 0.5$ : \keyword{Jeffreys-Perks law}
+\end{block}
+
+\begin{exampleblock}{Example: Laplace smoothing}
+	\begin{itemize}
+		\item The corpus contains 9 different words
+		\item $|V| = 9 + 2 = 11$ (Counting start and end markers)
+		\item $P(\text{\textit{\textless s\textgreater he wants to swim \textless/s\textgreater}}) = 
+		P(he|\text{\textit{\textless s\textgreater}}) P(wants|he) P(to|wants) P(swim|to) P(\text{\textit{\textless/s\textgreater}}|swim) = 
+		\frac{3 + 1}{4 + 11} \frac{2 + 1}{3 + 11} \frac{1 + 1}{2 + 11} \frac{0 + 1}{1 + 11} \frac{1 + 1}{1 + 11}
+		= \frac{4}{15} \frac{3}{14} \frac{2}{13} \frac{1}{12} \frac{2}{12} $
+	\end{itemize}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Smoothing: Interpolation}
+
+\begin{block}{Interpolation (Tri-grams as example)}
+	\[%
+	P_{I}(w_i | w_{i-2} w_{i-1}) = 
+	\lambda_3 P(w_i | w_{i-2} w_{i-1}) 
+	+ \lambda_2 P(w_i | w_{i-1}) 
+	+ \lambda_1 P(w_i) 
+	\]
+	
+	Where $\sum_j \lambda_j = 1$
+	
+	$\lambda_3$, $\lambda_2$ and $\lambda_1$ are estimated using another tuning corpus
+\end{block}
+
+\begin{exampleblock}{Example: Bi-gram interpolation}
+	\begin{itemize}
+		\item Lets say $\lambda_2=0.8$ and $\lambda_1=0.2$
+		\item P(\text{\textit{\textless/s\textgreater}}) will be calculated; we will consider "\textless/s\textgreater" in uni-grams
+		\item $P(\text{\textit{\textless s\textgreater he wants to swim \textless/s\textgreater}}) = 
+		P(he|\text{\textit{\textless s\textgreater}}) P(wants|he) P(to|wants) P(swim|to) P(\text{\textit{\textless/s\textgreater}}|swim) = 
+		(0.8\frac{3}{4} + 0.2\frac{3}{21}) (0.8\frac{2}{3} + 0.2\frac{2}{21}) (0.8\frac{1}{2} + 0.2\frac{1}{21}) (0.8\frac{0}{1} + 0.2\frac{1}{21}) (0.8\frac{1}{1} + 0.2\frac{4}{21})$
+	\end{itemize}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: N-gram}
+\framesubtitle{Smoothing: Katz back-off}
+
+\begin{block}{Katz back-off (Tri-grams as example)}
+	\[%
+	P_{BO}(w_i | w_{i-2} w_{i-1}) = 
+	\begin{cases}
+	P^*(w_i | w_{i-2} w_{i-1}) & \text{if } C(w_{i-2} w_{i-1} w_i) > 0 \\
+	\alpha(w_{i-2} w_{i-1}) P_{BO}(w_i | w_{i-1}) & \text{otherwise}
+	\end{cases}
+	\]
+	
+	Where: 
+	
+	$P^*$ is the reduced probability (the reduction will be distributed over the lower order N-gram probabilities)
+	
+	$\alpha$ is a function which distributes the reduction according to the context
+\end{block}
+
+%\begin{exampleblock}{Example: Bi-gram interpolation}
+%	\begin{itemize}
+%		\item Lets say $\lambda_2=0.8$ and $\lambda_1=0.2$
+%		\item P(\text{\textit{\textless/s\textgreater}}) will be calculated; we will consider "\textless/s\textgreater" in uni-grams
+%		\item $P(\text{\textit{\textless s\textgreater he wants to swim \textless/s\textgreater}}) = 
+%		P(he|\text{\textit{\textless s\textgreater}}) P(wants|he) P(to|wants) P(swim|to) P(\text{\textit{\textless/s\textgreater}}|swim) = 
+%		(0.8\frac{3}{4} + 0.2\frac{3}{21}) (0.8\frac{2}{3} + 0.2\frac{2}{21}) (0.8\frac{1}{2} + 0.2\frac{1}{21}) (0.8\frac{0}{1} + 0.2\frac{1}{21}) (0.8\frac{1}{1} + 0.2\frac{4}{21})$
+%	\end{itemize}
+%\end{exampleblock}
+
+\end{frame}
+
+
+%===================================================================================
+\section{Neural models}
+%===================================================================================
+
+%\begin{frame}
+%\frametitle{Langage models}
+%\framesubtitle{Neural models}
+%
+%\begin{itemize}
+%	\item 
+%\end{itemize}
+%
+%\end{frame}
+
+\subsection{Multi-layers perceptron}
+
+\begin{frame}
+\frametitle{Language models: Neural models}
+\framesubtitle{Multi-layers perceptron: Study case}
+
+\begin{itemize}
+	\item \cite{2003-bengio-al} model will be shown as a study case
+	\item First, n-grams number $n$ must be chosen; in this case, the number of input words is $n-1$
+	\item The vector $w$ is the concatenation of $n-1$ past words' embeddings
+	\item The embedding size $d$ must be chosen  
+	\item Words are encoded using One-Hot format (each vector has a size of the vocabulary $V$)
+\end{itemize}
+
+\begin{block}{MLP-based language model}
+	$
+	P(h_i|h_{i-n+1},\ldots, h_{i-1}) = 
+	Softmax \left(
+	(b + w A) 
+	+ 
+	W\ Tanh(u + w T)
+	\right)
+	$
+	
+	Where $b \in \mathbb{R}^{V},\, A \in \mathbb{R}^{(n-1) \times d \times V},\, u \in \mathbb{R}^{H},\, T \in \mathbb{R}^{(n-1) \times d \times H},\, W \in \mathbb{R}^{V \times H}$
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: Neural models}
+\framesubtitle{Multi-layers perceptron: Model}
+
+\begin{center}
+	\vgraphpage{mlp-model.pdf}
+\end{center}
+
+\end{frame}
+
+\subsection{Recurrent neural networks}
+
+\begin{frame}
+\frametitle{Language models: Neural models}
+\framesubtitle{Recurrent neural networks: Study case}
+
+\begin{itemize}
+	\item \cite{2010-mokolov-al} model will be shown as a study case
+	\item For each instant $t$, a state $s_t$ is calculated based on the previous state $s_{t-1}$ and the currant word $w_t$
+	\item The state $s_t$ is used to estimate the probabilities $y_t$ of each vocabulary word
+\end{itemize}
+
+\begin{block}{RNN-based language model}
+	$x_t = s_{t-1} \bullet w_t$
+	
+	$s_t = \sigma(x_t W)$
+	
+	$y_t = softmax(s_t U)$
+	
+	Where $w_t \in \mathbb{R}^{V},\, s_t \in \mathbb{R}^{H},\, W \in \mathbb{R}^{(H+V)\times H},\, U \in \mathbb{R}^{H\times V}$
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Language models: Neural models}
+\framesubtitle{Recurrent neural networks: Model}
+
+\begin{center}
+	\vgraphpage{rnn-model.pdf}
+\end{center}
+
+\end{frame}
+
+\subsection{Some improvements}
+
+\begin{frame}
+\frametitle{Language models: Neural models}
+\framesubtitle{Some improvements}
+
+\begin{itemize}
+	\item Limited context size in MLP-based models
+	\begin{itemize}
+		\item Use RNNs
+	\end{itemize}
+	\item Vanishing gradient problem in RNNs
+	\begin{itemize}
+		\item Use advanced RNNs: \keyword{LSTM} and \keyword{GRU}
+		\item Limit context size
+	\end{itemize}
+	\item Out-of-vocabulary words
+	\begin{itemize}
+		\item Limit vocabulary size  et mark infrequent words as \optword{\textlangle UNK\textrangle}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%===================================================================================
+\section{Evaluation}
+%===================================================================================
+
+\subsection{Approaches}
+
+\begin{frame}
+\frametitle{Language models: Evaluation}
+\framesubtitle{Approaches}
+
+\begin{itemize}
+	\item \optword{Extrinsic Evaluation}
+	\begin{itemize}
+		\item Evaluate the model against another task: its effect on the task
+		\item Example, \expword{Machine translation quality using a language model}
+		\item Very expensive evaluation
+	\end{itemize}
+	\item \optword{Intrinsic Rating}
+	\begin{itemize}
+		\item Evaluate the model against its capacity to represent the language
+		\item Example, \expword{Comparing two models based on their ability to represent a test dataset}
+		\item Does not guarantee good model performance for a given task
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\subsection{Perplexity}
+
+\begin{frame}
+\frametitle{Language models: Evaluation}
+\framesubtitle{Perplexity}
+
+\begin{itemize}
+	\item Measuring the prediction quality of a model on a test corpus
+	\item Using the estimated probability on a test corpus of size $N$
+	\item Model with minimal perplexity is best
+	\item Must include the end of one sentence and the beginning of the next in model training (since perplexity treats the whole corpus as a single string)
+\end{itemize}
+
+\begin{block}{Perplexity}
+	\begin{center}
+		$PP(w) = \sqrt[N]{\frac{1}{P(w_1 w_2 \ldots w_N)}}$
+		
+		$PP(w) = \sqrt[N]{\prod\limits_{i=1}^{N}\frac{1}{P(w_i | w_1 \ldots w_{i-1})}}$
+	\end{center}
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Language models}
+\framesubtitle{Some humor}
+
+\begin{center}
+	\vgraphpage{humor/humor-lm.png}
+\end{center}
+
+\end{frame}
+
+\insertbibliography{NLP04}{*}
+
+\end{document}
+
