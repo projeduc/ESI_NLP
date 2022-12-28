@@ -107,7 +107,7 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
     - Word sense disambiguation
         - Knowledge bases based
         - Machine learning based
-1. **Sentence meaning**
+1. **Sentence semantics**
     - Semantic roles
         - Roles
         - FrameNet
@@ -118,7 +118,7 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
     - Semantic representation of sentences
         - First-order logic
         - Graphs (AMR)
-    - Semantic analysis
+    - Semantic parsing
 1. **Coreference detection**
     - References
         - References forms
