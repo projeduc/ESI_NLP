@@ -723,136 +723,6 @@
 	
 \end{frame}
 
-\begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{First order logic: Lambda notation}
-	
-	\begin{itemize}
-		\item \keyword{$ \lambda $-Expression}
-		\begin{itemize}
-			\item Anonymous function
-			\item \keyword{$ \lambda $x.P(x)}
-			\item Example: \expword{$ \lambda $x.USE(x, BERT)} to express the clause \expword{x uses BERT}
-		\end{itemize}
-	
-		\item \keyword{$ \lambda $-Reduction}
-		\begin{itemize}
-			\item Substitute a variable by an expression
-			\item \keyword{$ \phi (\psi) $}
-			\item Example: \expword{$ \lambda $x.USE(x, BERT)\ KARIM = USE(KARIM, BERT)}
-		\end{itemize}
-		
-		\item For fun: \url{http://davidmarino.nfshost.com/lambdalinguist/index.html}
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{First order logic: Semantic parsing}
-
-\begin{center}
-	\small\bfseries
-	\begin{tabular}{llll}
-		\hline\hline
-		S  & \textrightarrow\ NP VP && VP.sem(NP.sem) \\
-		VP & \textrightarrow\ V\textsubscript{t} NP && V\textsubscript{t}.sem(NP.sem)\\
-		VP & \textrightarrow\ V\textsubscript{i} && V\textsubscript{i}.sem \\
-		V\textsubscript{t}  & \textrightarrow\ uses && $ \lambda $y.$ \lambda $x.USE(x, y) \\
-		V\textsubscript{i}  & \textrightarrow\ sleeps && $ \lambda $x.SLEEP(x) \\
-		NP  & \textrightarrow\  Karim && KARIM \\
-		NP  & \textrightarrow\  BERT && BERT \\
-		\hline\hline
-		\end{tabular}
-	
-		\hgraphpage[0.7\textwidth]{sem-tree.pdf}
-\end{center}
-	
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{First order logic: Semantic parsing (Quantifiers: Grammar)}
-	
-	\begin{center}
-		\small\bfseries
-		\begin{tabular}{llll}
-			\hline\hline
-			S  & \textrightarrow\ NP VP && NP.sem(VP.sem) \\
-			DET & \textrightarrow\ each && $\lambda P.\lambda Q.\forall x (P(x) \Rightarrow Q(x))$ \\
-			
-			VP & \textrightarrow\ V\textsubscript{t} NP && V\textsubscript{t}.sem(NP.sem) \\
-			V\textsubscript{t}  & \textrightarrow\ uses && $\lambda P.\lambda x.P(\lambda y.USE(x, y))$ \\
-			
-			VP & \textrightarrow\ V\textsubscript{i} && V\textsubscript{i}.sem \\
-			V\textsubscript{i}  & \textrightarrow\ sleeps && $ \lambda $x.SLEEP(x) \\
-			
-			NP & \textrightarrow\ DET NN && DET.sem(NN.sem) \\
-			NN  & \textrightarrow\  student && STUDENT \\
-			
-			NP & \textrightarrow\ NNP && $\lambda P.P(NNP.sem)$ \\
-			NNP  & \textrightarrow\  Karim && KARIM \\
-			
-			DET & \textrightarrow\ a && $\lambda P.\lambda Q.\exists x\ P(x) \wedge Q(x)$ \\
-			NNP  & \textrightarrow\  BERT && BERT \\
-			\hline\hline
-		\end{tabular}
-	\end{center}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{First order logic: Semantic parsing (Quantifiers: Example)}
-	
-	
-	\begin{center}
-		\hgraphpage[0.8\textwidth]{sem-qtree.pdf}
-		\small
-		\begin{align*}
-		VP.sem & = V_t.sem(NP.sem) \\
-		& = \textcolor{red}{\lambda P}.\lambda x.\textcolor{red}{P}(\lambda y.USE(x, y))(\textcolor{blue}{\lambda P.P(BERT)}) \\
-		& = \lambda x.\textcolor{red}{\lambda P}.\textcolor{red}{P}(BERT)(\textcolor{blue}{\lambda y.USE(x, y)}) \\
-		& = \lambda x.\textcolor{red}{\lambda y}.USE(x, \textcolor{red}{y})(\textcolor{blue}{BERT}) \\
-		& = \lambda x.USE(x, BERT) \\
-		\end{align*}
-	\end{center}
-	
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{First order logic: Semantic parsing (NLTK)}
-	
-	\begin{exampleblock}{Example pf semantic parsing using NLTK}
-	\optword{Code:}
-	{\scriptsize
-		\begin{lstlisting}[language=Python]
-from nltk import load_parser
-parser = load_parser('grammars/book_grammars/simple-sem.fcfg', trace=0)
-sentence = 'Angus gives a bone to every dog'
-tokens = sentence.split()
-for tree in parser.parse(tokens):
-    print(tree.label()['SEM'])
-		\end{lstlisting}
-	}
-
-	\optword{Result:}
-	{\scriptsize\bfseries
-	\begin{lstlisting}
-all z2.(dog(z2) -> exists z1.(bone(z1) & give(angus,z1,z2)))
-	\end{lstlisting}
-	}
-	
-	\end{exampleblock}
-
-	\begin{itemize}
-		\item See: \url{https://www.nltk.org/book/ch10.html}
-	\end{itemize}
-	
-\end{frame}
-
 \subsection{Graphs (AMR)}
 
 \begin{frame}[fragile]
@@ -933,6 +803,138 @@ all z2.(dog(z2) -> exists z1.(bone(z1) & give(angus,z1,z2)))
 			\item :op1, :op2, :op3, :op4, :op5,
 			:op6, :op7, :op8, :op9, :op10
 		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+
+\subsection{Semantic parsing}
+
+\begin{frame}
+	\frametitle{Sentence semantics: Representation}
+	\framesubtitle{Semantic parsing: Lambda notation}
+	
+	\begin{itemize}
+		\item \keyword{$ \lambda $-Expression}
+		\begin{itemize}
+			\item Anonymous function
+			\item \keyword{$ \lambda $x.P(x)}
+			\item Example: \expword{$ \lambda $x.USE(x, BERT)} to express the clause \expword{x uses BERT}
+		\end{itemize}
+		
+		\item \keyword{$ \lambda $-Reduction}
+		\begin{itemize}
+			\item Substitute a variable by an expression
+			\item \keyword{$ \phi (\psi) $}
+			\item Example: \expword{$ \lambda $x.USE(x, BERT)\ KARIM = USE(KARIM, BERT)}
+		\end{itemize}
+		
+		\item For fun: \url{http://davidmarino.nfshost.com/lambdalinguist/index.html}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sentence semantics: Representation}
+	\framesubtitle{Semantic parsing: Logical representation generation}
+	
+	\begin{center}
+		\small\bfseries
+		\begin{tabular}{llll}
+			\hline\hline
+			S  & \textrightarrow\ NP VP && VP.sem(NP.sem) \\
+			VP & \textrightarrow\ V\textsubscript{t} NP && V\textsubscript{t}.sem(NP.sem)\\
+			VP & \textrightarrow\ V\textsubscript{i} && V\textsubscript{i}.sem \\
+			V\textsubscript{t}  & \textrightarrow\ uses && $ \lambda $y.$ \lambda $x.USE(x, y) \\
+			V\textsubscript{i}  & \textrightarrow\ sleeps && $ \lambda $x.SLEEP(x) \\
+			NP  & \textrightarrow\  Karim && KARIM \\
+			NP  & \textrightarrow\  BERT && BERT \\
+			\hline\hline
+		\end{tabular}
+		
+		\hgraphpage[0.7\textwidth]{sem-tree.pdf}
+	\end{center}
+	
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sentence semantics: Representation}
+	\framesubtitle{Semantic parsing: Quantifiers}
+	
+	\begin{center}
+		\small\bfseries
+		\begin{tabular}{llll}
+			\hline\hline
+			S  & \textrightarrow\ NP VP && NP.sem(VP.sem) \\
+			DET & \textrightarrow\ each && $\lambda P.\lambda Q.\forall x (P(x) \Rightarrow Q(x))$ \\
+			
+			VP & \textrightarrow\ V\textsubscript{t} NP && V\textsubscript{t}.sem(NP.sem) \\
+			V\textsubscript{t}  & \textrightarrow\ uses && $\lambda P.\lambda x.P(\lambda y.USE(x, y))$ \\
+			
+			VP & \textrightarrow\ V\textsubscript{i} && V\textsubscript{i}.sem \\
+			V\textsubscript{i}  & \textrightarrow\ sleeps && $ \lambda $x.SLEEP(x) \\
+			
+			NP & \textrightarrow\ DET NN && DET.sem(NN.sem) \\
+			NN  & \textrightarrow\  student && STUDENT \\
+			
+			NP & \textrightarrow\ NNP && $\lambda P.P(NNP.sem)$ \\
+			NNP  & \textrightarrow\  Karim && KARIM \\
+			
+			DET & \textrightarrow\ a && $\lambda P.\lambda Q.\exists x\ P(x) \wedge Q(x)$ \\
+			NNP  & \textrightarrow\  BERT && BERT \\
+			\hline\hline
+		\end{tabular}
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sentence semantics: Representation}
+	\framesubtitle{Semantic parsing: Quantifiers (Example)}
+	
+	\begin{center}
+		\hgraphpage[0.8\textwidth]{sem-qtree.pdf}
+		\small
+		\begin{align*}
+			VP.sem & = V_t.sem(NP.sem) \\
+			& = \textcolor{red}{\lambda P}.\lambda x.\textcolor{red}{P}(\lambda y.USE(x, y))(\textcolor{blue}{\lambda P.P(BERT)}) \\
+			& = \lambda x.\textcolor{red}{\lambda P}.\textcolor{red}{P}(BERT)(\textcolor{blue}{\lambda y.USE(x, y)}) \\
+			& = \lambda x.\textcolor{red}{\lambda y}.USE(x, \textcolor{red}{y})(\textcolor{blue}{BERT}) \\
+			& = \lambda x.USE(x, BERT) \\
+		\end{align*}
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Sentence semantics: Representation}
+	\framesubtitle{Semantic parsing: NLTK example}
+	
+	\begin{exampleblock}{Example pf semantic parsing using NLTK}
+		\optword{Code:}
+		{\scriptsize
+			\begin{lstlisting}[language=Python]
+from nltk import load_parser
+parser = load_parser('grammars/book_grammars/simple-sem.fcfg', trace=0)
+sentence = 'Angus gives a bone to every dog'
+tokens = sentence.split()
+for tree in parser.parse(tokens):
+print(tree.label()['SEM'])
+			\end{lstlisting}
+		}
+		
+		\optword{Result:}
+		{\scriptsize\bfseries
+			\begin{lstlisting}
+all z2.(dog(z2) -> exists z1.(bone(z1) & give(angus,z1,z2)))
+			\end{lstlisting}
+		}
+		
+	\end{exampleblock}
+	
+	\begin{itemize}
+		\item See: \url{https://www.nltk.org/book/ch10.html}
 	\end{itemize}
 	
 \end{frame}

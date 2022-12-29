@@ -1,0 +1,473 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+
+\documentclass[xcolor=table]{beamer}
+
+\input{options}
+
+\title[ESI - NLP: 09- Coreference resolution]%
+{Natural Language Processing\\Chapter 09\\Coreference resolution} 
+
+\changegraphpath{../img/coref/}
+
+\begin{document}
+	
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Coreference resolution: Introduction}
+
+\begin{exampleblock}{Example of a paragraph}
+	\begin{center}
+		\Large\bfseries
+	The cat saw a flower. it smelled it. It has a very nice scent.
+	\end{center}
+\end{exampleblock}
+
+\begin{itemize}
+	\item Who smelled whom: the cat or the flower?
+	\item Who has a nice scent: the cat or the flower?
+\end{itemize}
+
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Traitement automatique du langage naturel}
+%\framesubtitle{Sens des mots et désambigüisation lexicale : Un peu d'humour}
+%
+%\begin{center}
+%	\vgraphpage{humour-parse.jpg}
+%\end{center}
+%
+%\end{frame}
+
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Coreference resolution: Plan}
+
+\begin{multicols}{2}
+%	\small
+\tableofcontents
+\end{multicols}
+\end{frame}
+
+%===================================================================================
+\section{References}
+%===================================================================================
+
+\subsection{References forms}
+
+\begin{frame}
+\frametitle{Coreference resolution: References}
+\framesubtitle{References forms}
+	
+	\begin{itemize}
+		\item \optword{Pronouns}
+		\begin{itemize}
+			\item Personal: \expword{\underline{Karim} entered. \underline{He} started class.}
+			\item Possessive: \expword{\underline{Karim} has started \underline{his} course.}
+			\item ...
+		\end{itemize}
+	
+		\item \optword{Nominal phrases}
+		\begin{itemize}
+			\item \expword{I have a little \underline{cat}. \underline{This animal} is very mean.}
+		\end{itemize}
+	
+		\item \optword{Proper nouns} 
+		\begin{itemize}
+			\item \expword{The \underline{école nationale supérieure d'informatique} is located in Algiers. Like all Algerian universities, you must have the baccalaureate to study at \underline{ESI}.}
+		\end{itemize}
+	
+		\item \optword{Zero anaphora}
+		\begin{itemize}
+			\item \expword{\underline{Karim} presented and \underline{$ \phi $} explained the course.}
+			\item \expword{\begin{CJK}{UTF8}{min}\underline{カリムさん}はESIに生きます。\underline{$ \phi $} あそこに教えます。\end{CJK}}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Referencing manner}
+
+\begin{frame}
+	\frametitle{Coreference resolution: References}
+	\framesubtitle{Referencing manner}
+	
+	\begin{itemize}
+		\item \optword{Anaphora}
+		\begin{itemize}
+			\item a reference to a previous word or phrase called \keyword{antecedent}.
+			\item E.g. \expword{\underline{The lesson} is very long. \underline{It} will take longer.}
+		\end{itemize}
+	
+		\item \optword{Cataphora}
+		\begin{itemize}
+			\item a reference to a following word or phrase called \keyword{postcedent}.
+			\item E.g. \expword{\underline{It} is very long, \underline{this course}!}
+		\end{itemize}
+	
+		\item \optword{Shared antecedents}
+		\begin{itemize}
+			\item a reference to several words and/or phrases.
+			\item E.g. \expword{\underline{The lesson} will be followed by \underline{an exercise}. \underline{They} are important to understand the subject.}
+		\end{itemize}
+	
+		\item \optword{Coreference noun phrases}
+		\begin{itemize}
+			\item two noun phrases where each is a reference to the other.
+			\item E.g. \expword{\underline{Some of my colleagues} have been really supportive. \underline{This kind of people} earns my gratitude.}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Properties of Coreference Relations}
+
+\begin{frame}
+	\frametitle{Coreference resolution: References}
+	\framesubtitle{Properties of Coreference Relations (1)}
+	
+	
+	\begin{itemize}
+		\item \optword{Number}: Singular, Dual, Plural.
+		\begin{itemize}
+			\item \expword{\underline{Lions} are chasing a \underline{dear}. \underline{They} are so fast.}
+		\end{itemize}
+	
+		\item \optword{Person}: First, Second, Third.
+		\begin{itemize}
+			\item \expword{\underline{My brother}\textsubscript{1} and \underline{I}\textsubscript{2} have repaired \underline{his bicycle}\textsubscript{1} after \underline{mine}\textsubscript{2}.}
+		\end{itemize}
+		
+		\item \optword{Gender}: Masculine, Feminine, Neutral.
+		\begin{itemize}
+			\item \expword{When the girl met her \underline{father}, \underline{he} was very happy.}
+		\end{itemize}
+		
+		\item \optword{Binding theory's constraints}: syntactic constraints on the mention-antecedent relation.
+		\begin{itemize}
+			\item \expword{Janet bought herself a bottle of fish sauce.} [herself = Janet]
+			\item \expword{Janet bought her a bottle of fish sauce.} [her $\ne$ Janet]
+		\end{itemize}
+	
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Coreference resolution: References}
+	\framesubtitle{Properties of Coreference Relations (2)}
+	
+	\begin{itemize}
+		
+		\item \optword{Recency}: entities mentioned more recently are more likely to be an antecedent.
+		\begin{itemize}
+			\item \expword{The doctor found an old map. Jim found an even older \underline{map}. \underline{It} is about an island.}
+		\end{itemize}
+		
+		\item \optword{Grammatical relations}: subjects are more likely to be an antecedents than objects.
+		\begin{itemize}
+			\item \expword{\underline{Karim} went to a restaurant with his friend. \underline{He} asked for a couscous dish.}
+		\end{itemize}
+		
+		\item \optword{Verb semantics}: the mention follows the emphasis of the verb (the one that caused the event).
+		\begin{itemize}
+			\item \expword{\underline{John} telephoned Bill. \underline{He} lost the laptop.}
+			\item \expword{John criticized \underline{Bill}. \underline{He} lost the laptop.}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Coreference resolution: References}
+	\framesubtitle{Some humor}
+	
+	\begin{center}
+		\vgraphpage{humor/humor-ref.jpg}
+	\end{center}
+	
+\end{frame}
+
+%===================================================================================
+\section{Coreference resolution}
+%===================================================================================
+
+\begin{frame}
+	\frametitle{Coreference resolution}
+	\framesubtitle{Coreference resolution}
+	
+	\hgraphpage{coref-arch.pdf}
+	
+	\begin{itemize}
+		\item \optword{Mention detection}
+		\item \optword{Linking models}
+		\begin{itemize}
+			\item Mention-Pair: each mention with others.
+			\item Mention-Rank: a mention must be linked to only one antecedent.
+			\item Entity-based: detect coreference clusters.
+		\end{itemize}
+		
+		\item \optword{Coreference resolution approaches}
+		\begin{itemize}
+			\item Rules-based
+			\item Features-based (manually engineered)
+			\item Embedding-based
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+
+\subsection{Mention detection}
+
+\begin{frame}
+	\frametitle{Coreference resolution: Coreference resolution}
+	\framesubtitle{Mention detection}
+	
+	\begin{itemize}
+		\item \optword{Entity extraction}
+		\begin{itemize}
+			\item Nominal phrases, pronouns, named entities.
+		\end{itemize}
+	
+		\item \optword{Entities filtering}
+		\begin{itemize}
+			\item Using linguistic rules. E.g. In the expression ``\expword{It is thought that ...}", the pronoun ``\expword{It}" is not a reference. In this case, a list of cognitive verbs \expword{believe, think, etc.} can be used to filter this pronoun.
+			\item Using machine learning: one detector for references and another for antecedents.
+		\end{itemize}
+	
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Coreference resolution: Coreference resolution}
+	\framesubtitle{Mention detection: Rule-based \cite{2013-lee-al}}
+	
+	\begin{itemize}
+		\item Delete a mention if there is another larger one with the same syntactic head. 
+		E.g., ``\expword{the software company}" vs. ``\expword{the software company situated in Algiers}". 
+		
+		\item Discard numerical entities such as percentages, money, cardinals and quantities.
+		E.g., ``\expword{9\%}", ``\expword{100\$}", ``\expword{one hundred nine}".
+		
+		\item Eliminate mentions that are part of another (quantifier + ``of"). 
+		E.g., ``\expword{a total of 177 projects}", ``\expword{none of them}", ``\expword{millions of people}".
+		
+		\item Remove pronouns that are not used as a reference (pleonastic ``it"). 
+		E.g., ``\expword{It is thought that ...}", the pronoun ``it" is not a reference. 
+		A list of cognitive verbs \expword{believe, think, etc.} can be used to filter this pronoun.
+		
+		\item Eliminate adjectival forms of nations or national acronyms.
+		E.g., ``\expword{American}", ``\expword{U.S.}", ``\expword{U.K.}".
+		
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Coreference resolution: Coreference resolution}
+	\framesubtitle{Mention detection: NN-based \cite{2020-yu-al}}
+	
+	\begin{figure}[ht]
+		\centering
+		\hgraphpage[\textwidth]{mention-detection-arch.pdf}
+		\caption[Three architectures to detecting mentions]{Three architectures to detecting mentions; Inspired from \cite{2020-yu-al}}
+		\label{fig:det-mention-yu}
+	\end{figure}
+	
+\end{frame}
+
+
+
+\subsection{Linking}
+
+\begin{frame}
+	\frametitle{Coreference resolution: Coreference resolution}
+	\framesubtitle{Linking: Mention-Pair model}
+	
+	\begin{itemize}
+		\item Detect if there is a coreference between two mentions.
+		\item Binary classification (coreference, not coreference).
+		\item \textbf{Problem}: contradictions. E.g. \expword{Ms Kennedy $ \leftarrow $ Kennedy, Kennedy $ \leftarrow $ He}
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\hgraphpage[.8\textwidth]{mention-pair-exp.pdf}
+		\caption{Example of Mention-Pair model \cite{2019-jurafsky-martin}}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Coreference resolution: Coreference resolution}
+	\framesubtitle{Linking: Mention-Rank model}
+	
+	\begin{itemize}
+		\item Among previous mentions, decide which one is the antecedent.
+		\item $ \hat{a} = \arg\max\limits_{a_i \in \{\epsilon, a_1, \ldots, a_{n-1}\}} P(a_i|a_n) $
+		\item $ \epsilon $: means, there is no antecedent.
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\hgraphpage{mention-rank-exp.pdf}
+		\caption{Example of Mention-Rank model \cite{2019-jurafsky-martin}}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Coreference resolution: Coreference resolution}
+	\framesubtitle{Linking: Entity-based model}
+	
+	\begin{itemize}
+		\item Also called: cluster-ranking model
+		\item \textbf{Input}: two mentions' clusters
+		\item verify if the two clusters are compatible
+		\item Estimate if a cluster is antecedent to another such as in Mention-Rank
+		\item If the two clusters represent the same mention, merge them
+		\item \textbf{Output}: A set of clusters
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Evaluation}
+
+\begin{frame}
+	\frametitle{Coreference resolution: Coreference resolution}
+	\framesubtitle{Evaluation}
+	
+	\begin{itemize}
+		\item \keyword{MUC}: \optword{Message Understanding Conference}
+		\begin{itemize}
+			\item Link-based metric
+			\item Number of shared binary links between the reference and the system
+		\end{itemize}
+		\item \keyword{B\textsuperscript{3}}
+		\begin{itemize}
+			\item Mention-based metric
+			\item Global R/P is calculated based on R/P of individual mentions.
+		\end{itemize}
+		\item \keyword{CEAF}: \optword{Constrained entity-alignment F-Measure}
+		\begin{itemize}
+			\item mention-based OR entity-based (2 versions depending on used similarity)
+			\item A mention of the system is aligned with a single reference
+		\end{itemize}
+		\item \keyword{BLANC} 
+		\begin{itemize}
+			\item Link-based metric
+			\item Global R/P is calculated based on R/P of coreference links and that of non coreference
+		\end{itemize}
+		\item \keyword{LEA}: \optword{Link based entity aware}
+		\begin{itemize}
+			\item Entity size as an importance measure
+			\item Resolved coreferences' links are evaluated.
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Coreference resolution: Coreference resolution}
+	\framesubtitle{Some humor}
+	
+	\begin{center}
+		\vgraphpage{humor/humor-res.jpg}
+	\end{center}
+	
+\end{frame}
+
+%===================================================================================
+\section{Related tasks}
+%===================================================================================
+
+\begin{frame}
+	\frametitle{Coreference resolution}
+	\framesubtitle{Related tasks}
+	
+	\begin{itemize}
+		\item Used tasks
+		\begin{itemize}
+			\item Preprocessing task (Chapter 3)
+			\item PoS tagging (Chapter 5)
+			\item Named entities recognition (Chapter 5)
+		\end{itemize}
+		\item Similar tasks
+		\begin{itemize}
+			\item Entity linking
+			\item Citation attribution: find who said/wrote a discourse
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Entity linking}
+
+\begin{frame}
+	\frametitle{Coreference resolution: Related tasks}
+	\framesubtitle{Entity linking}
+	
+	\begin{itemize}
+		\item Associate a mention in a text with its representation in a structured knowledge base.
+		\item useful to have in-depth knowledge on some entities in the real world.
+		\item \keyword{Wikification}: link a mention with a Wikipédia page
+		\item Entity linking steps: 
+		\begin{itemize}
+			\item \optword{Mention detection}: detect all knowledge base entities linked to a mention using queries.
+			\item \optword{Mention disambiguation}: find the most likely entity using machine learning.
+		\end{itemize}
+		\item Some APIs: 
+		\begin{itemize}
+			\item \url{https://labs.tib.eu/falcon/}
+			\item \url{https://dandelion.eu}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Named entity recognition (NER)}
+
+\begin{frame}
+	\frametitle{Coreference resolution: Related tasks}
+	\framesubtitle{Named entity recognition (NER)}
+	
+	\begin{itemize}
+		\item locate and classify named entities in a text
+		\item \keyword{Named entity}: persons, places, organizations, quantities, etc.
+		\item a data extraction subtask
+		\item Recognition techniques
+		\begin{itemize}
+			\item \optword{Rules}: use rules and lists of names to search for entities and detect their types.
+			\item \optword{Features-based ML}: word embeddins, prefixes and suffixes, list membership, neighbors features, etc.
+			\item \optword{Sequences labeling}: As seen in chapter 5 using \keyword{IOB} annotation.
+			\expword{\scriptsize
+			$ \underbrace{Google}_{B-ORG} $ 
+			$ \underbrace{LLC}_{I-ORG} $ 
+			$ \underbrace{est}_{O} $ 
+			$ \underbrace{fond\text{\textit{é}}e}_{O} $ 
+			$ \underbrace{dans}_{O} $ 
+			$ \underbrace{la}_{O} $ 
+			$ \underbrace{Silicon}_{B-LOC} $ 
+			$ \underbrace{Valley}_{B-LOC} $ 
+			$ \underbrace{par}_{O} $ 
+			$ \underbrace{Larry}_{B-PER} $ 
+			$ \underbrace{Page}_{I-PER} $ 
+			$ \underbrace{et}_{O} $ 
+			$ \underbrace{Sergey}_{B-PER} $ 
+			$ \underbrace{Brin}_{I-PER} $
+			}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+
+\insertbibliography{NLP09}{*}
+
+\end{document}
+

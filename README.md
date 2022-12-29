@@ -118,7 +118,7 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
     - Semantic representation of sentences
         - First-order logic
         - Graphs (AMR)
-    - Semantic parsing
+        - Semantic parsing
 1. **Coreference detection**
     - References
         - References forms
@@ -127,7 +127,7 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
     - Resolution of coreferences
         - Mention detection
         - Coreferences linking
-    - Evaluation
+        - Evaluation
     - Related Tasks
         - Entity linking
         - Named-entity recognition (NER)
