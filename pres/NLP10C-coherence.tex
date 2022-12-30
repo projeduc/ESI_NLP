@@ -1,0 +1,941 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+
+\documentclass[xcolor=table]{beamer}
+
+\input{options}
+
+\title[ESI - NLP: 10- Discourse coherence]%
+{Natural Language Processing\\Chapter 10\\Discourse coherence} 
+
+\changegraphpath{../img/coherence/}
+
+\begin{document}
+	
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Discourse coherence: Introduction}
+
+\begin{exampleblock}{Example of a paragraph}
+	\begin{center}
+		\Large\bfseries
+		Winter is one of the year's four seasons.
+		The report was well presented.
+		Rain is one of the this season's qualities.
+		I read a report on this season.
+	\end{center}
+\end{exampleblock}
+
+\begin{itemize}
+	\item Can you figure out what this is about?
+	\item If there is a problem, what is it?
+	\item Can this text be improved?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Natural Language Processing}
+	\framesubtitle{Discourse coherence}
+	
+	\begin{itemize}
+		\item How to detect discourse coherence?
+		\item \optword{Relations-based coherence}: a discourse sentences are bound together by relations. 
+		\begin{itemize}
+			\item Rhetorical Structure Theory (RST) 
+			\item Penn Discourse TreeBank (PDTB)
+		\end{itemize}
+		\item \optword{Entity-based coherence}: a discourse sentences form a single entity; they discuss the same subject.
+		\begin{itemize}
+			\item Centering Theory 
+		\end{itemize}
+		\item \optword{Lexical cohesion}: close sentences share a few words or meanings.
+		\begin{itemize}
+			\item Similarity measures
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Discourse coherence: Some humor}
+
+\begin{center}
+	\vgraphpage{humor/humor1.jpg}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Discourse coherence: Plan}
+
+\begin{multicols}{2}
+%	\small
+\tableofcontents
+\end{multicols}
+\end{frame}
+
+%===================================================================================
+\section{Coherence relations}
+%===================================================================================
+
+\subsection{Rhetorical Structure Theory (RST)}
+
+\begin{frame}
+\frametitle{Discourse coherence: Coherence relations}
+\framesubtitle{Rhetorical Structure Theory (RST)}
+	
+	\begin{itemize}
+		\item Structure  
+		\begin{itemize}
+			\item \optword{Nucleus (N)} : independent unit; can be interpreted independently of the other units of the text.
+			\item \optword{Satellite (S)}: dependent unit; can only be interpreted using the nucleus.
+		\end{itemize}
+		\item Actors
+		\begin{itemize}
+			\item \optword{Reader (R)}: who reads the script.
+			\item \optword{Writer (Sc)}: who wrote the script.
+		\end{itemize}
+		\item Relation definition
+		\begin{itemize}
+			\item Constraints on the nucleus
+			\item Constraints on the satellite 
+			\item Constraints the combination of both 
+			\item Produced effect on either the reader, the writer or both.
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{RST: RST relations (Elaboration)}
+	
+	\begin{itemize}
+		\item \optword{Elaboration}: S gives additional information about the situation presented in N.
+		\begin{itemize}
+			\item \textbf{Constraints on N + S}: S presents additional information regarding the situation or some aspect of the theme presented in N.
+			\item \textbf{Effect}: R recognizes the situation presented in S as providing additional information about N. 
+			\item \textbf{Locus of the effect}: N + S
+			\item E.g. \expword{[\textsubscript{N} The exam is easy.] [\textsubscript{S} It only takes an hour.]}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{RST: RST relations (Evidence)}
+	
+	\begin{itemize}
+		\item \optword{Evidence}: S gives additional information about the situation presented in N in order to convince R to accept the information of N
+		\begin{itemize}
+			\item \textbf{Constraints on N}: R may not believe in N to a degree satisfactory to W.
+			\item \textbf{Constraints on S}: R believes S or will find it credible
+			\item \textbf{Constraints on N + S}: R's comprehending S increases R's belief of N
+			\item \textbf{Effect}: R's belief of N is in increased
+			\item \textbf{Locus of the effect}: N
+			\item E.g. \expword{[\textsubscript{N} Kevin must be here.] [\textsubscript{S} His car is parked outside.]}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{RST: RST relations (Contrast)}
+	
+	\begin{itemize}
+		\item \optword{Contrast}: An opposition relation between two nuclei.
+		\begin{itemize}
+			\item \textbf{Constraints on N}: multi-nuclear
+			\item \textbf{Constraints on N + N}: no more than two nuclei; the situations presented in those two nuclei are (a) comprehended as the same in many aspects (b) comprehended as differing in a few aspects and (c) compared with respect to one or more of these differences.
+			\item \textbf{Effect}: R recognizes the comparability and the difference(s) yielded by the comparison being made.
+			\item \textbf{Locus of the effect}: multiple nuclei.
+			\item E.g. \expword{[\textsubscript{N} He voted "No" to the new constitution.] [\textsubscript{N} His brother voted "Yes".]}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{RST: RST relations (Antithesis)}
+	
+	\begin{itemize}
+		\item \optword{Antithesis}: An opposition relation between N and S so that R has a positive attitude towards N.
+		\begin{itemize}
+			\item \textbf{Constraints on N}: W has positive regard for the situation presented in N.
+			\item \textbf{Constraints on N + N}: the situations presented in N and S are in contrast (cf. CONTRAST).
+			\item \textbf{Effect}: R's positive regard for N is increased.
+			\item \textbf{Locus of the effect}: N
+			\item Ex. \expword{[\textsubscript{N} I defended the republic when I was young;] [\textsubscript{S} I won't give it up now that I'm old.]}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{RST: Subject matter vs. presentational relations}
+	
+	\begin{center}
+		\footnotesize
+	\begin{tblr}{
+			colspec = {p{.4\textwidth}lp{.4\textwidth}},
+			row{odd} = {lightblue},
+			row{even} = {lightyellow},
+			row{1} = {darkblue},
+			rowsep = 0pt,
+		}
+
+		\bfseries\textcolor{white}{Subject matter} && \bfseries\textcolor{white}{Presentational}\\
+		
+		Elaboration
+		
+		Circumstance
+		
+		Solutionhood
+		
+		Volitional Cause
+		
+		Volitional Result
+		
+		Non-Volitional Cause
+		
+		Non-Volitional Result
+		
+		Purpose
+		
+		Condition
+		
+		Otherwise
+		
+		Interpretation
+		
+		Evaluation
+		
+		Restatement
+		
+		Summary
+		
+		Sequence
+		
+		Contrast
+		
+		&&
+		Motivation
+		
+		Antithesis
+		
+		Background
+		
+		Enablement
+		
+		Evidence
+		
+		Justify
+		
+		Concession\\
+	\end{tblr}
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{RST: semantic vs. pragmatic vs. textual relations}
+	
+	
+	\begin{center}
+		\footnotesize
+	\begin{tblr}{
+			colspec = {p{.3\textwidth}lp{.25\textwidth}lp{.2\textwidth}},
+			row{odd} = {lightblue},
+			row{even} = {lightyellow},
+			row{1} = {darkblue},
+			rowsep = 0pt,
+		}
+
+		\bfseries\textcolor{white}{Semantic} && \bfseries\textcolor{white}{Pragmatic} && \bfseries\textcolor{white}{Textual} \\
+		
+		Elaboration
+		
+		Circumstance
+		
+		Solutionhood
+		
+		Volitional Cause
+		
+		Volitional Result
+		
+		Non-Volitional Cause
+		
+		Non-Volitional Result
+		
+		Purpose
+		
+		Condition
+		
+		Interpretation
+		
+		Evaluation
+		
+		Sequence
+		
+		Contrast
+		
+		&&
+		
+		Motivation
+		
+		Antithesis
+		
+		Facilitation
+		
+		Evidence 
+		
+		Justification
+		
+		Concession
+		
+		&&
+		
+		Background
+		
+		Reformulation
+		
+		Summary\\
+	\end{tblr}
+	\end{center}
+	
+\end{frame}
+
+\subsection{Penn Discourse TreeBank (PDTB)}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{Penn Discourse TreeBank (PDTB)}
+	
+	\begin{itemize}
+		\item Annotation of discourse connectives
+		\begin{itemize}
+			\item \optword{Subordination conjunctions}:  
+			temporal (E.g., \expword{'when', 'as soon as'}), 
+			causal (E.g., \expword{'because'}), 
+			concessive (E.g., \expword{'although', 'even though'}), 
+			objective (E.g.,\expword{'so that', 'in order that'}) et 
+			conditional (E.g., \expword{'if', 'unless'}).
+			
+			\item \optword{Coordination conjunctions}: \expword{'and', 'but', 'or'}
+			
+			\item \optword{Adverbial conjunctions}: adverbs that express a discourse relation between events or states. E.g., \expword{'however', 'therefore', 'then', etc.}
+			Prepositional phrases are also included in this class. E.g. \expword{'as a result',
+			'in addition', 'in fact', etc. }
+			
+			\item \optword{Implicit conjunctions}: identified between two adjacent sentences that are not connected by explicit connectives.
+		\end{itemize}
+		\item Arguments annotation
+		\begin{itemize}
+			\item ARG2: this is the clause where the connective is bound (explicit case)
+			\item ARG1: the other clause
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{Penn Discourse TreeBank (PDTB): Connectives senses}
+	
+	\begin{table}
+	\tiny\bfseries
+	\begin{tblr}{
+			colspec = {p{.1\textwidth}lp{.8\textwidth}},
+			row{odd} = {lightblue},
+			row{even} = {lightyellow},
+			row{1} = {darkblue},
+			rowsep = 1pt,
+		}
+
+		\bfseries\textcolor{white}{Connective} && \bfseries\textcolor{white}{Sens}\\
+		
+		after && succession (523), succession-reason (50), other (4) \\
+		since && reason (94), succession (78), succession-reason (10), other (2) \\
+		when && Synchrony (477), succession (157), general (100), succession-reason (65), Synchrony-general (50),
+		Synchrony-reason (39), hypothetical (11), implicit assertion (11), Synchrony-hypothetical (10), other
+		(69) \\
+		while && juxtaposition (182), Synchrony (154), Contrast (120), expectation (79), opposition (78), Conjunction
+		(39), Synchrony-juxtaposition (26), Synchrony-Conjunction (21), Synchrony-Contrast(22), COMPARISON (18), Synchrony-opposition (11), other (31) \\
+		meanwhile && Synchrony-Conjunction (92), Synchrony (26), Conjunction (25), Synchrony-juxtaposition (15),
+		other(35)\\
+		but && Contrast (1609), juxtaposition (636), contra-expectation (494), COMPARISTON (260), opposition
+		(174), Conjunction (63), Conjunction-Pragmatic contrast (14), Pragmatic-contrast (14), other (32)
+		however Contrast (254), juxtaposition (89), contra-expectation (70), COMPARISON (49), opposition (31),
+		other (12)\\
+		although && expectation (132), Contrast (114) juxtaposition (34), contra-expectation (21), COMPARISON (16),
+		opposition (9), other (2)\\
+		and && Conjunction (2543), List (210), result-Conjunction (138), result (38), precedence-Conjunction (30),
+		juxtaposition (11), other(30)\\
+		if && hypothetical (682), general (175), unreal present (122), factual present (73), unreal past (53), expectation (34), implicit assertion (29), relevance (20), other (31)\\
+	\end{tblr}
+	\caption{Some connectives and statistics on their senses \cite{2008-prasad-al}}
+	\end{table}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Coherence relations}
+	\framesubtitle{Penn Discourse TreeBank (PDTB): Connectives categories}
+	
+	\begin{figure}
+		\centering\vspace{-6pt}
+		\begin{tcolorbox}[colback=white, colframe=blue, boxrule=1pt, text width=.9\textwidth]
+		\begin{minipage}{.3\textwidth}
+			\tiny\bfseries\vspace{-6pt}
+			\begin{itemize}
+				\item CONTINGENCY
+				\begin{itemize}\tiny\bfseries
+					\item Cause
+					\begin{itemize}\tiny\bfseries
+						\item Reason
+						\item Result
+					\end{itemize}
+					\item Pragmatic Cause
+					\begin{itemize}\tiny\bfseries
+						\item Justification
+					\end{itemize}
+					\item Condition
+					\begin{itemize}\tiny\bfseries
+						\item Hypothetical
+						\item General
+						\item Unreal Present
+						\item Unreal Past
+						\item Factual Present
+						\item Factual Past
+					\end{itemize}
+					\item Pragmatic Condition
+					\begin{itemize}\tiny\bfseries
+						\item Relevance
+						\item Implicit Assertion
+					\end{itemize}
+				\end{itemize}
+			\end{itemize}
+		\end{minipage}
+		\begin{minipage}{.3\textwidth}
+			\tiny\bfseries
+			\begin{itemize}\tiny\bfseries
+				\item TEMPORAL
+				\begin{itemize}\tiny\bfseries
+					\item Asynchronous
+					\item Synchronous
+					\begin{itemize}\tiny\bfseries
+						\item Precedence
+						\item Succession
+					\end{itemize}
+				\end{itemize}
+				\item COMPARISON
+				\begin{itemize}\tiny\bfseries
+					\item Contrast
+					\begin{itemize}\tiny\bfseries
+						\item Juxtaposition 
+						\item Opposition
+					\end{itemize}
+					\item Pragmatic Contrast
+					\item Concession
+					\begin{itemize}\tiny\bfseries
+						\item Expectation
+						\item Contra-expectation
+					\end{itemize}
+					\item Pragmatic Concession
+				\end{itemize}
+			\end{itemize}
+		\end{minipage}
+		\begin{minipage}{.3\textwidth}
+			\tiny\bfseries
+			\begin{itemize}\tiny\bfseries
+				\item EXPANSION
+				\begin{itemize}\tiny\bfseries
+					\item Conjunction
+					\item Instantiation
+					\item Restatement
+					\begin{itemize}\tiny\bfseries
+						\item Specification
+						\item Equivalence
+						\item Generalization
+					\end{itemize}
+					\item Alternative
+					\begin{itemize}\tiny\bfseries
+						\item Conjunction
+						\item Disjunction
+						\item Chosen Alternative
+					\end{itemize}
+					\item Exception
+					\item List
+				\end{itemize}
+			\end{itemize}
+		\end{minipage}\vspace{-6pt}
+		\end{tcolorbox}\vspace{-6pt}
+		\caption{PDTB sens hierarchy \cite{2008-prasad-al}}
+	\end{figure}
+	
+\end{frame}
+
+%===================================================================================
+\section{Discourse Structure Parsing}
+%===================================================================================
+
+\begin{frame}
+	\frametitle{Discourse coherence}
+	\framesubtitle{Discourse Structure Parsing}
+	
+	\begin{itemize}
+		\item A discourse is coherent if there are relations between its parts.
+		\item The structure:
+		\begin{itemize}
+			\item Relations tree: RST
+			\item Binary relations between each two parts: PDTB
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{RST parsing}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Discourse Structure Parsing}
+	\framesubtitle{RST parsing}
+	
+	\begin{itemize}
+		\item Build a discourse relations tree
+		\item Two steps: 
+		\begin{enumerate}
+			\item Elementary discourse units (EDUs) detection
+			\item Relations classification
+		\end{enumerate}
+	\end{itemize}
+
+	\begin{center}
+		\hgraphpage[0.5\textwidth]{RST-tree.pdf}
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Discourse Structure Parsing}
+	\framesubtitle{RST parsing: Elementary discourse units (EDUs) detection}
+	
+	\begin{itemize}
+		\item Elementary discourse units (EDUs)
+		\item A sentence can have many UEDs 
+		\item E.g. \expword{[Mr. Rambo says]\textsubscript{e1} [that a 3.2-acre property]\textsubscript{e2} [overlooking the San Fernando Valley]\textsubscript{e3} [is priced at \$4 million]\textsubscript{e4} [because the late actor Erroll Flynn once lived there.]\textsubscript{e5}}
+		\item Methods 
+		\begin{itemize}
+			\item \optword{Rule-based}
+			\begin{itemize}
+				\item parse tree
+				\item surface features: punctuation and lexical markers such as connectives
+			\end{itemize}
+			\item Statistical
+			\begin{itemize}
+				\item \optword{Features-based}: using syntactic information and surface features to learn how to limit UEDs
+				\item \optword{Embeddings-based}: text as sequence. E.g., \url{https://github.com/PKU-TANGENT/NeuralEDUSeg}
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Discourse Structure Parsing}
+	\framesubtitle{RST parsing: EDUs detection by embeddings}
+	
+	\begin{figure}
+		\centering
+		\hgraphpage[.45\textwidth]{EDU_seg.pdf}
+		\caption{UEDs segmentation proposed by \cite{2018-wang-al}; figure inspired by \cite{2019-jurafsky-martin}}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Discourse Structure Parsing}
+	\framesubtitle{RST parsing: Relations classification}
+	
+	\begin{minipage}{.6\textwidth}
+	\begin{itemize}
+		\item Most used method: SHIFT-REDUCE
+		\item Configuration: $C = (\sigma, \beta, A)$
+		\begin{itemize}
+			\item $\sigma$ is a stack
+			\item $\beta$ is an input buffer
+			\item $A$ is the list of created arcs (relations)
+			\item $C_{initiale} = (\varnothing, w, \emptyset)$
+			\item $C_{finale} = (\varnothing, \varnothing, A)$
+		\end{itemize}
+	\end{itemize}
+	\end{minipage}
+	\begin{minipage}{.38\textwidth}
+		\hgraphpage{RST-transitions.pdf}
+	\end{minipage}
+	\begin{itemize}
+		\item Operations 
+		\begin{itemize}
+			\item \optword{Shift}: put the first element of the buffer on the stack.
+			\item \optword{Reduce}\textbf{(l, d)}: merge the top two subtrees of the stack, where \textbf{l} is the label of coherence relation, and \textbf{d} is the direction of nuclearity: \textbf{d $ \in $ \{NN, NS, SN\}}.
+			\item \optword{Pop Root}: delete the top tree from the stack.
+		\end{itemize}
+		\item Training 
+		\begin{itemize}
+			\item Features-based
+			\item Embeddings-based
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Discourse Structure Parsing}
+	\framesubtitle{RST parsing: Relations classification (example)}
+	
+	\begin{figure}
+		\begin{minipage}{0.25\textwidth}
+			\hgraphpage{RST_exp.pdf}
+		\end{minipage}
+		\begin{minipage}{0.70\textwidth}
+			\scriptsize
+			\begin{itemize}
+				\item e\textsubscript{1}: American Telephone \& Telegraph Co. said it
+				\item e\textsubscript{2}: will lay off 75 to 85 technicians here , effective Nov. 1.
+				\item e\textsubscript{3}: The workers install , maintain and repair its private branch exchanges,
+				\item e\textsubscript{4}: which are large intracompany telephone networks.
+			\end{itemize}
+		\end{minipage}
+		
+		\small
+		\begin{tabular}{lllll}
+			\hline\hline 
+			Step & Stack & Buffer & Action & Added Relation \\
+			\hline
+			01 & $\emptyset$ & $e_1, e_2, e_3, e_4$ & SH & / \\
+			02 & $e_1$ & $e_2, e_3, e_4$ & SH & / \\
+			03 & $e_1, e_2$ & $e_3, e_4$ & RD(attr, SN) & $\widehat{e_1 \mathbf{e_2}}$ \\
+			04 & $e_{1:2}$ & $e_4$ & SH & / \\
+			05 & $e_{1:2}, e_3$ & $e_4$ & SH & / \\
+			06 & $e_{1:2}, e_3, e_4$ & $\emptyset$ & RD(elab, NS) & $\widehat{\mathbf{e_3} e_4}$ \\
+			07 & $e_{1:2}, e_{3:4}$ & $\emptyset$ & RD(elab, SN) & $\widehat{e_{1:2}\mathbf{e_{3:4}}}$ \\
+			08 & $e_{1:4}$ & $\emptyset$ & PR & / \\
+			\hline\hline
+		\end{tabular}
+		\caption{Example of RST parsing using Shif-Reduce \cite{2018-yu-al}}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Discourse Structure Parsing}
+	\framesubtitle{RST parsing: Relations classification using embeddings (1)}
+	
+	\begin{itemize}
+		\item Case study: \cite{2018-yu-al} (Encoder-decoder)
+		\item Code: \url{https://github.com/yunan4nlp/NNDisParser}
+		\item Encoder 
+		\begin{itemize}
+			\item Encode words: $ w_i $ a word with a PoS $t_i$
+			\[x_i^w = embedding(w_i) \oplus embedding(t_i)\]
+			\item Represent sequential words
+			\[ \{h_1^w, h_2^w, \ldots, h_m^w \} = biLSTM(\{x_1^w, x_2^w, \ldots, x_m^w \})\]
+			\item Represent one UED $\{w_s, w_{s+1}, \ldots, w_t \}$
+			\[ x^e = \frac{1}{t-s+1} \sum_{k=s}^{t} h_k^w\]
+			\item Represent sequential UEDs
+			\[ \{h_1^e, h_2^e, \ldots, h_n^e \} = biLSTM(\{x_1^e, x_2^e, \ldots, x_n^e \})\]
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Discourse Structure Parsing}
+	\framesubtitle{RST parsing: Relations classification using embeddings (2)}
+	
+	\begin{itemize}
+		\item Decoder 
+		\begin{itemize}
+			\item A feed-forward neural layer to infer the action $o$
+			\[o = W(h_{s0}^{sbt} \oplus h_{s1}^{sbt} \oplus h_{s2}^{sbt} \oplus h_{q0}^{e})\]
+			\item $ h_{e}^{q0} $: sequential representation of the first UED in the buffer
+			\item $h_{si}^{sbt}$: sequential representation of the subtree $i$ in the stack
+			\item the representation of a subtree between two UEDs $ s= \{e_i, \ldots, e_j\}$ is the average of the covered UEDs representations. 
+			\[ h_{s}^{sbt} = \frac{1}{j-i+1} \sum_{k=i}^{j} h_k^e\]
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{PDTB parser}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Discourse Structure Parsing}
+	\framesubtitle{PDTB parser}
+	
+	\begin{itemize}
+		\item Find the relation between two spans
+		\item 4 steps: 
+		\begin{enumerate}
+			\item Find the discourse connectives
+			\begin{itemize}
+				\item Using sens disambiguation (delimiter or not)
+			\end{itemize}
+			\item Find the two spans for each connective
+			\begin{itemize}
+				\item Given a span with a connector, adjacent spans can be classified as having a relation or not (the same manner as EDUs classification)
+			\end{itemize}
+			\item Label the relationship between these spans (explicit connectives)
+			\begin{itemize}
+				\item Connectives are labels
+			\end{itemize}
+			\item Assign a relation between every adjacent pair of sentences (implicit connectives)
+			\begin{itemize}
+				\item For example, using BERT with the two spans as input, the output of $ <CLS> $ can be followed by a MLP to infer the relation
+			\end{itemize}
+		\end{enumerate}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence}
+	\framesubtitle{Discourse Structure Parsing: Some humor}
+	
+	\begin{center}
+		\vgraphpage{humor/humor2.jpg}
+	\end{center}
+	
+\end{frame}
+
+%===================================================================================
+\section{Entity-based coherence}
+%===================================================================================
+
+\begin{frame}
+	\frametitle{Discourse coherence}
+	\framesubtitle{Entity-based coherence}
+	
+	\begin{itemize}
+		\item A discourse is coherent if it discusses a certain entity
+		\item In all the discourse, this entity must remain the most important.
+	\end{itemize}
+
+	\begin{exampleblock}{Example of entity-based coherence \cite{2019-jurafsky-martin}}
+		\small
+		\begin{minipage}{.48\textwidth}
+			\begin{enumerate}
+				\item John went to his favorite music store to buy a piano. [John]
+				\item He had frequented the store for many years. [John]
+				\item He was excited that he could finally buy a piano. [John]
+				\item He arrived just as the store was closing for the day. [John]
+			\end{enumerate}
+		\end{minipage}
+		\begin{minipage}{.48\textwidth}
+			\begin{enumerate}
+				\item John went to his favorite music store to buy a piano. [John]
+				\item It was a store John had frequented for many years. [The store]
+				\item He was excited that he could finally buy a piano. [John]
+				\item It was closing just as John arrived. [The store]
+			\end{enumerate}
+		\end{minipage}
+	\end{exampleblock}
+	
+\end{frame}
+
+\subsection{Centering theory}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Entity-based coherence}
+	\framesubtitle{Centering theory: Discourse center}
+	
+	\begin{itemize}
+		\item $\mathbf{U_n}$: an utterance
+		\item $\mathbf{C_b(U_n)}$: \optword{Backward-looking center}
+		\begin{itemize}
+			\item the current salient entity
+			\item the one being focused on in the discourse after $ U_{n-1} $.
+		\end{itemize}
+		\item $\mathbf{C_f(U_n)}$ : \optword{Forward-looking center}
+		\begin{itemize}
+			\item potentially salient entities in the future
+			\item those candidates to be $C_b(U_{n+1})$.
+		\end{itemize}
+		\item $\mathbf{C_p(U_n) \in C_f(U_n)}$ : \optword{Preferred center}
+		\begin{itemize}
+			\item candidate center to be $C_b(U_{n+1})$
+			\item score based on grammatical role (subjects are more important than objects than the rest), order (E.g. \expword{In Arabic, what is first is more important}), etc.
+		\end{itemize}
+		\item $C_b(U_n)$ must be represented by a pronoun in $U_{n+1}$
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Entity-based coherence}
+	\framesubtitle{Centering theory: Transitions}
+	
+	\begin{itemize}
+		\item Transitions order from the most coherent
+		\item \optword{CONTINUE}: the speaker talks about an entity and has intention to speak about it in the future
+		\item \optword{RETAIN}: the speaker talks about an entity and has intention to change it in the future
+		\item \optword{SHIFT}: the speaker changed the central entity
+		\begin{itemize}
+			\item \textbf{Smooth-SHIFT}: after shifting, he has the intention to talk about it in the future
+			\item \textbf{Rough-SHIFT} : after shifting, he has the intention to change it in the future
+		\end{itemize}
+	\end{itemize}
+
+	\begin{center}
+		\tiny\bfseries
+		\begin{tblr}{
+				colspec = {p{.2\textwidth}p{.2\textwidth}p{.2\textwidth}},
+				row{odd} = {lightblue},
+				row{even} = {lightyellow},
+				row{1} = {darkblue},
+				rowsep = 2pt,
+			}
+			
+			& \bfseries\color{white}$\mathbf{C_b(U_n) = C_b(U_{n-1})}$
+			
+			OU $\mathbf{C_b(U_n) = NULL}$
+			& \bfseries\color{white}$\mathbf{C_b(U_n) \ne C_b(U_{n-1})}$\\
+			
+			$\mathbf{C_b(U_n) = C_p(U_n)}$ &
+			CONTINUE & Smooth-SHIFT\\
+			
+			$\mathbf{C_b(U_n) \ne C_p(U_n)}$ &
+			RETAIN & Rough-SHIFT\\
+		\end{tblr}
+	\end{center}
+	
+\end{frame}
+
+\subsection{Entity Grid model}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Entity-based coherence}
+	\framesubtitle{Entity Grid model}
+	
+	\begin{itemize}
+		\item A document is represented by a matrix
+		\begin{itemize}
+			\item Line: sentences
+			\item Columns: entities
+			\item Values: Grammatical function of the entity; subject (S), Object (O), Other (X) or the entity does nor exist (\_).
+		\end{itemize}
+		\item A document is coherent, if it follows a pattern
+		\begin{itemize}
+			\item This pattern can be represented by the frequencies of grammatical transitions. E.g. \expword{SS, SO, SX, S\_, OS, OO, OX, O\_, ...}
+			\item Machine learning is used to judge the coherence of a document
+		\end{itemize}
+		
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Entity-based coherence}
+	\framesubtitle{Entity Grid model: Example of document's representation}
+	
+	\begin{figure}
+		\centering\tiny\bfseries
+		\begin{minipage}{.8\textwidth}
+			\begin{enumerate}
+				\item\ [The Justice Department]\textsubscript{s} is conducting an [anti-trust trial]\textsubscript{o} against [Microsoft Corp.]\textsubscript{x} with [evidence]\textsubscript{x} that [the company]\textsubscript{s} is increasingly attempting to crush [competitors]\textsubscript{o}.
+				\item\ [Microsoft]\textsubscript{o} is accused of trying to forcefully buy into [markets]\textsubscript{x} where [its own products]\textsubscript{s} are not competitive enough to unseat [established brands]\textsubscript{o}.
+				\item\ [The case]\textsubscript{s} revolves around [evidence]\textsubscript{o} of [Microsoft]\textsubscript{s} aggressively pressuring [Netscape]\textsubscript{o} into merging [browser software]\textsubscript{o}.
+				\item\ [Microsoft]\textsubscript{s} claims [its tactics]\textsubscript{s} are commonplace and good economically.
+				\item\ [The government]\textsubscript{s} may file [a civil suit]\textsubscript{o} ruling that [conspiracy]\textsubscript{s} to curb [competition]\textsubscript{o} through [collision]\textsubscript{x} is [a violation of the Sherman Act]\textsubscript{o}.
+				\item\ [Microsoft]\textsubscript{s} continues to show [inscreased earnings]\textsubscript{o} despite [the trial]\textsubscript{x}.
+			\end{enumerate}
+		\end{minipage}
+		
+		\color{blue}
+		\begin{tabular}{ccccccccccccccccc}
+			& \rotatebox[origin=c]{90}{Department} & \rotatebox[origin=c]{90}{Trial} & \rotatebox[origin=c]{90}{Microsoft} &
+			\rotatebox[origin=c]{90}{Evidence} & \rotatebox[origin=c]{90}{Competitors} & \rotatebox[origin=c]{90}{Markets} &
+			\rotatebox[origin=c]{90}{Products} & \rotatebox[origin=c]{90}{Brands} & \rotatebox[origin=c]{90}{Case} &
+			\rotatebox[origin=c]{90}{Netscape} & \rotatebox[origin=c]{90}{Software} & \rotatebox[origin=c]{90}{Tactics} &
+			\rotatebox[origin=c]{90}{Government} & \rotatebox[origin=c]{90}{Suit} & \rotatebox[origin=c]{90}{Earnings} & \\
+			
+			1. & s & o & s & x & o & - & - & - & - & - & - & - & - & - & - & 1. \\
+			2. & - & - & o & - & - & x & s & o & - & - & - & - & - & - & - & 2. \\
+			3. & - & - & s & o & - & - & - & - & s & o & o & - & - & - & - & 3. \\
+			4. & - & - & s & - & - & - & - & - & - & - & - & s & - & - & - & 4. \\
+			5. & - & - & - & - & - & - & - & - & - & - & - & - & s & o & - & 5. \\
+			6. & - & x & s & - & - & - & - & - & - & - & - & - & - & - & o & 6. \\
+			
+		\end{tabular}
+		\caption{Example of document representation using entities \cite{2008-barzilay-lapata}}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Entity-based coherence}
+	\framesubtitle{Entity Grid model: Transitions representation}
+	
+	\begin{itemize}
+		\item A document is represented by grammatical transitions probabilities
+		\item A probability is the ratio between the number of a transition and the number of all transitions
+		\item E.g. In the past example: \expword{P(S\_) = 2/75}
+	\end{itemize}
+	\begin{figure}
+		\tiny\bfseries
+		\begin{tabular}{lllllllllllllllll}
+			\hline
+			& s s & s o & s x & s - & o s & o o & o x & o - & x s & x o & x x & x - & - s & - o & - x & - - \\
+			\hline
+			d1 & .01 & .01 & .00 & .08 & .01 & .00 & .00 & .09 & .00 & .00 & .00 & .03 & .05 & .07 & .03 & .59 \\
+			d2 & .02 & .01 & .01 & .02 & .00 & .07 & .00 & .02 & .14 & .14 & .06 & .04 & .03 & .07 & .01 & .36 \\
+			d3 & .02 & .00 & .00 & .03 & .09 & .00 & .09 & .06 & .00 & .00 & .00 & .05 & .03 & .07 & .17 & .39 \\
+			\hline
+		\end{tabular}
+		\caption{Example of a documents representation by grammatical transitions \cite{2008-barzilay-lapata}}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence: Entity-based coherence}
+	\framesubtitle{Entity Grid model: Training}
+
+	\begin{itemize}
+		\item The algorithm learns to rate a text according to its coherence
+		\item Incoherent texts must have lower scores than coherent ones
+		\item Using coherence-annotated texts by experts
+		\item Using a self-supervision method: create inconsistent text from consistent text
+		\begin{itemize}
+			\item Sentence order discrimination: we compare a document to a random permutation of its sentence. 
+			\item Sentence insertion: we modify the order of a single sentence to have many incoherent texts.
+			\item Sentence order reconstruction: we take a document, randomize the sentences, and train the model to put them back in the correct order. 
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Discourse coherence}
+	\framesubtitle{Entity-based coherence: Some humor}
+	
+	\begin{center}
+		\vgraphpage{humor/humor3.png}
+	\end{center}
+	
+\end{frame}
+
+
+\insertbibliography{NLP10}{*}
+
+\end{document}
+
