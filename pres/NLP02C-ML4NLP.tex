@@ -241,7 +241,7 @@
 				\item $ w' = \frac{w - w_f + 2P}{S} + 1$,  $ h' = \frac{h - h_f + 2P}{S} + 1$.
 				\item Filters number $k$ can be specified.
 				\item Parameters number will be $w_f * h_f * c * k$ plus $k$ bias.
-				\item E.g., \expword{image: 32x32x3; kernel: 5x5; s: 1; p: 0; k: 6.}. In this case, we will have \expword{81} parameters to train.
+				\item E.g., \expword{image: 32x32x3; kernel: 5x5; s: 1; p: 0; k: 6.}. In this case, we will have \expword{456} parameters to train.
 			\end{itemize}
 		\end{minipage}
 		%
@@ -255,19 +255,19 @@
 		\frametitle{ML for NLP: \insertsection}
 		\framesubtitle{\insertsubsection: Conv1D}
 		
-		\begin{minipage}{0.60\textwidth} 
+		\begin{minipage}{0.62\textwidth} 
 			\begin{itemize}
 				\item Like \keyword{Conv2D}, but it generates a vector
-				\item Kernel's width is equal to images width
-				\item $ h' = \frac{h - h_f + 2P}{S} + 1$.
+				\item Kernel's width is equal to original width
+				\item $ h' = \frac{h - h_f + 2P}{S} + 1$. $ w' = 1$.
 				\item Filters number $k$ can be specified.
-				\item Parameters number will be $h_f * k$ plus $k$ bias.
-				\item E.g., \expword{text: 32x3; kernel: 5; s: 1; p: 0; k: 6.}. In this case, we will have \expword{30} parameters to train.
+				\item Parameters number will be $w * h_f * k$ plus $k$ bias.
+				\item E.g., \expword{text: 32x3; kernel: 5; s: 1; p: 0; k: 6.}. In this case, we will have \expword{96} parameters to train.
 			\end{itemize}
 		\end{minipage}
 		%
-		\begin{minipage}{0.39\textwidth}
-%			\hgraphpage[\textwidth]{conv2d.pdf}
+		\begin{minipage}{0.37\textwidth}
+			\hgraphpage[\textwidth]{conv1d.pdf}
 		\end{minipage}
 		
 	\end{frame}
@@ -622,11 +622,11 @@
 		\end{itemize}
 		
 		\begin{block}{HMM training}
-			\vskip-1.5em\[
+			\[
 			\text{Transition probabilities: } P(t_i | t_{i-1}) = \frac{C(t_{i-1}, t_i)}{C(t_{i-1})} 
-			\]\vskip-2em\[
+			\]\[
 			\text{Emission probabilities: } P(w_i | t_i) = \frac{C(t_i, w_i)}{C(t_i)}
-			\]\vskip-2em\[
+			\]\[
 			\text{Initial distribution: } \pi_i = P(t_i | DEBUT) = \frac{C(DEBUT, t_i)}{C(DEBUT)}
 			\]
 		\end{block}
@@ -646,17 +646,17 @@
 		\end{itemize}
 		
 		\begin{block}{Labels decoding using HMM}
-			\vskip-1.5em\[
+			\[
 			\hat{t} = \arg\max\limits_t P(t | w) = \arg\max\limits_t \frac{P(w|t) P(t)}{P(w)} = \arg\max\limits_t P(w|t) P(t)%\text{ tel que } t = t_1 t_2 \ldots t_n
 			\]
 			
-			\vskip-2.5em\[ 
+			\[ 
 			P(w | t) \approx \prod\limits_{i=1}^n P(w_i|t_i) 
 			\hskip2cm
 			P(t) \approx \prod\limits_{i=1}^n P(t_i|t_{i-1}) 
 			\]
 			
-			\vskip-2.5em\[
+			\[
 			\hat{t} = \arg\max\limits_t \prod\limits_{i=1}^n P(w_i|t_i) P(t_i|t_{i-1})
 			\]
 		\end{block}
@@ -669,7 +669,7 @@
 		\begin{block}{Viterbi}
 			\scriptsize
 			\begin{algorithm}[H]
-				\vskip-1em
+%				\vskip-1em
 				\KwData{$w = w_1 \ldots w_T$, HMM $\lambda = (A, B)$ with $N$ states}
 				\KwResult{$best\_path$, $prob\_path$}
 				
@@ -714,11 +714,11 @@
 		\end{itemize}
 		
 		\begin{block}{Labels decoding using MEMM}
-			\vskip-2em\[
+			\[
 			\hat{t} = \arg\max\limits_t P(t | w) = \arg\max\limits_t \prod\limits_{i}  P(t_i | w_i, t_{i-1})
 			\]
 			
-			\vskip-2em\[
+			\[
 			\hat{t} = \arg\max\limits_t \prod\limits_{i}  
 			\frac{exp\left(\sum_j \theta_j f_j(t_i, w_{i-l}^{i+l}, t_{i-k}^{i-1})\right)}%
 			{\sum_{t' \in tags} exp\left(\sum_j \theta_j f_j(t'_i, w_{i-l}^{i+l}, t_{i-k}^{i-1})\right)}
@@ -813,6 +813,7 @@
 		\begin{figure}
 			\centering
 			\hgraphpage[0.9\textwidth]{multi_head_att_.pdf}
+			\vspace{-6pt}
 			\caption{Multi-Head Attention \cite{2017-vaswani-al}}
 		\end{figure}
 	
@@ -842,6 +843,7 @@
 		\begin{figure}
 			\centering
 			\hgraphpage[0.35\textwidth]{transformers_.pdf}
+			\vspace{-6pt}
 			\caption{Transformers architecture \cite{2017-vaswani-al}}
 		\end{figure}
 	\end{frame}

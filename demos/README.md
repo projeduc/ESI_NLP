@@ -8,7 +8,7 @@ This means, we will show only the task described in a given chapter.
 
 |Tool|Demo|Language|Tasks|
 |---|---|---|---|
-| [AllenNLP](https://allennlp.org/|https://demo.allennlp.org/|Python) | |
+| [AllenNLP](https://allennlp.org/|https://demo.allennlp.org/) |Python | |
 | [BERT](https://github.com/google-research/bert) | |Python|LM|
 | [CogCompNLP](https://github.com/CogComp/cogcomp-nlp) | | Java | |
 | [compromise](https://github.com/spencermountain/compromise) | |Javascript| |
@@ -36,12 +36,12 @@ This means, we will show only the task described in a given chapter.
 | [Texar-pytorch](https://github.com/asyml/texar-pytorch) | |Python| |
 | [TextBlob](https://github.com/sloria/TextBlob) | |Python| |
 | [Tika](https://tika.apache.org/) | |Java|Text extraction|
-|pattern|https://github.com/clips/pattern| |Python| |
+| [pattern](https://github.com/clips/pattern) | |Python| |
 
 ## Demonstrations
 
-We will use [Jupyter Notebook](https://jupyter.org/) to demonstrate these tools using some documentation.
-By default, it supports Python.
+We will use [Jupyter Notebook](https://jupyter.org/) to document these tools.
+By default, this plateform supports Python since it is developped on it.
 As for Java, we use [Ganymede](https://github.com/allen-ball/ganymede).
 
 ### CH03: Basic text processing
