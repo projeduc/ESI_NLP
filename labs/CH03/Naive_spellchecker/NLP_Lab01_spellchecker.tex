@@ -1,0 +1,137 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{24pt}
+
+
+\begin{document}
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+
+\noindent
+\begin{tabular}{ll}
+\multirow{3}{*}{\includegraphics[width=1.5cm]{../../../extra/logo/esi.nlp.pdf}} & 
+\'Ecole national Supérieure d'Informatique\\
+& 2\textsuperscript{nd} year second cycle (2CSSID)\\
+& NLP: Natural Language Processing (2022-2023)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+\begin{center}
+{\LARGE \textbf{Lab01: Naive Spell Checker}}
+\begin{flushright}
+	Abdelkrime Aries
+\end{flushright}
+\end{center}\vspace{-0.5cm}
+\noindent\rule{\textwidth}{2pt}
+
+We want to implement a spell checker from scratch. 
+In our first attempt, we use a dictionary to look up the word.
+If it is found, then there is no need to spell-check it.
+Otherwise, we look for similar words in the said dictionary.
+To test for similarity, we use Levenstein distance; the least distant words are the most similar ones.
+The following section better explain this process.
+
+
+\section*{1. Program description}
+
+Here, different functions are described; either those implemented or not. 
+You have to understand how they are implemented to respond on the different questions.
+
+\subsection*{1.1. Extracting words}
+
+This function extracts a list of words from a dictionary given a word.
+Its extracts words which have the same first letter or second letter as the given word.
+
+\textbf{\slshape This is already implemented}.
+
+\subsection*{1.2. Levenstein measure}
+
+This function calculates levenstein distance between two given words.
+In addition to the distance, it returns the dynamic table.
+If one of the words is empty, it returns the length of the other word as levenstein and an empty dynamic table.
+
+\textbf{\slshape This must be implemented}.
+
+\subsection*{1.3. Choosing similar words}
+
+This function receives a list of possible words, a target word and a threshold.
+Among these words it must select the most similar ones based on a similarity measure and a threshold.
+The similarity measure between two words $w_1$ and $w_2$ is given as follows :
+\[sim(w_1, w_2) = \frac{\max(|w_1|, |w_2|) - levenstein(w_1, w_2)}{\max(|w_1|, |w_2|)}\]
+
+\textbf{\slshape This must be implemented}.
+
+\subsection*{1.4. Checking a word}
+
+Given a word, 
+\begin{itemize}
+	\item This function will call for the function responsible for extracting possible words from a list.
+	\item Then, it checks if the word exists in this list. In this case it returns a list containing the same word.
+	\item Otherwise, it passes this list into the function responsible for choosing similar words with a threshold of 75\% and a substitution cost of 1.
+	\item It returns the result.
+\end{itemize}
+
+\textbf{\slshape This is already implemented}.
+
+\section*{3. Questions}
+
+Answer these questions at the end of your code, as comments.
+\begin{enumerate}
+	\item We noticed that some words are not taken in consideration although they have more chance.
+	For example, the word \textbf{qsministrator} against \textbf{administrator}. 
+	Why? Propose an amelioration.
+	
+	\item Some words are not detected as correct although they are.
+	Example, the word \textbf{confirmation} is correct, but detected as a spell error.
+	The dictionary contains only the word \textbf{confirm}.
+	Propose a solution without changing the content of the dictionary.
+	
+	\item We want to evaluate our system. 
+	For each word, we prepared a list of possible corrections ordered by order of similarity.
+	Propose a method to evaluate such system.
+	
+\end{enumerate}
+
+
+\section*{4. Evaluation}
+
+\begin{itemize}
+	\item Duration: 1h (You have to return your work at the end of session)
+	\item Grade
+	\begin{itemize}
+		\item \textbf{levenstein grade} (8pts) = zero length (1pt) + initialize first row (1pt) + initialize first column (1pt) + character deletion (1pt) + character adding (1pt) + character substitution (2pts) + correctness test (1pt).
+		\item \textbf{choose words grade} (7pts) = selecting top words (2pts) + sorting them (2pts) + splitting them into words and scores (2pts) + in case there are no suggestions (1pt).
+		\item \textbf{questions grade} (3pts) = 1pt for each question.
+		\item \textbf{In time grade} (2pts)
+	\end{itemize}
+\end{itemize}
+
+\end{document}
