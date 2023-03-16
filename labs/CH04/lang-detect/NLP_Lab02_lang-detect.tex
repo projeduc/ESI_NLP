@@ -1,0 +1,178 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{24pt}
+
+
+\begin{document}
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+
+\noindent
+\begin{tabular}{ll}
+\multirow{3}{*}{\includegraphics[width=1.5cm]{../../../extra/logo/esi.nlp.pdf}} & \'Ecole national Supérieure d'Informatique\\
+& 2\textsuperscript{nd} year second cycle (2CSSID)\\
+& NLP: Natural Language Processing (2022-2023)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+\begin{center}
+{\LARGE \textbf{Lab02: Natural language detector}}
+\begin{flushright}
+	Abdelkrime Aries
+\end{flushright}
+\end{center}\vspace{-0.5cm}
+\noindent\rule{\textwidth}{2pt}
+
+We want to implement a simple language detector from scratch. 
+There are many ways to implement such task; for example, using neural networks.
+All those solutions can be seen as language models.
+We want to understand this concept by implementing a simple n-gram model.
+This model will be used to implement a language detector.
+
+\section*{1. Program description}
+
+Our objective is to use a Bi-gram model in order to calculate the probability of an ordered list of strings.
+This probability is used to decide the language by which this list of strings is written.
+The simplest design is to implement two classes:
+\begin{itemize}
+	\item \textbf{BiGram}: This class implements the different methods used to score a language's sentence.
+	\textbf{\slshape This must be implemented}.
+	\item \textbf{LangDetector}: This class uses the past one in order to train many language models; each of each language.
+	\textbf{\slshape This is already implemented}.
+\end{itemize}
+The other objective is to implement a program dependency-free; i.e. it does not depend on any external API.
+
+
+\subsection*{1.1. BiGram class}
+
+This is the core of our program.
+In our first attempt, we want just to implement a Bi-gram model with Lidstone (the value is a parameter).
+To this end, the model must implement these methods: fit, score and predict.
+These functions use some specific data-structures to store statistics.
+The class's attributes are:
+\begin{itemize}
+	\item A dictionary \textbf{uni\_grams} that maps each string into an integer which is its number of occurrences.
+	\item A dictionary \textbf{bi\_grams} that maps each a sequence of two strings into an integer which is its number of occurrences.
+	In this case, we separate the two strings with a special character (\textbf{\#}).
+	In some languages, such as python, we can use a tuple.
+\end{itemize}
+
+\subsubsection*{fit}
+
+This function is used to train our model based on some data.
+The latter is a list of lists of strings which means a list of sentences, each having a list of words or characters.
+The sentences are not padded.
+Its function is to fill the previous structures.
+
+\subsubsection*{score}
+
+Since this is a Bi-gram, we need just the current string and the past one to score the conditional probability. 
+Also, it has as argument a float \textbf{alpha} which is the Lidstone factor.
+In this case, we will use the trained data-structures to calculate such probability (We use log probability).
+Note that the size of \textbf{uni\_grams} represents the size of vocabulary.
+
+\subsubsection*{predict}
+
+This method's purpose is to calculate a sentence's log probability using Bi-grams.
+To this end, we pass a list of strings representing a sentence (strings can be words or characters).
+Also, we pass \textbf{alpha} as Lidstone factor.
+Note that the sentence is not padded.
+
+\subsection*{1.2. LangDetector class}
+
+\textbf{\slshape This class is already implemented}. 
+This class stores many language models; either word-based or character-based.
+This is a short description of its methods:
+\begin{itemize}
+	\item \textbf{fit}: given a list of language codes and their training text URLs, it trains many language models.
+	\item \textbf{predict}: given a sentence, it calculates its log probability based on each model. 
+	Then, it returns the code of the most probable language.
+	\item \textbf{evaluate}: it loads a list of evaluations and evaluate our task.
+\end{itemize}
+
+\section*{3. Task training and evaluation}
+
+This is a little description of this task's evaluation.
+
+\subsection*{3.1. Training dataset}
+
+In our case, we used Wikipedia articles about "Algeria".
+We took just the abstract.
+For each language, we created a file named "\textbf{[lang-code].train}". 
+We will use just these 8 languages: ar (Arabic), en (English), es (Spanish), fa (Farsi), fr (French), it (Italian), kab (Kabyle with Latin writing system) and ur (Urdu).
+Each line contains a sentence.
+All the sentences do not contain the character \#.
+
+\subsection*{3.2. Test dataset}
+
+It is just a file named "\textbf{lang.eval}".
+Each line contains a sentence, followed by \#, followed by the language's code.
+For each language, we afforded 10 sentences from Wikipedia articles about "Earth".
+The Urdu sentences are separated in a random way since we could not know sentence boundary character.
+
+\subsection*{3.3. Metrics}
+
+Since it is a multi-class classification task, we will use accuracy.
+
+
+\section*{4. Questions}
+
+Answer these questions at the beginning of your code, as comments:
+\begin{enumerate}
+	\item Mention one advantage of character-based language models over word-based ones in this task (language detection) and vice-versa.
+	
+	\item How can we enhance our n-gram model in order to better represent the probabilities?
+	In this case, which model will scale better (character-based or word-based) and why?
+	
+	\item During prediction, does sentences' lengths affect the result? How? 
+	
+	\item We note that the accuracy of char-based model is 0.925 and that of word-based model is 0.125 (all models have a recall and precision of 0 except Urdu). Why Char-based model gave better performance?
+	
+\end{enumerate}
+
+
+\section*{5. Students' Grading}
+
+\begin{itemize}
+	\item Duration: 1h (You have to return your work at the end of session)
+	\item Grade
+	\begin{itemize}
+		\item \textbf{fit grade} (6pts) = processing all data (2pts) + all uni-grams (2pts) + all bi-grams (2pts).
+		\item \textbf{score grade} (4pts) = correct and less complex uni-grams/bi-grams estimation (2pts) + applying smoothing (2pt) + log probability (1pt).
+		\item \textbf{predict grade} (4pts) = correctly calculate the log probability (3pts) + correctly taking smoothing in consideration (1pt).
+		\item \textbf{questions grade} (4pts) = 1pt for each question.
+		\item \textbf{In time grade} (2pts) = you have 5 minutes after class to send the solution. 
+		Each passed two minutes after that will subtract a 0.25pt. 
+		After that, you will have a 0.
+	\end{itemize}
+\end{itemize}
+
+\end{document}
