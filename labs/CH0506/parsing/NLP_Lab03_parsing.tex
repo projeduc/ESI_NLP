@@ -1,0 +1,157 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{24pt}
+
+
+\begin{document}
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+
+\noindent
+\begin{tabular}{ll}
+\multirow{3}{*}{\includegraphics[width=1.5cm]{../../../extra/logo/esi.nlp.pdf}} & \'Ecole national Supérieure d'Informatique\\
+& 2\textsuperscript{nd} year second cycle (2CSSID)\\
+& NLP: Natural Language Processing (2022-2023)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+\begin{center}
+{\LARGE \textbf{Lab03: Parsing}}
+\begin{flushright}
+	Abdelkrime Aries
+\end{flushright}
+\end{center}\vspace{-0.5cm}
+\noindent\rule{\textwidth}{2pt}
+
+We want to implement a simple parser both for lexical analysis and syntactic parsing. 
+Our parser is based on CKY algorithm.
+In CKY, the grammar's rules can be devised into two parts: generation rules and lexicon.
+There latter are the rules which generates the words.
+In this case, we will replace those with "part-of-speech tagging".
+
+\section*{1. Program description}
+
+Our objective is to use PoS tagging as a lexicon function (find out for each word its PoS).
+Then, the result will be fed into CKY algorithm to create a parse tree.
+A first design is to implement these classes:
+\begin{itemize}
+	\item \textbf{MEMM}: This class implements the different methods used to score a language's sentence.
+	\textbf{\slshape A part of this class must be implemented}.
+	\item \textbf{CKY}: This class is used to parse a given sentence based on the CKY algorithm and the PoS tagger we already trained.
+	\textbf{\slshape A part of this class must be implemented}.
+	\item \textbf{Parser}: This class is used to train the two models in order to learn the whole pipeline.
+	\textbf{\slshape This is already implemented}.
+\end{itemize}
+The other objective is to implement a program dependency-free; i.e. it does not depend on any external API.
+
+
+\subsection*{1.1. MEMM class}
+
+This is our PoS tagger based on MEMM.
+The class has these methods:
+\begin{itemize}
+	\item encode: which encodes the past word, the past tag, the current word and the future word into a singular vector.
+	You have to implement this method. 
+	We defined a function outside the class in order to encode one word at a time.
+	This function must also be implemented.
+	\item Others are described in the source code.
+\end{itemize}
+
+\subsubsection*{encode\_word function}
+
+This function is used to encode one single word.
+Given a word, the features are the following (in this precise order):
+\begin{itemize}
+	\item is the first letter uppercase? (yes:1, no:0)
+	\item does the word contains a period (.)? (yes:1, no:0)
+	\item Given a list of prefixes (given in the code), for each one, did the word start with it. 
+	It is a vector equals to the number of prefixes.
+	\item Given a list of suffixes (given in the code), for each one, did the word ends with it. 
+	It is a vector equals to the number of suffixes.
+\end{itemize}
+
+\subsubsection*{MEMM.encode}
+
+The resulted code is based on these features:
+\begin{itemize}
+	\item is the past tag equals to "$<t>$"? (yes:1, no:0)
+	\item onehot encoding of the tag 
+	\item is the past word equals to "$<s>$"? (yes:1, no:0)
+	\item vector encoding of past word using the past function
+	\item vector encoding of current word using the past function
+	\item is the future word equals to "$</s>$"? (yes:1, no:0)
+	\item vector encoding of future word using the past function
+\end{itemize}
+
+Some useful functions are afforded such as onehot 
+
+
+\subsection*{1.2. CKY class}
+
+In this class, you have to implement the parse method based on CKY algorithm.
+It must use the Part-or-Speech tagger called "self.lex".
+
+
+\section*{2. Questions}
+
+Answer these questions at the beginning of your code, as comments:
+\begin{enumerate}
+	\item PoS: We note that the vector representing our input is too sparse (many zeros) which causes a bigger model.
+	Propose a solution.
+	
+	\item PoS: We note that the model is not really accurate.
+	It is far from being acceptable.
+	Propose a solution to enhance MEMM prediction.
+	
+	\item CKY: What is the benefit and the downfall of using PoS in CKY parsing instead of a hand-prepared lexicon?
+	
+	\item CKY: Can we change CKY to handle unitary productions (A --> B)? If yes, how? If no, why?
+	
+\end{enumerate}
+
+
+\section*{3. Students' Grading}
+
+\begin{itemize}
+	\item Duration: 1.5h (Homework)
+	\item Grade
+	\begin{itemize}
+		\item \textbf{encode word function} (4pts) = first element (0.5pts) + second (0.5pts) + prefixes (1pts) + suffixes (1pt) + order (1pt).
+		\item \textbf{MEMM.encode method} (4.5pts) = past tag (1pt) + past word (1pt) + current word (0.5pts) + future word (1pt) + order (1pt).
+		\item \textbf{CKY.parse method} (5.5pts) = lexicon integration (1.5pt) + CKY table creation (4pts).
+		\item \textbf{questions grade} (4pts) = 1pt for each question.
+		\item \textbf{In time grade} (2pts) = you have to return the homework at time. 
+		Each half an hour is decreased by 0.25.
+		After 4 hours, you will have a 0.
+	\end{itemize}
+\end{itemize}
+
+\end{document}

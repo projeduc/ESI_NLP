@@ -1,0 +1,4 @@
+a/DET computer/NOUN can/VERB help/VERB you/PRON
+he/PRON wants/VERB to/TO help/VERB you/PRON
+he/PRON wants/VERB a/DET computer/NOUN
+he/PRON can/VERB swim/VERB 
