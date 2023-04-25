@@ -1,0 +1,170 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{wasysym}
+
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{24pt}
+
+
+\begin{document}
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+
+\noindent
+\begin{tabular}{ll}
+\multirow{3}{*}{\includegraphics[width=1.5cm]{../extra/logo/esi.nlp.pdf}} & 
+\'Ecole national Supérieure d'Informatique\\
+& 2\textsuperscript{nd} year second cycle (2CSSID)\\
+& NLP: Natural Language Processing (2022-2023)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+\begin{center}
+{\LARGE \textbf{Tutorial 01}}
+\begin{flushright}
+	Abdelkrime Aries
+\end{flushright}
+\end{center}\vspace{-0.5cm}
+\noindent\rule{\textwidth}{2pt}
+
+\section*{1. Language models}
+
+
+\subsection*{1.1.}
+
+Select right propositions :
+
+\begin{longtable}{|p{.95\textwidth}|}
+	\hline 
+	\Square\ Some smoothing methods can fix out of vocabulary problem. \\
+	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is higher than that of ``\textbf{a course Karim teaches}". \\
+	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is equal to that of ``\textbf{a course Karim teaches}".\\
+	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is less than that of ``\textbf{a course Karim teaches}".\\
+	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is higher than that of ``\textbf{a course Karim teaches}". \\
+	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is equal to that of ``\textbf{a course Karim teaches}".\\
+	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is less than that of ``\textbf{a course Karim teaches}".\\
+	\hline
+\end{longtable}
+
+\subsection*{1.2.}
+
+Given these training sentences: 
+
+\begin{tabular}{|lllll|}
+	\hline
+	The courses are interesting && The course is interesting && He teaches a course \\
+	He teaches some interesting courses && His course is interesting &&\\
+	\hline
+\end{tabular}
+
+\begin{enumerate}
+	\item using a bigram model with Laplace smoothing, calculate these expressions' probabilities: ``The courses are interesting", ``The courses is interesting" and ``The courses his interesting".
+	\item What do you notice?
+	\item Now, apply lemmatization on these sentences.
+	Calculate these two expressions' probabilities:  ``The courses are interesting" and ``The courses is interesting".
+	\item Is lemmatization useful for spell checking task using language models? Justify.
+\end{enumerate}
+
+
+\section*{2. PoS tagging}
+
+\subsection*{2.1.}
+
+Select right propositions:
+
+\begin{longtable}{|p{.95\textwidth}|}
+	\hline 
+	\Square\ In PoS using HMM, transitions between states (PoS) are represented as an LM. \\
+	\Square\ PoS using HMM can easily integrate heterogeneous features. \\	
+	\Square\ MEMM can use those features used by HMM. \\
+	\Square\ MEMM is a discriminative model like HMM. \\
+	
+	\hline
+\end{longtable}
+
+\subsection*{2.2.}
+
+This is a hidden Markov model for PoS tagging: 
+
+\begin{tikzpicture}[
+	> = stealth, % arrow head style
+	shorten > = 1pt, % don't touch arrow head to node
+	auto,
+	node distance = 3cm, % distance between nodes
+	semithick, % line style
+	font=\small
+	]
+	
+	\tikzstyle{every state}=[
+	draw = black,
+	thick,
+	fill = white,
+	minimum size = 4mm
+	]
+	
+	\node[circle,draw] (qN) {N};
+	\node[align=left,draw] (qNe) [left of=qN] {P("fish"|N)=0.05\\P("river"|N)=0.03};
+	\node[circle,draw] (qV) [right of=qN] {V};
+	\node[align=left,draw] (qVe) [right of=qV] {P("fish"|V)=0.01\\P("eat"|V)=0.02};
+	\node[circle,draw] (qD) [below of=qN] {D};
+	\node[align=left,draw] (qDe) [left of=qD] {P("the"|D)=0.3\\P("a"|D)=0.2\\P("an"|D)=0.15};
+	\node[circle,draw] (qP) [right of=qD] {P};
+	\node[align=left,draw] (qPe) [right of=qP] {P("I"|P)=0.2\\P("he"|P)=0.1\\P("she"|P)=0.1};
+	\node[] () [below of=qD, yshift=1.5cm] {$\pi(P, D, V, N) = (0.4, 0.3, 0.1, 0.2)$};
+	
+	
+	\path[->] 	
+	(qN) 	edge [loop above] node {0.3} ()
+	edge [bend left] node {0.7} (qV)
+	(qV) 	edge [loop above] node {0.1} ()
+	edge [bend left] node {0.5} (qN)
+	edge [bend left] node {0.4} (qD)
+	(qD)	edge [bend left] node {1.0} (qN)
+	(qP)	edge [bend right] node {1.0} (qV);
+	
+	\path[dashed] 	
+	(qN) 	edge [] node {} (qNe)
+	(qV) 	edge [] node {} (qVe)
+	(qD) 	edge [] node {} (qDe)
+	(qP) 	edge [] node {} (qPe);
+	
+\end{tikzpicture}
+
+\begin{enumerate}
+	\item Calculate these two probabilities: P(V D N | ``fish a fish") et P(N D N | "fish a fish")
+	\item Given C(N) = 200, C(V) = 100 et C(D)=100, calculate these probabilities using Laplace smoothing: P(D|V), P(D|N) et P(N|D).
+	\item Recalculate the probabilities of the first question using this smoothing.
+	\item How much labeled expressions ``\textbf{V D N}" exist in our training dataset? The determiner ``\textbf{D}" does not happen at the end of a sentence. 
+	
+\end{enumerate}
+
+\end{document}

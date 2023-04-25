@@ -1,4 +1,4 @@
-# "Natural language processing" course (ESI, Alger)
+# <img src="img/misc/esi.nlp-logo.png" width=100px> "Natural language processing" course (ESI, Alger)
 
 [![Type](https://img.shields.io/badge/type-Course-0014A8.svg?style=flat)](https://github.com/projeduc/ESI_NLP)
 [![License](https://img.shields.io/badge/license-CC--BY_4.0-0014A8.svg?style=flat)](https://creativecommons.org/licenses/by/4.0/deed.en)
