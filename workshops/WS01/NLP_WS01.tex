@@ -1,0 +1,222 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+
+\noindent
+\begin{tabular}{ll}
+	\multirow{3}{*}{\includegraphics[width=1.5cm]{../../extra/logo/esi.nlp.pdf}} & \'Ecole national Supérieure d'Informatique\\
+	& 2\textsuperscript{nd} year second cycle (2CSSID)\\
+	& NLP: Natural Language Processing (2022-2023)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+\begin{center}
+	{\LARGE \textbf{Workshop 01: Sentiment analysis}}
+	\begin{flushright}
+		Abdelkrime Aries
+	\end{flushright}
+\end{center}\vspace{-0.5cm}
+\noindent\rule{\textwidth}{2pt}
+
+This is a guided ungraded lab. 
+Its purpose of workshops is to understand how to use some high level API's to solve a problem based on some demos about these API's.
+The problem we want to solve in this workshop is a well known one: text-based sentiment analysis.
+Our aim is to understand how to manipulate different representations of words/sentences.
+
+
+\section*{General information}
+
+\subsection*{Data}
+
+Financial sentiment analysis:
+\begin{itemize}
+	\item URL: \url{https://www.kaggle.com/datasets/sbhatti/financial-sentiment-analysis}
+	\item Description: Some texts about finance with their sentiment orientation (positive, negative, neutral).
+	It contains 860 negative samples, 1852 positive ones, and 3130 neutral ones.
+\end{itemize}
+
+Sentiment Lexicons for Text Mining:
+\begin{itemize}
+	\item URL: \url{https://www.kaggle.com/datasets/ekrembayar/sentiment-lexicons-for-text-mining}
+	\item Description: A lexicon of English words with their sentiment orientation.
+\end{itemize}
+
+\subsection*{Tools}
+
+NLTK, Scikit-learn, numpy, pandas, tensorflow, gensim
+
+%\begin{itemize}
+%	\item NLTK
+%	\item Scikit-learn
+%	\item numpy
+%	\item pandas
+%	\item tensorflow
+%	\item gensim
+%\end{itemize}
+
+\subsection*{Demos}
+
+\begin{itemize}
+	\item NLTK: \url{https://github.com/projeduc/ESI_TALN/blob/master/tuto/CH06/encoding_python_NLTK.ipynb}
+	\item Gensim: \url{https://github.com/projeduc/ESI_TALN/blob/master/tuto/CH06/encoding_python_gensim.ipynb}
+	\item Scikit-learn: \url{https://github.com/projeduc/ESI_TALN/blob/master/tuto/CH06/encoding_python_sklearn.ipynb}
+	\item Tensorflow Auto-encoder: \url{https://github.com/projeduc/ESI_ML/blob/main/demos/NN/TF_Autoencoder.ipynb} (can be used for MLP)
+	\item Tensorflow CNN: \url{https://github.com/projeduc/ESI_ML/blob/main/demos/NN/TF_CNN.ipynb} (CNN for images are similar to those for text)
+\end{itemize}
+
+
+\section{Data preparation}
+
+\begin{itemize}
+	\item Import the sentiment lexicon "bing.csv" and transform it into a Python dictionary.
+	\item Transform positive label into +1 and negative one into -1.
+	\item Import the financial sentiment analysis dataset.
+	\item Split this last dataset into train and test using \textbf{train\_test\_split}; the test size is 30\% using random\_state=0 to get a stable split over executions.
+	\item Train a \textbf{LabelBinarizer} on training labels and transform them into OneHot representation with test data.
+\end{itemize}
+
+\subsection{TF encoding}
+
+\begin{itemize}
+	\item Train a \textbf{CountVectorizer} on the training datasaet, vectorize it and the test dataset. 
+	\item Define a function \textbf{tokenstem} which takes a sentence and tokenize it using \textbf{tokenizer} (defined in the starter project), then each token is stemmed using \textbf{nltk.stem.porter.PorterStemmer}, and last the result is a list of words which do not belong to \textbf{nltk.corpus.stopwords.words('english')}.
+	\item Train another \textbf{CountVectorizer} using  \textbf{tokenstem} comme \textbf{tokenizer}. 
+	\item Train a third one using  \textbf{tokenstem} comme \textbf{tokenizer} and limiting the vector's size \textbf{max\_features = 3000}.
+\end{itemize}
+
+\subsection{Embedding encoding}
+
+\begin{itemize}
+	\item Using the previous function \textbf{tokenizer} which splits a sentence into words, create a list of sentence each is a list of words.	
+	\item Train a \textbf{Word2Vec} of \textbf{Gensim} using a window of \textbf{3} and minimum count of \textbf{1}.
+	The vector must have a size of \textbf{5}.
+	\item Train a \textbf{Fasttext} of \textbf{Gensim} using the same parameters. Fasttext is a character-based word embedding.
+	\item When decoding a word, it may be out of vocabulary. So, it will not have a code and we will get an error \textbf{KeyError}.
+	In this case, for simplification, we consider the code as a vector of zeros.
+	\item Encode each sentence using the centroid of its words (in this case \textbf{size = 5}).
+	\item Encode each sentence using the consecutive codes of its words. 
+	The maximum sentence size is \textbf{20} so their concatenation will have \textbf{size = 20 * 5 = 100}. 
+	If the sentence is longer, it must be truncated.
+	If it is less, you must add some padding (a vector of zeros).
+	\item Encode each sentence as a matrix of the codes of its words.
+	The maximum sentence size is \textbf{20} so the matrix will have \textbf{size = 20X5}.
+	If the sentence is longer, it must be truncated.
+	If it is less, you must add some padding (a vector of zeros).
+\end{itemize}
+
+\section{Training}
+
+\subsection{TF-based sentiment analysis}
+
+\begin{itemize}
+	\item Train three \textbf{MLP} models, each for each TF representation. 
+	The models must have the same architecture (the inputs are different, so the number of the first hidden layer's parameters).
+	You have the choice of parameters: hidden layers, activation functions, etc.
+	\item Train three \textbf{Multinomial Naive Bayes} models, each for each TF representation.
+\end{itemize}
+
+\subsection{Vector-based sentiment analysis}
+
+\begin{itemize}
+	\item Train 4 \textbf{MLP} models for Wor2Vec and Fasttext embeddings with vector representations 5 and 100. 
+	\item Train 2 \textbf{CNN} models for Wor2Vec and Fasttext embeddings with matrix representation.
+\end{itemize}
+
+\subsection{Implicit Embedding sentiment analysis}
+
+\begin{itemize}
+	\item Design a system for sentiment analysis with Embedding layer where the output is 2 floats. 
+	\item Train this model and plot the distribution of texts according to their embedding.
+\end{itemize}
+
+\subsection{Rule-based sentiment analysis}
+
+\begin{itemize}
+	\item Design a system which calculates the orientation of a sentence $S$ as the average of its words orientations. 
+	\[Orientation(S) = \frac{\sum_i Orientation(S_i)}{|S|}\]
+	\item We use the sentiment lexicon "bing" to get the orientation. If the word does not exist, its orientation is 0.
+	\item Using the training dataset, you must estimate the two hyper-parameters $\alpha$ and $\beta$ so that:
+	\[\forall S \in Train\_dataset, Sentiment(S) = 
+	\begin{cases}
+		Postive & if\,  Orientation(S) \ge \alpha \\
+		Negative & if\,  Orientation(S) \le \beta \\
+		Neutral & otherwise  \\
+	\end{cases}
+	\]
+\end{itemize}
+
+\section{Testing}
+
+\begin{itemize}
+	\item Predict all classes of test dataset based on all models.
+	\item For each one, show the classification report.
+	\item Complete Table \ref{tab:comp} with the result you get and discuss these results.
+\end{itemize}
+
+\begin{table}[hpt]
+	\centering
+	\begin{tabular}{lllllllll}
+		\hline\hline
+		Rep. & Arch. & $ P_+ $ & $ R_+ $ & $ P_- $ & $ R_- $ & $ P_0 $ & $ R_0 $ & Accuracy \\
+		\hline
+		
+		\multirow{2}{*}{TF} & MLP &  &  &  &  &  &  &  \\
+		 & MNB &  &  &  &  &  &  &  \\
+		
+		\multirow{2}{*}{TF-stem} & MLP &  &  &  &  &  &  &  \\
+		 & MNB &  &  &  &  &  &  &  \\
+		
+		\multirow{2}{*}{TF-stem-limit} & MLP &  &  &  &  &  &  &  \\
+		 & MNB &  &  &  &  &  &  &  \\
+		
+		Word2Vec-centroid & MLP  &  &  &  &  &  &  &  \\
+		Word2ec-concat & MLP  &  &  &  &  &  &  &  \\
+		Fasttext-centroid & MLP  &  &  &  &  &  &  &  \\
+		Fasttext-concat & MLP  &  &  &  &  &  &  &  \\
+		Word2Vec-matrix & CNN  &  &  &  &  &  &  &  \\
+		Fasttext-matrix & CNN  &  &  &  &  &  &  &  \\
+		Implicit-emb & MLP  &  &  &  &  &  &  &  \\
+		Rule-based & MLP  &  &  &  &  &  &  &  \\
+		\hline\hline
+	\end{tabular}
+	\caption{Comparison between different architectures.}
+	\label{tab:comp}
+\end{table}
+
+
+
+
+\end{document}
