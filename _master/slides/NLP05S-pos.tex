@@ -1,0 +1,484 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+
+\documentclass[xcolor=table]{beamer}
+
+\input{options}
+
+\title[ESI - NLP: 05- PoS tagging]%
+{Natural Language Processing\\Chapter 05\\Part-of-speech tagging} 
+
+\changegraphpath{../img/pos/}
+
+\begin{document}
+	
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Part-of-speech tagging: Introduction}
+
+\begin{exampleblock}{Example of two sentences}
+	\begin{center}
+		\Huge\bfseries
+		We can can the can
+		
+		Will Will will the will to Will?
+	\end{center}
+\end{exampleblock}
+
+\begin{itemize}
+	\item Did you understand these two sentences?
+	\item Find nouns, verbs, determiners, etc.
+	\item \optword{can}: (1) V: have the possibility (2) V: put in a container (3) N: container
+	\item \optword{will}: (1) V: express the future (2) N: masculine proper noun (3) V: determine by choice (4) N: testament
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Part-of-speech: Some humor}
+
+\begin{center}
+	\vgraphpage{humor/humor-pos.jpg}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Natural Language Processing}
+\framesubtitle{Part-of-speech: Plan}
+
+\begin{multicols}{2}
+%	\small
+\tableofcontents
+\end{multicols}
+\end{frame}
+
+%===================================================================================
+\section{Sequences labeling}
+%===================================================================================
+
+\subsection{Description}
+
+\begin{frame}
+\frametitle{PoS tagging: Sequences labeling}
+\framesubtitle{Description}
+
+
+\begin{itemize}
+	\item \textbf{Goal}: assigning labels to elements of a sequence.
+	\item \textbf{Example}: \expword{Assigning PoS tags to a sentence's words}.
+\end{itemize}
+
+\begin{block}{Problem formulation}
+	\begin{itemize}
+		\item $w = w_1, \ldots, w_n$: input words sequence
+		\item $t = t_1, \ldots, t_n$: output labels sequence
+	\end{itemize}
+	\begin{center}
+		$ \arg\max\limits_t P(t | w)$
+	\end{center}
+	
+	\begin{itemize}
+		\item \optword{Generative models} $ \arg\max\limits_t P(t | w) = \arg\max\limits_t P(t) P(w | t) $
+		\item \optword{Discriminative models} estimating $\arg\max\limits_t P(t | w)$ directly
+	\end{itemize}
+\end{block}
+
+\end{frame}
+
+\subsection{Applications}
+
+\begin{frame}
+\frametitle{PoS tagging: Sequences labeling}
+\framesubtitle{Applications}
+
+%eisenstein
+\begin{itemize}
+	\item Named Entity Recognition (NER)
+	\begin{itemize}
+		\item Find people, organizations, places, numbers, etc. in a sentence
+	\end{itemize}
+	\item PoS tagging
+	\begin{itemize}
+		\item Find words PoS tags (noun, verb, etc.)
+	\end{itemize}
+	\item Chunking
+	\begin{itemize}
+		\item Find different phrases in a sentence (such as nominal phrase)
+	\end{itemize}
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Sequences labeling}
+\framesubtitle{Applications (example)}
+
+\begin{figure}
+	\centering
+	\hgraphpage{exp-ner2_.pdf}
+	\caption{Example of NER [\url{https://corenlp.run/}]}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\hgraphpage{exp-pos2_.pdf}
+	\caption{Example of PoS tagging [\url{https://corenlp.run/}]}
+\end{figure}
+
+\end{frame}
+
+%\subsection{Évaluation}
+%
+%\begin{frame}
+%\frametitle{Étiquetage morpho-syntaxique : Séquences}
+%\framesubtitle{Évaluation}
+%
+%\begin{itemize}
+%	\item 
+%\end{itemize}
+%
+%\end{frame}
+
+%===================================================================================
+\section{Task description}
+%===================================================================================
+
+\begin{frame}
+\frametitle{Part-of-speech tagging}
+\framesubtitle{Task description}
+
+\begin{itemize}
+	\item \textbf{Objective}: find the PoS of each word in a sentence
+	\item Define PoS
+	\begin{itemize}
+		\item General: \expword{N (noun), V (verb), J (adjective), A (adverb), P (preposition), Determiner (D)}
+		\item Specific: \expword{NN (noun), NNP (proper noun), V (present verb), VP (past verb) ...}
+	\end{itemize}
+	\item Annotate a corpus using these tags
+	\begin{itemize}
+		\item Manually annotate a test corpus
+		\item Another one for training if we want to use machine learning
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\subsection{Universal classes}
+
+\begin{frame}
+\frametitle{PoS tagging: Task description}
+\framesubtitle{Universal classes}
+
+\url{https://universaldependencies.org/u/pos/}
+
+\begin{tblr}{
+		colspec = {p{.3\textwidth}p{.32\textwidth}p{.28\textwidth}},
+		row{odd} = {lightblue},
+		row{even} = {lightyellow},
+		row{1} = {darkblue},
+		rowsep = 1pt,
+	} 
+	\textcolor{white}{Open class} & \textcolor{white}{Close class} & \textcolor{white}{Other} \\
+	
+	\keyword{ADJ}:  adjective & \keyword{ADP}: adposition & \keyword{PUNCT}: punctuation \\
+	\keyword{ADV}:  adverb & \keyword{AUX}: auxiliary & \keyword{SYM}: symbol \\
+	\keyword{INTJ}: interjection & \keyword{CCONJ}: coordination conjunction & \keyword{X}: Other \\
+	\keyword{NOUN}: noun & \keyword{DET}: determiner &  \\
+	\keyword{PROPN}: proper noun & \keyword{NUM}: numerical &  \\
+	\keyword{VERB}: verb & \keyword{PART}: particle &  \\
+	 & \keyword{PRON}: pronoun &  \\
+	 & \keyword{SCONJ}: subordination conjunction &  \\
+	
+\end{tblr}
+
+\end{frame}
+
+\subsection{Treebanks}
+
+\begin{frame}[fragile]
+\frametitle{PoS tagging: Task description}
+\framesubtitle{Treebanks}
+
+
+\begin{figure}
+	\begin{tcolorbox}[colback=white, colframe=blue, boxrule=1pt, text width=.9\textwidth]
+		\small
+\begin{alltt}
+Battle-tested\keyword{/JJ} Japanese\keyword{/JJ} industrial\keyword{/JJ} managers\keyword{/NNS}
+here\keyword{/RB} always\keyword{/RB} buck\keyword{/VBP} up\keyword{/RP} nervous\keyword{/JJ} newcomers\keyword{/NNS}
+with\keyword{/IN} the\keyword{/DT} tale\keyword{/NN} of\keyword{/IN} the\keyword{/DT} first\keyword{/JJ} of\keyword{/IN}
+their\keyword{/PP\$} countrymen\keyword{/NNS} to\keyword{/TO} visit\keyword{/VB} Mexico\keyword{/NNP} ,\keyword{/,}
+a\keyword{/DT} boatload\keyword{/NN} of\keyword{/IN} samurai\keyword{/FW} warriors\keyword{/NNS} blown\keyword{/VBN}
+ashore\keyword{/RB} 375\keyword{/CD} years\keyword{/NNS} ago\keyword{/RB} .\keyword{/.}
+\end{alltt}
+\end{tcolorbox}
+\caption{Example from Penn TreeBank \cite{2003-taylor}}
+\end{figure}
+
+\begin{itemize}
+	\item Universal TreeBank (\url{https://universaldependencies.org/}) \cite{2012-petrov-al}
+	\begin{itemize}
+		\item Open community project
+		\item It aims to provide annotated corpora for several languages
+		\item It uses the same PoS for all languages
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\subsection{Difficulties and tools}
+
+\begin{frame}
+\frametitle{PoS tagging: Task description}
+\framesubtitle{Difficulties and tools: Difficulties}
+
+\begin{itemize}
+	\item \optword{Ambiguity}
+	\begin{itemize}
+		\item There are words having several PoS
+		\item E.g. \expword{We can can the can}
+	\end{itemize}
+	\item \optword{Unknown words}
+	\begin{itemize}
+		\item Out of vocabulary words (from the training corpus)
+		\item Languages are always in evolution (creating new words and abbreviations)
+	\end{itemize}
+	\item \optword{Tag inconsistency}
+	\begin{itemize}
+		\item When there are several tags, we can find inconsistencies in the annotation
+		\item E.g. \expword{In ``Brown" and ``WSJ" corpora, the word ``to" has the tag ``TO". In ``Switchboard" corpus, it has the tag ``TO" when it indicates the infinitive, otherwise ``IN" when it is a preposition.}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Task description}
+\framesubtitle{Difficulties and tools: Tools}
+
+\begin{itemize}
+	\item \url{https://nlp.stanford.edu/software/tagger.shtml}
+	\item \url{https://github.com/sloria/textblob}
+	\item \url{https://www.nltk.org/api/nltk.tag.html}
+	\item \url{https://spacy.io/}
+	\item \url{https://github.com/clips/pattern}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Task description}
+\framesubtitle{Some humor}
+
+\begin{center}
+	\vgraphpage{humor/humor-identify.jpg}
+\end{center}
+
+\end{frame}
+
+%===================================================================================
+\section{Approaches}
+%===================================================================================
+
+\begin{frame}
+\frametitle{Part-of-speech tagging}
+\framesubtitle{Approaches}
+
+\begin{itemize}
+	\item Manual Rules
+	\item Machine Learning
+	\begin{itemize}
+		\item Learn the rules: \expword{Transformation-Based Learning (TBL)}
+		\item Statistical Models: \expword{Hidden Markov Model, Maximum Entropy Based Markov Model, Conditional Random Fields (CRF)}
+		\item Neural Networks: \expword{RNNs, Transformers}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\subsection{Hidden Markov Model (HMM)}
+
+\begin{frame}[fragile]
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{Hidden Markov Model (HMM)}
+
+\begin{itemize}
+	\item $Q = \{t_1, t_2, \ldots, t_N\}$: tags are considered as states
+	\item $A$: Transitions probability matrix where $\sum_j a_{ij} = 1,\, \forall i$
+	\item $W = w_1 w_2 \ldots w_T$ : words sequence
+	\item $B = b_i(w_t)$: Observation probabilities (\keyword{Emission probability}); probability of generating a word $w_t$ in a state $q_i \in Q$
+	\item $\pi = [\pi_1, \pi_2, \ldots, \pi_n ]$: initial states probability distribution, where $\sum_i \pi_i = 1$
+	
+	\item $\hat{t} = \arg\max\limits_t P(t | w) = \arg\max\limits_t \frac{P(w|t) P(t)}{P(w)} \approx \arg\max\limits_t P(t) P(w|t)$
+	\item $P(t) = P(t_1 \ldots t_T) \approx \pi_{t_1} \prod\limits_{i=1}^N P(t_i|t_{i-1}) $ where $P(t_i|t_{i-1}) \in A$ (Bi-gram) 
+	\item $P(w|t) = P(w_1 \ldots w_T|t_1 \ldots t_T) = \prod\limits_{i=1}^N P(w_i|t_i) $ where $P(w_i|t_i) \in B$
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{HMM: Example}
+
+\begin{exampleblock}{Example of a training corpus}
+	\begin{itemize}
+		\item a/DT computer/NN can/VB help/VB you/PN
+		\item he/PN wants/VB to/TO help/VB you/PN
+		\item he/PN wants/VB a/DT computer/NN
+		\item he/PN can/VB swim/VB
+	\end{itemize}
+\end{exampleblock}
+
+\begin{itemize}
+	\item $P(VB | PN) = \frac{C(PN,\ VB)}{C(PN)} = \frac{3}{5}$, 
+		  $P(VB | VB) = \frac{C(VB,\ VB)}{C(VB)} = \frac{2}{7}$,
+	\item $P(he | PN) = \frac{C(PN,\ he)}{C(PN)} = \frac{3}{5}$,
+	      $P(can | VB) = \frac{C(VB,\ can)}{C(VB)} = \frac{2}{7}$,
+		  $P(help | VB) = \frac{C(VB,\ help)}{C(VB)} = \frac{2}{7}$,
+	\item $\pi_{PN} = \frac{C(PN,\ <s>)}{C(<s>)} = \frac{3}{4} $
+	\item $P(PN\ VB\ VB | he\ can\ help) \approx (\pi_{PN} P(VB | PN) P(VB | VB)) (P(he | PN) P(can | VB) P(help | VB)) $
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{PoS tagging: Approaches}
+	\framesubtitle{HMM: Exercise}
+	
+	\begin{itemize}
+		\item Use the previous corpus (example)
+		\item Calculate $A$, $B$ and $Pi$ (train a HMM model)
+		\item Calculate the approximate probability $P(PN\ VB\ VB | he\ can\ help)$
+		\item Using greedy decoding, find tag sequence of the sentence \expword{he can help}
+		\item Redo the same thing using Viterbi decoding
+		\item Redo the same thing using Beam Search (K=3)
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Maximum entropy Markov model}
+
+\begin{frame}
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{Maximum entropy Markov model (MEMM)}
+
+\begin{itemize}
+	\item Let us denote $x_{n}^{m} = x_n x_{n+1} \ldots x_{m-1} x_m$
+	\item Given  
+	\begin{itemize}
+		\item a words sequence: $w = w_1 w_2 \ldots w_n$
+		\item a set of feature functions $f$ defined on a window of words $w_{i-l}^{i+l}$ and some past tags $t_{i-k}^{i-1}$
+	\end{itemize}
+	\item $\hat{t} = \arg\max\limits_t P(t | w) \approx \arg\max\limits_t \prod\limits_{i}  P(t_i | w_{i-l}^{i+l}, t_{i-k}^{i-1})$
+	\item $P(t_i | w_{i-l}^{i+l}, t_{i-k}^{i-1}) = Softmax(\sum_j \theta_j f_j(t_i, w_{i-l}^{i+l}, t_{i-k}^{i-1}))$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{MEMM: Features}
+
+\begin{itemize}
+	\item $w_i$ (considering words as features)
+	\item previous tags 
+	\item $w_i$ contains a prefix from a list ($len(prefix) \le 4$) 
+	\item $w_i$ contains a suffix from a list  ($len(suffix) \le 4$) 
+	\item $w_i$ contains a number 
+	\item $w_i$ contains un uppercase letter
+	\item $w_i$ contains a hyphen 
+	\item $w_i$ is completely in uppercase
+	\item $w_i$'s template (E.g. \expword{X.X.X}) 
+	\item $w_i$ is uppercase with a hyphen and a number (E.g. \expword{CFC-12}) 
+	\item $w_i$ is uppercase followed by words: Co., Inc., etc. after a maximum of 3 words
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{PoS tagging: Approaches}
+	\framesubtitle{MEMM: Exercise}
+	
+	\begin{itemize}
+		\item Use the previous corpus (HMM's example)
+		\item Let us use the following features:
+		\begin{itemize}
+			\item Past, current and future words encoded using ordinal encoding (alphabetical order)
+			\item Past and current PoS encoded using ordinal encoding (alphabetical order)
+			\item Current word having a suffix "s" (1 or 0)
+		\end{itemize}
+		\item Manually train a MEMM model using these specifications:
+		\begin{itemize}
+			\item Parameters are initialized to 1; no bias
+			\item Instead of \textbf{Softmax} use \textbf{Average normalization} as activation function
+			\item Instead of \textbf{cross entropy} loss, use $J = -\sum_{i=1}^{M} t_i \hat{t}_i$
+			\item Learning rate $\alpha=1$ 
+			\item 3 iterations
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Neural model}
+
+\begin{frame}
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{Neural model: Simple RNN}
+
+\hgraphpage{rnn-simple.pdf}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{Neural model: Stacked RNN}
+
+\hgraphpage{rnn-stack.pdf}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{Neural model: Bidirectional RNN}
+
+\hgraphpage{rnn-bi.pdf}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{Neural model: Character-based embedding RNN}
+
+\hgraphpage{rnn-char.pdf}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{PoS tagging: Approaches}
+	\framesubtitle{Neural model: Transformers}
+	
+	\hgraphpage{transformers.pdf}
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{PoS tagging: Approaches}
+\framesubtitle{Neural model: Some humor}
+
+\begin{center}
+	\vgraphpage{humor/humor-learn.jpg}
+\end{center}
+
+\end{frame}
+
+\insertbibliography{NLP05}{*}
+
+\end{document}
+

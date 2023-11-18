@@ -1,0 +1,152 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{wasysym}
+\usepackage{soul}
+
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{24pt}
+
+
+\begin{document}
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+
+\noindent
+\begin{tabular}{ll}
+\multirow{3}{*}{\includegraphics[width=1.5cm]{../extra/logo/esi.nlp.pdf}} & 
+\'Ecole national Supérieure d'Informatique\\
+& 2\textsuperscript{nd} year second cycle (2CSSID)\\
+& NLP: Natural Language Processing (2022-2023)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+\begin{center}
+{\LARGE \textbf{Tutorial 03: Sentence semantics and discourse}}
+\begin{flushright}
+	Abdelkrime Aries
+\end{flushright}
+\end{center}\vspace{-0.5cm}
+\noindent\rule{\textwidth}{2pt}
+
+\section*{1. Sentence semantics}
+
+Given these sentences:
+\begin{center}
+	\begin{tabular}{|l|}
+	\hline 
+	\\
+	\ul{Each student} prepares \ul{a report} with \ul{\LaTeX} \\
+	If \ul{a student} is subscribed to \ul{ESI}, so \ul{he} studies \ul{CS}\\
+	\\
+	\hline 
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+	\item For each underlined expression, indicate the thematic role using the table seen in class.
+	\item Suppose we used an LSTM to estimate these roles, write the result of each sentence using IOB representation.
+	\item Using FrameNet (\url{https://framenet.icsi.berkeley.edu/fndrupal/} [visited 2023-05-23]), indicate the activated semantic frameworks for each sentence.
+	\item Using PropBank (\url{https://propbank.github.io/} [visited 2023-05-23]), indicate the activated predicates.
+	\item Annotate the two sentences based on the arguments of each predicate.
+	\item Provide a context-free grammar to generate these sentences.
+	\item Represent the two sentences in first-order logic where the domain provides the following predicates:
+	Report(r); Student(s); Prepare(x, y); Prepare-With(x); Subscribe-To(x, y); Studies(x, y); CS(c).
+	It also provides the following constants: ESI; LATEX.
+	\item Enrich the previous grammar with semantic rules in order to generate these representations.
+	\item Draw the semantic tree of each sentence.
+	\item Now we want to use a neo-Davidsonian representation.
+	The domain, in this case, provides the following predicates:
+	Student(s); Prepare(e); Report(r); Prepare-Agent(e, x); Prepare-Theme(e, x); Prepare-Instrument(e, x); Location(e, x); Subscribe(e); Study(e); CS(x).
+	It also provides the following constants: ESI; LATEX.
+	\item Enrich the previous grammar with semantic rules in order to generate these representations.
+	\item Draw the semantic tree of each sentence.
+\end{enumerate}
+
+\section*{2. Coreference resolution}
+
+Given this text:
+\begin{center}
+	\begin{tabular}{|p{0.8\textwidth}|}
+	\hline
+	\\
+	A girl picked a flower.
+	She felt it.
+	It has a very good smell.
+	This beautiful flower is in école nationale supérieure d'informatique where the girl is studying.
+	ESI is located in Algiers; a city in northern Algeria.\\
+	\\
+	\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+	\item Find all mentions indicating the form of reference.
+	\item Annotate co-references.
+	\item Write a rule-based function that takes two mentions as arguments and returns a boolean indicating whether the first is an antecedent of the second based on the properties of both.
+	\item Apply Mention-Pair algorithm based on this function to the mentions of the first question.
+	Then, check if the generated co-references are similar to those manually annotated.
+	\item Write another function that takes two mentions with an array of mentions between them as arguments and returns a score indicating whether the first is an antecedent of the second based on the properties of both.
+	\item Apply Mention-Rank algorithm based on this function to the mentions of the first question.
+	Then, check if the generated co-references are similar to those manually annotated.
+	\item Write a recursive function that implements an Entity-based model. 
+	This function takes one set of clusters as an argument and returns another set of clusters.
+\end{enumerate}
+
+\section*{3. Coherence}
+
+Voici un texte : 
+
+\begin{center}
+	\begin{tabular}{|p{0.8\textwidth}|}
+	\hline
+	\\
+	Winter is one of the four seasons of the year. The report was well presented.
+	Rain is one of the characteristics of this season.
+	I read a report on this season. \\
+	\\
+	\hline 
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+	\item Represent each sentence using TF (eliminate stop words).
+	\item Calculate cosine similarities between all sentences.
+	\item Attempt to rearrange sentences by maximizing the sum of similarities between consecutive sentences.
+	\item Did you find the best order?
+	\item Based on the correct order, find the RST relations by drawing RST parse tree.
+	\item Apply ``Centering theory" on mis-ordered and correct text.
+	\item Suppose the CONTINUE, RETAIN, Smooth-SHIFT and Rough-SHIFT transitions are scored as 3, 2, 1 and 0 respectively.
+	Calculate the score for each text based on the result of the previous question.
+	\item Using ``Entity Grid model", represent the sentences by entities and by the probabilities of the grammatical transitions for the two texts: wrong and correct.
+\end{enumerate}
+
+\end{document}

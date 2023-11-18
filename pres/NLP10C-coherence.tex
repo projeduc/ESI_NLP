@@ -23,7 +23,7 @@
 		\Large\bfseries
 		Winter is one of the year's four seasons.
 		The report was well presented.
-		Rain is one of the this season's qualities.
+		Rain is one of this season's qualities.
 		I read a report on this season.
 	\end{center}
 \end{exampleblock}
@@ -531,7 +531,7 @@
 	
 	\begin{itemize}
 		\item Elementary discourse units (EDUs)
-		\item A sentence can have many UEDs 
+		\item A sentence can have many EDUs 
 		\item E.g. \expword{[Mr. Rambo says]\textsubscript{e1} [that a 3.2-acre property]\textsubscript{e2} [overlooking the San Fernando Valley]\textsubscript{e3} [is priced at \$4 million]\textsubscript{e4} [because the late actor Erroll Flynn once lived there.]\textsubscript{e5}}
 		\item Methods 
 		\begin{itemize}
@@ -557,7 +557,7 @@
 	\begin{figure}
 		\centering
 		\hgraphpage[.45\textwidth]{EDU_seg.pdf}
-		\caption{UEDs segmentation proposed by \cite{2018-wang-al}; figure inspired by \cite{2019-jurafsky-martin}}
+		\caption{EDUs segmentation proposed by \cite{2018-wang-al}; figure inspired by \cite{2019-jurafsky-martin}}
 	\end{figure}
 	
 \end{frame}
@@ -624,7 +624,7 @@
 			01 & $\emptyset$ & $e_1, e_2, e_3, e_4$ & SH & / \\
 			02 & $e_1$ & $e_2, e_3, e_4$ & SH & / \\
 			03 & $e_1, e_2$ & $e_3, e_4$ & RD(attr, SN) & $\widehat{e_1 \mathbf{e_2}}$ \\
-			04 & $e_{1:2}$ & $e_4$ & SH & / \\
+			04 & $e_{1:2}$ & $e_3, e_4$ & SH & / \\
 			05 & $e_{1:2}, e_3$ & $e_4$ & SH & / \\
 			06 & $e_{1:2}, e_3, e_4$ & $\emptyset$ & RD(elab, NS) & $\widehat{\mathbf{e_3} e_4}$ \\
 			07 & $e_{1:2}, e_{3:4}$ & $\emptyset$ & RD(elab, SN) & $\widehat{e_{1:2}\mathbf{e_{3:4}}}$ \\
@@ -649,9 +649,9 @@
 			\[x_i^w = embedding(w_i) \oplus embedding(t_i)\]
 			\item Represent sequential words
 			\[ \{h_1^w, h_2^w, \ldots, h_m^w \} = biLSTM(\{x_1^w, x_2^w, \ldots, x_m^w \})\]
-			\item Represent one UED $\{w_s, w_{s+1}, \ldots, w_t \}$
+			\item Represent one EDU $\{w_s, w_{s+1}, \ldots, w_t \}$
 			\[ x^e = \frac{1}{t-s+1} \sum_{k=s}^{t} h_k^w\]
-			\item Represent sequential UEDs
+			\item Represent sequential EDU
 			\[ \{h_1^e, h_2^e, \ldots, h_n^e \} = biLSTM(\{x_1^e, x_2^e, \ldots, x_n^e \})\]
 		\end{itemize}
 	\end{itemize}
@@ -667,9 +667,9 @@
 		\begin{itemize}
 			\item A feed-forward neural layer to infer the action $o$
 			\[o = W(h_{s0}^{sbt} \oplus h_{s1}^{sbt} \oplus h_{s2}^{sbt} \oplus h_{q0}^{e})\]
-			\item $ h_{e}^{q0} $: sequential representation of the first UED in the buffer
+			\item $ h_{e}^{q0} $: sequential representation of the first EDU in the buffer
 			\item $h_{si}^{sbt}$: sequential representation of the subtree $i$ in the stack
-			\item the representation of a subtree between two UEDs $ s= \{e_i, \ldots, e_j\}$ is the average of the covered UEDs representations. 
+			\item the representation of a subtree between two EDUs $ s= \{e_i, \ldots, e_j\}$ is the average of the covered EDUs representations. 
 			\[ h_{s}^{sbt} = \frac{1}{j-i+1} \sum_{k=i}^{j} h_k^e\]
 		\end{itemize}
 	\end{itemize}
