@@ -7,10 +7,10 @@
 
 \input{options}
 
-\title[ESI - NLP: 01- Introduction]%
-{Natural Language Processing\\Chapter 01\\Introduction to NLP} 
+\title[ESI - NLP\_master: 01- Introduction]%
+{Natural Language Processing (master)\\Chapter 01\\Introduction to NLP} 
 
-\changegraphpath{../img/intro/}
+\changegraphpath{../../img/intro/}
 
 \begin{document}
 	
@@ -237,7 +237,6 @@
 \frametitle{Introduction to NLP: Levels}
 \framesubtitle{Phonetics, phonology, orthography: Phonetics (Articulation points of consonants)}
 
-\acolor{everything}{olivegreen}
 \begin{minipage}{0.55\textwidth}
 \begin{itemize}
 	\item \optword{labial}: Lips. E.g., \expword{\textipa{[b], [p], [m], [f], [v]}}.
@@ -304,7 +303,7 @@
 \frametitle{Introduction to NLP: Levels}
 \framesubtitle{Phonetics, phonology, orthography: Phonology}
 
-\acolor{everything}{olivegreen}
+
 \begin{itemize}
 	\item Study of the sounds or phonemes of a given language.
 	\item Interested in sounds as elements of a system.
@@ -325,7 +324,7 @@
 \frametitle{Introduction to NLP: Levels}
 \framesubtitle{Phonetics, phonology, orthography: Orthography}
 
-\acolor{everything}{olivegreen}
+
 \begin{itemize}
 	\item Study of the types and form of lemmas/morphemes.
 	\item Writing system (according to the \keyword{grapheme}): 
@@ -386,7 +385,7 @@
 \frametitle{Introduction to NLP: Levels}
 \framesubtitle{Morphology and syntax: Morphology}
 
-\acolor{everything}{olivegreen}
+
 \begin{itemize}
 	\item \optword{Isolating/analytical languages}: each word consists of one and only one morpheme. 
 	Morphological changes are few or even absent.
@@ -409,7 +408,7 @@
 \frametitle{Introduction to NLP: Levels}
 \framesubtitle{Morphology and syntax: Inflectional morphology}
 
-\acolor{everything}{olivegreen}
+
 \begin{itemize}
 	\item Forming words without changing their categories or creating new lexemes.
 	\item Modifying lexemes form so that they adapt to different grammatical contexts.
@@ -447,7 +446,7 @@
 \frametitle{Introduction to NLP: Levels}
 \framesubtitle{Morphology and syntax: Derivational morphology}
 
-\acolor{everything}{olivegreen}
+
 \begin{itemize}
 	\item Forming words by changing part of speech (\expword{play, player}) or by creating new lexemes (\expword{do, undo}).
 	
@@ -517,8 +516,9 @@
 \end{itemize}
 
 \begin{columns}
-\begin{column}{0.52\textwidth}
+\begin{column}{0.54\textwidth}
 	\begin{exampleblock}{Example SOV [Japanese]}
+		\small
 		\begin{CJK}{UTF8}{min}
 			\textcolor{blue}{カリムさん}は\textcolor{green}{日本語}を\textcolor{red}{勉強します}。
 		\end{CJK}
@@ -526,20 +526,20 @@
 \end{column}
 %
 \begin{column}{0.42\textwidth}
-	\begin{exampleblock}{Example SVO [French]}
-		\textcolor{blue}{Karim} \textcolor{red}{apprend} \textcolor{green}{le français}.
+	\begin{exampleblock}{Example SVO [English]}
+		\textcolor{blue}{Karim} \textcolor{red}{learns} \textcolor{green}{English}.
 	\end{exampleblock}
 \end{column}%
 \end{columns}
 \begin{columns}
 \begin{column}{0.49\textwidth}
 	\begin{exampleblock}{Example VSO [Arabic]}
-		\begin{RLtext}
-			\acolor{everything}{red} \RL{yt`llm} 
-			\acolor{everything}{blue} \RL{krym} 
-			\acolor{everything}{green} \RL{al-`rbyT}%
-			\acolor{everything}{black}.
-		\end{RLtext}
+		\begin{flushright}
+			\color{black}.
+			\color{green} \RL{al-`rbyT}%
+			\color{blue} \RL{krym} 
+			\color{red} \RL{yt`llm} 
+		\end{flushright}
 	\end{exampleblock}
 \end{column}
 \end{columns}
