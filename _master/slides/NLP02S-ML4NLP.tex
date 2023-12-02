@@ -7,8 +7,8 @@
 
 \input{options}
 
-\title[ESI - NLP: 02- ML for NLP]%
-{Natural Language Processing\\Chapter 02\\Machine learning for NLP} 
+\title[ESI - NLP(master): 02- ML for NLP]%
+{Natural Language Processing (master)\\Chapter 02\\Machine learning for NLP} 
 
 \changegraphpath{../../img/ml4nlp/}
 
@@ -57,7 +57,8 @@
 				row{even} = {white},
 				cell{1}{1}={white},
 				colsep=3pt,
-				rowsep=1pt,
+				rowsep=3pt,
+				stretch = 0,
 			}
 			
 			&& Generative && Discriminative \\
@@ -76,14 +77,10 @@
 		
 		\begin{itemize}
 			\item \optword{Generative model}: a model that learns to generate features given a class:
-			
-			$\hat{Y} = \arg\max_k P(Y_k) P(X | Y_k)$
+			\[\hat{Y} = \arg\max_k P(Y_k) P(X | Y_k)\]
 			
 			\item \optword{Discriminative model}: a model that learns to estimate a class given some features: 
-			
-			$\hat{Y} = \arg\max_k P(Y_k | X)$
-			
-			
+			\[\hat{Y} = \arg\max_k P(Y_k | X)\]
 		\end{itemize}
 		
 	\end{frame}
@@ -109,23 +106,91 @@
 		
 		\begin{itemize}
 			\item This section is a review of ML algorithms
-			\item Traditional ML algorithms: NB, LR, SVM
+			\item Traditional ML algorithms: LR, SVM, DT, NB
 			\begin{itemize}
 				\item Text features are engineered manually
 			\end{itemize}
-			\item MLP
+			\item MLP (Multi-Layer Perceptron)
 			\begin{itemize}
 				\item Text features can be learned/enhanced automatically
+				\item The terminology is wrongly used to refer to Fully connected feed-forward neural networks with at least three layers
 			\end{itemize}
-			\item CNN
+			\item CNN (Convolutional Neural Network)
 			\begin{itemize}
 				\item Extracting relations between consecutive units
 			\end{itemize}
-			\item RNN
+			\item RNN (Recurrent Neural Network)
 			\begin{itemize}
 				\item Temporal dependent units processing
 			\end{itemize}
 		\end{itemize}
+		
+	\end{frame}
+
+		\begin{frame}
+		\frametitle{ML for NLP}
+		\framesubtitle{\insertsection: Example (Simple Perceptron for binary logical functions)}
+		
+		\begin{minipage}{0.30\textwidth} 
+			\hgraphpage{perceptron.pdf}
+		\end{minipage}
+		%
+		\begin{minipage}{0.59\textwidth}
+			\scriptsize
+			\begin{itemize}
+				\item $ z^{(i)} = x_1^{(i)} w_1 + x_2^{(i)} w_2 + b $
+				\item $ \hat{y}^{(i)} = \phi(z^{(i)}) = \begin{cases}
+					1 & \text{if } z^{(i)} \ge 0 \\
+					0 & \text{otherwise}
+				\end{cases} $
+				\item $ w_j = w_j + \nabla w_j$ where $ \nabla w_j = \frac{1}{M}\sum_{i=0}^{M} (y^{(i)} - \hat{y}^{(i)}) * x_j^{(i)} $
+			\end{itemize}
+		\end{minipage}
+	
+		\vfill
+	
+		\begin{exampleblock}{Training a Perceptron for AND function}
+			\begin{minipage}{0.2\textwidth} 
+				\scriptsize
+				\begin{tabular}{|c|c|c|}
+					\hline
+					x\textsubscript{1} & x\textsubscript{2} & y \\
+					\hline
+					0 & 0 & 0  \\
+					\hline
+					0 & 1 & 0 \\
+					\hline
+					1 & 0 & 0 \\
+					\hline
+					1 & 1 & 1 \\
+					\hline
+				\end{tabular}
+			\end{minipage}
+			%
+			\begin{minipage}{0.79\textwidth}
+				\scriptsize
+				\begin{itemize}
+					\item Initially, $ W = [w_1, w_2, b] = [0, 0, 0] $.
+					
+					\item It1: $ Z = \hat{Y} = [0, 0, 0, 0] $, 
+					$ \nabla W = [\frac{1}{4}, \frac{1}{4}, \frac{1}{4}] $, 
+					$ W = [\frac{1}{4}, \frac{1}{4}, \frac{1}{4}] $.
+					
+					\item It2: $ Z = [\frac{1}{4}, \frac{2}{4}, \frac{2}{4}, \frac{3}{4}] $, 
+					$ \hat{Y} = [1, 1, 1, 1] $, 
+					$ \nabla W = [\frac{-1}{4}, \frac{-1}{4}, \frac{-3}{4}] $,
+					$ W = [0, 0, \frac{-1}{2}] $.
+					
+					\item It3: $ Z = [\frac{-1}{2}, \frac{-1}{2}, \frac{-1}{2}, \frac{-1}{2}] $, 
+					$ \hat{Y} = [1, 1, 1, 1] $, 
+					$ \nabla W = [\frac{1}{4}, \frac{1}{4}, \frac{1}{4}] $,
+					$ W = [\frac{1}{4}, \frac{1}{4}, \frac{-1}{4}] $.
+					
+					\item It4: $ Z = [\frac{-1}{4}, 0, 0, \frac{1}{4}] $, 
+					$ \hat{Y} = Y = [0, 0, 0, 1] $ (STOP)
+				\end{itemize}
+			\end{minipage}
+		\end{exampleblock}
 		
 	\end{frame}
 	
@@ -133,36 +198,178 @@
 	
 	\begin{frame}
 		\frametitle{ML for NLP: \insertsection}
-		\framesubtitle{\insertsubsection: Naive Bayes}
+		\framesubtitle{\insertsubsection}
+	
+		\begin{itemize}
+%			\item Features are engineered manually 
+			\item The classification model stores some parameters $\theta$
+			\begin{itemize}
+				\item They are used by an inference function $ f $ to find the perfect class.
+				\item They can be considered to be some rules on the input to find the output.
+				\item Eg. \expword{IF weather = warm THEN play}
+			\end{itemize}
+			\item These parameters are trained using an algorithm based on some data
+			\begin{itemize}
+				\item They are tuned so the model find the exact output of the data
+			\end{itemize}
+			\item The data is a table of samples, features and class
+			\begin{itemize}
+				\item Let's consider $ M $ samples (rows) and $ N $ features (columns)
+				\item $ X[M, N] $ is the input
+				\item $ Y[M] $ is the output
+			\end{itemize}
+			\item In summary, to infer a class $ \hat{y} $ of a sample $ x $
+			\[\hat{y} = f(x, \theta)\]
+		\end{itemize}
 		
-		Estimation 
-		\[\hat{Y} = \arg\max_{Y_k} \log P(Y_k) + \sum_{j=1}^{N} \log P(X_j|Y_k)\]
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Linear Regression}
 		
-		Training
-		\[P(Y_k) = \frac{|\{y / y \in Y \wedge y = k\}|}{M}\]
+		\begin{minipage}{0.62\textwidth} 
+			\begin{itemize}
+				\item \textbf{GOAL}: Try to estimate a value $ y $ based on some features $ x $
+				\item \textbf{Estimation}: $ \hat{y} = \theta_0 + \sum_{j=1}^{N} \theta_j x_j $
+				\item \textbf{Training}: Try to minimize a cost function $ J $
+				\[J_\theta = \frac{1}{2M} \sum\limits_{i=1}^{M} (y^{(i)} - \hat{y}^{(i)})^2\]
+%				\item $J_\theta = \frac{1}{M} \sum\limits_{i=1}^{M} (y^{(i)} - \hat{y}^{(i)})^2$
+%				\item Eg. \expword{Houses prices based on their areas}
+			\end{itemize}
+		\end{minipage}
+		\begin{minipage}{0.37\textwidth} 
+			\hgraphpage{houses_LR.png}
+		\end{minipage}
 		
 		\begin{itemize}
-			\item $|\{y / y \in Y \wedge y = k\}|$ is the number of samples belonging to class $k$ in the training dataset.
-			\item $M$ is the number of samples in the training dataset.
-			\item $P(X_j|Y_k)$ is calculated following one of three distributions: multinomial, normal or Bernoulli.
+			
+			\item Update each parameter $ \theta_j $ iteratively using a learning rate $ \alpha $
+			\[\theta_j = \theta_j - \alpha \frac{\partial J_\theta}{\partial \theta_j}
+			\hspace{1cm}
+			\frac{\partial J_\theta}{\partial \theta_j} = \frac{1}{M} \sum\limits_{i=1}^{M} (\hat{y}^{(i)} - y^{(i)}) x_j
+			\]
+			\item The update is stopped when the cost is minimal
 		\end{itemize}
+	
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Linear Regression (Cost and parameters)}
+		
+		\begin{minipage}{0.7\textwidth} 
+			\begin{block}{Gradient descent}
+				\begin{algorithm}[H]
+					\KwData{$ X, Y, \alpha, T $}
+					\KwResult{$ \theta $}
+					initialize $ \theta $ ; $ t = 0 $\;
+					calculate $ J $\;
+					\While{$ t < T$ and $ J \ge tol $}{
+						$ \theta = \theta - \alpha \Delta_\theta J(X, Y; \theta) $\;
+						calculate $ J $\;
+						t = t + 1 \;
+					}
+%					\caption{Gradient descent}
+				\end{algorithm}
+			\end{block}
+		\end{minipage}
+		\begin{minipage}{0.29\textwidth} 
+			\hgraphpage{J.pdf}
+		\end{minipage}
+		
+		%		\begin{itemize}
+			%			\item \textbf{Training}: Try to minimize a cost function $ J $
+			%			\[J_\theta = \frac{-1}{M} \sum\limits_{i=1}^{M} y^{(i)} \log(h^{(i)}) + (1- y^{(i)}) \log(1 - h^{(i)})\]
+			%			\item Update each parameter $ \theta_j $ iteratively using a learning rate $ \alpha $
+			%			\[\theta_j = \theta_j - \alpha \frac{\partial J_\theta}{\partial \theta_j}
+			%			\hspace{1cm}
+			%			\frac{\partial J_\theta}{\partial \theta_j} = \frac{1}{M} \sum\limits_{i=1}^{M} (\hat{y}^{(i)} - y^{(i)}) x_j
+			%			\]
+			%			%			\item The update is stopped when the cost is minimal
+			%		\end{itemize}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Binary Logistic Regression}
+		
+		\begin{minipage}{0.5\textwidth} 
+			\hgraphpage{LR_bin_arch.pdf}
+		\end{minipage}
+		\begin{minipage}{0.49\textwidth} 
+			\hgraphpage{exp_binary.pdf}
+		\end{minipage}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Binary Logistic Regression (Formalism)}
+		
+		\begin{minipage}{0.5\textwidth} 
+			\begin{itemize}
+				\item \textbf{GOAL}: Try to draw a decision line between two classes $ y \in \{0, 1\} $ based on some features $ x $
+				\item \textbf{Estimation}: $ z = \theta_0 + \sum_{j=1}^{N} \theta_j x_j $
+				$ h = \sigma(z) = \frac{1}{1 + e^{-z}}$, $ \hat{y} = (h \ge 0.5)$
+			\end{itemize}
+		\end{minipage}
+		\begin{minipage}{0.49\textwidth} 
+			\hgraphpage{grades_LR.png}
+		\end{minipage}
+		
+		\begin{itemize}
+			\item \textbf{Training}: Try to minimize a cost function $ J $
+			\[J_\theta = \frac{-1}{M} \sum\limits_{i=1}^{M} y^{(i)} \log(h^{(i)}) + (1- y^{(i)}) \log(1 - h^{(i)})\]
+			\item Update each parameter $ \theta_j $ iteratively using a learning rate $ \alpha $
+			\[\theta_j = \theta_j - \alpha \frac{\partial J_\theta}{\partial \theta_j}
+			\hspace{1cm}
+			\frac{\partial J_\theta}{\partial \theta_j} = \frac{1}{M} \sum\limits_{i=1}^{M} (\hat{y}^{(i)} - y^{(i)}) x_j
+			\]
+%			\item The update is stopped when the cost is minimal
+		\end{itemize}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Multinomial Logistic Regression}
+		
+		\begin{minipage}{0.6\textwidth} 
+			\hgraphpage{LR_multi_arch.pdf}
+		\end{minipage}
+		\begin{minipage}{0.39\textwidth} 
+			\hgraphpage{exp_multiclass.pdf}
+		\end{minipage}
 		
 	\end{frame}
 	
 	\begin{frame}
 		\frametitle{ML for NLP: \insertsection}
-		\framesubtitle{\insertsubsection: Logistic Regression}
+		\framesubtitle{\insertsubsection: Multinomial Logistic Regression (Formalism)}
 		
-		Estimation 
-		\[\hat{Y} = \arg\max_{k} Softmax(\sum_{j=1}^{N} \theta_j X_j + \theta_0)\]
-		
-		Training
-		\[J_\theta = \frac{-1}{M} \sum\limits_{i=1}^{M} \sum_{k=1}^{L} Y^{(i)}_k \log(H^{(i)}_k)\]
-		\[\theta_j = \theta_j - \alpha \frac{\partial J_\theta}{\partial \theta_j}\]
-		
+		\begin{minipage}{0.7\textwidth} 
+			\begin{itemize}
+				\item \textbf{GOAL}: Try to draw decision lines between many classes $ y $ based on some features $ x $
+				\item \textbf{Estimation}: $ z_l = \theta_{0l} + \sum_{j=1}^{N} \theta_{jl} x_j $
+				$ h_l = Softmax(z_l) = \frac{e^l}{\sum_{k=1}^{L} e^{z_k}}$, $ \hat{y} = \arg\max_{l} h_l$
+				\item \textbf{Also}: $ L $ binary logistic classifiers. 
+				The probabilities are normalized: $ \sum_{l=1}^{L} p(c_l) = 1$.
+%				Each estimates a probability of a class $ c_l $.
+%				Then, these probabilities are normalized to have normalized probabilities $ \sum_{l=1}^{L} p(c_l) = 1$.
+			\end{itemize}
+		\end{minipage}
+		\begin{minipage}{0.29\textwidth} 
+			\hgraphpage{multi_LR.pdf}
+		\end{minipage}
+	
 		\begin{itemize}
-			\item $\theta$ is updated using an optimization algorithm like \keyword{gradient descent}.
-			\item $\theta[N, K]$ is a matrix of $N$ features and $K$ classes.
+			\item \textbf{Training}: Try to minimize a cost function $ J $
+			\[J_\theta = \frac{-1}{M} \sum\limits_{i=1}^{M} \sum_{k=1}^{L} h^{(i)}_k \log(h^{(i)}_k)
+			\hspace{1cm}
+			\frac{\partial J_\theta}{\partial \theta_{jl}} = \frac{1}{M} \sum\limits_{i=1}^{M} (h_l^{(i)} - y_l^{(i)}) x_j
+			\]
 		\end{itemize}
 		
 	\end{frame}
@@ -182,6 +389,205 @@
 		\end{itemize}
 		
 	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Decision Trees}
+		
+		\vspace{-8pt}
+		\begin{exampleblock}{Example of expected model}
+		\begin{minipage}{0.33\textwidth} 
+			\tiny\bfseries
+			\SetTblrInner{rowsep=0pt,colsep=1pt}
+			\begin{tblr}{
+					colspec = {llllll},
+					row{odd} = {lightblue},
+					row{even} = {lightyellow},
+					row{1} = {bg=darkblue, fg=white},
+				} 
+%			\begin{tabular}{llllll}
+				id & outlook & temp & humidity & windy & play \\
+				01 & sunny & hot & high & false & no \\
+				02 & sunny & hot & high & true & no \\
+				03 & overcast & hot & high & false & yes \\
+				04 & rainy & mild & high & false & yes \\
+				05 & rainy & cool & normal & false & yes \\
+				06 & rainy & cool & normal & true & no \\
+				07 & overcast & cool & normal & true & yes \\
+				08 & sunny & mild & high & false & no \\
+				09 & sunny & cool & normal & false & yes \\
+				10 & rainy & mild & normal & false & yes \\
+				11 & sunny & mild & normal & true & yes \\
+				12 & overcast & mild & high & true & yes \\
+				13 & overcast & hot & normal & false & yes \\
+				14 & rainy & mild & high & true & no \\
+%			\end{tabular}
+			\end{tblr}
+		\end{minipage}
+		\begin{minipage}{0.25\textwidth} 
+			\tiny\bfseries\itshape
+			\textcolor{red}{if} outlook == '\textcolor{darkgreen}{sunny}':\\
+			\hspace*{10pt}\textcolor{red}{if}  humidity == '\textcolor{darkgreen}{high}':\\
+			\hspace*{20pt}\textcolor{red}{return}  '\textcolor{darkgreen}{no}'\\
+			\hspace*{10pt}\textcolor{red}{else}: \textcolor{gray}{\# 'normal'}\\
+			\hspace*{20pt}\textcolor{red}{return} '\textcolor{darkgreen}{yes}'\\
+			\textcolor{red}{elif}  outlook == '\textcolor{darkgreen}{overcast}':\\
+			\hspace*{10pt}\textcolor{red}{return} '\textcolor{darkgreen}{yes}'\\
+			\textcolor{red}{else}: \textcolor{gray}{\# 'rainy'}\\
+			\hspace*{10pt}\textcolor{red}{if not} windy:\\
+			\hspace*{20pt}\textcolor{red}{return} '\textcolor{darkgreen}{yes}'\\
+			\hspace*{10pt}\textcolor{red}{else}:\\
+			\hspace*{20pt}\textcolor{red}{return} '\textcolor{darkgreen}{no}' 
+		\end{minipage}
+		\begin{minipage}{0.38\textwidth} 
+			 \hgraphpage{exp_DT.pdf}
+		\end{minipage}
+		\end{exampleblock}
+		
+		\vspace{-6pt}
+		\begin{itemize}
+			\item \textbf{GOAL}: Create a tree by splitting the training data. The leafs must contain homogeneous samples (same class)
+			\item \textbf{Estimation}: navigate the tree from the root till a leaf based on the sample's features
+		\end{itemize}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Decision Trees (Training)}
+	
+		\begin{block}{Decision tree construction}
+			\scriptsize
+			\begin{algorithm}[H]
+				\SetKwFunction{FConst}{build}
+				\SetKwProg{Fn}{function}{}{end}
+				
+				\KwData{$ X, Y$}
+				\KwResult{Decision tree's root node} 
+				\Return \FConst{$X, Y$}\;
+				
+				\Fn{\FConst{$X', Y'$}}{
+					n $\leftarrow$ new Node()\;
+					\eIf{$Y'$ is homogeneous or stop criteria is reached}{
+						$s.class \leftarrow \arg\max_{k}{|\{y \in Y' / y = k \}|}$ \tcp{$s$ is a leaf}
+					}{
+						determine the feature $j$ of $ X' $ which better divides $Y'$\;
+						split $(X, Y)$ into $(X_1, Y_1), \ldots, (X_K, Y_K)$ based on the $ K $ values of $X'_j$\;
+						$s.feature = j$\;
+						\lForEach{$ k \in \{1, \ldots, K\}$}{
+%							$s_k \leftarrow Construction(X_{*,k}, Y_k) \in S$ $(s, s_k) \in A$ $val(s, s_k) = k$\;
+							$ n.children[k] \leftarrow$ \FConst{$ X_k, Y_k $})
+						}
+					}
+					
+					\Return n\;
+				}	
+				
+%				\caption{Génération d'un arbre de décision (algorithme général)}
+			\end{algorithm}
+		\end{block}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Decision Trees (ID3: Iterative Dichotomiser 3)}
+		
+		\begin{itemize}
+			\item \textbf{LEARN MORE}: \cite{1986-quinlan}
+			\item Probability of a given value $ v $ belonging into a set $ S $
+			\[p(v\in S) = \frac{|\{x / x\in S \text{ and } x = v\}|}{|S|}\]
+			\item Entropy: uncertainty of a set $ S $ having a set $ V $ of unique values
+			\[H(S) = - \sum\limits_{v \in V} p(v\in S) \log_2 p(v\in S)\]
+			\item Information gain: difference in entropy from before to after the set $ S $ is split on an attribute $ A $ with $ V $ unique values.
+			\[IG(Y, A) = H(Y) - \sum_{v \in V} p(v\in A) H(Y_{v\in A})\] 
+		\end{itemize}
+	
+		\[H(Y) = 0 \Rightarrow\ Y \text{is homogeneous} \hspace{1cm} j_{best} = \arg\max_j IG(Y, X_j)\]
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Decision Trees (ID3 - Example and application)}
+		\tiny
+		\begin{enumerate}
+			\item Create a node $ ROOT $
+			\begin{itemize}\tiny\bfseries
+				\item $ H(Y) = - p(yes \in Y) \log_2 p(yes\in Y) - p(no \in Y) \log_2 p(no\in Y)  $
+				$ = -\frac{9}{14} \log_2 \frac{9}{14} - \frac{5}{14} \log_2 \frac{5}{14} \approx\ 0.94$ (not pure)
+%				\item $ IG(Y, outlook) = H(Y) - \sum_{v \in \{sunny, overcast, rainy\}} p(v\in A) H(Y_{v\in outlook}) $
+				\item $ IG(Y, outlook) = 0.94 - [ \underbrace{\frac{5}{14} (- \frac{3}{5} \log_2 \frac{3}{5} - \frac{2}{5} \log_2 \frac{2}{5} )}_{sunny} + \underbrace{\frac{4}{14} (- \frac{0}{4} \log_2 \frac{0}{4} - \frac{4}{4} \log_2 \frac{4}{4})}_{overcast} +  \underbrace{\frac{5}{14} (- \frac{2}{5} \log_2 \frac{2}{5} - \frac{3}{5} \log_2 \frac{3}{5})}_{rainy} ]$
+				\item $ IG(Y, outlook) \approx 0.247 , IG(Y, temp) \approx 0.029 , IG(Y, humidity) \approx 0.152 ,  IG(Y, wind) \approx 0.048 $ (outlook is the best)
+				\item split the dataset into three datasets ($ X_1, X_2, X_3 $), each will be used to create a child of $ ROOT $
+			\end{itemize}
+		
+			\item Create a node $ N_1 $ where $ X_1, Y_1 $ are split on $ X[outlook] = sunny$ (5 samples)
+			\begin{itemize}\tiny\bfseries
+				\item $ H(Y_1) = - \frac{3}{5} \log_2 \frac{3}{5} - \frac{2}{5} \log_2 \frac{2}{5} \approx\ 0.97$ (not pure)
+				\item $ IG(Y_1, temp) = 0.97 - [ \underbrace{\frac{2}{5} (- \frac{2}{2} \log_2 \frac{2}{2} - \frac{0}{2} \log_2 \frac{0}{2} )}_{hot} + \underbrace{\frac{2}{5} (- \frac{1}{2} \log_2 \frac{1}{2} - \frac{1}{2} \log_2 \frac{1}{2})}_{mild} +  \underbrace{\frac{1}{5} (- \frac{0}{1} \log_2 \frac{0}{1} - \frac{1}{1} \log_2 \frac{1}{1})}_{cool} ]$
+				\item $ IG(Y_1, temp) \approx 0.57 , IG(Y_1, humidity) \approx 0.97 ,  IG(Y_1, wind) \approx 0.02 $ (humidity is the best)
+				\item split the dataset into two datasets ($ X_{11}, X_{12}$), each will be used to create a child of $ N_1 $
+			\end{itemize}
+		
+			\item Create a node $ N_2 $ where $ X_2, Y_2 $ are split on $ X[outlook] = overcast$ (4 samples)
+			\begin{itemize}\tiny\bfseries
+				\item $ H(Y_2) = - \frac{0}{4} \log_2 \frac{0}{4} - \frac{4}{4} \log_2 \frac{4}{4} = 0$ (pure: one class)
+				\item $ N_2.class = 'yes' $
+			\end{itemize}
+		
+		\end{enumerate}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Naive Bayes}
+		
+		\begin{itemize}
+			\item Bayes' theorem: $ \overbrace{p(y|x)}^\text{Posterior} = \frac{\overbrace{p(y)}^\text{Prior} \overbrace{p(x|y)}^{\text{Likelihood}}}{\underbrace{p(x)}_\text{Evidence}}$
+			\item \textbf{GOAL}: Estimate classes' probabilities based on features' distributions
+			\item \textbf{Estimation}: $ \hat{y} = \arg\max_{y_l} p(y_l|x)$
+			\[\hat{y} = \arg\max_{y_l} \frac{p(y_l) p(x|y_l)}{\underbrace{p(x)}_\text{constant}} = \arg\max_{y_l} p(y_l) p(x|y_l)\]
+			\begin{itemize}
+				\item the \textbf{naive} part: we suppose features' independence
+				\[\hat{y} = \arg\max_{y_l} p(y_l) \prod_{j=1}^{N} p(x_j|y_l) = \arg\max_{y_l} \log p(y_l) + \sum_{j=1}^{N} \log p(x_j|y_l)\]
+			\end{itemize}
+		\end{itemize}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Naive Bayes (training) (1)}
+		\small
+		
+		\begin{itemize}
+			\item \optword{Prior probability}: let $ Y $ be the training outputs
+			\[p(y_k) = \frac{|\{y / y \in Y \wedge y = k\}|}{|Y|}\]
+			
+			\item \optword{Likelihood probability (Multinomial NB)} let $ Y $ be the training outputs, let $ x_j $ be a feature, let $ v $ be an acceptable value of $ x_j $.
+			\[p(x_j = v|y_k) = \frac{|\{y^{(i)} / y^{(i)} = k \wedge x^{(i)}_j = v\}|}{|\{y | y \in Y \wedge y = k\}|} = \frac{\#(y = k \wedge x_j = v)}{\#(y = k)}\]
+			
+			Some values $v$ may not be in training dataset. We can smooth the probability using the unique values $ V_j $ of $ x_j $ and $ \alpha \in [0, 1] $
+			\[p(x_j = v|y_k) = \frac{\#(y = k \wedge x_j = v) + \alpha}{\#(y = k) + \alpha |V_j|}\]
+		\end{itemize}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Naive Bayes (training) (2)}
+		\small
+		
+		\begin{itemize}
+			\item \optword{Likelihood probability (Bernoulli NB)}: let $ Y $ be the training outputs, let $ x_j $ be a feature, let $ v \in \{0, 1\}$ be an acceptable value of $ x_j $.
+			\[p(x_j = v|y_k) = p(x_{j1}|y_k) x_j + (1-p(x_{j1}|y_k)) (1-x_j)\]
+			\[p(x_{j1}|y_k) = \frac{|\{x_j^{(i)} = 1 \wedge y^{(i)} = k\}|}{|\{y | y \in Y \wedge y = k\}|}\]
+			\item \optword{Likelihood probability (Gaussian NB)}: let $ Y $ be the training outputs, let $ x_j $ be a feature, let $ v $ be an acceptable value of $ x_j $.
+			\[p(x_j = v|y_k) = \frac{1}{\sqrt{2\pi \sigma_{kj}^2}} e^\frac{-(v-\mu_{kj})^2}{2 \sigma_{kj}^2}\]
+		\end{itemize}
+		
+	\end{frame}
 	
 	\subsection{MLP}
 	
@@ -189,15 +595,132 @@
 		\frametitle{ML for NLP: \insertsection}
 		\framesubtitle{\insertsubsection}
 		
-		\vgraphpage{RN.pdf}
+		\begin{minipage}{0.39\textwidth}
+			\centering 
+			Artificial Neuron Architecture
+			
+			\hgraphpage{aneuron.pdf}
+		\end{minipage}
+		\begin{minipage}{0.4\textwidth} 
+			\centering
+			MLP architecture
+			
+			\hgraphpage{RN.pdf}
+		\end{minipage}
+		
+		\begin{minipage}{0.39\textwidth}
+			\[z_j^{(l)} = \sum_i w_{ij}^{(l)} a_{i}^{(l-1)} + b_{i}^{(l)}\]
+			
+			\[a_{i}^{(l)} = f_{i}^{(l)}(z_{i}^{(l)})\]
+			
+			\[a_{i}^{(1)} = x_{i}\]
+		\end{minipage}
+		\begin{minipage}{0.6\textwidth} 
+			\centering
+			MLP notation
+			
+			\hgraphpage{RNPA.pdf}
+		\end{minipage}
 		
 	\end{frame}
 	
 	\begin{frame}
 		\frametitle{ML for NLP: \insertsection}
-		\framesubtitle{\insertsubsection: Architecture}
+		\framesubtitle{\insertsubsection: Feed-Forward}
 		
-		\vgraphpage{RNPA.pdf}
+		\begin{minipage}{0.3\textwidth}
+			\small
+			
+			Simplify chain rule\boldmath
+			
+			$ \delta^{(out)} = \frac{\partial J}{\partial f^{(out)}} \frac{\partial f^{(out)}}{\partial z^{(out)}} $
+			
+			$ \delta^{(l)} = \frac{\partial f^{(l)}}{\partial z^{(l)}} w^{(l+1)} \delta^{(l+1)} $
+			
+			$ \frac{\partial J}{\partial w^{(l)}} = a^{(l-1)} \delta^{(l)} $
+			
+			$ \frac{\partial J}{\partial b^{(l)}} = \delta^{(l)} $
+			
+		\end{minipage}
+		\begin{minipage}{0.69\textwidth} 
+			\hgraphpage{RNPA-exp.pdf}
+		\end{minipage}
+		
+		\begin{minipage}{0.45\textwidth} 
+			\tiny
+			$
+			\frac{\partial J}{\partial w_{11}^{(4)}} = \overbrace{\frac{\partial J}{\partial f_{1}^{(4)}} \frac{\partial f_{1}^{(4)}}{\partial z_{1}^{(4)}}}^{\delta_{1}^{(4)}} \overbrace{\frac{\partial z_{1}^{(4)}}{\partial w_{11}^{(4)}}}^{a_{1}^{(3)}}
+			$
+			
+			$ 
+			\frac{\partial J}{\partial f_{1}^{(4)}} = \frac{(0.840, 0.843) - (0, 1)}{(0.840, 0.843) - (0.840, 0.843)^2} 
+			= (6.25, -1.186)
+			$
+			
+			$ 
+			\frac{\partial f_{1}^{(4)}}{\partial z_{1}^{(4)}} = (0.840, 0.843) (0.160, 0.157) = (0.134, 0.132)
+			$
+			
+			$
+			\delta_{1}^{(4)} = (6.25, -1.186) (0.134, 0.132) \approx (0.838, -0.157)
+			$ 
+		\end{minipage}
+		\begin{minipage}{0.54\textwidth} 
+			\tiny
+			$
+			\frac{\partial J}{\partial w_{11}^{(3)}} = 
+			\overbrace{
+				\overbrace{
+					\frac{\partial J}{\partial f_{1}^{(4)}} 
+					\frac{\partial f_{1}^{(4)}}{\partial z_{1}^{(4)}}
+				}^{\delta_{1}^{(4)}} 
+				\overbrace{
+					\frac{\partial z_{1}^{(4)}}{\partial f_{1}^{(3)}}
+				}^{w_{11}^{(4)}} 
+				\frac{\partial f_{1}^{(3)}}{\partial z_{1}^{(3)}} 
+			}^{\delta_{1}^{(3)}} 
+			\overbrace{
+				\frac{\partial z_{1}^{(3)}}{\partial w_{11}^{(3)}}
+			}^{a_{1}^{(2)}}
+			$
+			
+			$
+			\frac{\partial f_{1}^{(3)}}{\partial z_{1}^{(3)}} \approx 
+			(0.555, 0.612) (0.445, 0.388) = (0.247, 0.237)
+			$
+			
+			$
+			\delta_{1}^{(3)} = (0.838, -0.157) * 0.7 * (0.247, 0.237) \approx (0.145, -0.026)
+			$
+		\end{minipage}
+		
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Auto-encoder}
+		
+		\begin{minipage}{0.47\textwidth}
+			\hgraphpage{AE.pdf}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.47\textwidth} 
+			\hgraphpage{AE-noise.pdf}
+		\end{minipage}
+		
+		\begin{minipage}{0.52\textwidth}
+			\small
+			$ z = \mu + \sigma * N(0, 1) $
+			
+			\vspace{6pt}$ J'(x, \hat{x}) = J(x, \hat{x}) + KL(N(\mu, \sigma), N(0, 1)) $
+			
+			\vspace{6pt}$ KL(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)}) $
+		\end{minipage}
+		\begin{minipage}{0.47\textwidth} 
+			\hgraphpage{AE-var.pdf}
+		\end{minipage}
+		
 		
 	\end{frame}
 	
@@ -253,6 +776,45 @@
 
 	\begin{frame}
 		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Conv2D (Example)}
+		
+		\begin{center}
+			\vskip-6pt\hgraphpage[0.8\textwidth]{conv2D_imlp.pdf}
+		\end{center}\vskip-16pt
+		
+		{\scriptsize 
+			\[O_{11} = ReLU(\Sigma = b + F_{11} I_{11} + \textcolor{blue}{F_{12} I_{12}} + F_{21} I_{21} + \textcolor{red}{F_{22} I_{22}})  \]
+			\[O_{12} = ReLU(\Sigma = b + \textcolor{blue}{F_{11} I_{12}} + F_{12} I_{13} + \textcolor{red}{F_{21} I_{22}} + F_{22} I_{23})  \]
+			\[O_{21} = ReLU(\Sigma = b + F_{11} I_{21} + \textcolor{red}{F_{12} I_{22}} + F_{21} I_{31} + F_{22} I_{32})  \]
+			\[O_{22} = ReLU(\Sigma = b + \textcolor{red}{F_{11} I_{22}} + F_{12} I_{23} + F_{21} I_{32} + F_{22} I_{33})  \]
+			
+			\[\textcolor{red}{\frac{\partial J}{\partial I_{22}}} 
+			= \underbrace{\frac{\partial J}{\partial O_{11}}}_{G_{11} = 1} 
+			\underbrace{\frac{\partial ReLU}{\partial \sum}}_{1} 
+			\underbrace{\frac{\partial \sum}{\partial I_{22}}}_{F_{22} = 3}
+			+ \underbrace{\frac{\partial J}{\partial O_{12}}}_{G_{12} = 2} 
+			\underbrace{\frac{\partial ReLU}{\partial \sum}}_{1} 
+			\underbrace{\frac{\partial \sum}{\partial I_{22}}}_{F_{21} = -2}
+			+ \underbrace{\frac{\partial J}{\partial O_{21}}}_{G_{21} = 3} 
+			\underbrace{\frac{\partial ReLU}{\partial \sum}}_{1} 
+			\underbrace{\frac{\partial \sum}{\partial I_{22}}}_{F_{12} = -1}
+			+ \underbrace{\frac{\partial J}{\partial O_{22}}}_{G_{22} = 4} 
+			\underbrace{\frac{\partial ReLU}{\partial \sum}}_{0} 
+			\underbrace{\frac{\partial \sum}{\partial I_{22}}}_{F_{11} = 1}\]
+			
+			\[\textcolor{blue}{\frac{\partial J}{\partial I_{12}}} 
+			= \underbrace{\frac{\partial J}{\partial O_{11}}}_{G_{11} = 1} 
+			\underbrace{\frac{\partial ReLU}{\partial \sum}}_{1} 
+			\underbrace{\frac{\partial \sum}{\partial I_{12}}}_{F_{12} = -1}
+			+ \underbrace{\frac{\partial J}{\partial O_{12}}}_{G_{12} = 2} 
+			\underbrace{\frac{\partial ReLU}{\partial \sum}}_{1} 
+			\underbrace{\frac{\partial \sum}{\partial I_{12}}}_{F_{11} = 1}\]
+		}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
 		\framesubtitle{\insertsubsection: Conv1D}
 		
 		\begin{minipage}{0.62\textwidth} 
@@ -289,6 +851,39 @@
 		\begin{minipage}{0.39\textwidth}
 			\hgraphpage[\textwidth]{maxpool.pdf}
 		\end{minipage}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Pooling (Example)}
+		
+		\begin{center}
+			\vskip-6pt\hgraphpage[0.7\textwidth]{pool2D_imlp.pdf}
+		\end{center}\vskip-16pt
+		
+		{\scriptsize 
+			\[O_{11} = Max(I_{11} + \textcolor{blue}{I_{12}} + I_{21} + \textcolor{red}{I_{22}}) = \textcolor{red}{I_{22}}  \]
+			\[O_{12} = Max(\textcolor{blue}{I_{12}} + I_{13} + \textcolor{red}{I_{22}} + I_{23}) = I_{23}  \]
+			\[O_{21} = Max(I_{21} + \textcolor{red}{I_{22}} + I_{31} + I_{32}) = \textcolor{red}{I_{22}} \]
+			\[O_{22} = Max(\textcolor{red}{I_{22}} + I_{23} + I_{32} + I_{33}) = \textcolor{red}{I_{22}}  \]
+			
+			\[\textcolor{red}{\frac{\partial J}{\partial I_{22}}} 
+			= \underbrace{\frac{\partial J}{\partial O_{11}}}_{G_{11} = 1} 
+			\underbrace{\frac{\partial Max}{\partial I_{22}}}_{1}
+			+ \underbrace{\frac{\partial J}{\partial O_{12}}}_{G_{12} = 2} 
+			\underbrace{\frac{\partial Max}{\partial I_{22}}}_{0}
+			+ \underbrace{\frac{\partial J}{\partial O_{21}}}_{G_{21} = 3} 
+			\underbrace{\frac{\partial Max}{\partial I_{22}}}_{1}
+			+ \underbrace{\frac{\partial J}{\partial O_{22}}}_{G_{22} = 4} 
+			\underbrace{\frac{\partial Max}{\partial I_{22}}}_{1}\]
+			
+			\[\textcolor{blue}{\frac{\partial J}{\partial I_{12}}} 
+			= \underbrace{\frac{\partial J}{\partial O_{11}}}_{G_{11} = 1} 
+			\underbrace{\frac{\partial Max}{\partial I_{12}}}_{0}
+			+ \underbrace{\frac{\partial J}{\partial O_{12}}}_{G_{12} = 2} 
+			\underbrace{\frac{\partial Max}{\partial I_{12}}}_{0}\]
+		}
 		
 	\end{frame}
 	
@@ -349,6 +944,99 @@
 %			\hline\hline
 			
 		\end{tabular}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Back-propagation example (many2many)}
+		
+		\[ h_t = f(x_t, h_{t-1}, W_x, W_h),\,\,\, \hat{y}_t = g(h_t, W_y),\,\,\,  J(\hat{y}, y) = \frac{1}{T} \sum_{t=1}^{T} j(\hat{y}_t, y_t)\]
+		
+		\begin{minipage}{0.6\textwidth}\scriptsize
+			\begin{align*}
+				\frac{\partial J}{\partial W_h} & = \frac{1}{T} \sum_{t=1}^{T} \frac{\partial j(\hat{y}_t, y_t)}{\partial W_h}
+				= \frac{1}{T} \sum_{t=1}^{T} \frac{\partial j(\hat{y}_t, y_t)}{\partial \hat{y}_t} 
+				\frac{\partial g(h_t, W_y)}{\partial h_t} 
+				\frac{\partial h_t}{\partial W_h} \\
+				\frac{\partial h_t}{\partial W_h} & = 
+				\frac{\partial f(x_t, h_{t-1}, W_x, W_h)}{\partial W_h} + 
+				\frac{\partial f(x_t, h_{t-1}, W_x, W_h)}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial W_h} \\
+				\frac{\partial J}{\partial W_y} & =
+				\frac{1}{T} \sum_{t=1}^{T} \frac{\partial j(\hat{y}_t, y_t)}{\partial W_y}
+				= \frac{1}{T} \sum_{t=1}^{T} \frac{\partial j(\hat{y}_t, y_t)}{\partial \hat{y}_t} 
+				\frac{\partial g(h_t, W_y)}{\partial W_y} \\
+				\frac{\partial J}{\partial W_x} & = 
+				\frac{1}{T} \sum_{t=1}^{T} \frac{\partial j(\hat{y}_t, y_t)}{\partial W_x}
+				= \frac{1}{T} \sum_{t=1}^{T} \frac{\partial j(\hat{y}_t, y_t)}{\partial \hat{y}_t} 
+				\frac{\partial g(h_t, W_y)}{\partial h_t} 
+				\frac{\partial h_t}{\partial W_x} \\
+				\frac{\partial h_t}{\partial W_x} & = 
+				\frac{\partial f(x_t, h_{t-1}, W_x, W_h)}{\partial W_x} + 
+				\frac{\partial f(x_t, h_{t-1}, W_x, W_h)}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial W_x} \\
+			\end{align*}
+		\end{minipage}
+		\begin{minipage}{0.38\textwidth}
+			\hgraphpage[\textwidth]{RNNpp1_exp.pdf}
+		\end{minipage}
+		
+	\end{frame}
+
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: LSTM}
+		
+		\begin{minipage}{0.50\textwidth} 
+			\begin{itemize}
+				\item $i$: \optword{input gate};
+				How much information will be added to the cell's intern state?
+				\item $f$: \optword{Forget gate};
+				Must the past state be forgotten?
+				\item $o$: \optword{Output gate} ;
+				Combining the cell's intern and current states	
+			\end{itemize}
+		\end{minipage}
+		%
+		\begin{minipage}{0.49\textwidth}
+			\hgraphpage[\textwidth]{LSTM.pdf}
+		\end{minipage}
+		
+		\begin{itemize}
+			\item $g$ : \optword{Input node};
+			Will the state be  increased or decreased?
+			(mostly considered to be a part of input gate)
+
+		\end{itemize}
+		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: GRU}
+		
+		\begin{minipage}{0.50\textwidth} 
+			\begin{itemize}
+				\item $z$: \optword{Update gate};
+				Merges LSTM's input and forget gates. 
+				\item $r$ : \optword{Reset gate}; 
+				How much update from the past state?
+				\item $h'$ : \optword{Candidate hidden state};
+				Current state.	
+			\end{itemize}
+			{\small
+				\begin{align*}
+					z_t &= \sigma(W_z X_t + U_z h_{t-1} + b_z) \\
+					r_t &= \sigma(W_r X_t + U_r h_{t-1} + b_r) \\
+					h'_t &= \tanh(W X_t + U (h_{t-1} \circ r_t) + b) \\
+					h_t &= z_t \circ h_{t-1} \oplus (1-z_t) \circ h'_{t-1}
+				\end{align*}
+			}
+		\end{minipage}
+		%
+		\begin{minipage}{0.49\textwidth}
+			\hgraphpage[\textwidth]{GRU.pdf}
+		\end{minipage}
 		
 	\end{frame}
 	
@@ -480,7 +1168,7 @@
 			\item Example, \expword{Assign a part of speech to each word}.
 			\item The word, as well as its class, can depend on the preceding (or/and following) words.
 			\item \textbf{Problem}: how to classify a sequence of words that have the same (non-atomic) class?
-			\item Example, \expword{[Abdelkrim Aries]PERSON is a teacher at the [Ecole nationale Supérieure d'Informatique]INSTITUTE}
+			\item Example, \expword{[\textit{Abdelkrime Aries}]\textsubscript{\bfseries PERSON} is a teacher at the [\textit{Ecole nationale Supérieure d'Informatique}]\textsubscript{\bfseries INSTITUTE}}
 		\end{itemize}
 		
 	\end{frame}
@@ -497,7 +1185,7 @@
 			\item \optword{B-CLS} marks the beginning of the class.
 			\item \optword{I-CLS} marks the continuation of the class.
 			\item \optword{O} means "no class".
-			\item Example, \expword{Abdelkrim/B-PERSON Aries/B-PERSON  is/O a/O teacher/O at/O the/O Ecole/B-INSTITUTE nationale/I-INSTITUTE Supérieure/I-INSTITUTE d'/I-INSTITUTE Informatique/I-INSTITUTE}.
+			\item Example, \expword{Abdelkrime/\textsubscript{\bfseries B-PERSON} Aries/\textsubscript{\bfseries B-PERSON}  is/\textsubscript{\bfseries O} a/\textsubscript{\bfseries O} teacher/\textsubscript{\bfseries O} at/\textsubscript{\bfseries O} the/\textsubscript{\bfseries O} Ecole/\textsubscript{\bfseries B-INSTITUTE} nationale/\textsubscript{\bfseries I-INSTITUTE} Supérieure/\textsubscript{\bfseries I-INSTITUTE} d'/\textsubscript{\bfseries I-INSTITUTE} Informatique/\textsubscript{\bfseries I-INSTITUTE}}.
 		\end{itemize}
 	\end{frame}
 	
@@ -616,7 +1304,7 @@
 		
 		\begin{itemize}
 			\item States are tags (categories) $t_i$.
-			\item Let's define \keyword{START} as sentences start tag.
+			\item Let's define \keyword{START} as sentences' start tag.
 			\item The observations $o_i$ are the words $w_i$.
 			\item \keyword{C}: Number of occurrences in the training corpus.
 		\end{itemize}
@@ -640,9 +1328,9 @@
 			\item Given
 			\begin{itemize}
 				\item a Markov model $\lambda = (A, B)$,
-				\item an observations (mots) sequence: $w = w_1 w_2 \ldots w_n$
+				\item an observations' sequence (words): $w = w_1 w_2 \ldots w_n$
 			\end{itemize}
-			\item Estimate a labels sequence $\hat{t} = \hat{t}_1 \hat{t}_2 \ldots \hat{t}_n$
+			\item Estimate a labels' sequence $\hat{t} = \hat{t}_1 \hat{t}_2 \ldots \hat{t}_n$
 		\end{itemize}
 		
 		\begin{block}{Labels decoding using HMM}

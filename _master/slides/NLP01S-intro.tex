@@ -7,7 +7,7 @@
 
 \input{options}
 
-\title[ESI - NLP\_master: 01- Introduction]%
+\title[ESI - NLP(master): 01- Introduction]%
 {Natural Language Processing (master)\\Chapter 01\\Introduction to NLP} 
 
 \changegraphpath{../../img/intro/}
@@ -239,18 +239,29 @@
 
 \begin{minipage}{0.55\textwidth}
 \begin{itemize}
-	\item \optword{labial}: Lips. E.g., \expword{\textipa{[b], [p], [m], [f], [v]}}.
+	\item \optword{labial}: Lips. 
+	
+	E.g., \expword{\textipa{[b], [p], [m], [f], [v]}}.
+	
 	\item \optword{apical}: Tongue's tip or its anterior part. 
+	
 	E.g., \expword{%
-		\textipa{[t], [d], [n], [r], }
+		\textipa{[t], [d], [n],}
 		\RL{^s} \textipa{[S],} 
 		\RL{_t} \textipa{[T],} 
 		\RL{_d} \textipa{[D]}
 	}
-	\item \optword{dorsal}: Posterior part of the tongue. E.g., \expword{\textipa{[c], [k], [g], [q],} \RL{.g} \textipa{[G]}}.
+
+	\item \optword{dorsal}: Posterior part of the tongue. 
+	
+	E.g., \expword{\textipa{[c], [k], [g], [q],} \RL{.g} \textipa{[G]}}.
+	
 	\item \optword{pharyngeal}: Pharynx. 
+	
 	E.g., \expword{\RL{.h} \textipa{[\*h],} \RL{`} \textipa{[Q]}}.
+	
 	\item \optword{glottal}: Glottis. 
+	
 	E.g., \expword{\textipa{[h],} \RL{'} \textipa{[P]}}.
 \end{itemize}
 \end{minipage}
@@ -305,7 +316,7 @@
 
 
 \begin{itemize}
-	\item Study of the sounds or phonemes of a given language.
+	\item Study of a given language's sounds or phonemes.
 	\item Interested in sounds as elements of a system.
 \end{itemize}
 
@@ -326,19 +337,19 @@
 
 
 \begin{itemize}
-	\item Study of the types and form of lemmas/morphemes.
-	\item Writing system (according to the \keyword{grapheme}): 
+	\item Study of lemmas/morphemes' types and forms.
+	\item Writing systems (according to their \keyword{graphemes}): 
 	\begin{itemize}
 		\item \optword{logographic}: logograms, each is a unique grapheme denoting a lemma (word).
 		E.g., \expword{
-			Kanji (Japanese) : 
+			Kanji (Japanese):%
 			\begin{CJK}{UTF8}{min}日, 本, 語\end{CJK}
 		}.
 		\item \optword{syllabic}: symbols, each represents a syllable (vocalized sound).
 		E.g., \expword{
-			Hiragana (Japanese) : 
+			Hiragana (Japanese):%
 			\begin{CJK}{UTF8}{min}る, た, め, の\end{CJK} ; 
-			Katakana (Japanese) : 
+			Katakana (Japanese):%
 			\begin{CJK}{UTF8}{min}セ, ク\end{CJK} ; 
 		}.
 		\item \optword{alphabetic}: letters; each represents a phoneme.
@@ -369,9 +380,9 @@
 \framesubtitle{Morphology and syntax: Morphology}
 
 \begin{itemize}
-	\item Study of word formation, including how new words are invented in languages.
+	\item Study of words formation, including how new words are invented in languages.
 	\item Study of how words' forms vary according to their uses in sentences.
-	\item \keyword{Morpheme}: the smallest unit of language that has its own meaning. 
+	\item \keyword{Morpheme}: the smallest unit of language which (\textcolor{yellow}{not witch}) has its own meaning. 
 	E.g., \expword{proper nouns, suffixes, etc.}
 	\item \keyword{Lexeme}: a set of all grammatical forms that have the same meaning.
 	\item \keyword{Lemma}: a chosen word to represent the lexeme.
@@ -551,10 +562,17 @@
 \framesubtitle{Morphology and syntax: Syntax (Constituency grammar)}
 
 \begin{itemize}
-	\item A \keyword{sentence} is composed of several \keyword{phrases} which includes words and other phrases.
+	\item A \keyword{sentence} is composed of several \keyword{phrases}; each includes words and other phrases.
 	\item A phrase contains a \keyword{head} (\keyword{nucleus}) which is the central element.
 	\item Depending on its head, a phrase can be: nominal (\keyword{NP}), adjectival (\keyword{AP}), verbal (\keyword{VP}) or prepositional (\keyword{PP}).
 	\item The most used formal system to model the constituency structure of a sentence is the \keyword{context-free grammar} (Level 2 in \keyword{Chomsky}'s hierarchy).
+	\item Eg. \expword{The students understood the course very well}
+	\begin{itemize}
+		\item \expword{The students}: A nominal phrase.
+		\item \expword{understood the course very well}: A verbal phrase.
+		\item \expword{the course}: A nominal phrase.
+		\item \expword{very well}: A adjectival phrase.
+	\end{itemize}
 \end{itemize}
 
 
@@ -596,7 +614,7 @@
 
 \begin{itemize}
 	\item Syntactic structure is described in terms of words and not phrases.
-	\item \optword{Dependency grammar}: a set of binary relations between the words of a sentence.
+	\item \optword{Dependency grammar}: a set of binary relations between a sentence's words.
 	\item The relations can be: a nominal subject (\optword{nsubj}), an object (\optword{obj}), an adjective modifier (\optword{amod}), determiner (\optword{det}), etc.
 \end{itemize}
 
@@ -627,8 +645,8 @@
 \begin{itemize}
 	\item Study of meaning.
 	\begin{itemize}
-		\item \optword{Lexical semantics}: words meaning.
-		\item \optword{Propositional semantics}: sentences meaning.
+		\item \optword{Lexical semantics}: words' meaning.
+		\item \optword{Propositional semantics}: sentences' meaning.
 	\end{itemize}
 \end{itemize}
 
@@ -652,9 +670,11 @@
 	\item In logographic systems, a \keyword{grapheme} represents one or more meanings (usually with multiple pronunciations).
 	
 	\begin{CJK}{UTF8}{min}
-		\expword{川} (river), \expword{山} (mountain), 
+		\begin{itemize}
+		\item \expword{川} (river), \expword{山} (mountain), 
 		
-		\expword{音} (sound, noise) + \expword{楽} (music, comfort, ease) = \expword{音楽} (music)
+		\item \expword{音} (sound, noise) + \expword{楽} (music, comfort, ease) = \expword{音楽} (music)
+		\end{itemize}
 	\end{CJK}
 
 	\item A word can have several meanings (\keyword{Polysemy}).
@@ -774,6 +794,8 @@
 		%	\]
 		\item Each of some students owns two computers.
 		\item Two computers are owned by each of some students.
+		\item Some students possess two computers individually.
+		\item Two computers are owned by each of certain students.
 		\item $S = Student, \; C = Computer, \; O = Own$
 		\item $\exists x (S(x) \wedge \forall y ( C(y) \Rightarrow O(x, y)) )$ \textcolor{red}{\XBox}
 		\item $\exists x (S(x) \wedge \exists y, z (( (C(y) \wedge O(x, y) ) \wedge (C(z) \wedge O(x, z) ) ))$ \textcolor{red}{\XBox}
@@ -963,7 +985,7 @@
 \framesubtitle{Tasks: Semantics}
 
 \begin{itemize}
-	\item \optword{Word-sense disambiguation}: identifying a a word's meaning.
+	\item \optword{Word-sense disambiguation}: identifying a word's meaning.
 	\item \optword{Semantic role labeling}: assigning semantic roles (agent, theme, etc.) to words or phrases in a sentence.
 	\item \optword{Named Entity Recognition}: extracting names of people, names of organizations or companies, names of places, quantities, distances, values, dates, etc.
 	\item \optword{Semantic analysis}: finding the semantic representation of a text.
@@ -981,7 +1003,7 @@
 \begin{itemize}
 	\item \optword{Coreference resolution}: linking the different references in a text.
 	\item \optword{Coherence}: looking for relations between sentences.
-	\item \optword{Ellipsis resolution}: finding omitted elements of text.
+	\item \optword{Ellipsis resolution}: finding omitted elements of a text.
 	Example of an ellipsis: \expword{``Peter eats cherries, Paul strawberries"}.
 \end{itemize}
 
