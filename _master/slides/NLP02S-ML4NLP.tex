@@ -8,7 +8,7 @@
 \input{options}
 
 \title[ESI - NLP(master): 02- ML for NLP]%
-{Natural Language Processing (master)\\Chapter 02\\Machine learning for NLP} 
+{Natural Language Processing (Master)\\Chapter 02\\Machine learning for NLP} 
 
 \changegraphpath{../../img/ml4nlp/}
 
@@ -23,7 +23,7 @@
 	
 	\begin{frame}
 		\frametitle{Natural Language Processing}
-		\framesubtitle{ML for NLP: Algorithms}
+		\framesubtitle{ML for NLP: Algorithms and abbreviations}
 		
 		\begin{itemize}
 			\item \optword{NB}: Naive Bayes
@@ -373,19 +373,58 @@
 		\end{itemize}
 		
 	\end{frame}
+
+	\begin{frame}
+		\frametitle{ML for NLP: \insertsection}
+		\framesubtitle{\insertsubsection: Support-Vector Machine (Primal form)}
+		
+		\begin{minipage}{0.75\textwidth} 
+			\begin{itemize}
+				\item \textbf{GOAL}: Try to draw a decision line between two classes $ y $ based on some features $ x $ like LR. But, in this case the margin between the two classes must be maximal.
+				\item \textbf{Estimation}: $ z = b + \sum_{j=1}^{N} \theta_j x_j $, 
+				$ \hat{y} = (z \ge 0.5)$
+			\end{itemize}
+		\end{minipage}
+		\begin{minipage}{0.24\textwidth} 
+			\hgraphpage{SVM_primal.pdf}
+		\end{minipage}
+		
+		\begin{itemize}
+			\item \textbf{Training}: Try to minimize a cost function $ J $, $ y \in \{-1, 1\} $
+			\[J_\theta = \frac{1}{M} \left[ \frac{1}{2}||\theta||^2 + C \sum\limits_{i=1}^{M} \max (0, 1 - y^{(i)} z^{(i)}) \right]
+%			\hspace{1cm}
+%			\frac{\partial J_\theta}{\partial \theta_{jl}} = \frac{1}{M} \sum\limits_{i=1}^{M} (h_l^{(i)} - y_l^{(i)}) x_j
+			\]
+			
+			\[\frac{\partial J_\theta}{\partial \theta_{j}} = \frac{1}{M} \left[ \theta_j + \sum\limits_{i=1}^{M} \begin{cases}
+				0 & \text{if } y^{(i)} z^{(i)} \ge 1\\
+				- C x^{(i)}_j y^{(i)} & \text{otherwise}  \\
+			\end{cases} \right]
+			\]
+		\end{itemize}
+		
+	\end{frame}
 	
 	\begin{frame}
 		\frametitle{ML for NLP: \insertsection}
-		\framesubtitle{\insertsubsection: Support-Vector Machine}
+		\framesubtitle{\insertsubsection: Support-Vector Machine (Dual form)}
 		
-		Estimation 
-		\[\hat{Y_t} = \arg\max_{k} \sum^M_{i=1} \alpha^k_i y^{(i)} K(x^{(i)}, x_t) - b^k\]
-		
-		Training
-		\[J_\alpha = \sum\limits_{i=1}^{M} \alpha_i - \frac{1}{2} \sum\limits_{i=1}^{M} \sum\limits_{j=1}^{M} \alpha_i \alpha_j y^{(i)} y^{(j)} K(x^{(i)}, x^{(j)}) \]
-		
+		\begin{minipage}{0.75\textwidth} 
+			\begin{itemize}
+				\item \textbf{GOAL}: The same as Primal form's, but a new sample is represented by its similarity to training samples
+				\item \textbf{Estimation}: 
+				\[\hat{y_t} = \arg\max_{k} \sum^M_{i=1} \alpha^k_i y^{(i)} K(x^{(i)}, x_t) - b^k\]
+			\end{itemize}
+		\end{minipage}
+		\begin{minipage}{0.24\textwidth} 
+			\hgraphpage{SVM_dual.pdf}
+		\end{minipage}
+	
+	
 		\begin{itemize}
-			\item $\alpha$ is updated using an optimization algorithm like \keyword{Sequential minimal optimization}
+			\item \textbf{Training}: Try to minimize a cost function $ J $
+			\[J_\alpha = \sum\limits_{i=1}^{M} \alpha_i - \frac{1}{2} \sum\limits_{i=1}^{M} \sum\limits_{j=1}^{M} \alpha_i \alpha_j y^{(i)} y^{(j)} K(x^{(i)}, x^{(j)})\]
+			\item $\alpha$ and $ b $ are updated using an optimization algorithm like \keyword{Sequential minimal optimization}
 		\end{itemize}
 		
 	\end{frame}
