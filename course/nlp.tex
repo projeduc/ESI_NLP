@@ -1,0 +1,147 @@
+% !TEX TS-program = xelatex
+% !TeX program = xelatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+
+\documentclass{KBook}
+
+%To prevent other chapters from creating a new document
+\let\wholebook=\relax
+
+%The calls (includes) for other packages are in a separate file
+\input{calls}
+
+
+%opening
+\title{Natural Language Processing}
+
+\author{ARIES Abdelkrime}
+\cover{../img/cover.jpg}
+\license{../img/licence/cc-by.png}
+
+\publisher{../img/esi-logo.png}
+
+%\setplainversion
+
+\begin{document}
+	
+\maketitle
+
+\frontmatter
+
+\addcontentsline{toc}{chapter}{General information}
+
+\shipout\null %blank page after the title 
+
+\input{copyright}
+
+%\input{preface}
+
+\addcontentsline{toc}{chapter}{Content and lists}
+
+\kodetoc
+
+\kodelof
+
+\kodelot
+
+\kodeloa
+
+\kodeabbrev
+
+\mainmatter
+
+\acolor{everything}{olivegreen} 
+
+\input{intro}
+
+\input{introNLP}
+
+\input{basic}
+
+\input{modeles}
+
+\input{pos}
+
+\input{syntaxe}
+
+\input{sem_mots}
+
+\input{sem_phrases}
+
+\input{coref}
+
+\input{coherence}
+
+\input{app}
+
+\input{concl}
+
+\backmatter
+
+\bibliography{cite}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\printindex
+\addcontentsline{toc}{chapter}{Index}
+
+\cleardoublepage
+\pagestyle{empty}
+\vspace*{\fill}
+\Huge\color{indigo}
+\begin{center}
+	Il n'y a rien de plus\\ ...\\Arrêtez de lire !
+\end{center}
+\vspace*{\fill}
+
+
+
+
+%==============================================
+%                  A PROPOS
+%==============================================
+\newpage
+\pagestyle{empty}
+
+%\vspace*{\fill}
+\begin{tcolorbox}[colback=cyan,
+	colframe=cyan,  
+	arc=0pt,outer arc=0pt,
+	valign=top, 
+	halign=center,
+	width=\textwidth]
+	
+	\color{white}
+	\bfseries\LARGE About the author
+	
+\end{tcolorbox}\vspace{-.5cm}
+\begin{tcolorbox}[colback=my-grey,
+	colframe=my-grey,  
+	center, arc=0pt,outer arc=0pt,
+	valign=top, 
+	halign=flush left,
+	width=\textwidth]	
+	
+	\begin{minipage}[t]{0.15\textwidth}
+		\includegraphics[width=\textwidth]{../img/aak.jpg}
+	\end{minipage}
+	\begin{minipage}[t]{0.01\textwidth}
+	\end{minipage}
+	\begin{minipage}[t]{0.80\textwidth}
+		\normalsize\vspace*{-0.2\textwidth}
+		\textbf{Abdelkrime Aries} has been a lecturer at the National Higher School of Computer Science (ESI), Algiers, since 2013. 
+		His main interest lies in artificial intelligence in general and natural language processing in particular. 
+		He is passionate about open-source software (\url{https://github.com/kariminf}).
+		
+		He earned his Ph.D. in Computer Science from ESI in October 2020. 
+		He completed his Magister's degree in computer science, specializing in distributed and mobile computing, at ESI in June 2013. 
+		The topics of both degrees were related to proposing a method for multilingual automatic summarization. 
+		He received his Engineer's degree in computer engineering, specializing in advanced information systems, from the University of Jijel in June 2009. 
+		His project focused on developing a system for recognizing Arabic handwritten text using multi-agent architectures.	
+	\end{minipage}
+	
+	
+\end{tcolorbox}
+%\vspace*{\fill}
+
+\end{document}

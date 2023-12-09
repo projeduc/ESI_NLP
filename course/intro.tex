@@ -1,0 +1,159 @@
+% !TEX TS-program = xelatex
+% !TeX program = xelatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en
+
+%=====================================================================
+\ifx\wholebook\relax\else
+\documentclass{KodeBook}
+\input{calls}
+\begin{document}
+\mainmatter
+
+\fi
+%=====================================================================
+
+\chapter*{Introduction}
+\markboth{Introduction}{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+%\markright{Introduction}
+
+\section*{General Framework}
+
+This document is intended for second-year graduate students (2CS) as well as Master's students.
+At the National Higher School of Computer Science (ESI) in Algiers, the training includes a preparatory cycle lasting
+2 years followed by a competitive exam to enter the graduate cycle.
+The latter takes 3 years, with the first year being a common foundation and the last two representing specialized training.
+The final year is dedicated to the end-of-study project.
+% where students can undergo accelerated training to obtain both a master's degree and an engineering degree simultaneously.
+Thus, the training closest to the 2CS at ESI is equivalent to the Master 2 level at universities.
+
+Natural Language Processing (NLP) is often taught as a module in the "artificial intelligence" and "data science" specializations.
+It is part of branches of artificial intelligence such as computer vision, robotics, machine reasoning, etc.
+This does not mean that other specializations do not need this module; it is just less prominent than other modules in those specializations.
+In software engineering, for example, this domain can be exploited to design a system that constructs an entire software architecture from a textual description.
+Natural language is part of human-machine interaction modes.
+In information systems, techniques from this domain are often used for information retrieval and extraction.
+Data extraction is a phase of an ETL (Extract, Transform, Load) system where data can be textual (unstructured).
+In systems and networks, various injection attacks, such as SQL injection, can be treated similarly to natural language.
+
+It is important to note that this module has a significant similarity to the compilation module.
+Both modules share almost the same pipeline: lexical analysis, syntactic analysis, and semantic analysis.
+They have common techniques, but those of the compilation module are not always applicable to natural language.
+The latter is different from a programming language, which is well-defined and therefore contains less ambiguity.
+
+\section*{Prerequisites and Objectives}
+
+Here is a list of some prerequisites for this module:
+\begin{itemize}
+\item Language theory: Chomsky hierarchy, Finite state automata, Regular expressions, Context-free languages, Pushdown automata, etc.
+\item Probability and statistics.
+\item Mathematical logic: specifically, first-order logic.
+\item Machine learning.
+\item Data structures and programming: stacks, queues, trees, graphs, etc.
+\item Operations research: graph traversal, dynamic programming, etc.
+\end{itemize}
+
+Among the objectives of this course, we can mention:
+\begin{itemize}
+\item Apply mathematical concepts to real language problems.
+\item Learn some linguistic and philosophical concepts related to language.
+\item Discover some tools and resources in this field.
+\item Program simple solutions to some problems.
+\item Apply language theory concepts to process natural languages.
+\item Gain insight into some work done at ESI in this field.
+\end{itemize}
+
+\section*{General Organization of the Document}
+
+The automatic processing of natural language involves several levels: lexicon, syntax, semantics, pragmatics, and discourse.
+The chapters of this document are organized in the order of these levels.
+Each chapter describes a basic task that is used to build applications, as described in the last chapter.
+In this section, we will describe each chapter separately, specifying its motivation.
+Each chapter is concluded with a discussion and some resources (see the next section).
+
+The first chapter aims to introduce the domain to understand why we need to learn this field.
+We start with a brief history of this domain and that of artificial intelligence.
+Then, we present the different levels of natural language processing in detail.
+After that, we list the various applications of this domain, whether they are elementary tasks, systems, or their use in the socio-economic sector, such as in education, health, etc.
+
+The second chapter deals with the pre-processing task.
+This is a necessary task to accomplish other text processing tasks.
+It can be seen as the lexical analysis step in compilation.
+Its goal is to prepare text processing units (in our case: words).
+To process text, it must be divided into sentences that must be divided into words.
+Some words may not be useful for our processing; therefore, we can remove them.
+Other words may have morphological variations that are not necessary for our application; hence, we can keep only their roots.
+
+In the third chapter, we introduce the concept of language models.
+This model tries to find a probabilistic distribution over sequences of words in a language.
+So, given a sequence of words, we can estimate the probability of the occurrence of another word.
+Among the applications of this task, we can mention autocompletion, detection of spelling and syntax errors, etc.
+This task can be seen as the statistical version of syntactic analysis but operates at the lexical level.
+
+The fourth chapter focuses on sequence labeling: given a sequence of words, we want to assign a category to each word or group of words.
+The most well-known task in this case is morpho-syntactic tagging, where we seek the grammatical category of each word.
+This task can be used as a preliminary task for syntactic analysis.
+It can also be used as preprocessing for applications where the grammatical category of a word is important.
+
+Syntactic analysis is used to find the syntactic structure of a sentence.
+This helps us determine if a sentence is grammatically correct in a language.
+In the fifth chapter, we explore two different structures: the constituent structure and the functional structure.
+We present algorithms to analyze a given sentence based on each structure.
+The ultimate goal of this analysis is to have a syntactic tree in case the analysis is successful.
+
+The sixth chapter is dedicated to the meaning of words since they are considered the main processing unit.
+Encoding words with a OneHot vector has a very limited meaning: the word either exists or not.
+To encode words, we introduce two types of semantics: lexical semantics and statistical semantics.
+The first aims to encode a word as a graph based on its semantic relationships with other words.
+The second uses statistical methods to encode a word as a vector based on its co-occurrence relationships with other words.
+
+We cannot talk about the meaning of words without discussing the meaning of sentences presented in chapter eight.
+We briefly discuss the semantic roles that a group of words can play in a sentence.
+Then, we present some methods for labeling these roles.
+After that, we discuss the logical representation of sentences and how to obtain it using semantic analysis.
+The ultimate motivation behind this task is clear: understanding a sentence by the machine.
+
+The ninth chapter addresses the topic of co-reference.
+This task is used to find mention relationships between parts of the text.
+For example, we try to link personal pronouns with the referenced entity.
+In addition to this task, we try to introduce other similar tasks such as semantic annotation and named entity recognition.
+
+The tenth chapter, being the last, represents the sum of all the preceding chapters.
+It presents various applications that can use the tasks presented earlier.
+We have chosen well-known applications present in our lives, such as automatic translation.
+This allows the student to understand how the application is designed since they understand how to use it.
+
+\section*{Additional Resources}
+
+The end of the chapters contains additional resources.
+In our case, these resources are divided into four categories: exercises, tutorials, practical work (TPs), and labs.
+The last three are external resources that can be accessed via the course's Github repository (\url{https://github.com/projeduc/ESI_2CS_TALN}).
+We provide a brief description of these resources, but to access the complete statement, they must be downloaded separately.
+These four resources may not be present in every chapter.
+
+%Exercises
+Exercises can be reflection questions or applications (numerical calculations, manual execution of a method).
+Their goal is to better understand the different concepts presented in the chapter.
+%Tutorials
+Tutorials are small programs that demonstrate how to use a tool.
+We can consider them as documentation for a tool with practical application.
+Their goal is to present the different existing (and known) tools for the task in question.
+%Practical Work
+Practical work aims to learn a concept by programming it from scratch.
+Here, we should not use APIs; only the basic instructions of the programming language should be used.
+The student should not program the entire solution; only omitted parts of the code.
+In addition to learning the concepts, practical work presents some evaluation methods.
+%Labs
+Labs, like practical work, are intended to solve problems with a machine.
+The difference is that labs are guided and are based on the APIs presented in the tutorials.
+Their goal is for the student to learn how to use APIs to solve a real problem.
+
+%=====================================================================
+\ifx\wholebook\relax\else
+% \cleardoublepage
+% \bibliographystyle{../use/ESIbib}
+% \bibliography{../bib/RATstat}
+\end{document}
+\fi
+%=====================================================================

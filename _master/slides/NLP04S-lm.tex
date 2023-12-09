@@ -7,10 +7,10 @@
 
 \input{options}
 
-\title[ESI - NLP: 04- Language models]%
-{Natural Language Processing\\Chapter 04\\Language models} 
+\title[ESI - NLP(master): 04- Language models]%
+{Natural Language Processing (Master)\\Chapter 04\\Language models} 
 
-\changegraphpath{../img/lm/}
+\changegraphpath{../../img/lm/}
 
 \begin{document}
 	
@@ -57,15 +57,16 @@
 \frametitle{Language models}
 \framesubtitle{N-gram model}
 
+\vspace{-6pt}
 \begin{block}{Compound probability formula}
 	\[ P(w_1 \ldots w_m) =  P(w_1) P(w_2 | w_1) P(w_3 | w_1, w_2) \ldots P(w_n | w_1, \ldots, w_{m-1}) \]
 \end{block}
 
-
+\vspace{-6pt}
 \begin{exampleblock}{Example of a sentence's probability}
 	\[ P(\text{\textit{I work at ESI}}) =  P(I) P(work | I) P(\text{\textit{at}} | \text{\textit{I work}}) P(ESI | \text{\textit{I work at}}) \]
 	
-	\[ P(ESI | \text{\textit{I work at}}) = \frac{C(\text{\textit{I work at ESI}})}{C( \text{\textit{I work at}})} \] 
+	\vspace{-3pt}\[ P(ESI | \text{\textit{I work at}}) = \frac{C(\text{\textit{I work at ESI}})}{C( \text{\textit{I work at}})} \] 
 	
 	where 
 	
@@ -219,6 +220,7 @@
 \frametitle{Language models: N-gram}
 \framesubtitle{Smoothing: Lidstone}
 
+\vspace{-6pt}
 \begin{block}{Lidstone smoothing (Bi-grams as example)}
 	\[%
 	P(w_i | w_{i-1}) = \frac{C(w_{i-1} w_i) + \alpha}{C(w_{i-1}) + \alpha V}
@@ -230,6 +232,7 @@
 	$\alpha = 0.5$ : \keyword{Jeffreys-Perks law}
 \end{block}
 
+\vspace{-8pt}
 \begin{exampleblock}{Example: Laplace smoothing}
 	\begin{itemize}
 		\item The corpus contains 9 different words
@@ -260,6 +263,7 @@
 	$\lambda_3$, $\lambda_2$ and $\lambda_1$ are estimated using another tuning corpus
 \end{block}
 
+\vspace{-6pt}
 \begin{exampleblock}{Example: Bi-gram interpolation}
 	\begin{itemize}
 		\item Lets say $\lambda_2=0.8$ and $\lambda_1=0.2$

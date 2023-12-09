@@ -353,7 +353,7 @@
 			\begin{itemize}
 				\item \textbf{GOAL}: Try to draw decision lines between many classes $ y $ based on some features $ x $
 				\item \textbf{Estimation}: $ z_l = \theta_{0l} + \sum_{j=1}^{N} \theta_{jl} x_j $
-				$ h_l = Softmax(z_l) = \frac{e^l}{\sum_{k=1}^{L} e^{z_k}}$, $ \hat{y} = \arg\max_{l} h_l$
+				$ h_l = Softmax(z_l) = \frac{e^{z_l}}{\sum_{k=1}^{L} e^{z_k}}$, $ \hat{y} = \arg\max_{l} h_l$
 				\item \textbf{Also}: $ L $ binary logistic classifiers. 
 				The probabilities are normalized: $ \sum_{l=1}^{L} p(c_l) = 1$.
 %				Each estimates a probability of a class $ c_l $.
@@ -413,7 +413,7 @@
 			\begin{itemize}
 				\item \textbf{GOAL}: The same as Primal form's, but a new sample is represented by its similarity to training samples
 				\item \textbf{Estimation}: 
-				\[\hat{y_t} = \arg\max_{k} \sum^M_{i=1} \alpha^k_i y^{(i)} K(x^{(i)}, x_t) - b^k\]
+				\[\hat{y_t} = sign(\sum^M_{i=1} \alpha_i y^{(i)} K(x^{(i)}, x_t) - b)\]
 			\end{itemize}
 		\end{minipage}
 		\begin{minipage}{0.24\textwidth} 
@@ -542,7 +542,7 @@
 			\[IG(Y, A) = H(Y) - \sum_{v \in V} p(v\in A) H(Y_{v\in A})\] 
 		\end{itemize}
 	
-		\[H(Y) = 0 \Rightarrow\ Y \text{is homogeneous} \hspace{1cm} j_{best} = \arg\max_j IG(Y, X_j)\]
+		\[H(Y) = 0 \Rightarrow\ Y \text{ is homogeneous} \hspace{1cm} j_{best} = \arg\max_j IG(Y, X_j)\]
 		
 	\end{frame}
 
@@ -1319,7 +1319,7 @@
 		\begin{itemize}
 			\item $\pi = [\pi_1, \pi_2, \ldots, \pi_n ]$: states initial probability distribution.
 			\item $\sum_i \pi_i = 1$.
-			\item E.g. \expword{Calculate the probability $P(H\, W\, C\, C)$ where $\pi = [0.1, 0.7, 0.2]$}.
+			\vspace{-6pt}\item E.g. \expword{Calculate $P(H\, W\, C\, C)$ where $\pi = [\overbrace{0.1}^C, \overbrace{0.7}^H, \overbrace{0.2}^W]$}.
 		\end{itemize}
 	\end{frame}
 	
@@ -1412,7 +1412,7 @@
 			\item Estimate a labels' sequence $\hat{t} = \hat{t}_1 \hat{t}_2 \ldots \hat{t}_n$
 		\end{itemize}
 		
-		\begin{block}{Labels decoding using HMM}
+		\begin{block}{Labels' decoding using HMM}
 			\[
 			\hat{t} = \arg\max\limits_t P(t | w) = \arg\max\limits_t \frac{P(w|t) P(t)}{P(w)} = \arg\max\limits_t P(w|t) P(t)%\text{ tel que } t = t_1 t_2 \ldots t_n
 			\]
@@ -1471,7 +1471,7 @@
 		\framesubtitle{\insertsubsection}
 		
 		\begin{itemize}
-			\item Let's $x_{n}^{m} = x_n x_{n+1} \ldots x_{m-1} x_m$
+			\item Let $x_{n}^{m} = x_n x_{n+1} \ldots x_{m-1} x_m$
 			\item Given 
 			\begin{itemize}
 				\item an observations sequence (words): $w = w_1 w_2 \ldots w_n$
@@ -1498,7 +1498,7 @@
 	
 	\begin{frame}
 		\frametitle{ML for NLP: \insertsection}
-		\framesubtitle{\insertsubsection: Examples}
+		\framesubtitle{\insertsubsection: Example}
 		
 		\vgraphpage{seq_class_RNN_exp.pdf}
 		
@@ -1605,23 +1605,17 @@
 		
 		\begin{itemize}
 	
-		\item Dot product (\textbf{tf.keras.layers.Attention})
-		
-		$ a(Q, K) = Q \cdot K^\top $
+		\item Dot product
+		\[a(Q, K) = Q \cdot K^\top \]
 		
 		\item Scaled dot product 
-		
-		$a(Q, K) = \frac{Q \cdot K^\top}{\sqrt{d}}$
+		\[a(Q, K) = \frac{Q \cdot K^\top}{\sqrt{d}}\]
 		
 		\item Cosine similarity
+		\[a(Q, K) = \frac{Q \cdot K^\top}{||Q|| \, ||K||}\]
 		
-		$ a(Q, K) = \frac{Q \cdot K^\top}{||Q|| \, ||K||} $
-		
-		\item Additive attention (\textbf{tf.keras.layers.AdditiveAttention})
-		
-		Bahdanau Attention
-		
-		$ a(Q, K) = W_v^\top \cdot \tanh(W_q Q + W_k K) $
+		\item Additive attention (Bahdanau Attention)
+		\[a(Q, K) = W_v^\top \cdot \tanh(W_q Q + W_k K)\]
 	\end{itemize}
 		
 	\end{frame}

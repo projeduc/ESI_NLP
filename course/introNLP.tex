@@ -1,0 +1,559 @@
+% !TEX TS-program = xelatex
+% !TeX program = xelatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = fr
+
+%=====================================================================
+\ifx\wholebook\relax\else
+	\documentclass{KBook}
+	\input{calls}
+	\begin{document}
+		\mainmatter
+	
+\fi
+%=====================================================================
+\changegraphpath{../img/intro/}
+\chapter{Introduction to NLP}
+
+\begin{introduction}[\textcolor{white}{L}ANGUAGES]
+	\lettrine{N}{atural} Language Processing (NLP) is a multidisciplinary field. Given its importance in our days, especially with the increase in the amount of textual information, it is essential to have an idea of how to automatically process this text. To do this, there are several levels: phonetics, phonology, spelling, morphology, syntax, semantics, pragmatics, and discourse. Each application in this field requires one or more language levels. Of course, like any field, it presents some challenges. This chapter is dedicated to introducing this field by presenting the levels of language processing, applications of this field, and discussing some challenges.
+\end{introduction}
+
+NLP is the set of methods that make human language accessible to computers. It is also called Computational Linguistics. It is a multidisciplinary field involving linguistics (the study of language), computer science (automatic information processing), and artificial intelligence (theories and techniques for creating machines capable of simulating human intelligence). Nowadays, this field is gaining more attention due to its applications in everyday life. Among the motivating applications of this field (which will be discussed later), we can mention:
+
+\begin{itemize}
+	\item Increasing productivity using applications such as automatic translation and summarization (although these two applications are far from perfect).
+	\item Customer Service: Automatic response to customer questions using chatbots (question-answering and voice recognition).
+	\item Reputation monitoring: We use sentiment analysis to determine if customers are satisfied with their products or not.
+	\item Advertising: By scanning social networks and emails, we can know who is interested in products. This allows companies to target advertising audiences.
+	\item Market Intelligence: Monitoring competitors to stay informed about industry-related events.
+\end{itemize}
+
+\section{History}
+
+Language, according to Larousse, is the "ability, observed in all humans, to express their thoughts and communicate through a system of vocal and possibly graphic signs (language)." Similarly, language is defined as "A system of vocal, possibly graphic signs, specific to a community of individuals who use it to express themselves and communicate with each other: The French, English language." Therefore, language denotes the ability to communicate, while language represents the communication tool. We do not want to present the history of NLP from the point of view of "language" but from the point of view of the "evolution of AI." Like all stories, our story begins with: once upon a time, a mathematician named "Alan Turing" who proposed an experiment to test whether a machine is "conscious." This test is known as the "Turing Test." Since this proposal, the field of AI has experienced ups and downs. Figure~\ref{fig:history} illustrates some points in this rich history of events, which will be detailed later.
+
+\begin{figure}[ht]
+	\centering
+	\hgraphpage[.6\textwidth]{history.pdf}
+	\caption{Some historical points of NLP.}
+	\label{fig:history}
+\end{figure}
+
+\subsection{Birth of AI and Golden Age}
+
+The 1950s saw the beginning of the AI field as well as the NLP field. Among the early actors in the NLP field, we can mention IBM. Their research focused on text translation and automatic summarization. Some important points of this period include:
+\begin{itemize}
+	\item \optword{1951} Shannon explored probabilistic models of natural languages \cite{1951-shannon}.
+	\item \optword{1954} Georgetown-IBM experiment to automatically translate 60 sentences from Russian to English.
+	\item \optword{1956} Chomsky developed formal models of syntax.
+	\item \optword{1958} Luhn (IBM) experimented with automatic text summarization using extraction \cite{1958-luhn}.
+\end{itemize}
+
+The field flourished during the 1960s. This era recognized more attention to designing chatbots. Some important points marking this decade include:
+\begin{itemize}
+	\item \optword{1961} Development of the first automatic syntax analyzer at U. Penn. \cite{1961-joshi,1962-harris}
+	\item \optword{1964} Weizenbaum developed "ELIZA," a simulation of a psychotherapist within the MIT AI laboratory.
+	\item \optword{1964} Bobrow developed "STUDENT," designed to read and solve word problems found in high school algebra books \cite{1964-bobrow}.
+	\item \optword{1967} Brown corpus, the first electronic corpus, was created.
+\end{itemize}
+
+\subsection{AI Winter}
+
+The 1970s saw a growth in chatbot development and related tasks. Among these, we find language understanding and speech recognition. It is important to note that from this period onwards, we saw the abandonment of some concepts such as connectionism (1969), the "Sir James Lighthill Report," budget cuts from DARPA, etc. It was a dark time for AI. Some important points can be summarized in the following list:
+\begin{itemize}
+	\item \optword{1971} Winograd (MIT) developed "SHRDLU," a natural language understanding program \cite{1971-winograd}.
+	\item \optword{1972} Colby (Stanford) created "PARRY," a chatbot simulating a person with paranoid schizophrenia.
+	\item \optword{1975} "MARGIE," a system that makes inferences and paraphrases from sentences using conceptual language representation.
+	\item \optword{1975} "DRAGON," a system for automatic speech recognition using hidden Markov models \cite{1975-baker}.
+\end{itemize}
+
+The 1980s recognized advancements in syntax and morpho-syntax tasks. They saw research on knowledge representation and extraction. Despite the winter, there were still researchers who believed in AI. Some key points summarizing these years include:
+\begin{itemize}
+	\item \optword{1980} "KL-One," knowledge representation for syntax and semantics processing \cite{1980-bobrow}.
+	\item \optword{1986} "TRUMP," language analyzer using a lexical base \cite{1986-jacobs}.
+	\item \optword{1987} HPSG (head-driven phrase structure grammar) \cite{1987-sag-pollard}.
+	\item \optword{1987} "MUC" conference on data extraction funded by DARPA.
+	\item \optword{1988} Use of hidden Markov models in morpho-syntactic tagging \cite{1988-church}.
+	\item Symbolic solutions for discourse processing and natural language generation.
+\end{itemize}
+
+\subsection{AI Spring}
+
+The 1990s were the years of the statistical approach. Several tasks were proposed based on this approach, such as automatic translation, syntax analyzers, etc. To support this approach, we also saw the creation of corpora. Some important points of this period include:
+\begin{itemize}
+	\item \optword{1990} A statistical approach to automatic translation \cite{1990-brown-al}.
+	\item \optword{1993} Penn TreeBank, an annotated corpus of English \cite{1993-marcus-al}.
+	\item \optword{1995} WordNet, a lexical database for English \cite{1995-miller}.
+	\item \optword{1996} "SPATTER," a statistical lexical analyzer based on decision trees \cite{1996-magerman}.
+	\item Popularity of statistical methods and empirical evaluation.
+\end{itemize}
+
+The 2000s were marked by the introduction of the semantic level. In addition, techniques such as neural networks and unsupervised learning began to take their places. Among the topics addressed during this period, we can mention:
+\begin{itemize}
+	\item \optword{2003} Probabilistic language models using neural networks \cite{2003-bengio-al}.
+	\item \optword{2006} "Watson" (IBM), a question/answering system.
+	\item Use of unsupervised and semi-supervised learning as alternatives to purely supervised learning.
+	\item Shifting focus to semantic tasks.
+\end{itemize}
+
+The 2010s and beyond witnessed the integration of intelligent solutions into commercial products. This is mainly marked by the development of personal digital assistants; in English: Intelligent Personal Assistants (IPA) or Intelligent Virtual Assistants (IVA). Also, the integration of semantics into tasks such as information retrieval. Some points of this era include:
+\begin{itemize}
+	\item \optword{2011} "Siri" (Apple), a personal digital assistant. It was followed by "Alexa" (Amazon, 2014) and "Google Assistant" (2016).
+	\item \optword{2014} Word embedding \cite{2014-lebret-collobert}.
+	\item \optword{2018} Emergence of contextual representations (pre-trained language models): ULMfit (fast.ai) \cite{2018-howard-ruder}, ELMo (AllenNLP) \cite{2018-peters-al}, GPT (OpenAI) \cite{2018-radford-al}, BERT (Google) \cite{2018-devlin-al}, XLM (Facebook) \cite{2019-lample-conneau}.
+\end{itemize}
+
+%===================================================================================
+\section{Levels of Language Processing}
+%===================================================================================
+
+Let's revisit the definition of language by Larousse: "\textit{the ability, observed in all humans, to express their thoughts and communicate using a system of vocal and possibly graphic signs (language)}." This language has both semantics and structure. The capacity of a natural (human) language encompasses several linguistic functions (levels) represented in Figure \ref{fig:levels}.
+
+\begin{figure}[ht]
+	\centering 
+	\hgraphpage[.9\textwidth]{levels3.pdf}
+	\caption{Levels of natural language processing.}
+	\label{fig:levels}
+\end{figure}
+
+\subsection{Phonetics}
+
+Phonetics is the study of sounds or phones produced by the human vocal apparatus. It is not dependent on a specific language. There are several branches in phonetics:
+
+\begin{itemize}
+	\item \optword{Articulatory Phonetics}: This is the most anatomical and physiological division. It describes how vowels and consonants are produced or "articulated" in various parts of the mouth and throat.
+	\item \optword{Acoustic Phonetics}: This branch has the closest affinities with physics. It studies the sound waves that transmit vowels and consonants in the air from the speaker to the listener.
+	\item \optword{Auditory Phonetics}: This branch is of the most interest to psychologists. It examines how the listener's brain decodes the sound waves into vowels and consonants initially intended by the speaker.
+\end{itemize}
+
+In speech recognition and synthesis, we are generally interested in acoustic phonetics (how letters are represented in the form of waves) and articulatory phonetics (how can vowels and consonants be encoded on a machine?). One way to encode vowels and consonants is to classify them according to the points of articulation (see Figure \ref{fig:articulation}). Consonants are divided, according to the oral route, into 5 groups:
+
+\begin{itemize}
+	\item \optword{Labial}: Using the lips. E.g., \expword{\textipa{[b], [p], [m], [f], [v]}}
+	\item \optword{Apical}: With the tip of the tongue or its anterior part. E.g., \expword{\textipa{[t], [d], [n], [r], } \textrtailt \textipa{[S],} \<_t> \textipa{[T],} \<_d> \textipa{[D]}}
+	\item \optword{Dorsal}: With the back part of the tongue. E.g., \expword{\textipa{[c], [k], [g], [q],} \<.g> \textipa{[G]}}
+	\item \optword{Pharyngeal}: At the level of the pharynx. E.g., \expword{\<.h> \textipa{[\*h],} \<`> \textipa{[Q]}}
+	\item \optword{Glottal}: At the level of the glottis. E.g., \expword{\textipa{[h],} \<'> \textipa{[P]}}
+\end{itemize}
+
+\begin{figure}[ht]
+	\centering 
+	\hgraphpage[.5\textwidth]{oraltract.pdf}
+	\caption[Oral tract.]{Oral tract; figure reconstructed from \cite{2009-ball}.}
+	\label{fig:articulation}
+\end{figure}
+
+\ac{ipa2} is an alphabet used for the phonetic transcription of spoken language sounds. Speech is divided into distinct sound segments (phones). Each phone is assigned a unique symbol. Table \ref{tab:ipa} represents the pulmonic consonants of the International Phonetic Alphabet. They are classified according to the oral route, where shaded areas represent impossible sounds.
+
+\setlength\tabcolsep{2pt}
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|p{1.6cm}|p{0.8cm}|p{1.3cm}|p{0.8cm}|p{1.1cm}|p{1cm}|p{1.2cm}|p{0.8cm}|p{1cm}|p{1cm}|p{0.6cm}|p{0.4cm}|p{0.4cm}|p{0.4cm}|}
+		\hline
+		& \scriptsize Bilabial & \scriptsize Labiodental & \scriptsize Dental & \scriptsize Alveolar & \scriptsize Post-alveolar & \scriptsize Retroflex & \scriptsize Palatal & \scriptsize Velar & \scriptsize Uvular & \multicolumn{2}{c|}{\scriptsize Pharyngeal} & \multicolumn{2}{c|}{\scriptsize Glottal}\\
+		\hline
+		\scriptsize Plosive & p b & & \multicolumn{3}{c|}{t d} & \textrtailt \ \textrtaild & c \textbardotlessj & k g & q \textscg & & \cellcolor{gray!50} & \textglotstop & \cellcolor{gray!50} \\
+		\hline
+		\scriptsize Nasal & m & \textltailm & \multicolumn{3}{c|}{n} & \textrtailn & \textltailn & \ng & \textscn & \multicolumn{2}{c|}{\cellcolor{gray!50}}  & \multicolumn{2}{c|}{\cellcolor{gray!50}} \\
+		\hline 
+		\scriptsize Vibrante & \textscb & & \multicolumn{3}{c|}{r} &  &  & \cellcolor{gray!50}  & \textscr & \multicolumn{2}{c|}{}  & \multicolumn{2}{c|}{\cellcolor{gray!50}} \\
+		\hline
+		\scriptsize Battue &  & \char"2C71 & \multicolumn{3}{c|}{\textfishhookr} & \textrtailr  &  & \cellcolor{gray!50} &  & \multicolumn{2}{c|}{}  & \multicolumn{2}{c|}{\cellcolor{gray!50}} \\
+		\hline
+		\scriptsize Fricative & \textphi \ \textbeta& f v  & \texttheta \ \dh & s z & \textesh \ \textyogh & \textrtails \ \textrtailz  & \c{c} \textctj  & x \textgamma & \textchi \ \textinvscr  & \multicolumn{2}{c|}{\textcrh \ \textrevglotstop}  & \multicolumn{2}{c|}{h \texthth} \\
+		\hline
+		\scriptsize Lateral Fricative & \cellcolor{gray!50} & \cellcolor{gray!50} & \multicolumn{3}{c|}{\textbeltl \ \textlyoghlig} &   &   &  &  & \multicolumn{2}{c|}{\cellcolor{gray!50}}  & \multicolumn{2}{c|}{\cellcolor{gray!50}} \\
+		\hline
+		\scriptsize Approximant &  & \textscriptv & \multicolumn{3}{c|}{\textturnr} & \textturnrrtail  & j & \textturnmrleg &  & \multicolumn{2}{c|}{}  & \multicolumn{2}{c|}{\cellcolor{gray!50}} \\
+		\hline
+		\scriptsize Lateral Approximant & \cellcolor{gray!50} & \cellcolor{gray!50} & \multicolumn{3}{c|}{l} & \textrtaill  & \textturny  & \textscl &  & \multicolumn{2}{c|}{\cellcolor{gray!50}}  & \multicolumn{2}{c|}{\cellcolor{gray!50}} \\
+		\hline
+		
+	\end{tabular}
+	\caption{International Phonetic Alphabet.}
+	\label{tab:ipa}
+\end{table}
+\setlength\tabcolsep{6pt}
+
+
+\subsection{Phonology}
+
+Phonology is the study of sounds or phonemes of a given language; it focuses on sounds as elements of a system. Unlike a phone, a phoneme is an abstract unit that can correspond to several sounds. It is related to the language being studied. For example, in French, the \textit{r} can be pronounced (in phonetics): rolled \expword{\textipa{[r]}}, guttural \expword{\textipa{[\;R]}}, or normal (Parisian) \expword{\textipa{[K]}}. It is always transcribed in the same way, for example, \expword{rat /rat/}. In Arabic, we find the consonants \expword{\<r> \textipa{[r]}} and \expword{\<.g> \textipa{[G]}} which have two different phonemes: \expword{\textipa{/r/}} and \expword{\textipa{/G/}} respectively. For example, \expword{\<.gryb> \textipa{/G\ae ri:b/} (foreigner)}. Therefore, phonology is concerned with the transcription of sounds relative to a given language.
+
+\subsection{Spelling}
+
+Spelling is the set of rules for writing a language; it is the study of the types and form of lemmas/lexemes. A lemma is a lexical unit; it denotes an autonomous unit constituting the lexicon of a language. The smallest meaningful unit in a language is called a "grapheme." The writing systems on which spelling is based are grouped into 4 classes (according to graphemes):
+\begin{itemize}
+	\item \optword{Logographic}: A word is composed of one or more logograms. The logogram is a single grapheme representing a lemma (word). For example, \expword{Kanji (Japanese): 日, 本, 語}. A logogram can be pronounced in different ways. For example, \expword{\ruby{楽}{tano}\ruby{し}{shi}\ruby{い}{i} (pleasant), \ruby{音}{on}\ruby{楽}{gaku} (music)}.
+	
+	\item \optword{Syllabic}: A word is composed of multiple symbols, each representing a syllable (vocalized sound). For example, \expword{Hiragana (Japanese): る /ru/, た /ta/, め /me/, の /no/; Katakana (Japanese): セ /se/, ク /ku/;}
+	
+	\item \optword{Alphabetic}: A word is composed of letters, each representing a phoneme. For example, \expword{Latin: A, B, C, etc. Arabic: \<b> /b/, \<t> /t/, \<h> /h/}. It is worth noting that Arabic uses an alphabetic subsystem called \keyword{abjad}. In this subsystem, there are no vowels; there are only consonants.
+\end{itemize}
+
+
+% REM: Force the title to appear at the beginning of the page
+%\vspace*{-36pt}
+\subsection{Morphology}
+
+Morphology is concerned with the study of word formation, including how new words are invented in languages around the world. It studies how word forms vary based on their usage in sentences. The smallest unit of a language with its own meaning is called a "morpheme" (e.g., proper nouns, suffixes, etc.). Words, in many languages, are formed by composing morphemes following specific rules. All grammatical forms with the same meaning form a set called a "lexeme" (e.g., [former, formation, formateur, forment, formez, ...]). The word chosen from these forms to represent the lexeme is called a "lemma" (e.g., former). Each word has a grammatical category (noun, verb, etc.) that can belong to:
+\begin{itemize}
+	\item \optword{Open class} containing grammatical categories that change their forms based on grammatical features (e.g., plural and singular). In French, this class includes adjectives, nouns, verbs, determiners, and pronouns.
+	\item \optword{Closed class} where words of a grammatical category do not accept changes. In French, this class includes adverbs, articles, conjunctions, interjections, and prepositions.
+\end{itemize}
+
+I have already mentioned that words are formed by the composition of morphemes in many languages. If you have noticed: in this phase, we can deduce that there are languages where words are not formed as much. According to the way words are formed, we can classify a language according to the following morphological typology:
+\begin{itemize}
+	\item \optword{Isolating/Analytic Languages}: Each word consists of one and only one morpheme. Morphological changes are few or absent. Among these languages: Mandarin, Vietnamese, Thai, Khmer, etc. For example, 四个男孩 /sì ge nánhái/ "four boys" (lit. "four [entity of] masculine child").
+	
+	\item \optword{Inflectional/Synthetic Languages}: Words are formed from a \keyword{root} plus additional morphemes.
+	\begin{itemize}
+		\item \optword{Agglutinative Languages}: Morphemes are always phonetically distinguishable from each other. Among these languages: Finnish, Turkish, Japanese, etc. For example, 行く /iku/, 行きます /ikimasu/.
+		
+		\item \optword{Fusional Languages}: It is not always easy to distinguish the morphemes from the root or the morphemes from each other. Among these languages: Arabic, English, French, etc. For example, \<kitAb, kutub, 'wa'`.taynAkumuwh>, foot, feet.
+	\end{itemize}
+\end{itemize}
+
+To form new words, we use two methods: inflection and derivation. In inflectional morphology, the formed words do not change grammatical categories (a verb remains a verb after formation) and do not create new lexemes (the formed word must have the same meaning). So, words are formed just to adapt to different grammatical contexts (plural vs singular, masculine vs feminine, etc.). Inflection can be conjugation (verbs) or declension (the rest of the open grammatical categories). As an example of declension, we can mention the transformation from singular to plural for nouns. Among the methods used by inflection, we can mention:
+\begin{itemize}
+	\item \optword{Affixation}: This is the formation of a new word using prefixes (before the original word), infixes (in the middle), and suffixes (after). Another type of infix is the transfix found in Semitic languages (a discontiguous infix). An example of inflection (in this case: conjugation) by prefixes: \<_dhb> /dhahaba/ (he went, past), \<y_dhb> /yadhhabu/ (he goes, present). Conjugation by prefix and transfix: \<qAl> /qāla/ (he said, past), \<yqwl> /yaqūlu/ (he says, present). Another example for inflection (declension) by suffixes: étudiant (masculine-singular), étudiantes (feminine-plural).
+	\item \optword{Reduplication}: doubling a word to form another word with the same category and meaning. For example, super-duper, bye-bye, きらきら /kira-kira/ (shine).
+\end{itemize}
+Inflection is described by grammatical features. Each language defines a set of grammatical features\footnote{You can learn more about these features by following this link: \url{https://universaldependencies.org/u/feat/index.html} [visited on 2021-09-08]} to use with grammatical categories. We can find a grammatical feature in one language and not in another. Among the grammatical features, we can mention the following:
+\begin{itemize}
+	\item \optword{Number}: represents quantity. singular (he), dual (\<hmA>), trial, paucal, plural (they), etc.
+	
+	\item \optword{Person}: describes the roles of actors in a dialogue. first (I, we), second (you), third (he, they, she, they), etc.
+	
+	\item \optword{Gender}: divides nouns based on gender. masculine (he, they), feminine (she, they), neuter (it), common (used to indicate that it is masculine/feminine vs. neuter).
+	
+	\item \optword{Case}: represents the semantic role in relation to the verb. nominative (subject of a verb), accusative (direct object), dative (indirect object), etc.
+	
+	\item \optword{Tense}: represents the time of an action. past, present, future.
+	
+	\item \optword{Aspect}: accomplished (an action that has been completed in time)/unaccomplished, progressive (an action that is ongoing in time), imperfective (an action that took a certain period of time, but we don't know if it is complete)/perfective, iterative (an action that repeats), prospective (an action that should take place at a time following a reference point), etc.
+	
+	\item \optword{Voice (Diathesis)}: describes how semantic roles are organized in relation to the verb. active (the subject is the agent; the one who performed the action), middle (the subject is both the agent and the patient; doing an action on oneself), passive (the subject is the patient; the one who received the action), reciprocal (agents and patients performing actions on each other), etc.
+	
+	\item \optword{Polarity}: considers a word as affirmative or negative.
+	\item \optword{Politeness}: represents the level of respect. informal, formal, etc.
+\end{itemize}
+
+Unlike inflectional morphology, derivational morphology aims to form words by changing categories (e.g., jouer, joueur) or by creating new lexemes (e.g., connecter, déconnecter). Among the methods used by derivation, we can mention:
+\begin{itemize}
+	\item \optword{Affixation}: using prefixes, infixes, and/or suffixes. Example, happy (ADJ), unhappy (ADJ), unhappiness (N); \<jhd> /jahada/ (V), \<ijthd> /ijtahada/ (V).
+	
+	\item \optword{Composition}: by merging words into one. Example, porter (V) + manteau (N) = portemanteau (N); wind (N), mill (N), windmill (N).
+	
+	\item \optword{Conversion}: by changing the grammatical category of a word without any modification. Example, orange (fruit, N), orange (color, ADJ); visit-er (V), visite (N); fish (N), to fish (V).
+	
+	\item \optword{Truncation}: Example, bibliographie, biblio; information, info.
+	
+	\item \optword{Reduplication}: Example, \<kr> (V), \<krkr> (V).
+\end{itemize}
+
+
+\subsection{Syntax}
+
+Syntax is the set of rules and principles that govern the structure of a sentence. This structure is related to the grammatical categories (Verb, Noun, Adjective, etc.) of the words composing the sentence. Depending on the position of the word, it can have a grammatical function (Subject, Direct Object, Indirect Object, etc.).
+
+Languages can be classified based on the order of the three components: \keyword{Subject (S)}, \keyword{Verb (V)}, and \keyword{Object (O)}. For example:
+- SOV [Japanese]: \expword{カリムさん[S]は日本語[O]を勉強します[V]}.
+- SVO [French]: \expword{Karim [S] apprend [V] le français [O]}.
+- VSO [Arabic]: \<yt`llm \LR{[V]} krym \LR{[S]} al-`rbyT \LR{[O]}>.
+
+Table~\ref{tab:ordre} presents a study on 402 languages, giving an idea of the proportions of each category of word orders.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{p{.1\textwidth}p{.15\textwidth}p{.65\textwidth}}
+		\hline\hline 
+		\textbf{Order} & \textbf{Proportion} & \textbf{Examples} \\
+		\hline
+		SOV & 44.78\% & Japanese, Latin, Tamil, Basque, Urdu, Ancient Greek, Bengali, Hindi, Sanskrit, Persian, Korean \\
+		SVO & 41.79\% & French, Mandarin, Russian, English, Hausa, Italian, Malay, Spanish, Thai \\
+		VSO & 9.20\% & Irish, Arabic, Biblical Hebrew, Filipino, Tuareg languages, Welsh \\
+		VOS & 2.99\% & Malagasy, Baure, Car (language) \\
+		OVS & 1.24\% & Apalai, Hixkaryana, Klingon (language) \\
+		\hline\hline
+	\end{tabular}
+	\caption[Syntactic orders and their proportions according to a study of 402 languages.]{Syntactic orders and their proportions based on a study of 402 languages \cite{1988-blake}.}
+	\label{tab:ordre}
+\end{table}
+
+There are several theoretical approaches to syntax, including constituent grammar and dependency grammar. In constituent grammar, a sentence consists of several \keywordpl{phrase} that are composed of words and other \keywordpl{phrase}. A phrase contains a nucleus, which is the central element, and satellite elements. Depending on the nucleus, the \keyword{phrase} can be nominal (NP), adjectival (AP), verbal (VP), or prepositional (PP). The most commonly used formal system to model the structure of constituents in a sentence is context-free grammar (Level 2 in Chomsky's hierarchy). An example of a grammar and the syntax tree of a sentence is illustrated in Figure~\ref{fig.exp-gram-const}. The second rule is not written (NP $ \rightarrow $ DET NP) because we can have several determinants for a noun.
+
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}{0.3\textwidth}
+		\begin{enumerate}
+			\item P $ \rightarrow $ NP VP
+			\item NP $ \rightarrow $ DET NP'
+			\item NP $ \rightarrow $ DET N
+			\item NP' $ \rightarrow $ ADJ N
+			\item VP $ \rightarrow $ V NP
+		\end{enumerate}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\hgraphpage{gram_const.pdf}
+	\end{minipage}
+	
+	\caption[Example of a context-free grammar and a syntax tree.]{Example of a context-free grammar and a syntax tree for the sentence "Le petit chat mange un poisson" (The small cat eats a fish).}
+	\label{fig.exp-gram-const}
+	
+\end{figure}
+
+In dependency grammar, syntactic structure is described in terms of words and not phrases. The words of the sentence are linked by binary relations. These relations\footnote{For more relations, you can refer to: \url{https://universaldependencies.org/u/dep/index.html} [visited on 2021-09-08]} can be a nominal subject (\optword{nsubj}), an object (\optword{obj}), an adjective modifier (\optword{amod}), a determinant (\optword{det}), etc. An example of a dependency grammar is given in Figure~\ref{fig:exp-gram-dep}.
+
+\begin{figure}[ht]
+	\centering
+	\hgraphpage[.7\textwidth]{gram-dep2_.pdf}
+	\caption[Example of dependencies.]{Example of dependencies generated by \url{https://corenlp.run/} [visited on 2021-09-08].}
+	\label{fig:exp-gram-dep}
+\end{figure}
+
+
+\subsection{Semantics}
+
+Semantics is the study of meaning in languages. There are two types of semantics: lexical semantics, which studies the meaning of words, and propositional semantics, which concerns the meaning of sentences. Many languages introduce the notion of polysemy, where a word has multiple meanings. For example, the term "\expword{poulet}" has different meanings depending on the context in which it is used. Here are some examples of the use of this word:
+
+\begin{itemize}
+	\item J'écoute les piaulements des \expword{poulets}. "\textit{Petit du coq et de la poule, plus âgé que le poussin, avant d'être adulte.}"
+	\item Je mange du \expword{poulet}. "\textit{Viande de jeune poule ou jeune coq.}"
+	\item Mon petit \expword{poulet}. "\textit{Term of affection, generally addressed to children.}"
+\end{itemize}
+
+In lexical semantics, the goal is to encode the meaning of a word. It should be noted that in logographic systems, a grapheme can be described by its form; for example, \expword{川 (river), 山 (mountain)}. Therefore, the meaning of a word is derived from the meanings of the graphemes that compose it; for example, \expword{音 /on, in, oto, .../ (sound, noise) + 楽 /gaku, tano, raku, .../ (music, comfort, ease) = 音楽 /ongaku/ (music)}. In general, meaning can be represented using: a set of "semantic primitives," relations between morphemes (a network of meanings), as a vector of real numbers, etc.
+
+One of the theories for representing meaning using semantic primitives is semantic analysis. In semantic analysis, a \textit{seme} is a minimal unit of meaning (minimal semantic trait). Semes are defined manually, and a \textit{seme} is a bundle of semes corresponding to a lexical unit. Words with one or more shared positive semes belong to the same semantic field. Table~\ref{tab:semique} represents an example of semantic analysis for the words "chat," "chien," and "lion" based on semes: "animé," "domestique," and "félin." Vector representation can be seen as a form of semantic analysis, where each value represents the weight of a \textit{seme}, except that the semes here are anonymous. This representation can generally be learned through word embedding.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Word/Seme & animé & domestique & félin \\
+		\hline
+		Chat & + & + & + \\
+		\hline
+		Lion & + & - & + \\
+		\hline
+		Chien & + & + & - \\
+		\hline
+	\end{tabular}
+	\caption[Example of semantic analysis.]{Example of semantic analysis.}
+	\label{tab:semique}
+\end{table}
+
+A proposition derives its meaning from the meanings of the words it contains. There are several ways to represent the meaning of a sentence, including first-order logic, graph-based representation, and vector representation. In the latter, we can generate embedding as a vector representation. A semantic representation should be independent of syntactic structure. For example, the sentences "Quelques étudiants possèdent deux ordinateurs" and "Deux ordinateurs sont possédés par quelques étudiants" should have the same semantic representation. Examples of some correct and incorrect first-order logic semantic representations for these two sentences can be found in the provided code.
+
+Among the applications of semantic representation of a proposition is inference. We can deduce new knowledge from existing knowledge. An example of inference in first-order logic is given in Figure~\ref{fig:exp-inference}.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tabular}{lll}
+		Chaque homme est mortel.  & & Socrate est un homme. \\
+		$\forall x (Homme(x) \Rightarrow Mortel(x))$ && $Homme(Socrate)$ \\
+		\hline
+		\multicolumn{3}{c}{$Mortel(Socrate)$}\\
+	\end{tabular}
+	\caption{Example of inference in first-order logic.}
+	\label{fig:exp-inference}
+\end{figure}
+
+
+\subsection{Pragmatics and Discourse}
+
+The pragmatic level is responsible for studying meaning related to context; the kind that is challenging to understand solely through the semantic level. Let's take an example: imagine we are at a birthday party, and someone exclaims, "\expword{Les bougie!}" We can immediately understand that there are no candles on the cake. Another example: suppose you've scheduled a meeting with someone who hasn't arrived on time. One reaction you might have is to inquire about the reason for their lateness. One way to do this is by asking, "\expword{A votre avis, quelle heure est-il?}" If the person understands only the semantic level, they would simply state the time. Otherwise, they would explain the reason for the delay. Among the areas of interest in this branch, we can mention:
+
+\begin{itemize}
+	\item \optword{Conversational Implicature}: refers to what the speaker wants to convey implicitly. According to \citet{1979-Grice}, interlocutors must adhere to certain conversational norms (maxims): quantity, quality, relevance, and manner. For example, from the phrase "\expword{Karim, who is lazy, has stopped writing}," we can extract the following information: "\expword{Karim was writing}," "\expword{Karim is lazy}," "\expword{Karim no longer writes}," and "\expword{There exists a man named Karim.}"
+	
+	\item \optword{Presupposition}: refers to assumptions made by interlocutors during communication.
+	
+	\item \optword{Speech Act}: refers to the linguistic interaction of the speaker to act on their environment. A list of speech acts is provided by \citet{1962-austin}: declaration, order, question, prohibition, greeting, invitation, congratulations, apologies.
+\end{itemize}
+
+The discourse level deals with aspects of an entire text, such as coreference and coherence. The goal of coreference is to detect references and link them to their entities. This task is challenging as it requires knowledge of the environment. For example, in the phrase "\expword{The cat doesn't fit in the box because it is too big}," we know that "\expword{it}" refers to "\expword{The cat}." This is due to the prior knowledge that one thing fits into another if the latter is larger. Using this knowledge, we know that "\expword{it}" refers to "\expword{the box}" in the phrase "\expword{The cat doesn't fit in the box because it is too small}." Reference can manifest in several forms:
+
+\begin{itemize}
+	\item \optword{Pronouns}: \expword{\underline{The cat} chased a mouse, and \underline{it} is playing with it}.
+	\item \optword{Nominal Phrases}: \expword{\underline{Apple} is a computer manufacturer. \underline{The company} is globally known.}
+	\item \optword{Zero Anaphora}: in languages like Japanese, sometimes reference is omitted.
+	\item \optword{Nouns}: \expword{\underline{International Business Machine} is an American company. Like Apple, \underline{IBM} manufactures computers.}
+\end{itemize}
+
+Another topic addressed at the discourse level is the coherence of sentences; is the order of sentences logical? To analyze discourse, we can either rely on its structure or on the entities that compose it. Among the most used discourse models, we can mention \keyword{Rhetorical Structure Theory (RST)}. It is a structure-based model where we aim to find relations between two sentences. Among the coherence relations, we can mention reason, elaboration, evidence, attribution, narration, etc. These are binary relations between a \optword{nucleus} and a \optword{satellite}. Take the sentence "\expword{The student was absent yesterday. He was sick.}" The first sentence is a nucleus as it describes the main event. The second sentence is a satellite as it depends on the first. Here are some examples of coherence relations:
+
+\begin{itemize}
+	\item \optword{Reason}: \expword{[\textsubscript{NUC} The student was absent yesterday.] [\textsubscript{SAT} He was sick.]}
+	\item \optword{Elaboration}: \expword{[\textsubscript{NUC} The exam is easy.] [\textsubscript{SAT} It takes only an hour.]}
+	\item \optword{Evidence}: \expword{[\textsubscript{NUC} Kevin must be here.] [\textsubscript{SAT} His car is parked outside.]}
+\end{itemize}
+
+
+%===================================================================================
+\section{NLP Applications}
+%===================================================================================
+
+NLP applications can be viewed from three perspectives: tasks, complete systems, or businesses. In terms of tasks, we focus on elementary applications that can assist other applications. Regarding systems, we explore various user-oriented applications. Concerning businesses, we examine how NLP can be applied to address issues in health, education, etc.
+
+\subsection{Tasks}
+
+We begin by listing some morphosyntactic tasks. These tasks are useful for information retrieval and information extraction applications. Generally, they do not require a large amount of resources: computing power and data.
+
+\begin{itemize}
+	\item \optword{Sentence Segmentation and Word Tokenization}: Divide the text into smaller units to facilitate processing. Most NLP applications attempt to process text in smaller units: paragraphs, sentences, words, characters. Hence, the necessity of this task.
+	\item \optword{Lemmatization and Stemming}: Seek a standard form of a word. In information retrieval, if we search for the term "formation," there may be pages with interesting results containing the word "former." Therefore, the interest of this task is to reduce variations of the same concept resulting from word forms in synthetic languages.
+	\item \optword{Part-of-Speech Tagging}: Find the grammatical categories of words in a sentence. Several applications can improve by introducing the grammatical categories of words. For example, to understand a sentence containing the word "fish," it is necessary to know if this word is a verb or a noun.
+	\item \optword{Syntactic Analysis}: Find the syntactic structure of a sentence (how it was formed). To understand the relationships between parts of a sentence, knowledge of their structure is required.
+	\item \optword{Terminology Extraction}: Search for existing terminologies in a text. This is a direct application of data extraction, and it is used in creating databases automatically.
+\end{itemize}
+
+Semantic tasks are more challenging and require more resources. Their goal is to understand and generate text.
+
+\begin{itemize}
+	\item \optword{Lexical Disambiguation}: Find the meaning of a word and its grammatical function. Due to polysemy, a word may have multiple meanings and even multiple grammatical functions. To understand a sentence, the meanings of its words must be determined.
+	\item \optword{Semantic Role Labeling}: Identify the semantic role (agent, theme, etc.) of words and phrases. To comprehend a sentence, knowledge of who performed the action, who underwent the action, etc., is necessary. This is also useful for question/answer applications where the machine seeks to answer user queries.
+	\item \optword{Named Entity Recognition}: Extract names of people, organization or company names, place names, quantities, distances, values, dates, etc. This task is useful for sentence comprehension by adding more context. It is also valuable for data extraction and database creation.
+	\item \optword{Semantic Analysis}: Determine the semantic representation of the text. It is used to understand the meaning of a sentence.
+	\item \optword{Paraphrasing}: Reformulate text differently. This is useful during text generation to create text in multiple ways.
+	\item \optword{Textual Entailment}: Verify if a segment of text being true implies that another segment is also true. This is useful for understanding the speaker's intention.
+	\item \optword{Automatic Text Generation}: Automatically generate text. It is useful in various applications such as chatbots, machine translation, etc.
+\end{itemize}
+
+Discourse is a more advanced level than semantics and requires more data. It is useful for understanding the entire text and not just sentence by sentence.
+
+\begin{itemize}
+	\item \optword{Coreference Resolution}: Identify different references in the text. This is useful in various applications. For example, when a part of the text is extracted, we want to know the reference of a personal pronoun.
+	\item \optword{Discourse Analysis}: Search for relationships between sentences. This task can be used to test if a text is coherent and also to generate coherent text.
+	\item \optword{Ellipsis Resolution}: Find the omitted elements of the text. An example of ellipsis is "\expword{Pierre eats cherries, Paul strawberries}." In this example, the complete sentence is "\expword{Pierre eats cherries, Paul eats strawberries}." Here, we omitted the verb since it is understandable from the context.
+\end{itemize}
+
+
+\subsection{Systems}
+
+Here, we will present some NLP applications as an end-to-end system. These systems use a set of previously presented tasks to fulfill a specific need. They aim to automate complex tasks that typically require human intervention.
+
+\begin{itemize}
+	\item \optword{Machine Translation}: Translation from one language to another. Language is a tool for transmitting knowledge among humans. There is a wealth of languages in the world that allows us to appreciate the greatness of human beings. Unfortunately, this also leads to the separation of nations. Machine translation can help people communicate their ideas and bridge the gap created by language.
+	
+	\item \optword{Automatic Summarization}: Producing a concise version of the text. A vast amount of data is generated every minute on the web. Keeping track of information and news is challenging, if not impossible. The quantity of information is not the only obstacle, but also its quality. There is much redundancy on the web, as seen in social networks and the copy-paste mentality. Now, imagine a system that scans the web (targeting specific sites) and retrieves a summary of everything published. Imagine it can find news and filter out redundancy.
+	
+	\item \optword{Question-Answering}: Searching for answers to questions posed in natural language. Remember the time wasted searching for a small piece of information: browsing websites and books, reading thousands of lines, comparing information between two sites, etc. In our lives, there is a high probability that we have encountered someone who gave us an answer to a question and saved us the trouble of searching. If we had a system that could answer generic or domain-specific questions (e.g., in medicine), it would save a lot of wasted time.
+	
+	\item \optword{Conversational Agents (Chatbots)}: Interacting with a user. Chatbots are useful for assisting users by answering their questions to accomplish a task. For example, booking flights by providing information about airports, weather, countries, etc.
+	
+	\item \optword{Information Extraction}: Extracting targeted information from the web for analysis or populating a database.
+	\begin{itemize}
+		\item \optword{Text Mining}: Extracting knowledge from text.
+		\item \optword{Sentiment Analysis}: Determining the sentiments expressed in a text. For example, checking if users are satisfied with a product or not.
+		\item \optword{Automatic Document Recommendation}: Presenting items that are likely to interest a user. For example, recommending books.
+	\end{itemize}
+\end{itemize}
+
+
+\subsection{Business}
+
+This century is known for the enormous amount of data available on the web. A large proportion of this data is in the form of unstructured textual format, containing a multitude of information and opinions. Many businesses have felt the need to harness these resources to improve their commerce. Among the applications of NLP in the business world, we can mention:
+
+\begin{itemize}
+	\item \optword{Advertising}: Identifying new audiences potentially interested in specific products.
+	\item \optword{Customer Service}: Using chatbots to respond to potential customer queries. Also, employing sentiment analysis to gauge customer opinions on the company's products.
+	\item \optword{Market Intelligence}: Monitoring blogs, websites, and social media to analyze market trends and gain insights into competition.
+	\item \optword{Recruitment}: Filtering resumes to find candidates more quickly and without bias.
+\end{itemize}
+
+To improve communication between citizens and the government, NLP can be used in the field of E-Governance. Use cases of NLP in this domain can be summarized in these points:
+
+\begin{itemize}
+	\item \optword{Government/Citizen Communication}: Illiterate citizens can share their opinions using audio/video, which can be translated into text. Similarly, a message to citizens can be transformed into a voice message.
+	\item \optword{Opinion Mining}: Extracting comments, complaints, and critiques on a particular policy, thus determining the general consensus on the matter.
+\end{itemize}
+
+One of the fields increasingly interested in NLP applications is the healthcare domain. Indeed, NLP can significantly improve several tasks in this field, as it generates and requires many documents, including textual ones. Improving access to information can save not only time but also many lives. Tasks where NLP can play a significant role include:
+
+\begin{itemize}
+	\item Structuring medical documents to facilitate their exploitation.
+	\item Searching, analyzing, and interpreting vast amounts of patient data sets.
+	\item Predicting diseases based on symptoms and medical documents.
+	\item Generating reports.
+	\item Using virtual assistants to monitor and assist patients.
+\end{itemize}
+
+Language is a tool for communication, hence the importance of learning at least one. Students learn a language by interacting with an educator and by taking assessments to identify shortcomings and improve them. NLP, as it provides language-related tasks, can help in the field of education. Among the tasks of an educator that can be automated, we can list:
+
+\begin{itemize}
+	\item Language assessment: reading, writing, and speaking.
+	\item Correction of spelling errors.
+	\item Automatic assessment of student assignments, such as essays and responses.
+	\item Online learning by integrating chatbots with games, fostering an active learning environment.
+\end{itemize}
+
+
+%===================================================================================
+\section{Challenges in Natural Language Processing}
+%===================================================================================
+
+Every field has its own challenges, and Natural Language Processing (NLP) is no exception. The diversity of languages, lack of standardization, language evolution, and all the unpredictable aspects of human communication make this field truly challenging. Here, we will discuss some challenges that not only highlight the difficulty of this field but also underscore its importance.
+
+\subsection{Resources}
+
+Resources, whether in terms of computing power or data, pose a problem, especially for tasks that can only be solved with machine learning. Most of these tasks require supervised learning, necessitating manual annotation of training and test corpora. Many researchers and developers avoid annotation efforts by seeking already annotated datasets and modifying the initial problem (solving one problem by solving another). This can impact the quality of the final tool. Speaking of document size, when dealing with larger documents, the task becomes more complex. Opting for a machine learning solution sometimes makes it challenging for a model to represent long contexts. So far, I have discussed resource challenges in the case of well-represented languages. When dealing with a less-spoken language, we face not only the issue of missing data but also a lack of tools. Assuming we want to design a translation system for a rare language, we may not even have a tool for word segmentation.
+
+\subsection{Language Understanding}
+
+Ambiguity is the greatest challenge in natural language processing. Even humans struggle to understand certain passages due to ambiguity. This problem arises from the properties of natural languages, including:
+
+\begin{itemize}
+	\item \optword{Polysemy}: a word having multiple meanings. E.g., "Indian: from India, indigenous to the Americas."
+	\item \optword{Enantiosemy}: a polysemic term having two opposite meanings. For example, the word "Regret" denotes either complaint or nostalgia: "I regret my childhood."
+	\item \optword{Trope} (figurative language): metaphors (e.g., "It's raining cats and dogs"), metonymy (e.g., "The room applauded" [the people in the room]), irony (e.g., "What a beautiful day!" [to signify heavy rain.])
+	\item Coreferences in long texts (ambiguity in reference selection). E.g., "Table data is dumped into a delimited text file, which is sent to the remote site where it is loaded into the destination database."
+\end{itemize}
+
+The previous challenge assumes that the speaker uses a standard, simple, direct, and objective language. If any of these properties are absent, the language becomes more challenging to understand, even for humans. Among the human aspects that can worsen the difficulty of processing discourse, we can enumerate:
+
+\begin{itemize}
+	\item \optword{Personality}: how to model a personality? How does personality affect discourse?
+	\item \optword{Variations and Non-standard Communication}: users do not adhere to language writing standards. E.g., "chat language, Arabizi, Franglais, etc."
+	\item \optword{Intention}: some phrases do not mean what we understand directly; they mean something else.
+	\item \optword{Emotions}: sentences can change meaning depending on accompanying emotions.
+\end{itemize}
+
+
+\subsection{Evaluation}
+
+Automated evaluation is challenging, especially for certain aspects of language, such as coherence. If we could automatically evaluate an aspect, we could use the same evaluation algorithm to improve it. The most ideal solution to test whether a system aligns with a human task is to have humans assess it. This is time-consuming (high time cost). Additionally, evaluation requires experts (high expense cost). Manual evaluation can introduce evaluator subjectivity and inter-evaluator agreement issues.
+
+\subsection{Ethics}
+
+Like any tool, Natural Language Processing (NLP) can be used in harmful ways. If we can master this tool, it can be a very powerful asset for humanity. On the other hand, it can be used against a group of humans, intentionally or unintentionally. Even if the intention is not to harm a group, it could happen indirectly. Therefore, before designing a system, several points need to be checked, such as:
+
+\begin{itemize}
+	\item \optword{Privacy}: collected data may contain private information about individuals. Companies can store information about their users.
+	\item \optword{Bias and Discrimination}: the corpora used to train a system can introduce bias. For example, word embeddings may associate jobs like "doctor" with men and "nurse" with women. The system may not understand that there are female doctors or male nurses.
+	\item \optword{Use}: espionage and social engineering, job loss due to automation, etc.
+\end{itemize}
+
+\begin{discussion}
+	
+	Can you understand this sentence? Regardless of your answer (yes or no), you certainly understood the question; otherwise, you wouldn't have answered in the first place. Imagine a machine that can reason like that. Imagine that it can understand your language and respond in a similar way to yours. This was considered science fiction in the '50s. It still is, but nowadays we are closer to this dream than before. The field of NLP, and AI in general, has gone through beautiful periods and other challenging ones. Throughout its evolution, even in the midst of winter, there were always scholars who fought to advance this field and to reach this dream. The fight continues...
+	
+	This machine must absolutely perceive speech. If it can hear without speaking, that would be funny! To grant it this ability, we must use phonetics. Then, we must link sounds to a given language; hence the need for phonology. For it to write, it must master spelling. To form words and use them more naturally, it needs morphology. It must understand the structure of a sentence based on syntax. It must grasp meaning using semantics. In some cases, it must use context to understand by involving pragmatics. Finally, it must be able to understand an entire text; hence the need for discourse.
+	
+	Once complete, this machine can help you accomplish various tasks. It will have the ability to translate anything you want in an instant. It can save you time by summarizing documents and answering different questions. It can engage in conversations with people to guide them or pass the time. If you manage a business, you can rely on it to handle advertising, customer service, recruitment, and market research. It can even bridge the gap between governments and their citizens by improving communication. Above all, it can enhance healthcare and education systems.
+	
+	Such a machine comes with a cost, and its cost is your time for it to learn. You need to choose the best data and annotate it in large quantities. You need to teach it to deal with ambiguity until the student surpasses the master. You need to evaluate its tasks and improve them until it becomes like an expert. Finally, you must use it only for doing good. Otherwise, what was once a dream could turn into a nightmare.
+	
+\end{discussion}
+
+
+%=====================================================================
+\ifx\wholebook\relax\else
+% \cleardoublepage
+% \bibliographystyle{../use/ESIbib}
+% \bibliography{../bib/RATstat}
+	\end{document}
+\fi
+%=====================================================================
