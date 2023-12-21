@@ -1,0 +1,705 @@
+% !TEX TS-program = xelatex
+% !TeX program = xelatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+
+%=====================================================================
+\ifx\wholebook\relax\else
+	\documentclass{KBook}
+	\input{calls}
+	\begin{document}
+		\mainmatter
+	
+\fi
+%=====================================================================
+\changegraphpath{../img/basic/}
+
+\chapter{Basic Text Processing}
+
+\begin{introduction}[NA\textcolor{white}{T}. LANG. PROC.]
+	%	\lettrine{A}{fin} de traiter un langage, nous commençons par sa plus petite unité : le graphème. 
+	\lettrine{T}{o} process a language, we start with its smallest unit: the grapheme. 
+	In computer science, graphemes along with punctuation and spacing are called characters. 
+	There are operations that allow us to search for and compare strings of characters.
+	By combining characters, we get a text with sentences and words. 
+	Given a text, we should be able to segment it into sentences and a sentence into words. 
+	The latter can be unnecessary for certain tasks, such as prepositions in information retrieval. 
+	Thus, they need to be filtered before applying this task. 
+	Also, words can have multiple morphological variations. 
+	If we want to process a single variation, we need to normalize them. 
+	In addition, we should be able to generate these variations or switch from one variation to another given a word form. 
+	This chapter summarizes some tasks at the morphological level of languages (lexical analysis).
+\end{introduction} 
+
+According to Larousse, a character in computing and telecommunications is defined as: ``\textit{Any symbol (digit, letter of the alphabet, punctuation mark, etc.) used to represent data for processing or transmission purposes.}".
+A word is composed of several characters according to a regular language. 
+A sentence, in turn, consists of several words according to a context-free language (in most languages). 
+This last proposition concerns the syntactic level.
+For now, we are interested in the morphological level or what is called lexical analysis.
+The points addressed in this chapter are as follows: 
+\begin{itemize}
+	\item Searching in the text using regular expressions. 
+	Among the applications: data extraction (dates, phone numbers, email addresses, etc.).
+	
+	\item Comparing strings of characters using edit distance. 
+	Among its applications: spell correction and approximate search.
+	
+	\item Text segmentation into sentences and sentences into words. 
+	
+	\item Text normalization to reduce word variations.
+	
+	\item Word formation in synthetic languages and the reverse operation.
+\end{itemize}
+
+\section{Character Processing}
+
+Here, we consider a text as a sequence of characters. 
+In a more formal way, a text can be composed using a finite state automaton where the vocabulary is the set of characters. 
+To search for substrings of characters in a text, we can use regular expressions recognizing type 3 languages (regular languages) in the Chomsky hierarchy. 
+Searching for sequences in a text allows us to replace or separate them (e.g., \expword{word separation}). 
+Another type of search is approximate search: looking for parts almost similar to a given string. 
+To do this, we must be able to compare two strings of characters by measuring the difference between them. 
+One of the techniques used is edit distance.
+
+\subsection{Regular Expressions}
+
+A regular expression, called \keyword[R]{RegEx}, is a sequence of characters specifying a search pattern.
+Several programming languages provide the ability to search and replace using regular expressions. 
+To use it for search, a regular expression is transformed into a finite state automaton (FSA) which is then transformed into a deterministic FSA.
+A dot in a regular expression represents any character.
+If we want to search for a dot and not any character, we need to add a backslash before the dot.
+We can design a complex regular expression by composing several simple regular expressions.
+These are described in Table \ref{fig:exp-reg} with their meanings and examples.
+
+\begin{table}[ht]
+	\begin{tabular}{p{.1\textwidth}p{.34\textwidth}p{.46\textwidth}}
+		\hline\hline
+		\textbf{RE} & \textbf{Meaning} & \textbf{Example} \\
+		\hline
+		
+		. & any character & /beg.n/ : \expword{I \underline{begun} at the \underline{begin}ning} \\
+		
+		\empty [aeuio] & specific characters & /[Ll][ae]/ : \expword{\underline{Le} chat mange \underline{la} sourie} \\
+		
+		\empty [a-e] & range of characters & /[A-Z]../ : \expword{\underline{J'a}i vu \underline{Kar}im} \\
+		
+		\empty [\textasciicircum aeuio] & exclude characters & /[\textasciicircum A-Z]a./ : \expword{J\underline{'ai} vu Karim} \\
+		
+		c? & zero or one & /colou?r/ : \expword{It is \underline{colour} or \underline{color}} \\
+		
+		c* & zero or more & /No*n/ : \expword{\underline{Nn}! \underline{Non}! \underline{Nooooooon}!} \\
+		
+		c+ & one or more & /No+n/ : \expword{Nn! \underline{Non}! \underline{Nooooooon}!} \\
+		
+		c\{n\} & n occurrences & /No\{3\}n/ : \expword{Nn! Non! Noon! \underline{Nooon}!} \\
+		
+		c\{n,m\} & n to m occurrences & /No\{1,2\}n/ : \expword{Nn! \underline{Non}! \underline{Noon}! Nooon!} \\
+		
+		c\{n,\} & at least n occurrences & /No\{2,\}n/ : \expword{Nn! Non! \underline{Noon}! \underline{Nooon}!} \\
+		
+		c\{,m\} & at most m occurrences & /No\{,2\}n/ : \expword{\underline{Nn}! \underline{Non}! \underline{Noon}! Nooon!} \\
+		
+		\hline 
+		
+		\textbackslash d & [0-9] & /\textbackslash d\{2,\}/ : \expword{The year \underline{1962}}\\
+		
+		\textbackslash D & [\textasciicircum 0-9] & /\textbackslash D\{2,\}/ : \expword{\underline{The year }1962}\\
+		
+		\textbackslash w & [a-zA-Z0-9\_] & /\textbackslash w\{2,\}/ : \expword{\underline{The} \underline{year} 1962}\\
+		
+		\textbackslash W & [\textasciicircum \textbackslash w] & /\textbackslash W\{2,\}/ : \expword{\underline{The year} \underline{1962}}\\
+		
+		\textbackslash s & [ \textbackslash r\textbackslash t\textbackslash n\textbackslash f] & /\textbackslash s+/ : \expword{\underline{The year}\underline{ }1962\underline{ }}\\
+		
+		\textbackslash S & [\textasciicircum \textbackslash s] & /\textbackslash S+/ : \expword{\underline{The year} \underline{1962}}\\
+		
+		\hline 
+		
+		( ) & grouping & /(bla)+/ : \expword{This is \underline{blabla}}\\
+		
+		\textbar & disjunction & /continu(er\textbar ation)/ : \expword{I \underline{continue} the \underline{continuation}} \\
+		
+		\textasciicircum  & start of text & /\textasciicircum K/ :  \expword{\underline{K}ill Karim}\\
+		
+		\$ & end of text & /\textbackslash .[\textasciicircum .]+\$/ :  \expword{file.tar\underline{.gz}}\\
+		
+		\hline\hline
+	\end{tabular}
+	
+	\caption{Regular expressions.}
+	\label{fig:exp-reg}
+\end{table}
+
+The most common use of regular expressions is searching for substrings of characters in a large text.
+Most text editors and programming languages provide mechanisms to use regular expressions.
+Using patterns to search for strings makes regular expressions a very powerful tool for data extraction.
+For example, we can use regular expressions to extract emails from blogs and social networks.
+Let's take an example of a regular expression \expword{/[a-zA-Z]\textbackslash w*(@| at )[a-zA-Z]\textbackslash w+\textbackslash .[a-zA-Z]\{2,3\}/} to search for email addresses.
+The part \expword{/[a-zA-Z]/} ensures that both the username and the domain name start with a letter.
+The username accepts at least one character since the first letter is followed by \expword{/\textbackslash w*/}, meaning zero or more characters of type letter, digit, or underscore.
+The domain name in this regular expression accepts at least two characters since the first letter is followed by \expword{/\textbackslash w+/}, meaning one or more characters of type letter, digit, or underscore.
+The username and domain name are separated either by an ``\expword{@}" or by ``\expword{ at }"; this is indicated by \expword{/(@| at )/}.
+The domain extension must always be preceded by a dot; here, we use \expword{/\textbackslash ./} to indicate that it is the dot character.
+Otherwise, if we used \expword{/./}, it represented any character.
+The extension is composed of two to three letters.
+Here are some emails that we can extract using this regular expression: 
+``\expword{ab\_aries@esi.dz}", ``\expword{ab\_ARIES@eSi.dz}", ``\expword{ab\_aries at esi.dz}", ``\expword{a@es.edu}", ``\expword{a1@e2s.edu}".
+
+To capture a string, we use grouping with the group number.
+Group number "N" must be preceded by a special character, often ``\$" or ``\textbackslash".
+An example of text replacement in a text editor (``kate" in our case) is illustrated in Figure \ref{fig:kate_regex}.
+Here, we search for the word ``cat" to replace it with the word ``dog". 
+But, we want to keep ``ch" as it is shared between the two words.
+In this case, we capture the string ``ch" to keep it and replace the rest: ``at" with ``ien".
+
+
+Perhaps the utility of grouping is not clear with the previous example since we have only one string to capture.
+If we had a disjunction, it would be more interesting.
+Let's take the example: ``\expword{I like cats because they are more useful than rats.}".
+If we replace the string ``at" in both ``cat" and ``rat" with ``ock", we would have the following text:
+``\expword{I like clocks because they are more useful than rocks.}".
+In this case, we need to test the words ``chat" and ``rat" to replace only the last part and keep the first part intact.
+Several programming languages provide string replacement using \keyword[R]{RegEx}.
+In Javascript, strings are assigned a ``replace" method to replace one of their parts with another string.
+If we want to replace all occurrences, we should use the ``g" flag after the regular expression.
+To retrieve the captured group, we use ``\$" followed by the group's order.
+
+\begin{lstlisting}[language={[KB]Javascript}, style=codeStyle]
+	let orig = "I like cats because they are more useful than rats.";
+	let remp = orig.replace(/[cr]at/g, "$1ock");
+\end{lstlisting}
+
+For any use of regular expressions in Python, we need to use the ``re" module.
+A regular expression is a string preceded by the ``r" indicator.
+To retrieve the captured group, we use ``\textbackslash".
+
+\begin{lstlisting}[language=Python, style=codeStyle]
+	import re
+	orig = "I like cats because they are more useful than rats."
+	remp = re.sub(r'[cr]at', r'\1ock', orig)
+\end{lstlisting}
+
+
+\subsection{Edit Distance}
+
+Sometimes, when we write using our computers, we make typos; we can insert an extra character, duplicate a character, etc. 
+Such an operation is called an "edit operation". 
+We can compare two strings by counting the number of edit operations to change from an original string to a modified one. 
+The different edit operations are as follows (where $X$ is the set of characters in the language):
+%
+\begin{itemize}
+	\item \optword{Insertion}: inserting a character into a string ($uv \rightarrow uxv \,/\, u, v \in X^*;\, uv \in X^+;\, x \in X$). 
+	
+	For example, \expword{courir $ \rightarrow $ courrir, entraînement $ \rightarrow $ entraînnement}.
+	
+	\item \optword{Deletion}: deleting a character from a string ($uxv \rightarrow uv \,/\, u, v \in X^*;\, uv \in X^+;\, x \in X$). 
+	
+	For example, \expword{héros $ \rightarrow $ héro, meilleur $ \rightarrow $ meileur}.
+	
+	\item \optword{Substitution}: substituting one character for another ($uxv \rightarrow uyv \,/\, u, v \in X^*;\, x, y \in X;\, x \ne y$). 
+	
+	For example, \expword{cela $ \rightarrow $ celà, croient $ \rightarrow $ croyent }
+	
+	\item \optword{Transposition}: changing the order of two characters ($uxwyv \rightarrow uywxv \,/\, u, v, w \in X^*;\, x, y \in X;\, x \ne y$). 
+	
+	For example, \expword{cueillir $ \rightarrow $ ceuillir}.
+\end{itemize}
+
+Knowing the number of edit operations allows us to compare two strings. There are several examples of using edit distance (number of modifications):
+\begin{itemize}
+	\item \optword{File revision}: for example, the Unix command "\expword{diff}" that compares two files.
+	\item \optword{Spelling correction}: suggesting possible corrections for a mistake (e.g., \expword{Hunspell}).
+	\item \optword{Plagiarism detection}: here, we use words instead of characters.
+	\item \optword{Spam filtering}: sometimes, spammers intentionally make spelling mistakes to deceive the spam detection tool.
+	\item \optword{Bioinformatics}: quantifying the similarity between two DNA sequences.
+\end{itemize}
+
+\subsubsection{Hamming Distance}
+
+This distance allows only substitution. The strings must be of the same length. Among its uses, we can mention the detection of data transmission errors.\newline
+For example, \expword{D(010\underline{0}101\underline{0}01\underline{1}0, 010\underline{1}101\underline{1}01\underline{0}0) = 3}.
+To calculate the distance, we compare the two strings character by character to get the number of different characters (see Algorithm \ref{algo:hamming}).
+
+\begin{algorithm}[ht]
+	\KwData{orig, modif}
+	\KwResult{distance: integer}
+	distance $\leftarrow$ 0\;
+	
+	\For{pos $ \in 1 \ldots |orig|$}{
+		\If{orig[pos] $\ne$ modif[pos]}{
+			distance $\leftarrow$ distance + 1
+		}
+	}
+	
+	\caption{Calculation of Hamming Distance \label{algo:hamming}}
+	
+\end{algorithm}
+
+
+
+\subsubsection{Longest Common Subsequence}
+
+This distance allows insertion and deletion. Among its uses is the detection of changes in the "diff" program (also used in "Git"). In English, it is called "Longest Common Subsequence" (LCS). Given two strings $X$ and $Y$ with lengths $n$ and $m$ respectively, we define a two-dimensional array $C[m, n]$ containing the length of the LCS. Equation \ref{eq:LCS-length} can be used to calculate the length of the longest subsequence.
+\begin{equation}
+	C[i, j] =  
+	\begin{cases}
+		0 & \text{If } i = 0 \text{ or } j=0\\
+		C[i-1, j-1] + 1 & \text{If } i,j > 0 \text{ and } x_i = y_j\\
+		\max (C[i, j-1], C[i-1, j]) & \text{If } i,j > 0 \text{ and } x_i \ne y_j\\
+	\end{cases}
+	\label{eq:LCS-length}
+\end{equation}
+
+In this case, the length of the longest subsequence $|LCS(X, Y)| = C[m, n]$. The distance will be calculated using Equation \ref{eq:LCS-distance}.
+\begin{equation}
+	D(X, Y) = m + n - 2 |LCS(X, Y)|
+	\label{eq:LCS-distance}
+\end{equation}
+
+\subsubsection{Levenshtein Distance}
+
+This distance allows insertion, deletion, and substitution. In general, it is used in approximate search and spell checking. Given two strings $X$ and $Y$ with lengths $n$ and $m$ respectively, we define an array $D[m, n]$ with two dimensions containing the edit distance between the substrings $X[1..i]$ and $Y[1..j]$. In this case $D[0, 0] = 0$, and the final distance will be stored in $D[m, n]$. Equation \ref{eq:lev-distance} formulates how to calculate this distance (using dynamic programming). It should be noted that in this version, the cost of deletion and insertion is $1$, and the cost of substitution is $2$.
+\begin{equation}
+	D[i, j] = \min 
+	\begin{cases}
+		D[i - 1, j] + 1 \text{ //Deletion}\\
+		D[i, j-1] + 1 \text{ //Insertion}\\
+		D[i-1, j-1] + \begin{cases}
+			2 & \text{if } x_i \ne y_j \\
+			0 & \text{otherwise}
+		\end{cases}
+	\end{cases}
+	\label{eq:lev-distance}
+\end{equation}
+
+For example, \expword{D(amibe, immature) = 9}. In this case, "a" and "m" are deleted (1+1); "i" remains the same (0); the characters "m", "m", "a", "t", and "u" are inserted (1+1+1+1+1), "b" is substituted by "r" (2), and "e" remains the same (0). The calculation is illustrated in Figure \ref{fig:laven-distance}, where the arrows represent where the value comes from, and the colored cells represent the chosen path. Of course, we can choose another path that gives another interpretation. To help choose the path, we can use probabilities of edit operations. For example, in spell correction, letters are more likely to be replaced by others (those adjacent on the keyboard).
+
+
+\subsubsection{Damerau–Levenshtein Distance}
+
+This distance allows insertion, deletion, substitution, and transposition between two adjacent characters. Generally, it is used in spell checking. This distance is calculated like Levenshtein, adding transposition between two adjacent characters. Equation \ref{eq:lev-dem-distance} represents how to calculate this distance. In this version, we have tried to assign a weight of $1$ for all edit operations.
+\begin{equation}
+	D[i, j] = \min 
+	\begin{cases}
+		D[i - 1, j] + 1 \text{ //Deletion}\\
+		D[i, j-1] + 1 \text{ //Insertion}\\
+		D[i-1, j-1] + \begin{cases}
+			1 & \text{if } x_i \ne y_j \text{ //Substitution}\\
+			0 & \text{otherwise}
+		\end{cases}\\
+		D[i-2, j-2] + 1 \text{ if } x_i = y_{j-1} \text{ and } x_{i-1} = y_j \text{ //Transposition}\\
+	\end{cases}
+	\label{eq:lev-dem-distance}
+\end{equation}
+
+For example, \expword{D(amibe, immature) = 6}. In this case, "i" and "m" are inserted (1+1); "a" is transposed with "m" (1); "t" is inserted (1); "i" is substituted by "u" (1); "b" is substituted by "r" (1), and "e" remains the same (0). The calculation is illustrated in Figure \ref{fig:dam-laven-distance}, where the arrows represent where the value comes from, and the colored cells represent the chosen path. When there is a transposition, we skip two diagonal cells.
+\begin{figure}[ht]
+	\centering
+	\begin{tabular}{|r|r|r|r|r|r|r|r|r|r|}
+		\hline
+		&\bfseries \# &\bfseries i &\bfseries m &\bfseries m &\bfseries a &\bfseries t &\bfseries u &\bfseries r &\bfseries e \\
+		\hline
+		\bfseries \# & 0 & \cellcolor{green!25} $ \leftarrow $ 1 & \cellcolor{green!25} $ \leftarrow $ 2 & $ \leftarrow $ 3 & $ \leftarrow $ 4 & $ \leftarrow $ 5 & $ \leftarrow $ 6 & $ \leftarrow $ 7 & $ \leftarrow $ 8\\
+		\hline
+		\bfseries a & $ \uparrow $ 1 & $ \nwarrow $ 1 & $ \nwarrow\leftarrow $ 2 & $ \nwarrow\leftarrow $ 3 & $ \nwarrow $ 3 & $ \leftarrow $ 4 & $ \leftarrow $ 5 & $ \leftarrow $ 6 & $ \leftarrow $ 7 \\
+		\hline
+		\bfseries m & $ \uparrow $ 2 & $ \nwarrow\uparrow $ 2 & $\nwarrow $ 1 & $\nwarrow\leftarrow $ 2 & \cellcolor{green!25} $\leftrightharpoons\leftarrow $ 3 & \cellcolor{green!25} $\leftarrow $ 4 & $\leftarrow $ 5 & $\leftarrow $ 6 & $\leftarrow $ 7\\
+		\hline
+		\bfseries i & $ \uparrow $ 3 & $ \nwarrow $ 2 & $\leftrightharpoons\uparrow $ 2 & $\nwarrow\leftarrow\uparrow $ 3 & $\nwarrow $ 3 &  $\nwarrow\leftarrow $ 4 & \cellcolor{green!25} $\nwarrow\leftarrow $ 5 & $\nwarrow\leftarrow $ 6 & $\nwarrow\leftarrow $ 7\\
+		\hline
+		\bfseries b & $ \uparrow $ 4 & $ \uparrow $ 3 & $\nwarrow\uparrow $ 3 & $\nwarrow $ 3 & $\nwarrow\leftarrow\uparrow $ 4 & $\nwarrow $ 4 & $\nwarrow\leftarrow $ 5 & \cellcolor{green!25} $\nwarrow\leftarrow $ 6 & $\nwarrow\leftarrow $ 7\\
+		\hline
+		\bfseries e & $ \uparrow $ 5 & $ \uparrow $ 4 & $\nwarrow\uparrow $ 4 & $\nwarrow\uparrow $ 5 & $\nwarrow $ 4 & $\nwarrow\leftarrow\uparrow $ 5 & $\nwarrow $ 5 & $\nwarrow\leftarrow $ 6 & \cellcolor{green!25} $\nwarrow $ 6\\
+		\hline
+	\end{tabular}
+	\caption[Example of Damerau–Levenshtein Distance calculation.]{Example of Damerau–Levenshtein Distance calculation between the words "amibe" and "immature".}
+	\label{fig:dam-laven-distance}
+\end{figure}
+
+\subsubsection{Jaro Distance}
+
+This distance allows only transposition. In reality, it is a similarity measure that returns a value between $0$ (no similarity) and $1$ (similar). It is used for calculating similarity between named entities, etc. Given two strings $X$ and $Y$ with lengths $n$ and $m$ respectively, we calculate the number of matching characters $c$ and the number of transpositions $t$. The Jaro distance is calculated according to Equation \ref{eq:jaro-distance}.
+\begin{equation}
+	D(X, Y) = 
+	\begin{cases}
+		0 & \text{if } c = 0\\
+		\frac{1}{3} (\frac{c}{m} + \frac{c}{n} + \frac{c-t}{c}) & \text{otherwise}
+	\end{cases}
+	\label{eq:jaro-distance}
+\end{equation}
+
+The number of matching characters $c$ is the number of identical characters in $X$ and $Y$ with a separation $ e= \max (m, n)/2 - 1$. In this case, if we are at character $i$ (going from $0$ to $n-1$) of word $X$, we start the comparison from character $j=\max(0, i - e)$ of word $Y$ and end at character $j=\min(i+e, m-1)$.
+In this operation, we can prepare two boolean vectors indicating the position of the character having a match in the other word.
+%
+The number of transpositions $t$ is calculated by comparing the i\textsuperscript{th} matching character of $X$ with the i\textsuperscript{th} matching character of $Y$. We count the number of times $x_i \ne y_i$ and divide it by two (see Algorithm \ref{algo:jaro-transpo}).
+\vspace{-6pt}
+\begin{algorithm}[ht]
+	\KwData{Xmatch, Ymatch : boolean vectors}
+	\KwResult{t: integer}
+	t $\leftarrow$ 0 ; j $\leftarrow$ 0\;
+	
+	\Pour{i $ \in 0 \ldots m$ }{
+		\Si{Xmatch[i] = True}{
+			\lTq{Ymatch[j] $\ne$ True}{
+				j $\leftarrow$ j + 1
+			}
+			
+			\lSi{$x_i \ne y_j$}{
+				t $\leftarrow$ t + 1
+			}
+			j $\leftarrow$ j + 1\;
+		}
+	}
+	
+	t $\leftarrow$ t/2\;
+	
+	\caption{Calculation of the number of transpositions between two words X and Y in Jaro Distance \label{algo:jaro-transpo}}
+	
+\end{algorithm}
+
+Let's take the example of "amibe" and "immature" with lengths 5 and 8 respectively. The separation will be $e=\max(5, 8)/2 - 1 = 3$. Figure \ref{fig:jaro} represents the calculation of the distance between these two words using the two possible orders. In the matrix, $0$ means "False" and $1$ means "True" (match). The bold cells represent the search range using the separation of 3. The underlined cells represent the intersection between the i\textsuperscript{th} match of X and the i\textsuperscript{th} match of Y. The underlined matches of the vectors of the two words represent transpositions.
+
+%===================================================================================
+\section{Text Segmentation}
+%===================================================================================
+
+Text can be processed when segmented into smaller passages; these can be chapters, paragraphs, sentences, or words depending on the desired granularity. In several languages, sentences are delimited by a period or a specific mark, and words are delimited by spaces. Even in these languages, the delimiter can be used for other purposes. There are languages where there is no sentence or word delimiter or both.
+
+\subsection{Sentence Delimitation}
+
+To separate sentences in a semi-structured format, such as HTML, we can use markers like the \expword{\textless P\textgreater} tag. However, when dealing with unstructured text, many languages use markers like the period, exclamation point, and question mark to mark the end of a sentence. In this case, we can use a simple regular expression \expword{/[.?!]/} to delimit sentences in languages like French, English, etc. Sometimes we want to separate long sentences with clauses separated by commas. Also, quotes can cause a problem: is the sentence inside separated, or is it a continuation of the main clause? For example, \expword{He said, "I'm tired." returning to his bed.} The period in these languages is not always used to separate sentences. It can be used in numbers: \expword{123,456.78 (American style) 123.456,78 (European style)}. Abbreviations like "Mr.," "Dr.," and "etc." contain periods and can be in the middle of a sentence. They can also be at the end; so, you really need to be able to detect abbreviations and whether they mark the end of the sentence or not. If all of this doesn't seem problematic, we can always try to separate sentences in Thai. This language does not use markers to separate sentences.
+
+When the sentence marker is reserved for other uses, there are always factors that help the reader decide whether it is a sentence delimiter or not. These factors can be extracted by observing how the language defines the end of a sentence. Some contextual factors have been proposed and used for sentence segmentation \cite{10-palmer}:
+\begin{itemize}
+	\item \optword{Case}: Sentences always start with an uppercase letter. But, this is not always the case; we can find an abbreviation followed by a proper name (e.g., "Mr. Aries"). In addition, it is not guaranteed that the writer respects writing rules. We can see this, for example, on social networks where many rules are abandoned.
+	
+	\item \optword{Proper Names}: Proper names start with an uppercase letter; they may not be the beginning. In the previous example ("Mr. Aries"), we can deduce that the period does not represent a separation since both words start with an uppercase letter, and the second is a proper name. In this case, the probability that the first is an abbreviation is high, especially if the word is in the middle of the sentence.
+	
+	\item \optword{Grammatical Category}: The categories of words surrounding the period can help the decision (boundary or not). In fact, \citet{97-palmer-hearst} were able to improve sentence boundary detection by using the grammatical categories of the two words before and after the period with a machine learning algorithm.
+	
+	\item \optword{Word Length}: Abbreviations are shorter.
+	
+	\item \optword{Prefixes and Suffixes}: Words with affixes are less likely to be abbreviations.
+	
+	\item \optword{Abbreviation Classes}: Abbreviations can be at the end of the sentence. But, there is a set of abbreviations that are always followed by another word, such as "Mr." \citet{89-riley,97-reynar-ratnaparkhi} divide abbreviations into two categories: titles (which cannot be at the end of a sentence (e.g., "Mr.", "Dr.", etc.) and corporate indicators (which can be at the end of a sentence (e.g., "Corp.", "S.P.A.", etc.)).
+\end{itemize}
+
+Automatic detection of sentence boundaries can be accomplished using manual rules or using machine learning. In the first approach, we can use regular expressions to detect delimiters. Then, we can use a list of abbreviations to improve the decision. Rules can be enriched by introducing the factors discussed earlier. To avoid manually writing these rules, we can use a machine learning algorithm that classifies the period as a delimiter/non-delimiter based on these same rules.
+
+
+\subsection{Word Segmentation}
+
+Several languages (Arabic, French, English, etc.) use space as a word delimiter. 
+A simple regular expression like \expword{/[ ]+/} can be used to separate words. 
+But sometimes we want to retrieve an expression with multiple words; like the case of dates, numbers, etc. 
+An example of numbers is "\expword{nine hundred forty five}"; this expression can be considered a single token in some processing. 
+In some languages, the apostrophe can be a source of ambiguity. In English, the apostrophe can be used with an "\textit{s}" in the possessive form (\expword{Karim's thesis}), contractions (\expword{she's, it's, I'm, we've}), or in the plural of some words (\expword{I.D.'s, 1980's}). In French, there are quite a few examples of contractions: contraction of articles (\expword{l'homme, c'était}), contraction of pronouns (\expword{j'ai, je l'ai}), and other forms (\expword{n'y, qu'ils, d'ailleurs}). Some languages use compound words, either by composition or by hyphen. In German, it is common to use word composition: noun-noun (\expword{Lebensversicherung: life insurance}), adverb-noun (\expword{Nichtraucher: non-smoker}), and preposition-noun (\expword{Nachkriegszeit: post-war period}). Other languages use the hyphen, such as English (\expword{end-of-file, classification-based}) and French (\expword{va-t-il, c'est-à-dire, celui-ci}). There are languages, like Japanese, that do not use markers to separate words (\expword{今年は本当に忙しかったです。}).
+
+There are two approaches to word segmentation: rule-based and statistical. The rule-based approach mainly uses regular expressions based on morphological rules. It can also use word lists. For example, in a \keyword{Scriptio Continua}-type language like Japanese and Chinese, we can use a dictionary and compare words by starting from the end by taking the longest sequence. The statistical approach uses a language model to calculate the probability that a character marks the end of a word. Language models will be presented in the next chapter.
+
+
+%Approches
+%\begin{itemize}
+%	\item Par règles : en utilisant des expressions régulières 
+%	\begin{itemize}
+%		\item \url{https://www.nltk.org/api/nltk.tokenize.html}
+%		\item \url{https://nlp.stanford.edu/software/tokenizer.shtml}
+%		\item \url{https://spacy.io/}
+%		\item \url{https://github.com/kariminf/jslingua}
+%		\item \url{https://github.com/linuxscout/pyarabic}
+%	\end{itemize}
+%	\item Statistique : en utilisant un modèle de langue pour calculer la probabilité qu'un caractère marque la  fin d'un mot 
+%	\begin{itemize}
+%		\item \url{https://nlp.stanford.edu/software/segmenter.html}
+%		\item \url{https://opennlp.apache.org/}
+%	\end{itemize}
+%\end{itemize}
+
+%===================================================================================
+\section{Text Segmentation}
+%===================================================================================
+
+A text can be processed when it is segmented into smaller units; these can be chapters, paragraphs, sentences, or words depending on the desired granularity. 
+In several languages, sentences are delimited by a period or a specific mark, and words are delimited by spaces. 
+Even in these languages, the delimiter may be used for other purposes. 
+There are languages where there is no sentence or word delimiter, or both.
+
+\subsection{Sentence Delimitation}
+
+To separate sentences in a semi-structured format, such as HTML, we can use markers like the \expword{\textless P\textgreater} tag. 
+However, when it comes to unstructured text, many languages use markers like the period, exclamation mark, and question mark to mark the end of a sentence. 
+In this case, we can use a simple regular expression \expword{/[.?!]/} to delimit sentences in languages like French, English, etc. 
+Sometimes, we want to separate long sentences with clauses separated by commas. 
+Also, quotes can cause a problem: is the sentence inside separated, or is it a continuation of the main clause? 
+For example, \expword{He said, "I am tired," returning to his bed.}.
+The period in these languages is not always used to separate sentences. 
+It can be used in numbers: \expword{123,456.78 (American style) 123.456,78 (European style)}.
+Abbreviations like "Mr.", "Dr.", and "etc." contain periods and may appear in the middle of a sentence. 
+They can also appear at the end; so, we really need to be able to detect abbreviations and whether they mark the end of a sentence or not. 
+If all this doesn't seem problematic, we can still try separating Thai sentences. 
+This language does not use markers to separate sentences.
+
+When the sentence marker is reserved for other uses, there are always factors that help the reader decide whether it is a sentence delimiter or not. 
+These factors can be extracted by observing how the language defines the end of the sentence. 
+Some contextual factors have been proposed and used for sentence segmentation \cite{10-palmer}:
+\begin{itemize}
+	\item \optword{Casing}: Sentences always begin with an uppercase letter. 
+	But, this is not always the case; we can find an abbreviation followed by a proper noun (Ex. "\expword{Mr. Aries}"). 
+	Moreover, it is not guaranteed that the writer follows the writing rules. 
+	We can see this, for example, in social networks where several rules are abandoned.
+	
+	\item \optword{Proper Names}: Proper names start with an uppercase letter; they may not be the beginning. 
+	In the previous example ("\expword{Mr. Aries}"), we can deduce that the period does not represent a separation since both words start with an uppercase letter, and the second is a proper name. 
+	In this case, the probability that the first is an abbreviation is high, especially if the word is in the middle of the sentence.
+	
+	\item \optword{Grammatical Category}: The grammatical categories of the words surrounding the period can help the decision (boundary or not). 
+	In fact, \citet{97-palmer-hearst} were able to improve sentence boundary detection by using the grammatical categories of the two words before and after the period with a machine learning algorithm. 
+	
+	\item \optword{Word Length}: Abbreviations are shorter. 
+	Let's always go back to the previous example; it is clear that "M" is not really a word.
+	
+	\item \optword{Prefixes and Suffixes}: Words with affixes are less likely to be abbreviations.
+	
+	\item \optword{Abbreviation Classes}: Abbreviations may appear at the end of the sentence. 
+	But, there is a set of abbreviations that are always followed by another word, such as "Mr.".
+	\citet{89-riley,97-reynar-ratnaparkhi} divide abbreviations into two categories: titles (which cannot be at the end of a sentence (Ex. "\expword{Mr.}", "\expword{Dr.}", etc.) and corporate indicators (which can be at the end of a sentence (Ex. "\expword{Corp.}", "\expword{S.P.A.}", etc.)).
+\end{itemize}
+
+% Different sentence boundary detection algorithms
+Automatic sentence boundary detection can be accomplished using manual rules or using machine learning. 
+In the first approach, we can use regular expressions primarily based on morphological rules.
+It can also use lists of words. 
+For example, in a \keyword{Scriptio Continua} language like Japanese and Chinese, we can use a dictionary and compare words starting from the end by taking the longest sequence.
+The statistical approach uses a language model to calculate the probability that a character marks the end of a sentence. 
+Language models will be presented in the next chapter. 
+
+
+
+%===================================================================================
+\section{Text Filtering}
+%===================================================================================
+
+Text can contain characters, words, and expressions that can hinder its processing. 
+To facilitate the latter, it is necessary to remove noise. 
+A very common example is the presence of special characters, such as non-printable characters, in the text. 
+Words containing these characters are not considered the same as words without these characters. 
+In general, these characters originate from web pages or PDFs (text extraction from PDFs or other forms of images).
+Keywords for textual formats are an example of words to filter. 
+We can find this in the tags of some semi-structured formats like HTML, XML, etc.
+
+
+\optword{Stop words} are non-significant words like prepositions, articles, and pronouns.
+Removing stop words can be used if many words in the document do not contribute particularly to describing its content.
+To improve system performance, several tasks (such as information retrieval and automatic summarization) make use of this technique.
+However, we may come across special cases where this can cause problems. 
+For example, the phrase "\expword{To be or not to be}" will be completely ignored since all its words are stop words.
+The proper noun "\expword{Will}" may be ignored by confusion with the verb "\expword{to be}" in the future.
+
+
+%===================================================================================
+\section{Morphology}
+%===================================================================================
+
+We saw in the previous chapter that there are quite a few languages that allow word formation using inflection (e.g., \expword{conjugation}) and derivation (e.g., \expword{nominalization}). 
+The most used word formation is affixation following certain rules. 
+For example, to conjugate the verb "\expword{study}" with the pronoun "\expword{we}" in the present tense, we remove the suffix "\expword{er}" to have the root "\expword{study}" and add the suffix "\expword{ing}". 
+Automating this task can help several applications, such as natural language generation (NLG). 
+The inverse task is to find a standard form of the different variations; this is a normalization technique.
+It can help in tasks such as information retrieval and natural language understanding (NLU).
+
+\subsection{Word Formation}
+
+In synthetic languages, we can form words using inflection or derivation. 
+Inflection generates morphological variations of a word according to grammatical features (number, gender, etc.). 
+The two types of inflection are verb conjugation and noun, pronoun, adjective, and determinant declension.
+As for derivation, the created words form a new lexeme (a different sense from the original word) or they belong to another grammatical category. 
+An example of a new lexeme,  \expword{cut \textrightarrow\ re-cut, \<`ml> \textrightarrow\ \<ist`ml>}.
+The change of category can be due to nominalization (\expword{classify \textrightarrow\ classification, classifier ; \<darasa> \textrightarrow\ \<darsuN, madrasaTuN, mudarrisuN, dArisuN>}) or the adjective (\expword{tire \textrightarrow\ tiring}), etc.
+
+
+Word formation follows well-defined rules, so the problem can be solved using a finite-state automaton. 
+Of course, there are special cases that can simply be stored in a file. 
+The rule-based approach is much more used in this case, but we can find research that uses the character level to learn to generate forms of a given word, like the MLConjug project\footnote{MLConjug: \url{https://github.com/SekouD/mlconjug} [visited on 2021-09-08]}. 
+From a point of view, machine learning should be used to solve really difficult problems (generally, at the syntactic, semantic, and pragmatic levels). 
+Other than the statistical approach, several traditional methods have been used for word formation. 
+In the context of automatic verb conjugation, we can mention:
+\begin{itemize}
+	\item \optword{Database}: In this solution, we store all verbs in a database with all possible variations. 
+	The strength of this solution is that we can check if a verb belongs to the language. 
+	Also, in Arabic, verbs can have the same letters; the only difference is in vocalization (diacritics).
+	Despite these strengths, this solution is really difficult to implement; we have to search for all verbs and all possible variations. 
+	
+	\item \optword{Templates}: In this solution, we store conjugations of certain verbs as templates and another list of all verbs in the language with their respective templates.
+	This is the most used form in French (for example, the verb "\expword{smile}" has as a template the verb "\expword{laugh}"). 
+	It is similar to the previous solution but with less storage space.
+	
+	\item \optword{Rules}: In this solution, we use IF-ELSE rules and regular expressions.
+	An example of this method can be found in the Qutrub project\footnote{Qutrub: \url{https://github.com/linuxscout/qutrub} [visited on 2021-09-08]} for automatic Arabic conjugation.  
+	Another example of this type is that of JsLingua\footnote{JsLingua: \url{https://github.com/kariminf/jslingua} [visited on 2021-09-08]} for the conjugation of verbs in Arabic, English, French, and Japanese. 
+	The advantage is that we do not need to create a database; the solution is faster. 
+	But, we have to manage many rules, and we would also need a database if we wanted to check the verb type (there may be confused verbs).
+\end{itemize}
+
+
+\subsection{Form Reduction}
+
+There are two reduced types of a word form: stem and lemma. 
+The stem is a morpheme that may not be a word from the vocabulary, while the lemma is a word that represents the lexeme.
+Stemming is the operation of removing affixes to obtain a stem. 
+For example, \expword{search \textrightarrow\ search}. 
+This task is fast and preferred in tasks such as information retrieval where we need more execution speed even at the expense of accuracy. 
+Some techniques for stemming are as follows:
+\begin{itemize}
+	\item \optword{Database}: Store all terms and their stems in a table. 
+	\item \optword{Statistics}: Use a language model (such as N-Gram) to estimate the truncation position.
+	\item \optword{Rules}: Use a set of condition/action rules to detect affixes and truncate them. 
+	The most well-known algorithm is the Porter stemming algorithm \cite{1980-porter} for English. 
+	There is a very well-known framework called SnowBall\footnote{SnowBall: \url{https://snowballstem.org/} [visited on 2021-09-08]} to realize stemmers of this kind. 
+	In this framework, several conditions are used: on the stem, on the affix, or on the rule. 
+	A condition on the stem can be the length, the end, if it contains vowels, etc.
+	For example, \expword{(*v*) Y \textrightarrow\ I: happy \textrightarrow\ happi, sky \textrightarrow\ sky}.
+	A condition on the affix can be "there is only the suffix."
+	For example, \expword{SSES \textrightarrow\ SS, ATIONAL \textrightarrow\ ATE}.
+	A condition on the rule can be: deactivating certain rules if one has been executed.
+\end{itemize}
+
+Lemmatization seeks the canonical form of a word called "lemma."
+For example, \expword{understand \textrightarrow\ understand, better \textrightarrow\ good}
+This task is more difficult than stemming because we need the context of the word (e.g., \expword{saw \textrightarrow\ (V) see or (N) saw}). 
+\begin{itemize}
+	\item \optword{Lexical Bases}: Here, we use stemming with other rules to search for a form in a list of possible lemmas (a dictionary).
+	An example of this type of lemmatization is the morphy lemmatization of WordNet (see algorithm \ref{algo:morphy}).
+	
+	\item \optword{Machine Learning}: We try to learn the lemma of words based on criteria such as their grammatical categories.
+	The OpenNLP tool\footnote{OpenNLP lemmatization: \url{https://opennlp.apache.org/docs/1.8.0/manual/opennlp.html\#tools.lemmatizer} [visited on 2021-09-08]} implements a statistical version of lemmatization.
+	
+\end{itemize}
+
+\begin{algorithm}[H]
+	\KwData{word, category}
+	\KwResult{list of possible lemmas}
+	
+	\If{word $ \in $  list\_exceptions[category]}{
+		\Return search\_in\_dictionary(\{word\} $ \cup $ list\_exceptions[category][word])\;
+	}
+	
+	forms = \{word\}
+	
+	\While{forms $ \ne \emptyset $}{
+		forms = remove\_affixes(forms, category)\;
+		
+		results = search\_in\_dictionary(\{word\} $ \cup $ forms)\;
+		
+		\If{results $ \ne \emptyset $}{
+			\Return results \;
+		}
+	}
+	
+	\Return $ \emptyset $\;
+	
+	\caption{WordNet's "morphy" Lemmatization \label{algo:morphy}}
+	
+\end{algorithm}
+
+\sectioni{Discussion}
+
+Morphology is the simplest level in language processing. Tasks at this level are more character-based (grapheme), which is the most basic unit in the writing system. Most problems can be solved with a finite-state automaton; hence the use of regular expressions. Regular expressions can be used to search for words, extract sentences and words, extract parts of a word (root), etc. All these tasks boil down to searching for a segment in the text. For approximate search, character-level comparison methods (edit distance) are used.
+
+Text is composed of units that can be chapters, sentences, words, or characters. The word is the smallest unit that has meaning. So, to process a text, it must be broken down into small units to handle larger units, and so on. Hence the importance of text segmentation. These units may have the same meaning but several variations. In understanding the text, we try to represent the text in a more abstract way. Therefore, a variation can be represented by a word representing more features such as gender, number, etc. Some words need to be filtered as they are considered noise.
+
+Certainly, tasks at this level can be simple. However, they are crucial for the success of more advanced tasks. These tasks are highly dependent on the processed language. As they are straightforward, tools can be implemented for any language by knowing the morphological rules. Unfortunately, not all languages provide such tools. It is the responsibility of people who speak these languages to develop them in an increasingly digital world.
+
+\sectioni{Additional Resources}
+
+\subsubsection*{Exercises}
+
+\begin{enumerate}
+	\item Provide the regular expression that searches for the words "\textbf{il}" (singular and plural). For example: \expword{Il a passé par son lieu de travail et il a dit : ``j'ai devenu vieil ; ils n'ont plus besoin de moi".}
+	\item Given a log, we want to display lines that start with "\textbf{Error}"; contain a number starting with a digit other than zero, have 3 to 5 consecutive zeros, and end with a digit other than zero; and end with "\textbf{...}"
+	\item Provide the regular expression that searches for words containing the letters "l", "i," and "n" in that order. The beginning of the word can be uppercase; the rest of the word is lowercase. For example, \expword{lion, Linux, violine, absolution, Aladin, ...}
+	\item To write the word "Rassemblement," an error was made: "Rasenlbement." Indicate the position(s) of each editing operation compared to the correct word (If the operation does not exist, write 0. Transposition and substitution take precedence, i.e., they should not be considered as insertion/deletion operations):
+	
+	\begin{tabular}{|lll|}
+		\hline 
+		Insertion: 1 & & Substitution: 0 \\
+		Deletion: 2 & & Transposition: 0 \\
+		\hline
+	\end{tabular}
+	
+	\item Calculate the Hamming and Levenshtein distances between the two words "tray" and "tary." Indicate the different editing operations for each distance. Redo the same for the Levenshtein distance (substitution weight = 1).
+	
+	\item What are the sufficient features to detect sentence boundaries in the text "\textbf{I met Mr. Karim. He is at Hassiba Ave. He went to buy a PC.}" (Ave. = avenue [FR: rue]), given that a normalization phase has been applied? This phase transforms abbreviations/acronyms into their long versions, keeping the period when the next word starts with a capital letter, and the abbreviation can occur at the end of the sentence (useful but not necessary features in this text are considered incorrect):
+	
+	\begin{tabular}{|lll|}
+		\hline 
+		\Square\ Case (after ".") & \Square\ Grammatical category (before ".") & \Square\ Word length (before ".")\\
+		\Square\ Proper noun (before ".") & \Square\ Grammatical category (after ".") & \Square\ Word length (after ".")\\
+		\Square\ Proper noun (after ".") & \Square\ Abbreviation classes & \Square\ None; the "." is sufficient\\
+		\hline
+	\end{tabular}
+	
+	\item Choose, for each task, the operation(s) of form reduction often used (with affix elimination):
+	
+	\begin{tabular}{|llll|}
+		\hline 
+		Task & Lemmatization & Stemming & None\\
+		\hline
+		Information Retrieval (IR) & \CheckedBox & \Square & \Square \\
+		Natural Language Understanding (NLU) & \Square & \CheckedBox & \Square \\
+		\hline
+	\end{tabular}
+	
+\end{enumerate}
+
+
+
+\subsubsection*{Demos}
+
+There are several demos available from the Github repository (CH02).
+Stanford CoreNLP is an NLP tool that supports Arabic, Chinese, English, French, German, and Spanish.
+It is implemented in Java, where tasks are designed in the form of pipelines.
+In this tutorial, we present segmentation and lemmatization using this tool.
+
+LangPi is another tool implemented in Java for NLP.
+It was developed by the author of this book mainly to facilitate text preprocessing.
+Preprocessing tasks (normalization, segmentation, stemming, and stop-word filtering) are accessible through interfaces that facilitate adding new languages.
+Currently, this tool supports more than 40 languages.
+In these tutorials, we present how to preprocess a text using this tool.
+
+Apache OpenNLP is a Java-based NLP tool.
+It provides interfaces for different tasks where one can train a model for a specific language.
+In this tutorial, we present the language detection model: given a text, detect its language.
+We tried to train a model to differentiate between binary, decimal, and hexadecimal languages.
+The training dataset is a bit small, so the model may not perform well.
+Then, we present sentence and word segmentation, as well as training a sentence segmentation model.
+
+NLTK is a well-known tool, offering several NLP tasks in Python.
+In this tutorial, we present sentence, word, syllable, and tweet segmentation.
+The tool supports multiple languages for tasks such as stop-word filtering, stemming, and lemmatization.
+These tasks are presented along with different edit distances.
+
+Spacy is a Python tool where tasks are represented as pipelines.
+Each language has possible pipelines that are stored as a model after training.
+In this tutorial, we use the English model for segmentation (sentences and words), stop-word filtering, and lemmatization.
+
+\subsubsection*{Practical Work: Contact Mining}
+
+We want to retrieve email addresses, social media, and phone numbers listed on the "contact us" pages of websites in Algeria.
+The problem is that these pages represent this information in various ways.
+To retrieve and standardize the format of this information, we will use regular expressions.
+
+The complete statement of the practical work, along with codes and data, can be downloaded from the Github repository.
+The practical work is implemented entirely from scratch: contact search, evaluation, etc.
+The student only needs to introduce regular expressions to improve the F1 score.
+The available programming languages (for now) are Java, Javascript/nodejs, and Python.
+
+%\end{ressources}
+
+%=====================================================================
+\ifx\wholebook\relax\else
+% \cleardoublepage
+% \bibliographystyle{../use/ESIbib}
+% \bibliography{../bib/RATstat}
+	\end{document}
+\fi
+%===================================================================== 

@@ -1,0 +1,393 @@
+% !TEX TS-program = xelatex
+% !TeX program = xelatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+%=====================================================================
+\ifx\wholebook\relax\else
+	\documentclass{KBook}
+	\input{calls}
+	\begin{document}
+		\mainmatter
+	
+\fi
+%=====================================================================
+\changegraphpath{../img/coref/}
+
+\chapter{Coreference Resolution}
+
+\begin{introduction}[NAT. LANG. P\textcolor{white}{R}OC.]
+	\lettrine{R}{esolving} coreferences is the task of finding referees (antecedents) of a text's references. 
+	Personal pronouns are an example of references. Often, sentences are clear only when we know the meanings of their references. 
+	The task that allows us to achieve this is coreference resolution. 
+	Similar tasks include semantic annotation and named entity recognition. 
+	In this chapter, we will discuss references in the linguistic context as well as coreference resolution.
+\end{introduction} 
+
+Let's take the example "\expword{The girl picked a flower. She smelled it. It has a very good smell.}" representing three consecutive sentences. To understand the meaning of the second sentence, we need to know that "she" means "the girl" and "it" means "a flower". The pronoun "she" in the third sentence is more difficult to resolve; does it refer to the girl or the flower? By introducing the meaning of the second sentence "the girl smelled a flower," we can deduce that "she" refers to "a flower." Several tasks can motivate coreference resolution:
+\begin{itemize}
+	\item Automatic summarization: in the case of extractive automatic summarization, we try to extract the most relevant sentences. Suppose the summary of the previous text is the third sentence. As a post-processing step, we need to replace the missing references to make more sense of the summary.
+	\item Question/Answering: in the previous example, the answer to the question "\expword{Who smells good?}" is not "she" but rather "the flower."
+	\item Dialogue system: the system must be able to link the references used by the user to carry on a conversation.
+	\item Automatic translation: there are languages that do not use references in their sentences; we need to find the reference using the context. In this case, we can use this task to find the referenced entity.
+\end{itemize}
+
+%===================================================================================
+\section{References}
+%===================================================================================
+
+A reference is linguistically defined in Larousse as: "\textit{Property of linguistic signs allowing them to refer to extralinguistic entities (objects or individuals belonging to the real world or to an imaginary world)}." It is also known as the "referent." In this section, we will discuss the forms of references, ways of referencing, and their properties.
+
+
+%===================================================================================
+\subsection{Forms of References}
+%===================================================================================
+
+References can be classified according to syntactic categories, in addition to other criteria \cite{2015-schmolz}. The most well-known form of references is the use of pronouns, especially personal pronouns. A \textit{pronoun} is a function word used to stand in for a noun or a nominal phrase. The most common category is the personal pronoun, which represents the three types of grammatical persons: the speaker, the addressee, and the absent person. An example of this kind of reference is: ``\underline{Karim} est entré. \underline{Il} a commencé le cours." A possessive pronoun refers to a possessor object (and sometimes to a possessed object). For example, ``\underline{Karim} a commencé \underline{son} cours." Resolving the reference "son" amounts to answering the question "the course of whom?" A demonstrative pronoun is the name of what we want to show. For example, ``\underline{Ces livres} sont intéressants. Je vous conseille \underline{celui-ci}." These three are the most commonly used categories of pronouns.
+
+Another form of reference can be \textit{nominal phrases}. They can be used to reference entities. For example, ``J'ai un petit \underline{chat}. \underline{Cet animal} est très méchant." To understand the second sentence, we must know which animal we are talking about. We can find nominal phrases with a definite article that are actually references. For example, ``J'ai un petit \underline{chat}. \underline{Le chat} est très méchant." Unlike pronouns, which are always references, nominal phrases may not be. So, in addition to looking for the antecedent, we must also decide whether it is a reference or not.
+
+\textit{Proper nouns} can be linked with other proper nouns. In general, a proper noun refers to another complete proper noun (with more information). We can mention abbreviations that can be references to their complete versions. For example, ``\underline{L'école nationale supérieure d'informatique} se situe à Alger. Comme toutes les universités algériennes, il faut avoir le BAC pour étudier à \underline{l'ESI}." Also, we can find this in proper nouns that are long, where repetition takes up more space. In most languages, we tend to use more contracted forms of proper nouns. For example, ``\underline{La république algérienne démocratique et populaire} est un pays d'Afrique du nord. \underline{L'Algérie} a une superficie de plus de 2 millions km\textsuperscript{2}".
+
+There are languages where references are completely omitted; these references are known by the name \textit{Zero Anaphora}. When we do not want to repeat the same nominal phrase, we can omit it. For example, ``\underline{Karim} a présenté et \underline{$ \phi $} a expliqué le cours." To find the subject of the verb "expliquer," we must resolve a reference that does not exist; marked here by "$ \phi $". In some languages, such as Japanese, it is more natural to omit personal pronouns in sentences. For example, ``\underline{カリムさん}はESIに生きます。\underline{$ \phi $} あそこに教えます。" This can be translated, word for word, as: ``\underline{Mr. Karim} à l'ESI va. \underline{$ \phi $} là-bas enseigne." The pronoun "il" has been omitted and can be detected using the context.
+
+There are more complex forms that do not reference an object but rather an action. One of these forms is the verbal phrase (e.g., ``Si Mouloud \underline{achète un nouveau vélo}, je \underline{le ferai} aussi."). In this case, a verbal phrase refers only to another verbal phrase. We can use adverbs as references (e.g., ``Moammed \underline{was too busy}, and \underline{so} was I.").
+
+
+
+%===================================================================================
+\subsection{Referencing Method}
+%===================================================================================
+
+Referencing can be classified according to the position of the reference relative to that of the referent in anaphora and cataphora. In terms of the number of antecedents, we can have a single antecedent or shared antecedents. According to the referencing direction, we can have a reference in one direction or two entities in coreference.
+
+\begin{itemize}
+	\item \textbf{Anaphora:} a reference to a preceding word or phrase called an "antecedent." In general, this term is used even for references to elements that come after. But here, this concept has a term that defines it (next point). An anaphora can be a pronoun (e.g., ``\underline{Le cours} est très long. \underline{Il} prendra plus de temps."), a nominal phrase (e.g., ``J'ai rencontré \underline{Fatima}. \underline{Une personne} qui adore assister les autres."), a zero anaphora (e.g., ``\underline{Le chat} a attrapé la souris et \underline{$ \phi $} l'a mangé."), etc.
+	
+	\item \textbf{Cataphora:} a reference to a following word or phrase called a "postcedent." It is like an anaphora, but the referent comes after the reference. Example of a pronoun (e.g., ``\underline{Il} est très long, \underline{ce cours}!"), nominal phrase (e.g., ``If you want \underline{a book}, take \underline{the one on the shelf}."), etc. Here, the reference of a zero anaphora type cannot manifest itself as a cataphora. Since in languages that use this phenomenon, we can understand the reference from the context (what we have already said).
+	
+	\item \textbf{Shared Antecedents:} a reference to multiple words and/or phrases. Whether an anaphora or a cataphora, a reference can have multiple referents in a single relationship. Example, ``\underline{Le cours} sera suivi par \underline{un exercice}. \underline{Ils} sont importants pour la compréhension." Here, the relationship is not binary; the referent is a combination of several elements.
+	
+	\item \textbf{Noun Phrases in Coreference:} two noun phrases where each is a reference to the other. In this case, the first is an antecedent referent to the second, and at the same time, the second is a postcedent referent to the first. Example, ``\underline{Certains de nos collègues} nous ont vraiment soutenu. \underline{Ce genre de personnes} gagne notre gratitude."
+	
+\end{itemize}
+
+In what we have presented, the referent exists in the text; it is textual. We call this "\textbf{Endophora}," which includes anaphors and cataphors. When the reference is contextual (it does not exist in the text), we call it "\textbf{Exophora}." Exophora is an element that does not refer to any object or situation; it means that the reference can only be known based on context \cite{2014-halliday-hasan}. In the example ``Je vais \underline{là-bas}," the word "là-bas" cannot be understood if we are with the interlocutor. This reference can be an endophor if the destination has been mentioned in the text. But when we talk to someone, we don't use just spoken language; we also use signs.
+
+
+%===================================================================================
+\subsection{Properties of Coreference Relations}
+%===================================================================================
+
+To detect the referent, certain properties such as agreement in gender and number with the reference can be used. Some grammatical features must be identical for both: reference and referent. Here, we will discuss the three features that define pronouns: number, person, and gender. Of course, there are languages that do not support all three features. According to \textbf{number}, an entity can be in the singular, dual, or plural (there are other forms). In the example ``\underline{Les oiseaux} sont sur un arbre. \underline{Ils} chantent," the pronoun ``ils" refers to ``les oiseaux" since both are in the plural. In the case of shared antecedents, this property will be more difficult to manage. For example, ``\underline{Le cours} sera suivi par \underline{un exercice}. \underline{Ils} sont importants pour la compréhension." Another problem is the existence of singular entities that refer to a group of entities. In their case, we can use the singular or plural as a reference. For example, the company ``IBM" can be referenced by ``elle" or "ils."
+
+According to \textbf{person}, an entity can be considered as the first, second, or third person. In general, the reference and the referent must be in agreement in terms of person. For example, ``\underline{Mon frère}\textsubscript{1} et \underline{moi}\textsubscript{2} avons réparé \underline{son vélo}\textsubscript{1} après \underline{le mien}\textsubscript{2}." But, we can find texts where the interlocutor uses the third person instead of the second for a comic effect or to attract someone's attention.
+
+According to \textbf{gender}, an entity can be masculine, feminine, or neutral. For example, ``Lorsque la fille a rencontré son \underline{père}, \underline{il} a été content."
+
+In addition to grammatical features, there are some properties that help detect the referent (antecedent). \textbf{Binding theory constraints} are syntactic constraints on the mention-antecedent relationship. A reflexive pronoun refers to the agent of the action, which is generally a subject. In French, it can be conjoint (\expword{me, te, se, nous, vous}) or disjoint (\expword{moi-même, soi, nous-même, etc.}). An example in English, ``Janet bought herself a bottle of fish sauce." Here, we know that ``herself" is a reference to ``Janet" unlike the pronoun ``her" in the example ``Janet bought her a bottle of fish sauce." \textbf{Recency} means that entities mentioned more recently are more likely to be an antecedent. For example, ``Le médecin a trouvé une vieille carte. Jim a trouvé \underline{une carte} encore plus ancienne. \underline{Elle} décrivait une île." Based on \textbf{grammatical role}, subjects are more likely to be referents than objects. For example, ``\underline{Karim} est allé au restaurant avec son ami. \underline{Il} a demandé un plat de couscous." The \textbf{semantic of the verb} plays a role in detecting the referent. The mention follows the emphasis of the verb; the one who caused the event. In the example ``\underline{John} telephoned Bill. \underline{He} lost the laptop," the telephone event was caused by the subject; so the pronoun ``he" refers to the subject. Unlike the example ``John criticized \underline{Bill}. \underline{He} lost the laptop." where the critique was caused by the object. Certainly, the agent here is the subject; but it's the object that triggered the critique event.
+
+
+%===================================================================================
+\section{Coreference Resolution}
+%===================================================================================
+
+Coreference resolution involves two steps: mention detection and linking of coreferences. First, it is necessary to detect the different references in the text. Then, these references must be linked to their referents. There are several linking models: Mention-Pair, Mention-Rank, and Entity-based. Coreference resolution can be accomplished by following one of two approaches: rule-based or machine learning. In the latter, we can rely on manually defined features or embeddings.
+
+
+
+%===================================================================================
+\subsection{Mention Detection}
+%===================================================================================
+
+Mentions are entities that can be nominal \keywordpl[P]{phrases} or pronouns.
+Identifying mentions in coreference is an important step in \ac{taln} tasks such as coreference resolution and named entity recognition.
+This step can be applied using a set of rules; like those defined by \citet{2013-lee-al}.
+We start by marking noun phrases, pronouns, and named entities that have not been marked in the text as mention candidates.
+Then, we select mentions by elimination as follows:
+
+\begin{itemize}
+	\item We would remove a mention if there was another larger mention having the same syntactic head. For example, we should remove \expword{La boite de développement} if another larger mention exists, such as \expword{La boite de développement située à Alger}.
+	
+	\item Numeric entities such as percentages, money, cardinals, and quantities should be excluded. For example, \expword{9\%}, \expword{100\$}, \expword{cent neuf}.
+	
+	\item We eliminate mentions that are part of another (quantifier + \expword{of}). For instance, \expword{a total of 177 projects}, \expword{none of them}, \expword{millions of people}.
+	
+	\item Pronouns that are not used as references (\expword{it} pleonastic) are removed. In the example \expword{It is thought that...}, the pronoun \expword{it} is not a reference. We can detect such pronouns using a list of cognitive verbs (e.g., \expword{believe, think, etc.}).
+	
+	\item We eliminate adjectival forms of nations or national acronyms (e.g., \expword{American}, \expword{U.S.}, \expword{U.K.}).
+\end{itemize}
+
+
+%===================================================================================
+\subsection{Another Method for Mention Detection}
+%===================================================================================
+
+Another method to detect whether a mention is coreference or not is by using machine learning. 
+In \cite{2013-uryupina-moschitti}, we start by generating the syntactic tree of a sentence. 
+We traverse the nodes and classify noun phrases as coreference or not using an SVM. 
+The features used are the properties presented earlier such as number, gender, etc.
+Other systems have been developed, but they are tied to a specific task and cannot be used independently. 
+Figure \ref{fig:det-mention-yu} represents three mention detection architectures proposed by \citet{2020-yu-al}. 
+Given a document $D$, we start by considering all possible spans marked by the starting word $w_{si}$ and the ending word $w_{ei}$ as mention candidates. 
+For example, the sentence "\expword{La boite de développement est loin}" contains $\frac{6 * 7}{2} = 21$ mention candidates: "\expword{La}", "\expword{La boite}", "\expword{La boite de}", etc.
+%Système (a)
+System (a) is a bit more complex: each word $w_i$ is represented by the concatenation of three embeddings $x_i$: \keyword[G]{GloVe}, \keyword[E]{ELMo}, and a character-based embedding using CNNs. 
+We pass the sentence through a \keyword[B]{Bi-LSTM} network to obtain another representation $x_i^*$, which is the concatenation of both forward and backward outputs. 
+To represent a mention $i$ (assuming it's the 4th in the provided list) by an embedding $h^*_i$, we apply attention over $\{x^*_{si} \ldots x^*_{ei}\}$; where $si$ and $ei$ are the starting and ending indices of the mention, respectively. 
+The attention can be formulated as follows (assuming a maximal number of words in a mention is fixed):
+
+\begin{align*}
+\alpha_t & = FFNN_\alpha(x_t^*) \\
+a_{i, t} & = \frac{exp(\alpha_t)}{\sum_{k=si}^{ei} exp(\alpha_k)} \\
+h_i^* & = \sum_{t=si}^{ei} a_{i, t} \cdot x_t \\
+\end{align*}
+The output $h^*_i$ is concatenated with the starting word embedding $x^*_{si}$, the ending word embedding $x^*_{ei}$, and the mention size embedding $\phi_i$. 
+This representation is passed through a feedforward neural network (FFNN) to decide whether the span is a mention or not.
+% Système b
+In system (b), each word is represented using only pretrained \keyword[E]{ELMo}; since the authors noticed that the other two representations do not enhance the task. 
+Then, the sentence is passed through a Bi-LSTM network to obtain a contextualized embedding $x_i^*$. 
+The code for each word is a concatenation of the model's hidden layers. 
+We use two feedforward neural networks (FFNN) to encode the beginning ($ h_s(i) = FFNN_s(x_{si}^*)$) and the end ($ h_e(i) = FFNN_e(x_{ei}^*)$) of the span $i$ as two vectors. 
+The encoded start and end are passed through a Biaffine classifier \cite{2017-dozat-manning}, which outputs a score as follows:
+\begin{align*}
+r_m(i) & = h_s(i)^\top W_m h_e + h_s(i) b_m \\
+p_m(i) & = \sigma(r_m(i)) \\
+\end{align*}
+$W_m$ est une matrice de $d\times d$ où $d$ est la taille de l'embedding.
+$b_m$ est un vecteur d'une dimension $d$ représentant le biais.
+% Système C
+In system (c), a pretrained \keyword[B]{BERT} model is used to generate word representations $x^*_t$. 
+For each candidate mention $i$ in this sentence, we take the starting $x^*_{si}$ and ending $x^*_{ei}$ representations and concatenate them to obtain the span representation. 
+The latter is used as input to a feedforward neural network (FFNN) to classify the span as a mention or not.
+
+\begin{figure}[ht]
+	\centering
+	\hgraphpage[\textwidth]{mention-detection-arch.pdf}
+	\caption[Trois architectures pour la détection des mentions]{Trois architectures pour la détection des mentions ; figure inspirée de \cite{2020-yu-al}}
+	\label{fig:det-mention-yu}
+\end{figure}
+
+\subsection{Coreference Resolution}
+
+Coreference resolution consists of linking a reference to its referent. 
+Generally, this operation is called mention clustering since we group all mentions that refer to the same entity together. 
+To do this, there are two classes of models: mention-based models and entity-based models. 
+In the following, we will consider coreferences as anaphors: mention and antecedent.
+
+\subsubsection{Mention-Pair Models}
+
+We train a binary classification model that takes two mentions $m_i$ and $m_j$ and outputs a probability that $m_i$ is an antecedent of $m_j$: $P(Coref|m_i, m_j)$. 
+The features used can be properties of both mentions, such as person, gender, number, etc.
+To detect coreferences, the model is applied pairwise.
+In Figure \ref{fig:mention-pair-exp}, the model must estimate a high probability P(coref| "Victoria Chen", "she") and a low probability P(coref| "Megabucks Banking", "she").
+Here, the word "she" is associated with several words without considering their relationships.
+
+\begin{figure}[ht]
+	\centering
+	\hgraphpage[.8\textwidth]{mention-pair-exp.pdf}
+	\caption[Exemple d'un modèle Mention-Pair]{Exemple d'un modèle Mention-Pair ; figure reconstruite de \cite{2019-jurafsky-martin}}
+	\label{fig:mention-pair-exp}
+\end{figure}
+
+To train the model, we use all possible binary combinations. 
+The problem is that we will have many negative examples, resulting in an imbalanced dataset. 
+One solution is to consider only negative mentions that lie between two positive mentions.
+
+This model is similar to the Mention-Pair model in that we compare mentions pairwise. 
+But the difference is that it learns to rank antecedents; it learns some kind of order. 
+In this case, we use different features on the reference $m_i$ and the antecedent $m_j$ to estimate a conditional probability $P(m_j|m_i)$.
+So, the task is to maximize the probability that a mention is an antecedent $\hat{a}$ as indicated in Equation \ref{eq:mention-rank} where $\epsilon$ means the mention has no antecedent. 
+\begin{equation}\label{eq:mention-rank}
+	\hat{a} = \arg\max_{j \in \{\epsilon, 1, \ldots, (i-1)\}} P(w_j|w_i) 
+\end{equation}
+In the training step, we need to choose a single positive example from those possible. 
+One approach is to take the nearest mention.
+Once an antecedent is detected, the rest of the antecedents are detected using transitivity. 
+Figure \ref{fig:mention-rank-exp} represents an example of Mention-Rank annotation.
+In this example, if we choose "Victoria Chen" as the antecedent of the pronoun "she," we should ignore the rest of the high probabilities (solid line).
+This ensures that there are no contradictory coreferences.
+\begin{figure}[ht]
+	\centering
+	\hgraphpage[.8\textwidth]{mention-rank-exp.pdf}
+	\caption[Exemple d'un modèle Mention-Rank]{Exemple d'un modèle Mention-Rank ; figure reconstruite de \cite{2019-jurafsky-martin}}
+	\label{fig:mention-rank-exp}
+\end{figure}
+
+
+
+\subsubsection{Entity-based models}
+
+The problem with mention-based models is that they compare mentions pairwise; they do not take the relationship with other coreferences into account.
+For example, "Ms. Kennedy $ \leftarrow $ Kennedy, Kennedy $ \leftarrow $ He".
+In these models, coreference is considered a classification problem; however, it should be considered a clustering problem.
+One method is to apply Mention-Rank on clusters rather than individual mentions.
+We start by creating single-mention clusters.
+Given two clusters of mentions, we check if the two are compatible using a learning algorithm.
+To represent each cluster, we can use RNNs on the mentions.
+We can also use mention features such as gender, number, etc.
+Using the trained model, we check pairs of clusters to decide whether they are compatible or not.
+If the clusters are compatible, we merge them and apply the same operation until the remaining clusters are no longer compatible.
+
+\section{Evaluation}
+
+There are several metrics to evaluate coreference resolution \cite{2016-moosavi-strube}.
+In \optword{MUC} (Message Understanding Conference), the evaluation is based on the number of common binary links between the reference and the system.
+The test corpus contains a text and a set of all possible binary links.
+This metric favors systems with long chains and does not take singletons (mentions without antecedents) into account.
+
+\optword{B\textsuperscript{3}} is a mention-based metric. Overall recall and precision are calculated in terms of local recalls and precisions with respect to a chain of mentions. Assuming that we have a number of recipient mention clusters (hypothesis), we annotate $H_i$ as the cluster containing mention $m_i$.
+Thus, the cluster containing mention $m_i$ according to the system is annotated $S_i$.
+If we have $N$ mentions, recall can be calculated using the number of common mentions, as shown in Equation \ref{eq:b3-r}, where $w_i$ is a weight assigned to mention $w_i$.
+\begin{equation}\label{eq:b3-r}
+	R = \sum_{i=1}^{N} w_i \frac{|H_i \bigcap S_i|}{|H_i|}
+\end{equation}
+
+
+\optword{CEAF} (Constrained entity-alignment F-Measure) uses each mention only once during calculation. To do this, it aligns a system entity (mention cluster) $S_i$ with another entity $H_j$ from the hypothesis (manual annotation) using a similarity measure. Two similarity measures have been used in Equations \ref{eq:ceaf1}.
+\begin{equation}\label{eq:ceaf1}
+	\phi_1(H_i, S_j) = |H_i \cap S_i | \quad \phi_2(H_i, S_j) = \frac{2|H_i \cap S_i | }{|H_i| + |S_j|}
+\end{equation}
+To calculate recall, we look for clusters that are most similar according to a similarity function $\phi$ (see Equation \ref{eq:ceaf-r}).
+\begin{equation}\label{eq:ceaf-r}
+	R = \frac{\max_{i,j} \phi(H_i, S_j)}{\sum_i \phi(H_i, H_i)}
+\end{equation}
+
+
+\optword{BLANC} (BiLateral assessment of noun-phrase coreference) is a link-based metric. The overall recall (precision) is the average of the recalls (precisions) of coreference and non-coreference links. Coreference links are represented as a tuple (reference, referent). So, given a number $N$ of mentions, we will have $N (N+1)/2$ possible coreference links. Table \ref{tab:blanc-confusion} represents the confusion matrix of BLANC, where ``w" means ``wrong", ``r" means ``right", ``c" means ``coreference", and ``n" means ``non-coreference". In this case, recall is calculated according to Equation \ref{eq:blanc-r}.
+\begin{equation}\label{eq:blanc-r}
+	R_c = \frac{rc}{rc+wn},\quad R_n = \frac{rn}{rn+wc},\quad R = \frac{R_c + R_n}{2}
+\end{equation}
+
+
+\begin{table}[ht]
+	\centering 
+	\begin{tabular}{llll}
+%		\hline\hline
+		\cline{3-4}\noalign{\vskip\doublerulesep
+			\vskip-\arrayrulewidth}\cline{3-4}
+		&& \multicolumn{2}{c}{Système} \\
+		\cline{3-4}
+	    && Coréf & Non-Coréf  \\
+	    \cline{1-2}\noalign{\vskip\doublerulesep
+	    	\vskip-\arrayrulewidth}\hline
+	    
+	\multirow{2}{*}{Hypothèse} & Coréf & rc & wn \\
+	                       & Non-Coréf & wc & rn \\
+	   \hline\hline
+	\end{tabular}
+	\caption[Matrice de confusion de BLANC]{Matrice de confusion de BLANC \cite{2011-recasens-hovy}}
+	\label{tab:blanc-confusion}
+\end{table}
+
+\optword{LEA} (Link-based Entity Aware) aims to represent recall and precision in terms of the importance of an entity and how it was resolved. The size of an entity (number of mentions in the cluster) is considered a measure of its importance. The proportion of the number of links of shared mentions between the hypothesis and the system to the number of links of mentions in the hypothesis is considered a measure of resolution quality. Therefore, recall will be calculated as indicated in Equation \ref{eq:lea-r}, where $link$ counts the number of links in a cluster.
+\begin{equation}\label{eq:lea-r}
+	R = \frac{\sum_{H_i} (|H_i| \times \sum_{S_j} \frac{link(H_i \bigcup S_j)}{H_i})}{\sum_{H_k} link(H_k)}
+\end{equation}
+
+
+%===================================================================================
+\section{Similar tasks}
+%===================================================================================
+
+To accomplish the coreference resolution task, there are preprocessing tasks discussed in Chapter 2, such as text segmentation. Another useful task for coreference resolution is morpho-syntactic tagging seen in Chapter 4. Syntax analysis (Chapter 5) can be used to detect noun phrases. Named entities are an important criterion in coreference resolution. The named entity recognition task will be briefly discussed in this section.
+
+There are tasks similar to coreference resolution that aim to search for a referent of a reference in a given text. There are references that need more context to understand the text (pragmatic level). To achieve this, there is a task called semantic annotation (Entity linking) that aims to link mentions to entities in a knowledge base. Another less similar task is quote attribution, which aims to find who said/wrote a speech. It is a kind of classification where classes represent a list of authors/people.
+
+
+\subsection{Entity linking}
+
+The goal of semantic annotation is to associate a mention in a text with a representation of an entity in a structured knowledge base. This task is motivated by the need for in-depth knowledge about entities in the real world (context, pragmatic level). This task is related to the knowledge base used; when using Wikipedia as a knowledge base, we call this task "Wikification."
+
+Before applying this step, we need to detect mentions in the text (as in coreference resolution). To annotate a mention in the text, we follow two steps:
+\begin{itemize}
+	\item \optword{Mention Detection}: detect the set of entities from a knowledge base related to a mention using queries. Since the base is structured, the search will be easy; in Wikipedia, we use titles.
+	\item \optword{Mention Disambiguation}: find the most probable entity using machine learning. As features, we take those of the mention and those of the entity.
+\end{itemize}
+
+
+\subsection{Named Entity Recognition (NER)}
+
+A named entity can be a person, a place, an organization, a quantity, etc. The task of Named Entity Recognition (NER) consists of locating and classifying named entities in a text. In English, it is called "Named-entity recognition" (NER). The location is done using mention detection seen earlier in this chapter. To classify mentions, we can use several approaches:
+\begin{itemize}
+	\item \optword{Rules}: use rules and lists of names to search for entities and detect their types.
+	\item \optword{Learning with Features}: use word embeddings and their neighbors, prefixes and suffixes, membership in a list, etc.
+	\item \optword{Sequence Labeling}: classify words into entities by treating them as a sequence using IOB labeling seen in Chapter 4.
+	
+	\expword{
+		$ \underbrace{Google}_{B-ORG} $ 
+		$ \underbrace{LLC}_{I-ORG} $ 
+		$ \underbrace{est}_{O} $ 
+		$ \underbrace{fond\text{\textit{é}}e}_{O} $ 
+		$ \underbrace{dans}_{O} $ 
+		$ \underbrace{la}_{O} $ 
+		$ \underbrace{Silicon}_{B-LOC} $ 
+		$ \underbrace{Valley}_{I-LOC} $ 
+		$ \underbrace{par}_{O} $ 
+		$ \underbrace{Larry}_{B-PER} $ 
+		$ \underbrace{Page}_{I-PER} $ 
+		$ \underbrace{et}_{O} $ 
+		$ \underbrace{Sergey}_{B-PER} $ 
+		$ \underbrace{Brin}_{I-PER} $
+	}
+\end{itemize}
+
+
+
+%\begin{discussion}
+\sectioni{Discussion}
+Many languages consider repetition as a non-natural form. To our knowledge, we do not know if there are languages where we must repeat entities in each sentence. Humans have the ability to easily detect the referent (the one being referenced). Of course, there are cases where references are so ambiguous that we cannot resolve them naturally. It would be really beneficial if a machine could perform this task. Since pronouns are not the only references, this task must go through a mention detection step.
+
+Two approaches are used for coreference resolution: mention-based models and entity-based models. Based on mentions, we try to find pairwise relationships. This can cause a problem of incompatibility between mentions in a chain. Entity-based models seek to group compatible mentions together; it is a clustering task. Although the use of entities can avoid the problem of incompatibility, the mention-based approach is more commonly used due to its ease of implementation.
+
+This task is a kind of classification, so we can use recall, precision, and F-score to evaluate it. However, as the problem can be seen as links or entities, these measures can be formulated in several ways. Several metrics have been presented in this chapter, as well as tasks similar to coreference resolution.
+
+%\end{discussion}
+
+\sectioni{Additional Resources}
+
+\subsubsection*{Exercises}
+
+\begin{enumerate}
+	\item Here is a text:
+	
+	\begin{tabular}{|p{0.9\textwidth}|}
+		\hline
+		The girl picked a flower. 
+		She smelled it. 
+		It has a very good smell.
+		This beautiful flower is in the National School of Computer Science where the girl studies.
+		The ESI is located in Algiers; a city in the north of Algeria.\\
+		\hline
+	\end{tabular}
+	
+	\begin{enumerate}
+		\item Find all mentions, indicating the reference forms.
+		\item Annotate the co-references.
+		\item Write a procedure that takes two mentions as arguments and returns a boolean indicating whether the first is an antecedent of the second based on their properties.
+		\item Apply the Mention-Pair algorithm with this procedure to the mentions from the first question and check if the generated co-references are similar to those manually annotated.
+		\item Write a procedure that takes two mentions along with an array of mentions between them as arguments and returns a score indicating whether the first is an antecedent of the second based on their properties.
+		\item Apply the Mention-Rank algorithm with this procedure to the mentions from the first question and check if the generated co-references are similar to those manually annotated.
+		\item Write a recursive procedure that implements an Entity-based model. This procedure takes a set of clusters as an argument and returns another set of clusters. 
+	\end{enumerate}
+\end{enumerate}
+
+\subsubsection*{Demos}
+
+Tutorials are accessible via the Github repository.
+The tutorial demonstrates how to use Stanford CoreNLP (Java) to find co-references.
+
+%Le deuxième concerne l'utilisation de neuralcoref avec spaCy (python) pour la même tâche.
+
+%\subsubsection*{TP : Analyse syntaxique CKY}
+
+%\subsubsection*{Lab}
+
+%=====================================================================
+\ifx\wholebook\relax\else
+% \cleardoublepage
+% \bibliographystyle{../use/ESIbib}
+% \bibliography{../bib/RATstat}
+	\end{document}
+\fi
+%=====================================================================

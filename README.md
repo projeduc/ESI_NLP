@@ -10,6 +10,12 @@ This repository contains NLP course presentations, demos and labs proposed by Ec
 
 [Download the course HERE](https://github.com/projeduc/ESI_NLP/releases/latest)
 
+Natural Language Processing (NLP) is an interdisciplinary field involving linguistics, computer science, and artificial intelligence. It is dedicated to the understanding and generation of human language by computers. With the emergence of language models such as OpenAI's GPT, Google's BERT, and others, NLP has become a rapidly growing field with increasing importance in various industries and domains.
+
+This field is often taught as a course in the "artificial intelligence" and "data science" specializations. It is part of branches of artificial intelligence such as computer vision, robotics, machine reasoning, etc. This does not mean that other specializations do not need this course; it is just less prominent than other courses in those specializations. In software engineering, for example, this field can be exploited to design a system that constructs an entire software architecture from a textual description. Natural language is part of human-machine interaction modes. In information systems, techniques from this field are often used for information retrieval and extraction. Data extraction is a phase of an ETL (Extract, Transform, Load) system where data can be textual (unstructured). In systems and networks, various injection attacks, such as SQL injection, can be treated similarly to natural language.
+
+This course try to cover both research and developpement aspects of this field. A wide range of topics will be presented, which are organized into several levels: lexicon, syntax, semantics, pragmatics, and discourse. It is important to note that this course has a significant similarity to the compilation course. Both courses share almost the same pipeline: lexical parsing, syntactic parsing, and semantic parsing. They have common techniques, but those of the compilation course are not always applicable to natural language. The latter is different from a programming language, which is well-defined and therefore contains less ambiguity.
+
 ## Syllabus
 
 1. **Introduction to NLP**

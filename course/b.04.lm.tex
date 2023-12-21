@@ -1,0 +1,454 @@
+% !TEX TS-program = xelatex
+% !TeX program = xelatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+%=====================================================================
+\ifx\wholebook\relax\else
+	\documentclass{KBook}
+	\input{calls}
+	\begin{document}
+		\mainmatter
+	
+\fi
+%=====================================================================
+\changegraphpath{../img/lm/}
+
+\chapter{Language Models}
+
+\begin{introduction}[NAT. \textcolor{white}{L}ANG. PROC.]
+	\lettrine{L}{anguages} possess some rules to compose their sentences. If we want to test if a sentence is well-written, we should go back to these rules. A language consists of a vocabulary and a grammar to construct sentences. For example, we might find a noun phrase followed by a verb followed by a noun phrase if the verb is transitive. In statistics, these rules can be seen as probabilities of the appearance of a word given that one or more words appeared before. Probabilities estimated from a training corpus are called a language model. This model is useful for estimating the next word given a list of past words and also for calculating the probability that a sentence is correct. In this chapter, we will present traditional language models (N-Grams), as well as those based on neural networks.
+\end{introduction}
+
+A language model is a probabilistic distribution over a sequence of words (or characters). A language model trained on a given language should be able to model the arrangement of words in that language. A sentence would be well-defined in this language if the probability of observing the sequence of its words $P(S) = P(w_1, w_2, ..., w_n)$ is equal to $1$. Similarly, a sentence with a higher probability than another is more likely to occur given the learned context. Likewise, a sentence with a higher probability than another is more likely to belong to the training language. This assumption has several applications:
+
+\begin{itemize}
+	\item Machine Translation: By translating a text from one language to another, we may encounter words with multiple translations/meanings. Additionally, the order of words is not always symmetrical. By using a language model of the target language, we can verify the most probable choices and order. Example, \expword{My tall brother \textrightarrow\ P(My big brother) \textgreater\ P(My high brother)}.
+	
+	\item Grammatical Error Correction: Similarly, by using a language model, we can check that a word is unlikely to occur after a sequence of words. For example, by calculating the different probabilities of phrases with words similar (in terms of edit distance) to the incorrect word, we can suggest corrections. Example, \expword{P(An object that can be carried) \textgreater\ P(An object that they can carry)}.
+	
+	\item Speech Recognition: When speech is transformed into text, the program may mix up words or expressions that are close in pronunciation. We can guide the choice of words using a language model. Example, \expword{P(Thursday morning) \textgreater\ P(I say morning)}
+\end{itemize}
+
+In addition to the probability of a sentence, we can also estimate the probability of the occurrence of a word based on previous words $P(w_n | w_1, \ldots, w_{n-1})$. Estimating this probability has several applications:
+
+\begin{itemize}
+	\item Auto-completion: Based on the words already entered by the user, the program estimates the probability of each word in the vocabulary and displays those with a high conditional probability. Example, \expword{P(automatic information processing) \textgreater\ P(automatic water processing)}.
+	
+	\item Automatic Text Generation: Using an internal representation, we try to generate the text word by word. The program uses this representation and a language model to learn generation.
+\end{itemize}
+
+
+\section{N-gram Model}
+
+The probability of the occurrence of a sentence is calculated using the compound probability formula expressed in Equation \ref{eq:ph-prob}.
+For example, \expword{P(\text{\textit{I work at ESI}}) =  P(I) P(work | I) P(at | I work) $ \ldots $ P(ESI | I work at the)}.
+To estimate conditional probabilities, we use maximum likelihood (which will be presented shortly).
+\begin{equation}\label{eq:ph-prob}
+	P(w_1 \ldots w_m) =  P(w_1) P(w_2 | w_1) P(w_3 | w_1, w_2) \ldots P(w_m | w_1, \ldots, w_{m-1})
+\end{equation}
+
+In natural language, several possible phrases can occur; we can even generate an infinite number of phrases.
+To estimate a conditional probability with a long history (previous words), we need to use a very large corpus (text dataset).
+Since phrases are infinite, we cannot represent all possible combinations.
+In this case, a solution is to limit the size of the history.
+So, we try to estimate $P(w_i|w_{i-n+1},\ldots,w_{i-1})$ with a history of $n-1$ words; 
+this model is called an \keyword[N]{N-gram}.
+
+
+\subsection{Formulation}
+
+Given a stochastic process, it verifies the Markov property if the future state depends only on the present state.
+Thus, the probability of the occurrence of a word $w_i$ given the occurrence of several words $w_1, \ldots, w_{i-1}$ depends only on the previous word $w_{i-1}$ according to the Markov property (see Equation \ref{eq:markov}).
+This model is called a \keyword[B]{Bi-gram} model.
+This model can be graphically represented as a finite-state automaton where words are represented as states, and transitions are represented by probabilities.
+\begin{equation}
+	P(w_i | w_1,\ldots, w_{i-1}) = P(w_i | w_{i-1})
+	\label{eq:markov}
+\end{equation}
+
+This model can be generalized by considering $n-1$ previous words.
+In this case, Equation \ref{eq:markov} is formulated as Equation \ref{eq:markov-ngram}.
+The generalized model is called an \keyword[N]{N-gram}.
+The most used models are: Uni-gram ($n=1$), Bi-gram ($n=2$), and Tri-gram ($n=3$).
+A compilation of different N-grams prepared by Google and distributed under an open-source license is called Google Books Ngram\footnote{Google Books Ngram: \url{https://storage.googleapis.com/books/ngrams/books/datasetsv3.html} [visited on 2021-09-25]}.
+\begin{equation}
+	P(w_i | w_1,\ldots, w_{i-1}) \approx P(w_i | w_{i-n+1}, \ldots, w_{i-1})
+	\label{eq:markov-ngram}
+\end{equation}
+
+Thus, Equation \ref{eq:ph-prob} that calculates the probability of a sentence will be reformulated as indicated in Equation \ref{eq:ph-prob-ngram} using an \keyword[N]{N-gram} model.
+\begin{equation}\label{eq:ph-prob-ngram}
+	P(w_1 \ldots w_m) \approx \prod_{i=1}^{m} P(w_i | w_{i-n+1}, \ldots, w_{i-1})
+\end{equation}
+
+Given a function $C(S)$ that counts the number of occurrences of a sequence $S$ in a corpus, conditional probability is calculated according to maximum likelihood (see Equation \ref{eq:max-vrai}).
+The training corpus must be sufficient to capture all possible combinations.
+In fact, the larger $n$ is, the more data the model will need.
+By observing the formula, we wonder: how can we calculate the conditional probability of the beginning and end words?
+We mark the beginning and end of sentences with \keyword{\textless s\textgreater} and \keyword{\textless/s\textgreater}, respectively (once for bigrams, twice for trigrams, etc.).
+This way, we can express the probability that a word is at the beginning or end of a sentence.
+\begin{equation}
+	P(w_i | w_{i-n+1},\ldots, w_{i-1}) 
+	= \frac{C(w_{i-n+1} \ldots w_{i-1} w_i)}{\sum_j C(w_{j-n+1} \ldots w_{j-1} w_j)}
+	= \frac{C(w_{i-n+1} \ldots w_{i-1} w_i)}{C(w_{i-n+1} \ldots w_{i-1})}
+	\label{eq:max-vrai}
+\end{equation}
+
+Suppose we have a training corpus with 4 sentences.
+If we wanted to use a \keyword[B]{Bi-gram} model, we should surround each sentence with ``\textless s\textgreater" and ``\textless/s\textgreater".
+Here is the set of sentences:
+\begin{itemize}
+	\item \expword{\textless s\textgreater A computer can help you \textless/s\textgreater}
+	\item \expword{\textless s\textgreater He wants to help you \textless/s\textgreater}
+	\item \expword{\textless s\textgreater He wants a computer \textless/s\textgreater}
+	\item \expword{\textless s\textgreater He can swim \textless/s\textgreater}
+\end{itemize}
+%
+In this model, we calculate the probability of the occurrence of each word given the preceding word.
+For example, $P(can | he) = \frac{C(he\ can)}{C(he)} = \frac{1}{3}$.
+In this case, the probability of the occurrence of the sentence ``\expword{he can help you}" can be estimated as follows:
+\[
+P(\text{\textit{\textless s\textgreater he can help you \textless/s\textgreater}}) = 
+\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{3/4}
+\underbrace{P(can|he)}_{1/3} 
+\underbrace{P(you|can)}_{1/2} 
+\underbrace{P(help|you)}_{2/2}
+\underbrace{P(\text{\textit{\textless/s\textgreater}}|help)}_{2/2} = 
+%    \frac{3}{4} \frac{1}{3} \frac{1}{2} \frac{2}{2} \frac{2}{2} = \frac{1}{8}
+\frac{1}{8}
+\]
+%
+If we tried to estimate the probability of the occurrence of the sentence ``\expword{he can help}", we would get $0$.
+Even if the sentence is correct, we would not have enough data to train our model to capture this form.
+The probability is calculated as follows:
+\[
+P(\text{\textit{\textless s\textgreater he can help \textless/s\textgreater}}) = 
+\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{3/4}
+\underbrace{P(can|he)}_{1/3} 
+\underbrace{P(help|can)}_{0/2}
+\underbrace{P(\text{\textit{\textless/s\textgreater}}|help)}_{2/2} = 
+%    \frac{3}{4} \frac{1}{3} \frac{1}{2} \frac{2}{2} \frac{2}{2} = \frac{1}{8}
+0
+\]
+%
+Now, we try to estimate the probability of the occurrence of the sentence: 
+``\expword{he can help us}" knowing that the word ``us" does not exist in the vocabulary.
+The probability can be estimated as follows:
+\[
+P(\text{\textit{\textless s\textgreater he can help you \textless/s\textgreater}}) = 
+\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{3/4}
+\underbrace{P(can|he)}_{1/3} 
+\underbrace{P(us|can)}_{0/0} 
+\underbrace{P(help|us)}_{0/2}
+\underbrace{P(\text{\textit{\textless/s\textgreater}}|help)}_{2/2} = 
+%    \frac{3}{4} \frac{1}{3} \frac{1}{2} \frac{2}{2} \frac{2}{2} = \frac{1}{8}
+\text{\textit{NaN}}
+\]
+Words not in the vocabulary are called "Out-of-vocabulary words".
+To address this issue, we can add another word ``\textless UNK\textgreater" to the vocabulary.
+To incorporate this word into the training corpus, we can fix a vocabulary and replace the rest of the words with this keyword.
+Also, we can replace less frequent words with ``\textless UNK\textgreater".
+
+
+\subsection{Smoothing}
+
+In the previous example, we saw the problem of words that do not belong to the vocabulary (e.g., ``\expword{nous}") resulting in division by $0$.
+This problem can be solved by reserving a keyword for absent words (as previously presented).
+The problem of absent n-grams (e.g., ``\expword{peut aider}"), resulting in a probability of $0$, cannot be solved by this technique.
+A solution to this problem is to add more data.
+Even without this problem, if we used small N-grams, we might not capture long-term dependencies.
+For example, ``\expword{\underline{The computer} I used yesterday at ESI during the course session \underline{crashed}}".
+So, we are forced to use larger N-grams.
+To train such a model, we need a large amount of data.
+For a vocabulary of size $V$ and an N-gram of size $N$, we have $V^N$ possible n-grams.
+A solution to all of these issues is to use the smoothing technique.
+The intuition is to borrow a small portion of the probabilities of existing N-grams to form a probability for absent N-grams.
+
+\subsubsection{Lidstone/Laplace Smoothing}
+
+Suppose that our language model supports a vocabulary of size $V$ and $n$ grams.
+To subtract a small probability from each existing N-gram and create a probability for non-existing N-grams, we can modify the maximum likelihood formula.
+We use a smoothing parameter $\alpha$ as indicated by Equation \ref{eq:lidstone}.
+In the general case, this is called "Lidstone smoothing".
+When $\alpha = 1$, it is called "Laplace smoothing".
+If $\alpha = 0.5$, it is called "Jeffreys-Perks law".
+\begin{equation}
+	P(w_i | w_{i-n+1}, \ldots, w_{i-1}) = \frac{C(w_{i-n+1} \ldots w_{i-1} w_i) + \alpha}{C(w_{i-n+1} \ldots w_{i-1}) + \alpha V}
+	\label{eq:lidstone}
+\end{equation}
+
+Take the previous example; the vocabulary is of size $8$ ($8^2 = 64$ possible bigrams).
+If we tried to estimate the probability of the sentence ``\expword{he can help}", we would not get $0$ even if the sequence ``\expword{can help}" is not in the corpus.
+The probability of this sentence using a Bi-gram model and Laplace smoothing is calculated as follows:
+\[
+P(\text{\textit{\textless s\textgreater he can help \textless/s\textgreater}}) = 
+\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{(3+1)/(4+8)}
+\underbrace{P(can|he)}_{(1+1)/(3+8)} 
+\underbrace{P(help|can)}_{(0+1)/(2+8)}
+\underbrace{P(\text{\textit{\textless/s\textgreater}}|help)}_{(2+1)/(2+8)}
+\]
+%
+Let's go back to the sentence: 
+``\expword{he can help us}" where the word "us" does not exist in the vocabulary.
+We test if we can solve the problem with Laplace smoothing; without using the reserved keyword solution for unknown words.
+The probability using a Bi-gram model can be estimated as follows:
+\[
+P(\text{\textit{\textless s\textgreater he can help you \textless/s\textgreater}}) = 
+\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{(3+1)/(4+8)}
+\underbrace{P(can|he)}_{(1+1)/(3+8)} 
+\underbrace{P(us|can)}_{(0+1)/(0+8)} 
+\underbrace{P(help|us)}_{(0+1)/(2+8)}
+\underbrace{P(\text{\textit{\textless/s\textgreater}}|help)}_{(2+1)/(2+8)}
+\]
+
+
+\subsubsection{Interpolation}
+
+The idea of interpolation is to train $n$ language models: from n-grams down to unigram. 
+The interpolation probability $P_I$ will be calculated using a linear composition between the probabilities of different models. 
+The composition parameters $\lambda_j$ will be estimated using a tuning corpus with the condition $\sum_j \lambda_j = 1$.
+In training, we try to maximize the interpolation probability on this corpus.
+The interpolation probability for a Tri-gram model can be calculated using Equation \ref{eq:interpolation}. 
+\begin{equation}
+	P_{I}(w_i | w_{i-2} w_{i-1}) = 
+	\lambda_3 P(w_i | w_{i-2} w_{i-1}) 
+	+ \lambda_2 P(w_i | w_{i-1}) 
+	+ \lambda_1 P(w_i) 
+	\label{eq:interpolation}
+\end{equation}
+
+Still with the previous example, we try to estimate the probability of the sentence ``\expword{he can help}"
+using Tri-gram interpolation.
+First, we calculate the probability using each n-gram model.
+\begin{itemize}
+	\item Unigram: 
+	$P_1(\text{\textit{\textless s\textgreater he can help \textless/s\textgreater}}) = 
+	\underbrace{P(he)}_{3/16}
+	\underbrace{P(can)}_{2/16} 
+	\underbrace{P(help)}_{2/16} \approx 0.003$
+	
+	\item Bigram: already calculated; $P_2(\text{\textit{\textless s\textgreater he can help \textless/s\textgreater}})=0$.
+	
+	\item Trigram: If the probability of this sentence using the Bigram is zero, so it is also with higher-order models. 
+	$P_3(\text{\textit{\textless s\textgreater \textless s\textgreater he can help \textless/s\textgreater \textless/s\textgreater}})=0$.
+	Here, we can fall into division by zero, but we will consider the probability as zero.
+\end{itemize}
+%
+If we used the parameters $\lambda_3=0.7,\, \lambda_2=0.2,\, \lambda_1 = 0.1$, the interpolation probability would be $P_I = 0.7 P_3 + 0.2 P_2 + 0.1 P_1 = 0.1 P_1 \approx 0.0003$. 
+Of course, this solution does not solve the problem of absent words.
+
+\subsubsection{Katz Back-off}
+
+The idea is to use the probability of the higher order $n$ if the n-gram exists in the training corpus. 
+Otherwise, we move to the next order $n-1$.
+To maintain a correct distribution of probabilities, we need to reduce the probability of the higher order to have a reduced probability $P^*$. 
+The reduction will be distributed over the probabilities of the lower-order N-grams using a context-based function $\alpha$.
+The formula to calculate the probability $P_{BO}$ of Katz Back-off is indicated in Equation \ref{eq:back-off-katz}.
+\begin{equation}
+	P_{BO}(w_i | w_{i-n+1}, \ldots, w_{i-1}) = 
+	\begin{cases}
+		P^*(w_i | w_{i-n+1}, \ldots, w_{i-1}) & \text{if } C(w_{i-n+1}, \ldots, w_{i-1} w_i) > 0 \\
+		\alpha(w_{i-n+1}, \ldots, w_{i-1}) P_{BO}(w_{i-n+2}, \ldots, w_{i-1}) & \text{otherwise}
+	\end{cases}
+	\label{eq:back-off-katz}
+\end{equation}
+
+
+%===================================================================================
+\section{Neural Models}
+%===================================================================================
+
+As we have seen, \keywordpl[N]{N-grams} need to use smoothing to consider combinations absent from the training corpus. 
+This model cannot capture similar words (used in the same context; e.g., synonyms). 
+Moreover, it does not support contexts with a long history. 
+Neural networks seem advantageous considering these problems. 
+They do not need smoothing since they generalize better; they can give a small probability to absent n-grams. 
+Also, they can learn close representations for similar words (used in the same context). 
+Because of their ability to generalize, they can support a larger context. 
+However, these models are slower to train.
+
+\subsection{Feedforward Neural Network}
+
+A feedforward neural network is the traditional form: an input layer, hidden layers, and an output layer. 
+The idea is to choose the number of n-grams $n$. 
+The input layer is fed by the previous $n-1$ words to estimate the $n$-th word in the output layer. 
+Each word is represented as a vector of size $V$ (vocabulary size) where all positions have a zero except the position reserved for that word. 
+This representation is called "One-Hot" representation. 
+In the output, we will have a vector with probabilities; the word whose position has the highest probability is the chosen one. 
+
+Here, we will present the model of \citet{2003-bengio-al} illustrated in Figure \ref{fig:bengio-l}.
+When the size $n$ of the model is chosen, the words $w_{i-n+1}, \ldots, w_{i-1}$ are represented as One-Hot vectors $h_{i-n+1}, \ldots, h_{i-1}$. 
+Each of these vectors is passed through a hidden layer of size $d$; thus, we will have a vector of size $d$ for each word of these $n-1$. 
+This vector is called an \keyword[E]{embedding} (will be discussed in detail in the word sense chapter). 
+By merging the vectors, we will have a single context vector $m \in \mathbb{R}^{(n-1) d}$.
+%This vector will be passed through two blocks in parallel:
+This vector is used as input to two blocks of neural networks:
+\begin{itemize}
+	\item A hidden layer with parameters $A \in \mathbb{R}^{(n-1) \times d \times V}$ (weights) and $b \in \mathbb{R}^{V}$. 
+	The weighted sum results in a vector of size $V$. 
+	\item A hidden layer with parameters $T \in \mathbb{R}^{(n-1) \times d \times H}$ followed by a "Tanh" function, which will generate a vector of size $H$. 
+	This vector passes through another layer with parameters $W \in \mathbb{R}^{V \times H}$, which generates a vector of size $V$. 
+\end{itemize}
+The two vectors are element-wise added to have a single vector of size $V$. 
+To have probabilities with a sum equal to $1$, we pass this vector through a "softmax" function. 
+The architecture of this model can be expressed by Equation \ref{eq:bengio}.
+\begin{equation}
+	P(.|h_1,\ldots, h_{n-1}) = 
+	Softmax \left(
+	(b + m A) 
+	+ 
+	W\ \tanh(u + m T)
+	\right)
+	\label{eq:bengio}
+\end{equation}
+
+\begin{figure}[ht]
+	\centering
+	\hgraphpage[0.6\textwidth]{mlp-model.pdf}
+	\caption[Neural network-based language model.]{Representation of the model proposed by \citet{2003-bengio-al}; figure inspired by the description.}
+	\label{fig:bengio-l}
+\end{figure}
+
+
+\subsection{Recurrent Neural Networks}
+
+Certainly, models based on feedforward neural networks are advantageous compared to \keywordpl[N]{N-grams}. 
+However, they do not support variable-length contexts. 
+On the other hand, recurrent neural networks have the ability to estimate a word at position $i$ knowing all the past words. 
+Here, we will present the model of \citet{2010-mokolov-al} based on the Elman network.
+
+Figure \ref{fig:mokolov} represents an example of the execution of the model proposed by \citet{2010-mokolov-al}.
+The recurrent network has an input layer $x$, a hidden layer $s$ (the state) with the "sigmoid" function, and an output layer $y$ with a "softmax" function.
+At time $t$, the input $x$ is composed of the word $w_t \in \mathbb{N}^{V}$ encoded using One-Hot and the previous context $s_{t-1} \in \mathbb{R}^{H}$ (equation \ref{eq:mokolov1}). 
+The input $x_t$ is passed through the hidden layer with parameters $W \in \mathbb{R}^{(H+V)\times H}$ to have a new context $s_t$ (equation \ref{eq:mokolov2}). 
+The context $s_t$ is passed to the next state $t+1$ and is used to estimate the next word in the current state.
+To do this, it passes through an output layer with parameters $U \in \mathbb{R}^{H\times V}$, which generates a vector of size $V$ that is passed through a "softmax" function (equation \ref{eq:mokolov3}).
+
+\begin{align}
+	x_t = s_{t-1} \bullet m_t \label{eq:mokolov1}\\
+	s_t = \sigma(x_t W) \label{eq:mokolov2}\\
+	y_t = softmax(s_t U) \label{eq:mokolov3}
+\end{align}
+
+It is essential not to forget to use the keyword "<UNK>" to train the model to take into consideration unknown words. 
+The problem with this architecture is that the model may stop learning with a long-term context (gradient vanishing problem).
+A solution is to use more advanced architectures such as \keyword[L]{LSTM} and \keyword[G]{GRU}. 
+That being said, the problem of vanishing gradients will not be entirely solved.
+A technical solution is to set a maximum number of states (past words to consider).
+
+%===================================================================================
+\section{Evaluation}
+%===================================================================================
+
+What makes one language model better than another? 
+We need a method to compare the two. 
+To do this, there are two approaches: 
+\begin{itemize}
+	\item \optword{Extrinsic Evaluation}: here, we want to test the effect of a language model on another task. 
+	We evaluate the task using several language models to choose the one that gives better results.
+	For example, "The quality of machine translation using this model". 
+	In this example, we try to choose the most suitable language model for the machine translation task.
+	Of course, evaluation in this case is very expensive since we want to train the translation system every time we change the language model.
+	
+	\item \optword{Intrinsic Evaluation}: here, we want to test the model's ability to represent language. 
+	Given two language models trained on the same training corpus, we use another test set to test the representation capacity.
+	The most used method in this case is \keyword{perplexity}.
+	It should be noted that being a representative model does not guarantee having good performance in a given task.
+\end{itemize}
+
+Perplexity is an intrinsic measure that aims to test the prediction quality of a model on a test corpus (not seen by this model). 
+Given a test corpus with size $N$, we add start and end markers for all sentences; Perplexity treats the corpus as a single chain. 
+The goal is to calculate the probability of the occurrence of the text (all of it) using the language model. 
+This probability is inverted and passed through an $N$-th order root as indicated in Equation \ref{eq:perplexity}.
+In this case, a model with a minimal perplexity is the best.
+
+\begin{align}
+	PP(w) & = \sqrt[N]{\frac{1}{P(w_1 w_2 \ldots w_N)}} \nonumber\\
+	& = \sqrt[N]{\prod\limits_{i=1}^{N}\frac{1}{P(w_i | w_1 \ldots w_{i-1})}} \label{eq:perplexity}
+\end{align}
+
+
+\sectioni{Discussion}
+
+A language is defined by vocabulary and grammar to compose sentences. The rules of grammar are defined by linguists. Sometimes, it is challenging to define these rules, especially if they are based on word exceptions. For example, a transitive verb that does not accept words as direct objects since the sentence would make no sense (\expword{J'ai mangé le ciel}). The latter example can be addressed if we have statistics on the context of words in a language: which word can occur in the vicinity of another? and how often?
+This representation is called: a language model; already presented in this chapter.
+
+We have seen that the language model is based on the vocabulary learned from the training corpus. What we haven't discussed is the meaning of the vocabulary: what do we mean by vocabulary? We have seen in the previous chapter that we can generate words from others (for example, conjugation). In reality, we can train the model with all possible forms. This way, we can represent the fact that the word "étudiez" cannot come after the word "je". In a way, we are trying to learn syntax and lexicon in parallel. However, this poses a problem in highly inflectional languages; we will have a gigantic vocabulary. Theoretically, this is not a problem since the vocabulary remains always a finite set (aside from language evolution: adding words to the lexicon). But practically, the larger the vocabulary, the more expensive the task. In this case, processing takes longer, assuming we have enough memory to represent all words. Also, we need to have a large corpus to capture all morphological variations of all words. One solution is to apply some kind of radicalization, separating the root and the suffix. Both will be considered as separate words. This way, we reduce the size of the vocabulary and learn word formation at the same time.
+
+In this chapter, we presented language models by taking words as a unit. In reality, language models can be trained on characters. Among the applications of this kind of models is language detection, especially for those using the same writing system. Suppose we want to detect languages: French, English, and Spanish. In this case, we train three language models for each of these languages. Given a sentence, we try to estimate the three probabilities (character level) and consider the model that maximizes the probability. Language models are not only used in text processing. A language model can be trained on DNA sequences where the vocabulary is: "A", "T", "C", "G", and "U". In this case, this model can be used for species detection (animals, plants, etc.).
+
+%\end{discussion}
+
+\section{Supplementary Resources}
+
+\subsection*{Exercises}
+
+\begin{enumerate}
+	\item Select the correct statements regarding language models (LM) and Part-of-Speech tagging (PoS):
+	
+	\begin{longtable}{|p{.95\textwidth}|}
+		\hline 
+		\Square\ In PoS with a Hidden Markov Model (HMM), transitions between states (grammatical categories) are represented as an LM. \\
+		\Square\ Some smoothing methods can solve the problem of out-of-vocabulary words. \\
+		\Square\ Given a unigram model trained on standard French, the perplexity of the phrase "\textbf{Karim enseigne un cours}" is greater than that of "\textbf{un cours Karim enseigne}". \\
+		\Square\ Given a unigram model trained on standard French, the perplexity of the phrase "\textbf{Karim enseigne un cours}" is equal to that of "\textbf{un cours Karim enseigne}".\\
+		\Square\ Given a unigram model trained on standard French, the perplexity of the phrase "\textbf{Karim enseigne un cours}" is less than that of "\textbf{un cours Karim enseigne}".\\
+		\Square\ Given a bigram model trained on standard French, the perplexity of the phrase "\textbf{Karim enseigne un cours}" is greater than that of "\textbf{un cours Karim enseigne}".\\
+		\Square\ Given a bigram model trained on standard French, the perplexity of the phrase "\textbf{Karim enseigne un cours}" is equal to that of "\textbf{un cours Karim enseigne}".\\
+		\Square\ Given a bigram model trained on standard French, the perplexity of the phrase "\textbf{Karim enseigne un cours}" is less than that of "\textbf{un cours Karim enseigne}".\\
+		
+		\hline
+	\end{longtable}
+	
+	\item Here are training sentences: 
+	
+	\begin{tabular}{|lllll|}
+		\hline
+		Les cours sont intéressants && Le cours est intéressant && Il enseigne un cours \\
+		Il enseigne des cours intéressants && Son cours est intéressant &&\\
+		\hline
+	\end{tabular}
+	
+	\begin{enumerate}
+		\item Using a bigram model with Laplace smoothing, calculate the probabilities of the three expressions: "Les cours sont intéressants", "Les cours est intéressants," and "Les cours son intéressants."
+		\item What do you notice?
+		\item Now, let's apply a lemmatization step. Calculate the probability of the two expressions: "Les cours sont intéressants" and "Les cours est intéressants."
+		\item Is the lemmatization step useful for the spelling mistake detection task using language models? Justify.
+	\end{enumerate}
+	
+\end{enumerate}
+
+\subsection*{Demos}
+
+The demos are accessible through the Github repository.
+In the first tutorial, NLTK is used to create N-grams, vocabularies, and different language models.
+It should be mentioned that NLTK is a Python-based tool designed for NLP.
+
+The second tutorial uses Keras, a Python tool used to create neural networks (provided with TensorFlow).
+In this tutorial, we created two language models: the first one is based on feedforward neural networks, and the second one is based on recurrent neural networks.
+
+\subsection*{Lab: Autocompletion}
+
+We want to design a small program for sentence autocompletion. The bigram model with Laplace smoothing should be used. It is trained on a Wikipedia page and tested on the same sentences.
+
+The complete TP statement along with the codes and data can be downloaded from the Github repository.
+The TP is implemented entirely from scratch: the bigram calculation module with Laplace smoothing and the module that uses it for autocompletion. The student must complete three functions in the first module: training, scoring ($p(w_i|w_{i-1})$), and estimating (estimating a set of next words given previous words).
+The programming languages available (for now) are Java, Javascript/nodejs, and Python.
+
+\subsection*{Workshop}
+
+In the "Judgments of Acceptability" task, we try to guess whether a sentence is grammatically acceptable. For example, the expression "\textbf{Le livre qu'ont puisse trouvé sur internet ...}" cannot be considered acceptable. The reason is that the verb "ont (avoir)" is less likely to follow "que" and the verb "puisse (pouvoir)" is conjugated in the present subjunctive, but it is more likely to be in the infinitive if it follows the verb "avoir". In this lab, we will try to test different language models to accomplish this task.
+
+The complete lab statement can be downloaded from the Github repository.
+The tools used are NLTK and Keras.
+
+
+%=====================================================================
+\ifx\wholebook\relax\else
+% \cleardoublepage
+% \bibliographystyle{../use/ESIbib}
+% \bibliography{../bib/RATstat}
+	\end{document}
+\fi
+%=====================================================================

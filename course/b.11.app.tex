@@ -1,11 +1,11 @@
 % !TEX TS-program = xelatex
 % !TeX program = xelatex
 % !TEX encoding = UTF-8
-% !TEX spellcheck = fr
+% !TeX spellcheck = en_US
 
 %=====================================================================
 \ifx\wholebook\relax\else
-	\documentclass{KodeBook}
+	\documentclass{KBook}
 	\input{calls}
 	\begin{document}
 		\mainmatter
@@ -13,29 +13,31 @@
 \fi
 %=====================================================================
 \changegraphpath{../img/app/}
-\chapter{Quelques applications}
 
-\begin{introduction}[LES LANGUE\textcolor{white}{S}]
-	\lettrine{S}{elon} l'interaction avec l'utilisateur, un système peut être interactif ou non.
-	En se basant sur la sortie, un système peut générer un ensemble de classes ou un autre texte. 
-	Un système de traitement du langage naturel peut traiter de la parole ou du texte. 
-	En utilisant ces critères, nous pouvons classifier les applications du TALN en quatre catégories : Transformation, Interaction, Classification et Parole. 
-	La transformation sert à prendre un texte en entrée et générer un autre en sortie ; comme la traduction automatique et le résumé automatique. 
-	L'interaction comporte les applications qui interagissent avec l'utilisateur ; comme les systèmes de questions/réponses et de dialogue.
-	La classification prend un texte en entrée et infère un classe ; comme l'analyse des sentiments et la lisibilité.
-	Enfin la parole consiste de la reconnaissance et la synthèse de la parole.
-	Dans ce chapitre, nous allons présenter deux applications par catégorie.
-\end{introduction} 
+\chapter{Some applications}
 
-Chaque jour beaucoup d'informations sont générées ; en général, sous forme de textes non structurées. 
-L'anglais est la langue la plus répandue ; mais, nous pouvons remarquer une augmentation du contenu des autres langues.
-Traiter ces textes sera bénéfique dans la résolution de nos besoins.
-Reprenons quelques motivations mentionnées dans le premier chapitre :
+\begin{introduction}[NAT. LANG. PRO\textcolor{white}{C}.]
+	\lettrine{C}{onsidering} user interaction, a system can be interactive or non-interactive.
+	Based on output, a system can generate a set of classes or another text.
+	A natural language processing system can handle speech or text.
+	Using these criteria, we can classify NLP applications into four categories: Transformation, Interaction, Classification, and Speech.
+	Transformation is used to take text as input and generate another as output; examples include machine translation and automatic summarization.
+	Interaction involves applications that interact with the user; examples include question/answer systems and dialogue systems.
+	Classification takes text as input and infers a class; examples include sentiment analysis and readability.
+	Finally, Speech includes speech recognition and synthesis.
+	In this chapter, we will present two applications for each category.
+\end{introduction}
+
+
+Every day, a large amount of information is generated, generally in the form of unstructured text.
+English is the most widespread language, but we can observe an increase in the content of other languages.
+Processing this text will be beneficial in addressing our needs.
+Let's revisit some of the motivations mentioned in the first chapter:
 \begin{itemize}
-	\item Commerce : publicité, service clientèle, intelligence de marché, recrutement, etc.
-	\item E-Gouvernance : communication gouvernement/citoyens, fouille d'opinions, etc.
-	\item Santé : rechercher, analyser, interpréter et structurer les documents médicaux, prédire les maladies, utiliser les assistants virtuels, etc.
-	\item Éducation :  évaluation de la langue, correction des erreurs, apprentissage en ligne, etc.
+	\item Business: advertising, customer service, market intelligence, recruitment, etc.
+	\item E-Governance: government/citizen communication, opinion mining, etc.
+	\item Health: searching, analyzing, interpreting, and structuring medical documents, predicting diseases, using virtual assistants, etc.
+	\item Education: language assessment, error correction, online learning, etc.
 \end{itemize}
 
 %===================================================================================
@@ -63,7 +65,7 @@ Le problème de traduction automatique peut être représenté comme un encodeur
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.8\textwidth]{translation-classif_noir.pdf}
+	\hgraphpage[.8\textwidth]{MT-classif.pdf}
 	\caption{Approches de la traduction automatique}
 	\label{fig:mt-class}
 \end{figure}
@@ -90,7 +92,7 @@ Finalement, nous générons le texte traduit $T$ à partir de l'arbre syntaxique
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.9\textwidth]{MT-tranfert-exp.pdf}
+	\hgraphpage[.9\textwidth]{MT-transfer-exp.pdf}
 	\caption[Exemple de règles de transfert syntaxique]{Exemple de règles de transfert syntaxique ; figure reconstruite de \cite{06-quah}.}
 	\label{fig:mt-transfert-exp}
 \end{figure}
@@ -115,7 +117,7 @@ La figure \ref{fig:apertium-arch} représente l'architecture de ce système qui 
 
 \begin{figure}[!ht]
 	\centering
-	\hgraphpage[.9\textwidth]{apertium-arch.pdf}
+	\hgraphpage[.9\textwidth]{MT-apertium-arch.pdf}
 	\caption[Architecture du système Apertium]{Architecture du système Apertium ; figure reconstruite de \cite{11-forcada-al}}
 	\label{fig:apertium-arch}
 \end{figure}
@@ -141,7 +143,7 @@ Donc, la traduction passe par les étapes suivantes :
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.7\textwidth]{MT-Interlingua_noir.pdf}
+	\hgraphpage[.7\textwidth]{MT-Interlingua.pdf}
 	\caption{Motivation de l'approche interlingue}
 	\label{fig:mt-interlangue}
 \end{figure}
@@ -205,7 +207,7 @@ Le générateur applique l'opération inverse : générer un texte à partir de 
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[\textwidth]{kantoo-arch_noir.pdf}
+	\hgraphpage[\textwidth]{MT-kantoo-arch.pdf}
 	\caption[Architecture du système KANTOO]{Architecture du système KANTOO ; figure traduite de \cite{00-nyberg-al}.}
 	\label{fig:mt-kantoo-arch}
 \end{figure}
@@ -340,7 +342,7 @@ Afin de décoder la sortie, les auteurs utilisent \keyword[B]{Beam search}.
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.89\textwidth]{googlet.pdf}
+	\hgraphpage[.89\textwidth]{MT-googlet.pdf}
 	\caption[Architecture de Google Translate (traduction automatique).]{Architecture du système de traduction automatique neuronale de Google ; figure reconstruite de \cite{2016-wu-al}.}
 	\label{fig:mt-google}
 \end{figure}
@@ -350,7 +352,7 @@ Il utilise un modèle \keyword[S]{seq2seq} avec le mécanisme d'attention.
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.6\textwidth]{opennmt.pdf}
+	\hgraphpage[.6\textwidth]{MT-opennmt.pdf}
 	\caption[Architecture de OpenNMT (traduction automatique)]{Architecture du système de traduction automatique neuronale OpenNMT ;  figure reconstruite de \cite{17-klein-al}.}
 	\label{fig:mt-opennmt}
 \end{figure}
@@ -368,7 +370,7 @@ Cette classification est représentée par la figure \ref{fig:ats-class}.
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.8\textwidth]{sum-classif_noir.pdf}
+	\hgraphpage[.8\textwidth]{ATS-classif.pdf}
 	\caption[Classification des méthodes de résumé automatique]{Classification des méthodes de résumé automatique selon \citet{98-hovy-lin,99-sparckjones}}
 	\label{fig:ats-class}
 \end{figure}
@@ -453,7 +455,7 @@ Score(s_i , \bigcap_{j} c_j , F) = \prod_{j} \prod_{k} Score(s_i , c_j , f_k )
 
 \begin{figure}[!ht]
 	\centering
-	\hgraphpage[.8\textwidth]{tcc-arch_noir.pdf}
+	\hgraphpage[.8\textwidth]{ATS-tcc-arch.pdf}
 	\caption[Architecture de la méthode TCC (résumé automatique)]{Architecture de la méthode TCC pour le résumé automatique statistique \cite{13-aries-al}.}
 	\label{fig:ats-tcc}
 \end{figure}
@@ -529,7 +531,7 @@ Ensuite, nous améliorons le score des phrases en utilisant les propriétés du 
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.7\textwidth]{gc-archi_noir.pdf}
+	\hgraphpage[.7\textwidth]{ATS-gc-archi.pdf}
 	\caption[Architecture de la méthode SSF-GC (résumé automatique)]{Architecture de la méthode SSF-GC pour le résumé automatique statistique \cite{21-aries-al}.}
 	\label{fig:ats-gc}
 \end{figure}
@@ -589,7 +591,7 @@ Les mots optionnels sont annotés par \keyword{?}.
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.7\textwidth]{paice-template.pdf}
+	\hgraphpage[.7\textwidth]{ATS-paice-template.pdf}
 	\caption[Exemple d'un patron simplifié (résumé automatique).]{Exemple d'un patron simplifié ; figure reconstruite de \cite{81-paice}.}
 	\label{fig:paice-template}
 \end{figure}
@@ -614,7 +616,7 @@ Un bloc final est utilisé pour inférer le score ROUGE-1 en utilisant les score
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.7\textwidth]{ml2es-archi_noir.pdf}
+	\hgraphpage[.7\textwidth]{ATS-ml2es-archi.pdf}
 	\caption[Architecture du système ML2ExtraSum (résumé automatique)]{Architecture du système ML2ExtraSum qui utilise des caractéristiques avec ML \cite{2020-aries}.}
 	\label{fig:ats-ml2es}
 \end{figure}
@@ -636,7 +638,7 @@ Il peut être utilisé pour décider la phrase qui est générée par $D$ et $Q$
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.4\textwidth]{btm-daumeiii.pdf}
+	\hgraphpage[.4\textwidth]{ATS-btm-daumeiii.pdf}
 	\caption[Représentation du réseau bayésien pour le résumé automatique.]{Représentation du réseau bayésien utilisé dans le résumé automatique par \citet{06-daumeiii-marcu} ; figure reconstruite.}
 	\label{fig:ats-daumeii-marcu}
 \end{figure}
@@ -651,8 +653,8 @@ Le mécanisme est similaire à celui présenté dans la traduction automatique.
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.35\textwidth]{2015-rush-al.pdf}
-	\hgraphpage[.35\textwidth]{2015-rush-al-exp.pdf}
+	\hgraphpage[.35\textwidth]{ATS-2015-rush-al-arch.pdf}
+	\hgraphpage[.35\textwidth]{ATS-2015-rush-al-exp.pdf}
 	\caption[Architecture du système NAMAS (résumé automatique)]{Architecture du système NAMAS utilisant deep learning pour le résumé automatique abstractif ; figure reconstruite de \cite{15-rush-al}.}
 	\label{fig:ats-namas} 
 \end{figure}
@@ -665,7 +667,7 @@ La sélection des phrases peut être formulée comme un problème de classement 
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.85\textwidth]{narayan-al.pdf}
+	\hgraphpage[.85\textwidth]{ATS-narayan-al.pdf}
 	\caption[Architecture de résumé automatique par renforcement.]{Architecture du système de \citet{18-narayan-al} utilisant l'apprentissage par renforcement ; figure reconstruite.}
 	\label{fig:ats-narayan}
 \end{figure}
@@ -709,7 +711,7 @@ Ces trois approches vont être présentées dans cette section avec quelques mé
 
 \begin{figure}[!ht]
 	\centering
-	\hgraphpage[.8\textwidth]{qa-classif_noir.pdf}
+	\hgraphpage[.8\textwidth]{QA-classif.pdf}
 	\caption{Classification des systèmes de Questions/Réponses}
 	\label{fig:qr-classif}
 \end{figure}
@@ -722,7 +724,7 @@ Le système contient trois modules principaux : traitement de la requête, reche
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.9\textwidth]{qa-ri.pdf}
+	\hgraphpage[.9\textwidth]{QA-IR.pdf}
 	\caption[Architecture d'un système de questions/réponses par RI.]{Architecture d'un système de questions/réponses par RI ; figure modifiée de \cite{2019-jurafsky-martin}.}
 	\label{fig:qa-ri}
 \end{figure}
@@ -758,7 +760,7 @@ Chaque vecteur d'un mot du passage est comparé avec le vecteur de la requête e
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[0.9\textwidth]{qa-bilstm-exp.pdf}
+	\hgraphpage[0.9\textwidth]{QA-bilstm-exp.pdf}
 	\caption[Extraction de la réponse par Bi-LSTM.]{Extraction de la réponse par Bi-LSTM ; figure reconstruite de \cite{2019-jurafsky-martin}.}
 	\label{fig:qr-ri-chen}
 \end{figure}
@@ -769,7 +771,7 @@ Nous utilisons deux représentations, de début (S) et de fin (E), qui sont mult
 
 \begin{figure}[!ht]
 	\centering
-	\hgraphpage[.5\textwidth]{qa-bert-exp.pdf}
+	\hgraphpage[.5\textwidth]{QA-bert-exp.pdf}
 	\caption[Extraction de la réponse par BERT.]{Extraction de la réponse par BERT ;  figure reconstruite de \cite{2019-jurafsky-martin}.}
 	\label{fig:qr-ri-devlin}
 \end{figure}
@@ -856,7 +858,7 @@ Ils peuvent être des systèmes à base des règles, de la RI ou de la générat
 
 \begin{figure}[!ht]
 	\centering
-	\hgraphpage[.8\textwidth]{sd-classif_noir.pdf}
+	\hgraphpage[.8\textwidth]{DS-classif.pdf}
 	\caption{Classification des systèmes de dialogue}
 	\label{fig:sd-classif}
 \end{figure}
@@ -917,7 +919,7 @@ En fait, nous pouvons l'exprimer en utilisant des expressions régulières.
 		WILAYA & \textrightarrow & Adrar \textbar\ ... \textbar\ El Meniaa \\
 	\end{tabular}
 	
-	\hgraphpage[.7\textwidth]{sd-frame-parse-exp.pdf}
+	\hgraphpage[.7\textwidth]{DS-frame-parse-exp.pdf}
 	\caption[Exemple d'une grammaire sémantique et un arbre sémantique d'une phrase.]{Exemple d'une grammaire sémantique et un arbre sémantique d'une phrase ; figure reconstruite de \cite{2020-jurafsky-martin}.}
 	\label{fig:sd-tache-frame-parse}
 \end{figure}
@@ -937,7 +939,7 @@ Cette politique est entraînée en utilisant un algorithme d'apprentissage afin 
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.8\textwidth]{sd-dialog-arch.pdf}
+	\hgraphpage[.8\textwidth]{DS-dialog-arch.pdf}
 	\caption[Architecture d'un système utilisant dialogue-state.]{Architecture d'un système utilisant dialogue-state ; figure reconstruite de \cite{2016-williams-al}.}
 	\label{fig:sd-tache-dial-state}
 \end{figure}
@@ -1001,7 +1003,7 @@ Un exemple d'une telle méthode qui utilise \keyword[B]{BERT} est illustré dans
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.5\textwidth]{sd-dialog-remp-exp.pdf}
+	\hgraphpage[.5\textwidth]{DS-dialog-fill-exp.pdf}
 	\caption[Exemple de remplissage des slots en utilisant BERT.]{Exemple de remplissage des slots en utilisant BERT ; figure reconstruite de \cite{2020-jurafsky-martin}.}
 	\label{fig:sd-tache-remp-bert}
 \end{figure}
@@ -1045,7 +1047,7 @@ Nous pouvons aussi utiliser des modèles de langage (comme \keyword[G]{GPT}) ent
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.7\textwidth]{sd-chatbot-encdec-exp.pdf}
+	\hgraphpage[.7\textwidth]{DS-chatbot-encdec-exp.pdf}
 	\caption[Exemple d'un chatbot à base d'un encodeur/décodeur.]{Exemple d'un chatbot à base d'un encodeur/décodeur ; figure reconstruite de \cite{2020-jurafsky-martin}.}
 	\label{fig:chatbot-encdec}
 \end{figure}
@@ -1064,7 +1066,7 @@ Deux classifications plus détaillées peuvent être trouvées dans \cite{19-yue
 
 \begin{figure}[!ht]
 	\centering
-	\hgraphpage[.8\textwidth]{sentiment-classif_noir.pdf}
+	\hgraphpage[.8\textwidth]{SA-classif.pdf}
 	\caption{Classification des méthodes d'analyse de sentiment}
 	\label{fig:asent}
 \end{figure}
@@ -1100,7 +1102,7 @@ La figure \ref{fig:asent-bettiche} représente l'architecture de leur système q
 
 \begin{figure}
 	\centering
-	\hgraphpage[.7\textwidth]{sent-bettiche-al.pdf}
+	\hgraphpage[.7\textwidth]{SA-bettiche-al.pdf}
 	\caption[Architecture hybride pour détecter la polarité en dialecte algérienne.]{Architecture hybride proposée par \citet{18-bettiche-al} pour détecter la polarité des messages en dialecte algérienne sur les réseaux sociaux ; figure reconstruite.}
 	\label{fig:asent-bettiche}
 \end{figure}
@@ -1140,7 +1142,7 @@ En conclusion, il faut mieux annoter les messages manuellement que d'utiliser un
 
 \begin{figure}
 	\centering
-	\hgraphpage[.5\textwidth]{sent-guellil-al.pdf}
+	\hgraphpage[.5\textwidth]{SA-guellil-al.pdf}
 	\caption[Architecture hybride pour l'analyse des sentiments en arabizi.]{Architecture hybride proposée par \citet{18-guellil-al} pour l'analyse des sentiments des messages en arabizi sur les réseaux sociaux ; figure reconstruite.}
 	\label{fig:asent-guellil}
 \end{figure}
@@ -1155,7 +1157,7 @@ Il existe deux approches : par règles ou par apprentissage automatique.
 
 \begin{figure}[!ht]
 	\centering
-	\hgraphpage[.8\textwidth]{lisibilite-classif_noir.pdf}
+	\hgraphpage[.8\textwidth]{Readability-classif.pdf}
 	\caption{Classification des tests de lisibilité}
 	\label{fig:lisibilite-classif}
 \end{figure}
@@ -1236,7 +1238,7 @@ Les classes de difficulté peuvent être définies selon le besoin : niveau de l
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[0.9\textwidth]{lisibilite-ML.pdf}
+	\hgraphpage[0.9\textwidth]{Readability-ML.pdf}
 	\caption[Pipeline d'estimation de difficulté de lecture avec apprentissage automatique.]{Pipeline d'estimation de difficulté de lecture avec apprentissage automatique ; figure reconstruite de \cite{2014-collins}.}
 	\label{fig:lisibilite-collins}
 \end{figure}
@@ -1260,7 +1262,7 @@ Le style de la parole peut, aussi, affecter un système de reconnaissance : est-
 
 \begin{figure}[!ht]
 	\centering
-	\hgraphpage[.8\textwidth]{asr-classif_noir.pdf}
+	\hgraphpage[.8\textwidth]{ASR-classif.pdf}
 	\caption{Classification des systèmes de reconnaissance de la parole}
 	\label{fig:asr-classif}
 \end{figure}
@@ -1418,7 +1420,7 @@ L'approche statistique est similaire à celle de la reconnaissance de paroles, s
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.8\textwidth]{tts-classif_noir.pdf}
+	\hgraphpage[.8\textwidth]{TTS-classif.pdf}
 	\caption{Classification des systèmes de synthèse vocale.}
 	\label{fig:tts-classif}
 \end{figure}
@@ -1433,7 +1435,7 @@ La dernière unité sert à générer la parole en utilisant ces paramètres sui
 
 \begin{figure}[ht]
 	\centering
-	\hgraphpage[.7\textwidth]{tts-arch.pdf}
+	\hgraphpage[.7\textwidth]{TTS-arch.pdf}
 	\caption[Architecture d'un système de synthèse vocale.]{Architecture d'un système de synthèse vocale ; figure reconstruite de \cite{2017-Hinterleitner}.}
 	\label{fig:tts-arch}
 \end{figure}

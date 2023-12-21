@@ -24,8 +24,8 @@
 \RequirePackage{fontenc}
 \RequirePackage[utf8x]{inputenc}
 \RequirePackage{amsmath,amssymb,wasysym} 
-\RequirePackage[japanese,french]{babel}
-\RequirePackage{arabtex,acolor}
+\RequirePackage[japanese,french,english]{babel}
+\RequirePackage{arabtex}
 \RequirePackage{txfonts}
 \RequirePackage{tipa}
 \RequirePackage{xeCJK}
@@ -248,7 +248,7 @@ title={#1}
 
 
 \RequirePackage{listings}
-\RequirePackage{lstlangKB}
+
 \RequirePackage{textcomp} %for textasciitilde
 
 \def\@codeStyle@background{\color{indigo!10!white}}
@@ -440,7 +440,7 @@ title={#1}
 		\bfseries
 		\begin{tabular}{ll}
 		\multirow{3}{*}{\the\@publisherimage} &
-		Support de cours \\
+		Course Book\\
 		& 2ième année cycle supérieur (2CS) \& Master\\
 		& \textit{Ecole nationale supérieure d'informatique (ESI), Alger}
 %		& \textit{Ecole nationale supérieure d'informatique (ESI, ex. INI), Alger, Algérie}
@@ -465,7 +465,7 @@ title={#1}
 	\pagenumbering{roman}
 	\pagestyle{fancy}
 	\phantomsection
-	\addcontentsline{toc}{part}{Pages préliminaires}
+	\addcontentsline{toc}{part}{Preliminary Pages}
 	\fancyhf{} % sets both header and footer to nothing
 	\fancyfoot[CE, CO]{\thepage}
 %	\fancyhead{}
@@ -478,7 +478,7 @@ title={#1}
 %	\pagenumbering{roman}
 %	\pagestyle{empty}
 	\phantomsection
-	\addcontentsline{toc}{part}{Pages complémentaires}
+	\addcontentsline{toc}{part}{Additional Pages}
 	%\fancyfoot{}
 	%\fancyhead{}
 
@@ -495,7 +495,7 @@ title={#1}
 	\renewcommand{\baselinestretch}{1.15}
 	\pagenumbering{arabic}
 	\phantomsection
-	\addcontentsline{toc}{part}{Contenu}
+	\addcontentsline{toc}{part}{Content}
 
 	\pagestyle{fancy}                       % Sets fancy header and footer
 %	\fancyfoot{}                            % Delete current footer settings
@@ -557,8 +557,8 @@ title={#1}
 
 \def\kodetoc{%
 
-	\chapter*{Table des matières}
-	\addcontentsline{toc}{section}{Table des matières}
+	\chapter*{Table of contents}
+	\addcontentsline{toc}{section}{Table of contents}
 
 	{
 		\hypersetup{linkcolor=black}
@@ -569,8 +569,8 @@ title={#1}
 
 \def\kodelof{%
 
-	\chapter*{Liste des figures}
-	\addcontentsline{toc}{section}{Liste des figures}
+	\chapter*{List of figures}
+	\addcontentsline{toc}{section}{List of figures}
 	{
 		\hypersetup{linkcolor=black}
 		\renewcommand\listfigurename{\vspace*{-3cm}}
@@ -605,8 +605,8 @@ title={#1}
 
 \def\kodeloa{%
 	
-	\chapter*{Liste des algorithmes}
-	\addcontentsline{toc}{section}{Liste des algorithmes}
+	\chapter*{List of algorithms}
+	\addcontentsline{toc}{section}{List of algorithms}
 	{
 		\hypersetup{linkcolor=black}
 		\listofalgorithms
@@ -616,8 +616,8 @@ title={#1}
 
 \def\kodelot{%
 
-	\chapter*{Liste des tableaux}
-	\addcontentsline{toc}{section}{Liste des tableaux}
+	\chapter*{List of tables}
+	\addcontentsline{toc}{section}{List of tables}
 		{
 			\hypersetup{linkcolor=black}
 			\renewcommand\listtablename{\vspace*{-3cm}}
@@ -676,8 +676,8 @@ title={#1}
 
 \def\kodeabbrev{%
 
-	\chapter*{Liste des abréviations}
-	\addcontentsline{toc}{section}{Liste des abréviations}
+	\chapter*{List of abbreviations}
+	\addcontentsline{toc}{section}{List of abbreviations}
 	\vspace*{-1cm}
 	\printacronyms[include=abbrev,heading=none,pages={display=all,seq/use=false}]
 %	\printglossaries
@@ -690,7 +690,7 @@ title={#1}
 
 \indexsetup{level=\chapter*,toclevel=chapter}
 
-\makeindex[program=makeindex,columns=2, options={-s KodeBook.ist}]
+\makeindex[program=makeindex,columns=2, options={-s KBook.ist}]
 
 %\makeindex
 
