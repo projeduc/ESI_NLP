@@ -5,44 +5,45 @@
 
 \documentclass[xcolor=table]{beamer}
 
+\usepackage{../extra/beamer/karimnlp}
+
 \input{options}
 
-\title[ESI - NLP: 08- Sentence semantics]%
-{Natural Language Processing\\Chapter 08\\Sentence semantics} 
+\subtitle[08- Sentence semantics]{Chapter 08\\Sentence semantics} 
 
 \changegraphpath{../img/sent-sem/}
 
 \begin{document}
 	
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Sentence semantics: Introduction}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Introduction}
 
-\begin{exampleblock}{Example of sentences}
-	\begin{center}
-		\Large\bfseries
-		My cat caught a mouse with its claws.
-		
-		My cat caught a mouse with pleasure.
-		
-		My cat caught a mouse with another cat.
-	\end{center}
-\end{exampleblock}
-
-\begin{itemize}
-	\item What instrument did the cat use to catch the mouse? How? With who?
-	\item The last sentence means: 
+	\begin{exampleblock}{Example of sentences}
+		\begin{center}
+			\Large\bfseries
+			My cat caught a mouse with its claws.
+			
+			My cat caught a mouse with pleasure.
+			
+			My cat caught a mouse with another cat.
+		\end{center}
+	\end{exampleblock}
+	
 	\begin{itemize}
-		\item My cat caught two animals: a mouse and another mouse.
-		\item The two cats caught a mouse.
+		\item What instrument did the cat use to catch the mouse? How? With who?
+		\item The last sentence means: 
+		\begin{itemize}
+			\item My cat caught two animals: a mouse and another mouse.
+			\item The two cats caught a mouse.
+		\end{itemize}
 	\end{itemize}
-\end{itemize}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Natural Language Processing}
-	\framesubtitle{Sentence semantics: Some humor}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor-ambiguity.jpeg}
@@ -51,119 +52,125 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Sentence semantics: Plan}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Plan}
 
-\begin{multicols}{2}
-%	\small
-\tableofcontents
-\end{multicols}
+	\begin{multicols}{2}
+	%	\small
+	\tableofcontents
+	\end{multicols}
+
 \end{frame}
 
 %===================================================================================
 \section{Semantic roles}
 %===================================================================================
 
+\begin{frame}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
+\end{frame}
+
 \subsection{Thematic roles}
 
 \begin{frame}
-\frametitle{Sentence semantics: Semantic roles}
-\framesubtitle{Thematic roles}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
-\begin{table}
-	\tiny\bfseries
-	\begin{tblr}{
-			colspec = {p{.13\textwidth}p{.42\textwidth}p{.35\textwidth}},
-			row{odd} = {lightblue},
-			row{even} = {lightyellow},
-			row{1} = {darkblue},
-			rowsep=2pt,
-		}
-		\textcolor{white}{Role} & \textcolor{white}{Description} & \textcolor{white}{Example}\\
-		
-		AGENT &
-		The volitional causer of an event &
-		\expword{\underline{Karim} broke the window with a rock.}\\
-		
-		EXPERIENCER & 
-		The experiencer of an event & 
-		\expword{\underline{Karim} has a headache.}\\
-		
-		FORCE &
-		The non-volitional causer of the event &
-		\expword{\underline{The wind} blows the debris.}\\
-		
-		THEME &
-		The participant most directly affected by an event &
-		\expword{Karim broke \underline{the window} with a rock.}\\
-		
-		RESULT &
-		The end product of an event &
-		\expword{The city built \underline{a baseball field}.}\\
-		
-		CONTENT &
-		The proposition or content of a propositional event &
-		\expword{Sara asked\newline \underline{``Did you meet Leila in a supermarket?"}}\\
-		
-		INSTRUMENT &
-		An instrument used in an event &
-		\expword{\underline{a rock} broke the window.}\\
-		
-		BENEFICIARY &
-		The beneficiary of an event &
-		\expword{Sara makes hotel reservations for \underline{her boss}.}\\
-		
-		SOURCE &
-		The origin of the object of a transfer event &
-		\expword{I came from \underline{Jijel}.}\\
-		
-		GOAL &
-		The destination of an object of a transfer event &
-		\expword{I went to \underline{Algiers}.}\\
-		
-		LOCATIVE & 
-		The specification of the place where the action or event designated by the predicate takes place &
-		\expword{I live in \underline{Jijel}.}\\
-	\end{tblr}
-	\caption{Some thematic roles, adapted from \cite{2019-jurafsky-martin}}
-\end{table}
+	\begin{table}
+		\tiny\bfseries
+		\begin{tblr}{
+				colspec = {p{.13\textwidth}p{.42\textwidth}p{.35\textwidth}},
+				row{odd} = {lightblue},
+				row{even} = {lightyellow},
+				row{1} = {darkblue},
+				rowsep=2pt,
+			}
+			\textcolor{white}{Role} & \textcolor{white}{Description} & \textcolor{white}{Example}\\
+			
+			AGENT &
+			The volitional causer of an event &
+			\expword{\underline{Karim} broke the window with a rock.}\\
+			
+			EXPERIENCER & 
+			The experiencer of an event & 
+			\expword{\underline{Karim} has a headache.}\\
+			
+			FORCE &
+			The non-volitional causer of the event &
+			\expword{\underline{The wind} blows the debris.}\\
+			
+			THEME &
+			The participant most directly affected by an event &
+			\expword{Karim broke \underline{the window} with a rock.}\\
+			
+			RESULT &
+			The end product of an event &
+			\expword{The city built \underline{a baseball field}.}\\
+			
+			CONTENT &
+			The proposition or content of a propositional event &
+			\expword{Sara asked\newline \underline{``Did you meet Leila in a supermarket?"}}\\
+			
+			INSTRUMENT &
+			An instrument used in an event &
+			\expword{\underline{a rock} broke the window.}\\
+			
+			BENEFICIARY &
+			The beneficiary of an event &
+			\expword{Sara makes hotel reservations for \underline{her boss}.}\\
+			
+			SOURCE &
+			The origin of the object of a transfer event &
+			\expword{I came from \underline{Jijel}.}\\
+			
+			GOAL &
+			The destination of an object of a transfer event &
+			\expword{I went to \underline{Algiers}.}\\
+			
+			LOCATIVE & 
+			The specification of the place where the action or event designated by the predicate takes place &
+			\expword{I live in \underline{Jijel}.}\\
+		\end{tblr}
+		\caption{Some thematic roles, adapted from \cite{2019-jurafsky-martin}}
+	\end{table}
 	
 \end{frame}
 
 \subsection{FrameNet}
 
 \begin{frame}
-\frametitle{Sentence semantics: Semantic roles}
-\framesubtitle{FrameNet}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 
-\begin{minipage}{.68\textwidth}
-	\begin{itemize}
-		\item {\scriptsize \url{https://framenet.icsi.berkeley.edu/fndrupal/}}
-		\item {\scriptsize \url{https://www.nltk.org/howto/framenet.html}}
-		\item Resource used to represent meaning
-		\item based on``\keyword{Frame semantics}" theory of \keyword{Fillmore}
-		\item annotated manually
-		\item Many semantic roles
-	\end{itemize}
-\end{minipage}
-\begin{minipage}{.3\textwidth}
-	\hgraphpage{frameNet-logo.jpg}
-\end{minipage}
+	\begin{minipage}{.68\textwidth}
+		\begin{itemize}
+			\item {\scriptsize \url{https://framenet.icsi.berkeley.edu/fndrupal/}}
+			\item {\scriptsize \url{https://www.nltk.org/howto/framenet.html}}
+			\item Resource used to represent meaning
+			\item based on``\keyword{Frame semantics}" theory of \keyword{Fillmore}
+			\item annotated manually
+			\item Many semantic roles
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{.3\textwidth}
+		\hgraphpage{frameNet-logo.jpg}
+	\end{minipage}
+	
+	\begin{exampleblock}{Example of sentences having the same frame}
+		The price of petrol increased.
+		
+		The price of petrol rose.
+		
+		There has been a rise in the price of petrol.
+	\end{exampleblock}
 
-\begin{exampleblock}{Example of sentences having the same frame}
-	The price of petrol increased.
-	
-	The price of petrol rose.
-	
-	There has been a rise in the price of petrol.
-\end{exampleblock}
-
-	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Semantic roles}
-	\framesubtitle{FrameNet: Structure}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Structure}
 	
 	\begin{itemize}
 		\item \optword{Frame}: schematic relation of a situation.
@@ -191,39 +198,39 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Sentence semantics: Semantic roles}
-\framesubtitle{FrameNet: Example of lexical units}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example of lexical units}
 
-\vspace{-12pt}
-\begin{table}
-	\scriptsize\bfseries
-	\begin{tblr}{
-			colspec = {p{.15\textwidth}p{.3\textwidth}p{.45\textwidth}},
-			row{odd} = {lightblue},
-			row{even} = {lightyellow},
-			row{1} = {darkblue},
-		}
+	\vspace{-12pt}
+	\begin{table}
+		\scriptsize\bfseries
+		\begin{tblr}{
+				colspec = {p{.15\textwidth}p{.3\textwidth}p{.45\textwidth}},
+				row{odd} = {lightblue},
+				row{even} = {lightyellow},
+				row{1} = {darkblue},
+			}
+		
+			\textcolor{white}{Lexical Unit} & \textcolor{white}{Frame} & \textcolor{white}{Example}\\
 	
-		\textcolor{white}{Lexical Unit} & \textcolor{white}{Frame} & \textcolor{white}{Example}\\
-
-		break.n & Opportunity & \\	
-		break.v & Cause\_harm & \expword{Jolosa broke a rival player's jaw.}\\
-		break.v & Compliance & \expword{He broke his promess.}\\
-		break.v & Experience\_bodily\_harm & \expword{I broke my arm in the accident.}\\
-		break.v & Cause\_to\_fragment & \expword{Michael broke the bottle against his head}\\
-		break.v & Render\_nonfunctional & \expword{I guess I broke the doorknob by twisting it too hard.}\\
-		break.v & Breaking\_off & \expword{The handle broke off of the pot.}\\
-		break.v & Breaking\_apart & \expword{The handle broke off of the pot.}\\
-
-	\end{tblr}
-	\caption{Sematic frames activated by `break" LU.}
-\end{table}
+			break.n & Opportunity & \\	
+			break.v & Cause\_harm & \expword{Jolosa broke a rival player's jaw.}\\
+			break.v & Compliance & \expword{He broke his promess.}\\
+			break.v & Experience\_bodily\_harm & \expword{I broke my arm in the accident.}\\
+			break.v & Cause\_to\_fragment & \expword{Michael broke the bottle against his head}\\
+			break.v & Render\_nonfunctional & \expword{I guess I broke the doorknob by twisting it too hard.}\\
+			break.v & Breaking\_off & \expword{The handle broke off of the pot.}\\
+			break.v & Breaking\_apart & \expword{The handle broke off of the pot.}\\
+	
+		\end{tblr}
+		\caption{Sematic frames activated by `break" LU.}
+	\end{table}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Semantic roles}
-	\framesubtitle{FrameNet: Example of semantic frame (1)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example of semantic frame (1)}
 	
 	
 	\begin{table}
@@ -234,13 +241,15 @@
 				row{even} = {lightyellow},
 				row{1,3,8} = {darkblue},
 				rowsep=0pt,
+				cell{1,3,8}{1} = {c=2}{c},
 			}
-			\multicolumn{2}{c}{\textcolor{white}{Cause\_to\_fragment}} \\
+		
+			\textcolor{white}{Cause\_to\_fragment} & \\
 			
 			Definition & An \textcolor{red}{Agent} suddenly and often violently separates the \textcolor{red}{Whole\_patient} into two or more smaller \textcolor{red}{Pieces}, resulting in the \textcolor{red}{Whole\_patient} no longer existing as such. Several lexical items are marked with the semantic type Negative, which indicates that the fragmentation is necessarily judged as injurious to the original \textcolor{red}{Whole\_patient}. Compare this frame with Damaging, Render\_non-functional, and Removing. \\	
 			
 %			\rowcolor{darkblue}
-			\multicolumn{2}{c}{\textcolor{white}{FEs (Core)}} \\
+			\textcolor{white}{FEs (Core)} & \\
 			
 			Agent [Agt] \newline \textcolor{blue}{Semantic Type: Sentient} & 
 			The conscious entity, generally a person, that performs the intentional action that results in the \textcolor{red}{Whole\_patient} being broken into \textcolor{red}{Pieces}. \newline \expword{\underline{I and I alone} can SHATTER the gem and break the curse.} \\
@@ -258,7 +267,7 @@
 			\expword{Shattering someone's confidence is a little different than SHATTERING \underline{a dish}.} \\
 			
 %			\rowcolor{darkblue}
-			\multicolumn{2}{c}{\textcolor{white}{FEs (None-Core)}} \\
+			\textcolor{white}{FEs (None-Core)} & \\
 			
 			Degree [Degr] \newline \textcolor{blue}{Semantic Type: Degree} &
 			The degree to which the fracturing is completed. 
@@ -279,8 +288,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Semantic roles}
-	\framesubtitle{FrameNet: Example of semantic frame (2)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example of semantic frame (2)}
 	
 	\begin{table}
 		\tiny\bfseries
@@ -290,14 +299,15 @@
 				row{even} = {lightyellow},
 				row{1,3,7,11} = {darkblue},
 				rowsep = 0pt,
+				cell{1,3,6,7,11}{1} = {c=2}{c},
 			}
-			\multicolumn{2}{c}{\textcolor{white}{Cause\_to\_fragment}} \\
+			\textcolor{white}{Cause\_to\_fragment} & \\
 			
 			 & \\	
 			 
 			
 %			\rowcolor{darkblue}
-			\multicolumn{2}{c}{\textcolor{white}{FEs (None-Core)}} \\
+			\textcolor{white}{FEs (None-Core)} & \\
 			
 			Explanation [Exp] \newline \textcolor{blue}{Semantic Type: State\_of\_affairs} &	
 			A state of affairs that the \textcolor{red}{Agent} is responding to in performing the action.
@@ -308,17 +318,17 @@
 			An entity directed by the  \textcolor{red}{Agent} that interacts with a \textcolor{red}{Whole\_patient} to accomplish its fracture. \\
 			
 			
-			\multicolumn{2}{c}{\large ...} \\
+			{\large ...} & \\
 			
 %			\rowcolor{darkblue}
-			\multicolumn{2}{c}{\textcolor{white}{Frame-frame Relations}} \\
+			\textcolor{white}{Frame-frame Relations} & \\
 			
 			Inherits from & Transitive\_action \\
 			Uses & Destroying \\
 			Is Causative of & Breaking\_apart \\
 			
 %			\rowcolor{darkblue}
-			\multicolumn{2}{c}{\textcolor{white}{Lexical Units}} \\
+			\textcolor{white}{Lexical Units} & \\
 			
 			& break apart.v, break down.v, break up.v, break.v, chip.v, cleave.v, dissect.v, dissolve.v, fracture.v, fragment.v, rend.v, rip up.v, rip.v, rive.v, shatter.v, shiver.v, shred.v, sliver.v, smash.v, snap.v, splinter.v, split.v, take apart.v, tear up.v, tear.v \\
 			
@@ -333,8 +343,8 @@
 
 
 \begin{frame}
-	\frametitle{Sentence semantics: Semantic roles}
-	\framesubtitle{FrameNet: Example of valence patterns}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example of valence patterns}
 	
 	\vspace{-6pt}
 	\begin{table}
@@ -378,8 +388,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Semantic roles}
-	\framesubtitle{FrameNet: Example of lexicographic annotations}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example of lexicographic annotations}
 	
 	\vskip-5pt
 	\begin{figure}
@@ -424,35 +434,35 @@
 \subsection{PropBank}
 
 \begin{frame}
-\frametitle{Sentence semantics: Semantic roles}
-\framesubtitle{PropBank}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 
 	
-%\begin{minipage}{.68\textwidth}
-\begin{itemize}
-	\item {\scriptsize \url{https://propbank.github.io/}}
-	\item {\scriptsize \url{https://www.nltk.org/howto/propbank.html}}
-	\item Annotated corpus based on Predicate-Arguments structure
-	\item Less semantic roles 
+	%\begin{minipage}{.68\textwidth}
 	\begin{itemize}
-		\item \optword{Proto-Agent}
+		\item {\scriptsize \url{https://propbank.github.io/}}
+		\item {\scriptsize \url{https://www.nltk.org/howto/propbank.html}}
+		\item Annotated corpus based on Predicate-Arguments structure
+		\item Less semantic roles 
 		\begin{itemize}
-			\item voluntarily participate in an event or state
-			\item cause an event or a state change of another participant
-		\end{itemize}
-		\item \optword{Proto-Patient}
-		\begin{itemize}
-			\item experience a change of state
-			\item be affected by another participant
+			\item \optword{Proto-Agent}
+			\begin{itemize}
+				\item voluntarily participate in an event or state
+				\item cause an event or a state change of another participant
+			\end{itemize}
+			\item \optword{Proto-Patient}
+			\begin{itemize}
+				\item experience a change of state
+				\item be affected by another participant
+			\end{itemize}
 		\end{itemize}
 	\end{itemize}
-\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Semantic roles}
-	\framesubtitle{PropBank: Structure}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Structure}
 	
 	\begin{itemize}
 		\item \optword{Roleset id}: Verbs are annotated by their meanings.
@@ -484,40 +494,40 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Sentence semantics: Semantic roles}
-\framesubtitle{PropBank: Example of predicates}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example of predicates}
 	
 
-\begin{figure}
-%	\tiny
-	\scriptsize
-	\begin{tcolorbox}[colback=white, colframe=blue, boxrule=1pt, text width=.91\textwidth]
-	\begin{itemize}
-		\item \textbf{Roleset id}
-		\begin{itemize}\scriptsize
-			\item \textbf{know.01}: be cognizant of, realize
-		\end{itemize}
-		\item \textbf{Roles}
-		\begin{itemize}\scriptsize
-			\item \textbf{Arg0}: knower
-			\item \textbf{Arg1}: fact that is known
-			\item \textbf{Arg2}: entity that arg1 is known ABOUT
-		\end{itemize}
-	
-		\item \textbf{Example: know-v: sentential thing known}
-		\begin{itemize}\scriptsize
-			\item \ [\textsubscript{\color{red}Arg0} The other side] knows [\textsubscript{\color{red}Arg1} that Giuliani has always been prochoice].
-		\end{itemize}
-	
-		\item \textbf{Example: know-v: attributive}
-		\begin{itemize}\scriptsize
-			\item \ [\textsubscript{\color{red}Arg0} He] did[\textsubscript{\color{red}ArgM-NEG} n't] know [\textsubscript{\color{red}Arg1} (anything)] [\textsubscript{\color{red}Arg2} about most of the cases] [\textsubscript{\color{red}ArgM-TMP} until Wednesday].
-		\end{itemize}
-	\end{itemize}
-	\end{tcolorbox}
+	\begin{figure}
+	%	\tiny
+		\scriptsize
+		\begin{tcolorbox}[colback=white, colframe=blue, boxrule=1pt, text width=.91\textwidth]
+		\begin{itemize}
+			\item \textbf{Roleset id}
+			\begin{itemize}\scriptsize
+				\item \textbf{know.01}: be cognizant of, realize
+			\end{itemize}
+			\item \textbf{Roles}
+			\begin{itemize}\scriptsize
+				\item \textbf{Arg0}: knower
+				\item \textbf{Arg1}: fact that is known
+				\item \textbf{Arg2}: entity that arg1 is known ABOUT
+			\end{itemize}
 		
-	\caption{ProBank annotation excerpt of predicate ``know" \url{http://verbs.colorado.edu/propbank/framesets-english-aliases/know.html}}
-\end{figure}
+			\item \textbf{Example: know-v: sentential thing known}
+			\begin{itemize}\scriptsize
+				\item \ [\textsubscript{\color{red}Arg0} The other side] knows [\textsubscript{\color{red}Arg1} that Giuliani has always been prochoice].
+			\end{itemize}
+		
+			\item \textbf{Example: know-v: attributive}
+			\begin{itemize}\scriptsize
+				\item \ [\textsubscript{\color{red}Arg0} He] did[\textsubscript{\color{red}ArgM-NEG} n't] know [\textsubscript{\color{red}Arg1} (anything)] [\textsubscript{\color{red}Arg2} about most of the cases] [\textsubscript{\color{red}ArgM-TMP} until Wednesday].
+			\end{itemize}
+		\end{itemize}
+		\end{tcolorbox}
+			
+		\caption{ProBank annotation excerpt of predicate ``know" \url{http://verbs.colorado.edu/propbank/framesets-english-aliases/know.html}}
+	\end{figure}
 	
 \end{frame}
 
@@ -527,21 +537,21 @@
 %===================================================================================
 
 \begin{frame}
-\frametitle{Sentence semantics}
-\framesubtitle{Semantic roles labeling (SRL)}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
 
-\begin{figure}
-	\hgraphpage{exp-srl_.pdf}
-	\caption{Example of ProbBank-based SRL [\url{https://demo.allennlp.org/semantic-role-labeling/}]}
-\end{figure}
+	\begin{figure}
+		\hgraphpage{exp-srl_.pdf}
+		\caption{Example of ProbBank-based SRL [\url{https://demo.allennlp.org/semantic-role-labeling/}]}
+	\end{figure}
 	
 \end{frame}
 
 \subsection{Features-based}
 
 \begin{frame}
-	\frametitle{Sentence semantics: SRL}
-	\framesubtitle{Features-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item \optword{Idea}: browse the parse tree and classify the nodes.
@@ -560,8 +570,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: SRL}
-	\framesubtitle{Features-based: Example of annotated parse tree}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example of annotated parse tree}
 	
 	\vspace{-0.2cm}
 	\begin{figure}
@@ -572,8 +582,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: SRL}
-	\framesubtitle{Features-based: Some features}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some features}
 
 	\begin{itemize}
 		\item Sentence's main predicate. E.g. \expword{Using computers \underline{enhances} work.};
@@ -591,8 +601,8 @@
 \subsection{Neural-networks-based}
 
 \begin{frame}
-	\frametitle{Sentence semantics: SRL}
-	\framesubtitle{Neural-networks-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 
 	\begin{minipage}{.48\textwidth}
 		\begin{itemize}
@@ -615,8 +625,8 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Sentence semantics}
-	\framesubtitle{Semantic representation of sentences}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item There are several ways to express the same meaning.
@@ -646,8 +656,8 @@
 \subsection{First order logic}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{First order logic}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item \optword{term}: an object.
@@ -683,8 +693,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{First order logic: Formalism}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Formalism}
 	
 	\begin{figure}
 %		\vgraphpage[0.6\textheight]{LPO-gram_.pdf}
@@ -714,8 +724,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{First order logic: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor-FOL.jpeg}
@@ -726,8 +736,8 @@
 \subsection{Graphs (AMR)}
 
 \begin{frame}[fragile]
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{Graphs (AMR)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item Abstract Meaning Representation \cite{2013-banarescu-al}
@@ -775,8 +785,8 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{Graphs (AMR): Relations}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Relations}
 	
 	\begin{itemize}
 		\item \optword{frame arguments}: following PropBank
@@ -811,8 +821,8 @@
 \subsection{Semantic parsing}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{Semantic parsing: Lambda notation}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Lambda notation}
 	
 	\begin{itemize}
 		\item \keyword{$ \lambda $-Expression}
@@ -835,8 +845,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{Semantic parsing: Logical representation generation}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Logical representation generation}
 	
 	\begin{center}
 		\small\bfseries
@@ -854,13 +864,11 @@
 		
 		\hgraphpage[0.7\textwidth]{sem-tree.pdf}
 	\end{center}
-	
-	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{Semantic parsing: Quantifiers}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Quantifiers}
 	
 	\begin{center}
 		\small\bfseries
@@ -890,8 +898,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{Semantic parsing: Quantifiers (Example)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Quantifiers (Example)}
 	
 	\begin{center}
 		\hgraphpage[0.8\textwidth]{sem-qtree.pdf}
@@ -908,8 +916,8 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{Semantic parsing: NLTK example}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: NLTK example}
 	
 	\begin{exampleblock}{Example pf semantic parsing using NLTK}
 		\optword{Code:}
@@ -940,8 +948,8 @@ all z2.(dog(z2) -> exists z1.(bone(z1) & give(angus,z1,z2)))
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sentence semantics: Representation}
-	\framesubtitle{Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor-sens.jpg}
