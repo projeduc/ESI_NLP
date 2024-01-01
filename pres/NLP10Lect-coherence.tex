@@ -5,40 +5,40 @@
 
 \documentclass[xcolor=table]{beamer}
 
+\usepackage{../extra/beamer/karimnlp}
 \input{options}
 
-\title[ESI - NLP: 10- Discourse coherence]%
-{Natural Language Processing\\Chapter 10\\Discourse coherence} 
+\subtitle[10- Discourse coherence]{Chapter 10\\Discourse coherence} 
 
 \changegraphpath{../img/coherence/}
 
 \begin{document}
 	
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Discourse coherence: Introduction}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Introduction}
 
-\begin{exampleblock}{Example of a paragraph}
-	\begin{center}
-		\Large\bfseries
-		Winter is one of the year's four seasons.
-		The report was well presented.
-		Rain is one of this season's qualities.
-		I read a report on this season.
-	\end{center}
-\end{exampleblock}
-
-\begin{itemize}
-	\item Can you figure out what this is about?
-	\item If there is a problem, what is it?
-	\item Can this text be improved?
-\end{itemize}
+	\begin{exampleblock}{Example of a paragraph}
+		\begin{center}
+			\Large\bfseries
+			Winter is one of the year's four seasons.
+			The report was well presented.
+			Rain is one of this season's qualities.
+			I read a report on this season.
+		\end{center}
+	\end{exampleblock}
+	
+	\begin{itemize}
+		\item Can you figure out what this is about?
+		\item If there is a problem, what is it?
+		\item Can this text be improved?
+	\end{itemize}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Natural Language Processing}
-	\framesubtitle{Discourse coherence}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle}
 	
 	\begin{itemize}
 		\item How to detect discourse coherence?
@@ -60,34 +60,41 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Discourse coherence: Some humor}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Some humor}
 
-\begin{center}
-	\vgraphpage{humor/humor1.jpg}
-\end{center}
+	\begin{center}
+		\vgraphpage{humor/humor1.jpg}
+	\end{center}
 
 \end{frame}
 
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Discourse coherence: Plan}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Plan}
 
-\begin{multicols}{2}
-%	\small
-\tableofcontents
-\end{multicols}
+	\begin{multicols}{2}
+	%	\small
+	\tableofcontents
+	\end{multicols}
+
 \end{frame}
 
 %===================================================================================
 \section{Coherence relations}
 %===================================================================================
 
+\begin{frame}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
+\end{frame}
+
 \subsection{Rhetorical Structure Theory (RST)}
 
 \begin{frame}
-\frametitle{Discourse coherence: Coherence relations}
-\framesubtitle{Rhetorical Structure Theory (RST)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item Structure  
@@ -112,8 +119,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{RST: RST relations (Elaboration)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: RST relations (Elaboration)}
 	
 	\begin{itemize}
 		\item \optword{Elaboration}: S gives additional information about the situation presented in N.
@@ -128,8 +135,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{RST: RST relations (Evidence)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: RST relations (Evidence)}
 	
 	\begin{itemize}
 		\item \optword{Evidence}: S gives additional information about the situation presented in N in order to convince R to accept the information of N
@@ -146,8 +153,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{RST: RST relations (Contrast)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: RST relations (Contrast)}
 	
 	\begin{itemize}
 		\item \optword{Contrast}: An opposition relation between two nuclei.
@@ -163,8 +170,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{RST: RST relations (Antithesis)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: RST relations (Antithesis)}
 	
 	\begin{itemize}
 		\item \optword{Antithesis}: An opposition relation between N and S so that R has a positive attitude towards N.
@@ -180,8 +187,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{RST: Subject matter vs. presentational relations}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Subject matter vs. presentational relations}
 	
 	\begin{center}
 		\footnotesize
@@ -247,8 +254,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{RST: semantic vs. pragmatic vs. textual relations}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: semantic vs. pragmatic vs. textual relations}
 	
 	
 	\begin{center}
@@ -318,8 +325,8 @@
 \subsection{Penn Discourse TreeBank (PDTB)}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{Penn Discourse TreeBank (PDTB)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item Annotation of discourse connectives
@@ -349,11 +356,11 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{Penn Discourse TreeBank (PDTB): Connectives senses}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Connectives senses}
 	
 	\begin{table}
-	\tiny\bfseries
+	{\tiny\bfseries
 	\begin{tblr}{
 			colspec = {p{.1\textwidth}lp{.8\textwidth}},
 			row{odd} = {lightblue},
@@ -382,18 +389,18 @@
 		and && Conjunction (2543), List (210), result-Conjunction (138), result (38), precedence-Conjunction (30),
 		juxtaposition (11), other(30)\\
 		if && hypothetical (682), general (175), unreal present (122), factual present (73), unreal past (53), expectation (34), implicit assertion (29), relevance (20), other (31)\\
-	\end{tblr}
+	\end{tblr}}
 	\caption{Some connectives and statistics on their senses \cite{2008-prasad-al}}
 	\end{table}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Coherence relations}
-	\framesubtitle{Penn Discourse TreeBank (PDTB): Connectives categories}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Connectives categories}
 	
 	\begin{figure}
-		\centering\vspace{-6pt}
+		\centering\vspace{-12pt}
 		\begin{tcolorbox}[colback=white, colframe=blue, boxrule=1pt, text width=.9\textwidth]
 		\begin{minipage}{.3\textwidth}
 			\tiny\bfseries\vspace{-6pt}
@@ -490,8 +497,8 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Discourse coherence}
-	\framesubtitle{Discourse Structure Parsing}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
 		\item A discourse is coherent if there are relations between its parts.
@@ -507,8 +514,8 @@
 \subsection{RST parsing}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Discourse Structure Parsing}
-	\framesubtitle{RST parsing}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item Build a discourse relations tree
@@ -520,14 +527,14 @@
 	\end{itemize}
 
 	\begin{center}
-		\hgraphpage[0.5\textwidth]{RST-tree.pdf}
+		\hgraphpage[0.7\textwidth]{RST-tree.pdf}
 	\end{center}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Discourse Structure Parsing}
-	\framesubtitle{RST parsing: Elementary discourse units (EDUs) detection}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Elementary discourse units (EDUs) detection}
 	
 	\begin{itemize}
 		\item Elementary discourse units (EDUs)
@@ -551,20 +558,20 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Discourse Structure Parsing}
-	\framesubtitle{RST parsing: EDUs detection by embeddings}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: EDUs detection by embeddings}
 	
 	\begin{figure}
 		\centering
 		\hgraphpage[.45\textwidth]{EDU_seg.pdf}
-		\caption{EDUs segmentation proposed by \cite{2018-wang-al}; figure inspired by \cite{2019-jurafsky-martin}}
+		\caption{EDUs segmentation proposed by \cite{2018-wang-al}; figure inspired from \cite{2019-jurafsky-martin}}
 	\end{figure}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Discourse Structure Parsing}
-	\framesubtitle{RST parsing: Relations classification}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Relations classification}
 	
 	\begin{minipage}{.6\textwidth}
 	\begin{itemize}
@@ -599,8 +606,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Discourse Structure Parsing}
-	\framesubtitle{RST parsing: Relations classification (example)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Relations classification (example)}
 	
 	\begin{figure}
 		\begin{minipage}{0.25\textwidth}
@@ -637,8 +644,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Discourse Structure Parsing}
-	\framesubtitle{RST parsing: Relations classification using embeddings (1)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Relations classification using embeddings (1)}
 	
 	\begin{itemize}
 		\item Case study: \cite{2018-yu-al} (Encoder-decoder)
@@ -659,8 +666,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Discourse Structure Parsing}
-	\framesubtitle{RST parsing: Relations classification using embeddings (2)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Relations classification using embeddings (2)}
 	
 	\begin{itemize}
 		\item Decoder 
@@ -679,8 +686,8 @@
 \subsection{PDTB parser}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Discourse Structure Parsing}
-	\framesubtitle{PDTB parser}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item Find the relation between two spans
@@ -708,8 +715,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence}
-	\framesubtitle{Discourse Structure Parsing: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor2.jpg}
@@ -722,8 +729,8 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Discourse coherence}
-	\framesubtitle{Entity-based coherence}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
 		\item A discourse is coherent if it discusses a certain entity
@@ -755,8 +762,8 @@
 \subsection{Centering theory}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Entity-based coherence}
-	\framesubtitle{Centering theory: Discourse center}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Discourse center}
 	
 	\begin{itemize}
 		\item $\mathbf{U_n}$: an utterance
@@ -781,8 +788,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Entity-based coherence}
-	\framesubtitle{Centering theory: Transitions}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Transitions}
 	
 	\begin{itemize}
 		\item Transitions order from the most coherent
@@ -823,8 +830,8 @@
 \subsection{Entity Grid model}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Entity-based coherence}
-	\framesubtitle{Entity Grid model}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item A document is represented by a matrix
@@ -844,11 +851,12 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Entity-based coherence}
-	\framesubtitle{Entity Grid model: Example of document's representation}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example of document's representation}
 	
 	\begin{figure}
-		\centering\tiny\bfseries
+		\centering
+		{\tiny\bfseries
 		\begin{minipage}{.8\textwidth}
 			\begin{enumerate}
 				\item\ [The Justice Department]\textsubscript{s} is conducting an [anti-trust trial]\textsubscript{o} against [Microsoft Corp.]\textsubscript{x} with [evidence]\textsubscript{x} that [the company]\textsubscript{s} is increasingly attempting to crush [competitors]\textsubscript{o}.
@@ -875,15 +883,15 @@
 			5. & - & - & - & - & - & - & - & - & - & - & - & - & s & o & - & 5. \\
 			6. & - & x & s & - & - & - & - & - & - & - & - & - & - & - & o & 6. \\
 			
-		\end{tabular}
+		\end{tabular}}
 		\caption{Example of document representation using entities \cite{2008-barzilay-lapata}}
 	\end{figure}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Entity-based coherence}
-	\framesubtitle{Entity Grid model: Transitions representation}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Transitions representation}
 	
 	\begin{itemize}
 		\item A document is represented by grammatical transitions probabilities
@@ -891,7 +899,7 @@
 		\item E.g. In the past example: \expword{P(S\_) = 2/75}
 	\end{itemize}
 	\begin{figure}
-		\tiny\bfseries
+		{\tiny\bfseries
 		\begin{tabular}{lllllllllllllllll}
 			\hline
 			& s s & s o & s x & s - & o s & o o & o x & o - & x s & x o & x x & x - & - s & - o & - x & - - \\
@@ -900,15 +908,15 @@
 			d2 & .02 & .01 & .01 & .02 & .00 & .07 & .00 & .02 & .14 & .14 & .06 & .04 & .03 & .07 & .01 & .36 \\
 			d3 & .02 & .00 & .00 & .03 & .09 & .00 & .09 & .06 & .00 & .00 & .00 & .05 & .03 & .07 & .17 & .39 \\
 			\hline
-		\end{tabular}
+		\end{tabular}}
 		\caption{Example of a documents representation by grammatical transitions \cite{2008-barzilay-lapata}}
 	\end{figure}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence: Entity-based coherence}
-	\framesubtitle{Entity Grid model: Training}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Training}
 
 	\begin{itemize}
 		\item The algorithm learns to rate a text according to its coherence
@@ -925,8 +933,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Discourse coherence}
-	\framesubtitle{Entity-based coherence: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor3.png}

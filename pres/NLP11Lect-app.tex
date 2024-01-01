@@ -5,18 +5,18 @@
 
 \documentclass[xcolor=table]{beamer}
 
+\usepackage{../extra/beamer/karimnlp}
 \input{options}
 
-\title[ESI - NLP: 11- Some applications]%
-{Natural Language Processing\\Chapter 11\\Some applications} 
+\subtitle[11- Some applications]{Chapter 11\\Some applications} 
 
 \changegraphpath{../img/app/}
 
 \begin{document}
 	
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Some applications: Introduction}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Introduction}
 
 	\begin{itemize}
 		\item To present some NLP applications, we will categorize them using some criteria
@@ -37,13 +37,14 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Some applications: Plan}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Plan}
 
-\begin{multicols}{2}
-%	\small
-\tableofcontents
-\end{multicols}
+	\begin{multicols}{2}
+	%	\small
+	\tableofcontents
+	\end{multicols}
+
 \end{frame}
 
 %===================================================================================
@@ -51,8 +52,9 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Some applications}
-	\framesubtitle{Transformation}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
 	\begin{itemize}
 		\item \textbf{Input}: text 
 		\item \textbf{Output}: text
@@ -62,19 +64,23 @@
 			\item Automatic text summarization (ATS)
 		\end{itemize}
 	\end{itemize}
+
 \end{frame}
 
-\subsection{Machine translation (MT)}
+\subsection{Machine translation}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{Machine translation (MT): Approaches}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Approaches}
+	
 	\hgraphpage{MT-classif.pdf}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Direct}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Direct}
+	
 	\begin{itemize}
 		\item \textbf{Algorithm}:
 		\begin{itemize}
@@ -91,11 +97,13 @@
 		\item \textbf{Level}: Lexical 
 		\item E.g. \expword{Systems before 1967: Météo, Weidner, CULT and Systran (first editions)}
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Transfer-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Transfer-based}
+	
 	\begin{itemize}
 		\item \textbf{Algorithm}:
 		\begin{itemize}
@@ -114,11 +122,12 @@
 		\end{itemize}
 		\item \textbf{Level}: Syntactic
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Transfer-based (Example of transfer rules)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Transfer-based (e.g. of transfer rules)}
 
 	\begin{figure}
 		\centering
@@ -129,19 +138,20 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Transfer-based (Example: Apertium \cite{11-forcada-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Transfer-based (e.g.: Apertium \cite{11-forcada-al})}
 	
 	\begin{itemize}
 		\item \url{https://www.apertium.org/}
 	\end{itemize}
 
 	\hgraphpage{MT-apertium-arch.pdf}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Interlingua-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Interlingua-based}
 	
 	\begin{figure}
 		\centering
@@ -152,8 +162,9 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Interlingua-based (Description)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Interlingua-based (Description)}
+	
 	\begin{itemize}
 		\item \textbf{Algorithm}:
 		\begin{itemize}
@@ -172,15 +183,17 @@
 		\end{itemize}
 		\item \textbf{Level}: syntactic/semantic
 	\end{itemize}
+
 \end{frame}
 
 
 \begin{frame}[fragile]
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Interlingua-based (Example KANT \cite{98-czuba-al})}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\bfseries\fontsize{4}{5}\selectfont
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Interlingua-based (e.g.: KANT \cite{98-czuba-al})}
+	
+	\begin{columns}
+	\begin{column}{0.5\textwidth}
+	\bfseries\fontsize{4}{5}\selectfont
 \begin{verbatim}
 (*A-REMAIN  ; action rep for ’remain’
    (FORM FINITE)
@@ -217,28 +230,27 @@
                      (REFERENCE NO-REFERENCE)
                      (PERSON THIRD))))))))
 \end{verbatim}
-\end{column}
-\begin{column}{0.5\textwidth}
-	\begin{figure}
-		\caption{Sentence "\textit{The default rate remained close to zero during this time.}" representation using KANT Interlingua \cite{98-czuba-al}}
-	\end{figure}
-\end{column}
-\end{columns}
-
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{figure}
+			\caption{Sentence "\textit{The default rate remained close to zero during this time.}" representation using KANT Interlingua \cite{98-czuba-al}}
+		\end{figure}
+	\end{column}
+	\end{columns}
 
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Interlingua-based (Example: KANTOO system \cite{00-nyberg-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Interlingua-based (e.g.: KANTOO \cite{00-nyberg-al})}
 	
 	\hgraphpage{MT-kantoo-arch.pdf}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Statistical}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical}
 	\[
 	p(T|S) = \frac{p(T) p(S|T)}{p(S)} \propto \underbrace{p(T)}_\text{Coherence} \underbrace{p(S|T)}_\text{Fidelity}
 	\]
@@ -258,11 +270,12 @@
 			\item Size difference between source/target
 		\end{itemize}
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Statistical (Alignment)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical (Alignment)}
 	
 	\[p(S|T) = \sum_{A} p(S, A | T)\]
 	
@@ -272,11 +285,13 @@
 	\[p(S_i, A_i | S_1^{i-1}, A_1^{i-1}, T_1^{m}) = p(A_i | S_1^{i-1}, A_1^{i-1}, T_1^{m}) p(S_i | S_1^{i-1}, A_1^{i}, T_1^{m})\]
 	
 	\[ \text{Number of possible alignments } = (m + 1)^n\]
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Statistical (IBM1 alignment)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical (IBM1 alignment)}
+	
 	\begin{itemize}
 		\item IBM 1 model (Uniform distribution of words)
 	\end{itemize}
@@ -284,11 +299,13 @@
 	\[p(A_i | S_1^{i-1}, A_1^{i-1}, T_1^{m}) = \frac{1}{m+1}\]
 	
 	\[p(S|T) = \frac{1}{(m+1)^n} \sum_{A} \prod_{i=1}^{n} p(S_i | S_1^{i-1}, A_1^{i}, T_1^{m})\]
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Statistical (IBM2 alignment)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical (IBM2 alignment)}
+	
 	\begin{itemize}
 		\item IBM 2 model
 		\item Alignments probabilities is only based on the current position $i$, the current word $A_i$, the source text size $n$ and the target text size $m$
@@ -298,11 +315,13 @@
 	\[p(A_i | S_1^{i-1}, A_1^{i-1}, T_1^{m}) = p(A_i | i, n, m)\]
 	
 	\[p(S|T) = \sum_{A} \prod_{i=1}^{n} p(A_i | i, n, m) p(S_i | S_1^{i-1}, A_1^{i}, T_1^{m})\]
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Statistical (HMM alignment)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical (HMM alignment)}
+	
 	\begin{itemize}
 		\item HMM model
 		\item The alignment probability of a word $A_i$ is based on the previous word's alignment $A_{i-1}$
@@ -311,21 +330,25 @@
 	\[p(A_i | S_1^{i-1}, A_1^{i-1}, T_1^{m}) = p(A_i | A_{i-1}, m)\]
 	
 	\[p(S|T) = \sum_{A} \prod_{i=1}^{n} p(A_i | A_{i-1}, m) p(S_i | S_1^{i-1}, A_1^{i}, T_1^{m})\]
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Examples-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Examples-based}
+	
 	\begin{itemize}
 		\item The same as statistical approach
 		\item Instead of words, we can find segments
 		\item A segment's probability (set of consecutive words) is calculated compared to another
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Examples-based (Example: Moses \cite{07-koehn-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Examples-based (e.g.: Moses \cite{07-koehn-al})}
+	
 	\begin{itemize}
 		\item \url{http://statmt.org/moses/}
 		\item Segment translation table $\phi(S|T)$: segment $S$, equivalent segment $T$ and a probability.
@@ -336,11 +359,13 @@
 	\end{itemize}
 
 	\[p(T|S) = \phi(S|T)^{poids_{\phi}} \times LM^{poids_{LM}} \times D(T, S)^{poids_{D}} \times W(T)^{poids_{W}}\]
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: NN-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: NN-based}
+	
 	\begin{itemize}
 		\item Structure
 		\begin{itemize}
@@ -355,31 +380,36 @@
 		
 		\[\hat{T} = \arg\max_{T} \prod_{i=1}^{m} p(t_i | S, t_1\ldots t_{i-1})\]
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: NN-based (Example: Google \cite{16-wu-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: NN-based (e.g.: Google \cite{16-wu-al})}
+	
 	\begin{itemize}
 		\item \url{https://translate.google.com/}
 	\end{itemize}
 	\begin{center}
 		\hgraphpage[.9\textwidth]{MT-googlet.pdf}
 	\end{center}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: NN-based (Example: OpenNMT \cite{17-klein-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: NN-based (e.g.: OpenNMT \cite{17-klein-al})}
+	
 	\begin{itemize}
 		\item \url{https://opennmt.net/}
 	\end{itemize}
 	\hgraphpage{MT-opennmt.pdf}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{MT: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\hgraphpage[0.65\textwidth]{humor/humor-translation1.jpg}
@@ -388,17 +418,20 @@
 	
 \end{frame}
 
-\subsection{Automatic text summarization (ATS)}
+\subsection{Automatic text summarization}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{Automatic text summarization (ATS): Summary categories}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Summary categories}
+	
 	\hgraphpage{ATS-classif.pdf}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Approaches}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Approaches}
+	
 	\begin{columns}
 		\begin{column}{0.4\textwidth}
 			\begin{block}{\scriptsize\bfseries\cite{12-nenkova-mckeown}}
@@ -437,11 +470,12 @@
 			\end{block}
 		\end{column}
 	\end{columns}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Statistical approach}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical}
 	
 	\begin{itemize}
 		\item \optword{Words frequency} 
@@ -468,19 +502,20 @@
 		
 		\item \optword{Centroid}, \optword{Frequent itemsets}, \optword{LSA}, ...
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Statistical approach (Example: \cite{13-aries-al} (1))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical (e.g.: \cite{13-aries-al} (1))}
 	
 	\hgraphpage{ATS-tcc-arch.pdf}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Statistical approach (Example: \cite{13-aries-al} (2))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical (e.g.: \cite{13-aries-al} (2))}
 	
 	\begin{itemize}
 		\item A text can discuss several subjects, as well a single sentence
@@ -498,8 +533,9 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Statistical approach (Example: \cite{15-oufaida-al} (1))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical (e.g.: \cite{15-oufaida-al} (1))}
+	
 	\begin{itemize}
 		\item Words representation: pre-trained embeddings (Polyglot)
 		\item Clustering to extract text's sub-subjects
@@ -514,14 +550,13 @@
 			
 			\item Apply a clustering algorithm on sentences/sentences similarity matrix
 		\end{itemize}
-	
 	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Statistical approach (Example: \cite{15-oufaida-al} (2))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Statistical (e.g.: \cite{15-oufaida-al} (2))}
 
 	\begin{itemize}
 		\item Terms score based on mRMR
@@ -560,8 +595,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Graph-based approach}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Graph-based}
 	
 	\begin{itemize}
 		\item \optword{Graph properties}
@@ -591,8 +626,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Graph-based approach (Example: \cite{21-aries-al} (1))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Graph-based (e.g.: \cite{21-aries-al} (1))}
 	
 	\begin{center}
 		\vgraphpage{ATS-gc-archi.pdf}
@@ -601,8 +636,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Graph-based approach (Example: \cite{21-aries-al} (2))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Graph-based (e.g.: \cite{21-aries-al} (2))}
 	
 	\vspace{-6pt}
 	\begin{itemize}
@@ -636,8 +671,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Linguistic approach}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Linguistic}
 	
 	\begin{itemize}
 		\item \optword{Subject words}: a list of subject-pertinent words, such as ``significant", ``impossible", etc.
@@ -665,8 +700,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Linguistic approach (Example: \cite{81-paice})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Linguistic (e.g.: \cite{81-paice})}
 	
 	\begin{itemize}
 		\item Using manually prepared templates
@@ -687,8 +722,8 @@
 
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: ML-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: ML-based}
 	
 	\begin{itemize}
 		\item \optword{Features-based}
@@ -715,8 +750,8 @@
 
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: ML-based (Example: \cite{2020-aries})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: ML-based (e.g.: \cite{2020-aries})}
 	
 	\begin{center}
 		\vgraphpage{ATS-ml2es-archi.pdf}
@@ -725,8 +760,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: ML-based (Example: \cite{06-daumeiii-marcu})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: ML-based (e.g.: \cite{06-daumeiii-marcu})}
 	
 	\begin{minipage}{.6\textwidth}
 		\begin{itemize}
@@ -744,8 +779,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: ML-based (Example: \cite{15-rush-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: ML-based (e.g.: \cite{15-rush-al})}
 	
 	\begin{center}
 		\hgraphpage[.35\textwidth]{ATS-2015-rush-al-arch.pdf}
@@ -760,16 +795,16 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: ML-based (Example: \cite{18-narayan-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: ML-based (e.g.: \cite{18-narayan-al})}
 	
 	\hgraphpage{ATS-narayan-al.pdf}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Transformation}
-	\framesubtitle{ATS: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\hgraphpage[0.6\textwidth]{humor/humor-summarize1.jpg}
@@ -783,8 +818,9 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Some applications}
-	\framesubtitle{Interaction}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
 	\begin{itemize}
 		\item \textbf{Input}: a request (text)
 		\item \textbf{Output}: a response (text)
@@ -794,20 +830,21 @@
 			\item Dialogue systems
 		\end{itemize}
 	\end{itemize}
+
 \end{frame}
 
-\subsection{Question-Answering (QA)}
+\subsection{Question-Answering}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Question-Answering (QA)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 
 	\hgraphpage{QA-classif.pdf}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: IR-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: IR-based}
 	
 	\begin{figure}
 		\hgraphpage{QA-IR.pdf}
@@ -817,8 +854,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: IR-based (Question processing)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: IR-based (Question processing)}
 	
 	\begin{itemize}
 		\item Request formulation
@@ -837,8 +874,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: IR-based (search)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: IR-based (search)}
 	
 	\begin{itemize}
 		\item Documents retrieval
@@ -859,8 +896,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: IR-based (Answer extraction)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: IR-based (Answer extraction)}
 	
 	\begin{itemize}
 		\item \optword{Features-based ML}
@@ -882,8 +919,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: IR-based (Extraction using Bi-LSTM \cite{2017-chen-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: IR-based (Extraction using Bi-LSTM \cite{2017-chen-al})}
 	
 	\vskip-6pt
 	\begin{figure}
@@ -894,8 +931,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: IR-based (extraction using BERT \cite{2018-devlin-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: IR-based (extraction using BERT \cite{2018-devlin-al})}
 	
 	\begin{figure}
 		\centering
@@ -906,14 +943,14 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: Knowledge-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Knowledge-based}
 	
 	\begin{itemize}
 		\item \optword{Graph-based}
 		\begin{itemize}
 			\item Apply Entity linking
-			\item Determine the searched relation; E.g. \expword{Birth\_place}
+			\item Determine the searched relation; e.g. \expword{Birth\_place}
 			\item If there are many answer relations: calculate he similarity between the question and the answer
 			\item Example, \expword{using embeddings}
 		\end{itemize}
@@ -929,8 +966,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: Knowledge-based (Example)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Knowledge-based (Example)}
 	
 	\begin{exampleblock}{Example of logical forms \cite{2020-jurafsky-martin}}
 		\centering\tiny\bfseries
@@ -980,12 +1017,11 @@
 		\end{tabular}
 	\end{exampleblock}
 	
-	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: LM-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: LM-based}
 	
 	\begin{itemize}
 		\item Use a pretrained language model
@@ -1001,8 +1037,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{QA: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{columns}
 		\begin{column}{0.3\textwidth}
@@ -1020,14 +1056,16 @@
 \subsection{Dialogue systems}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+	
 	\hgraphpage{DS-classif.pdf}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Task-oriented - Frame-based (Frame)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Task-oriented - Frame-based (Frame)}
 	
 	\begin{itemize}
 		\item Frame: a structure containing filling slots and predefined questions for each slot.
@@ -1056,8 +1094,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Task-oriented - Frame-based (Multiple answers)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Task-oriented - Frame-based (Multiple answers)}
 	
 		\centering\footnotesize
 		\begin{tabular}{lll}
@@ -1077,8 +1115,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Task-oriented - Dialogue-State}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Task-oriented - Dialogue-State}
 	
 	\begin{figure}
 		\centering
@@ -1089,8 +1127,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Task-oriented - Dialogue-State (Dialogue acts)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Task-oriented - Dialogue-State (Dialogue acts)}
 	
 	\vspace{-4pt}
 	\begin{figure}
@@ -1129,14 +1167,14 @@
 			\hline
 		\end{tabular}
 		
-		\caption{\vspace{-1cm}Restaurant recommendation using HIS \cite{2010-young-al}}
+		\caption{Restaurant recommendation using HIS \cite{2010-young-al}}
 	\end{figure}
 	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Task-oriented - Dialogue-State (Slots filling)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Task-oriented - Dialogue-State (Slots filling)}
 	
 	\begin{itemize}
 		\item Classify the sentence by intention, domain and slot
@@ -1152,8 +1190,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Task-oriented - Dialogue-State (Other components)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Task-oriented - Dialogue-State (Other components)}
 	
 	\begin{itemize}
 		\item Dialogue state tracker
@@ -1178,8 +1216,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Chatbot - Rule-based (Example: ELIZA \cite{1966-Weizenbaum})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Chatbot - Rule-based (e.g.: ELIZA \cite{1966-Weizenbaum})}
 	
 	\begin{itemize}
 		\item The most known rule-based chatbot is \keyword{ELIZA}: psychological counseling.
@@ -1198,8 +1236,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Chatbot - IR-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Chatbot - IR-based}
 	
 	\begin{itemize}
 		\item A corpus of conversations $C$.
@@ -1214,8 +1252,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Chatbot - NLG-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Chatbot - NLG-based}
 	
 	\begin{itemize}
 		\item Use an encoder/decoder (seq2seq or Transformers)
@@ -1236,8 +1274,8 @@
 
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Chatbot - NLG-based (Examples)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Chatbot - NLG-based (Examples)}
 	
 	\begin{itemize}
 		\item ChatGPT is a sibling project to instructGPT \cite{2022-ouyang-al}
@@ -1259,8 +1297,8 @@
 
 
 \begin{frame}
-	\frametitle{Some applications: Interaction}
-	\framesubtitle{Dialogue systems: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\hgraphpage[0.5\textwidth]{humor/humor-chatbots1.jpeg}
@@ -1274,8 +1312,8 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Some applications}
-	\framesubtitle{Classification}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
 		\item \textbf{Input}: a text
@@ -1297,14 +1335,16 @@
 \subsection{Sentiment analysis}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Sentiment analysis}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+	
 	\hgraphpage{SA-classif.pdf}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Sentiment analysis: Knowledge-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Knowledge-based}
 	
 	\begin{itemize}
 		\item Identify sentiment-indicator words
@@ -1326,8 +1366,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Sentiment analysis: ML-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: ML-based}
 	
 	\begin{itemize}
 		\item \optword{Features-based}
@@ -1352,8 +1392,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Sentiment analysis: hybrid (example: \cite{18-bettiche-al} (1))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: hybrid (e.g.: \cite{18-bettiche-al} (1))}
 	
 	\begin{figure}
 		\centering
@@ -1364,8 +1404,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Sentiment analysis: hybrid (example: \cite{18-bettiche-al} (2)) }
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: hybrid (e.g.: \cite{18-bettiche-al} (2)) }
 	
 	\begin{itemize}
 		\item Vocabulary enrichment
@@ -1400,8 +1440,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Sentiment analysis: hybrid (example: \cite{18-guellil-al})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: hybrid (e.g.: \cite{18-guellil-al})}
 	
 	\begin{figure}
 		\centering
@@ -1412,8 +1452,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Sentiment analysis: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor-sentiment.jpg}
@@ -1424,14 +1464,17 @@
 \subsection{Readability}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Readability}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+	
 	\hgraphpage{Readability-classif.pdf}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Readability: Formula (Flesch-Kincaid Grade Level)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Formula (Flesch-Kincaid Grade Level)}
+	
 	\[
 	206.835 - 1.015 (\frac{\text{\slshape total words}}{\text{\slshape total sentences}})
 	- 84.6 (\frac{\text{\slshape total syllables}}{\text{\slshape total words}})
@@ -1460,8 +1503,9 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Readability: Formula (Dale–Chall readability formula)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Formula (Dale–Chall readability formula)}
+	
 	\[
 	0.1579 (\frac{\text{\slshape difficult words}}{\text{\slshape total words}})
 	+ 0.0496 (\frac{\text{\slshape total words}}{\text{\slshape total sentences}})
@@ -1489,8 +1533,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Readability: Formula (OSMAN \cite{2016-elhaj-rayson})}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Formula (OSMAN \cite{2016-elhaj-rayson})}
 	
 	\begin{align*}
 		Osman = & 200.791 - 1.015 \times (\frac{\text{\slshape total words}}{\text{\slshape total sentences}}) - 24.181 \times \\
@@ -1509,8 +1553,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Readability: ML-based}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: ML-based}
 	
 	\begin{figure}
 		\centering
@@ -1521,8 +1565,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Classification}
-	\framesubtitle{Sentiment analysis: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor-readability1.jpg}
@@ -1535,8 +1579,9 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Some applications}
-	\framesubtitle{Speech}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
 	\begin{itemize}
 		\item Speech recognition
 		\begin{itemize}
@@ -1551,20 +1596,24 @@
 			\item \textbf{More specific application}: text to speech (TTS)
 		\end{itemize}
 	\end{itemize}
+
 \end{frame}
 
 \subsection{Speech recognition}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Classification}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Classification}
+	
 	\hgraphpage{ASR-classif.pdf}
+	
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Features extraction (Sampling and Quantification)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Features extraction (Sampling and Quantification)}
+	
 	\begin{itemize}
 		\item Convert the analog representations into a digital signal
 		\item Each vector represent signal information encoded using a short time window
@@ -1581,11 +1630,12 @@
 			\item The value of a sample at a time index $n$ is represented as $x[n]$
 		\end{itemize}
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Features extraction (Windowing (1))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Features extraction (Windowing (1))}
 	
 	\begin{itemize}
 		\item Using a window to capture a part of the phoneme
@@ -1598,11 +1648,13 @@
 		\hgraphpage[.5\textwidth]{ASR-windowing-exp.pdf}
 		\caption{Example of Windowing \cite{2020-jurafsky-martin}}
 	\end{figure}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Features extraction (Windowing (2))}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Features extraction (Windowing (2))}
+	
 	\begin{itemize}
 		\item To extract a frame $y[n]$, initial signal $s[n]$ is multiplied by a window $w[n]$ 
 		\[y[n] = w[n] s[n]\]
@@ -1618,11 +1670,12 @@
 			0 & \text{else}\\
 		\end{cases}\]
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Features extraction (Windowing: example)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Features extraction (Windowing: example)}
 	
 	\begin{figure}
 		\centering
@@ -1633,8 +1686,9 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Features extraction (DFT)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Features extraction (DFT)}
+	
 	\begin{itemize}
 		\item \optword{Discrete Fourier Transform}
 		\item How much energy a signal contains in different frequency bands
@@ -1642,14 +1696,16 @@
 	\end{itemize}
 	\begin{figure}
 		\centering
-		\hgraphpage[.65\textwidth]{ASR-DFT-exp.pdf}
+		\hgraphpage[.85\textwidth]{ASR-DFT-exp.pdf}
 		\caption{(a) a signal portion of the vowel [iy] (b) its DFT \cite{2020-jurafsky-martin}}
 	\end{figure}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Features extraction (Mel filter)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Features extraction (Mel filter)}
+	
 	\begin{itemize}
 		\item \optword{Mel filter}
 		\item Human hearing is not equally sensitive to all frequency bands
@@ -1658,24 +1714,28 @@
 	\end{itemize}
 	\begin{figure}
 		\centering
-		\hgraphpage[.65\textwidth]{ASR-mel-exp.pdf}
+		\hgraphpage[.85\textwidth]{ASR-mel-exp.pdf}
 		\caption{Example of Mel filter \cite{2020-jurafsky-martin}}
 	\end{figure}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Recognition (1)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Recognition (1)}
+	
 	\begin{figure}
 		\centering
-		\hgraphpage[.75\textwidth]{ASR-rec-exp.pdf}
+		\hgraphpage[.85\textwidth]{ASR-rec-exp.pdf}
 		\caption{Example of recognition using an encoder-decoder \cite{2020-jurafsky-martin}}
 	\end{figure}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Recognition (1)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Recognition (1)}
+	
 	\begin{itemize}
 		\item $p(y_1, \ldots, y_n) = \prod\limits_{i=1}^n p(y_i| y_1, \ldots, y_{i-1}, X)$
 		
@@ -1687,41 +1747,50 @@
 		
 		\item $score(Y|X) = \frac{1}{|Y|_{car}} \log p(Y|X) + \lambda \log p_{LM}(Y)$
 	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech recognition: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
+	
 		\begin{center}
 			\vgraphpage{humor/humor-ASR.jpg}
 		\end{center}
+	
 \end{frame}
 
 \subsection{Speech synthesis}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech synthesis}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+	
 	\hgraphpage{tts-classif.pdf}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech synthesis: Architecture}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Architecture}
+	
 	\begin{figure}
 		\centering
-		\hgraphpage[.53\textwidth]{TTS-arch.pdf}
+		\hgraphpage[.55\textwidth]{TTS-arch.pdf}
 		\caption{Architecture of a voice synthesis system \cite{2017-Hinterleitner}}
 	\end{figure}
+
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Some applications: Speech}
-	\framesubtitle{Speech synthesis: Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
+	
 	\begin{center}
 		\vgraphpage{humor/humor-TTS.jpg}
 	\end{center}
+
 \end{frame}
 
 

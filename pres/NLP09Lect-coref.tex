@@ -5,62 +5,60 @@
 
 \documentclass[xcolor=table]{beamer}
 
+\usepackage{../extra/beamer/karimnlp}
 \input{options}
 
-\title[ESI - NLP: 09- Coreference resolution]%
-{Natural Language Processing\\Chapter 09\\Coreference resolution} 
+\subtitle[09- Coreference resolution]{Chapter 09\\Coreference resolution} 
 
 \changegraphpath{../img/coref/}
 
 \begin{document}
 	
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Coreference resolution: Introduction}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Introduction}
 
-\begin{exampleblock}{Example of a paragraph}
-	\begin{center}
-		\Large\bfseries
-	The cat saw a flower. \textbf{\color{red}It} smelled \textbf{\color{red}it}. \textbf{\color{red}It} has a very nice scent.
-	\end{center}
-\end{exampleblock}
-
-\begin{itemize}
-	\item Who smelled whom: the cat or the flower?
-	\item Who has a nice scent: the cat or the flower?
-\end{itemize}
+	\begin{exampleblock}{Example of a paragraph}
+		\begin{center}
+			\Large\bfseries
+		The cat saw a flower. \textbf{\color{red}It} smelled \textbf{\color{red}it}. \textbf{\color{red}It} has a very nice scent.
+		\end{center}
+	\end{exampleblock}
+	
+	\begin{itemize}
+		\item Who smelled whom: the cat or the flower?
+		\item Who has a nice scent: the cat or the flower?
+	\end{itemize}
 
 \end{frame}
 
-%\begin{frame}
-%\frametitle{Traitement automatique du langage naturel}
-%\framesubtitle{Sens des mots et désambigüisation lexicale : Un peu d'humour}
-%
-%\begin{center}
-%	\vgraphpage{humour-parse.jpg}
-%\end{center}
-%
-%\end{frame}
 
 \begin{frame}
-\frametitle{Natural Language Processing}
-\framesubtitle{Coreference resolution: Plan}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Plan}
 
-\begin{multicols}{2}
-%	\small
-\tableofcontents
-\end{multicols}
+	\begin{multicols}{2}
+	%	\small
+	\tableofcontents
+	\end{multicols}
+
 \end{frame}
 
 %===================================================================================
 \section{References}
 %===================================================================================
 
+\begin{frame}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
+\end{frame}
+
 \subsection{References forms}
 
 \begin{frame}
-\frametitle{Coreference resolution: References}
-\framesubtitle{References forms}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item \optword{Pronouns}
@@ -92,8 +90,8 @@
 \subsection{Referencing manner}
 
 \begin{frame}
-	\frametitle{Coreference resolution: References}
-	\framesubtitle{Referencing manner}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item \optword{Anaphora}
@@ -126,8 +124,8 @@
 \subsection{Properties of Coreference Relations}
 
 \begin{frame}
-	\frametitle{Coreference resolution: References}
-	\framesubtitle{Properties of Coreference Relations (1)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection\ (1)}
 	
 	
 	\begin{itemize}
@@ -157,8 +155,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Coreference resolution: References}
-	\framesubtitle{Properties of Coreference Relations (2)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection\ (2)}
 	
 	\begin{itemize}
 		
@@ -182,8 +180,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Coreference resolution: References}
-	\framesubtitle{Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor-ref.jpg}
@@ -196,8 +194,8 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Coreference resolution}
-	\framesubtitle{Coreference resolution}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
 	
 	\hgraphpage{coref-arch.pdf}
 	
@@ -224,8 +222,8 @@
 \subsection{Mention detection}
 
 \begin{frame}
-	\frametitle{Coreference resolution: Coreference resolution}
-	\framesubtitle{Mention detection}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item \optword{Entity extraction}
@@ -245,8 +243,8 @@
 
 
 \begin{frame}
-	\frametitle{Coreference resolution: Coreference resolution}
-	\framesubtitle{Mention detection: Rule-based \cite{2013-lee-al}}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Rule-based \cite{2013-lee-al}}
 	
 	\begin{itemize}
 		\item Delete a mention if there is another larger one with the same syntactic head. 
@@ -271,8 +269,8 @@
 
 
 \begin{frame}
-	\frametitle{Coreference resolution: Coreference resolution}
-	\framesubtitle{Mention detection: NN-based \cite{2020-yu-al}}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: NN-based \cite{2020-yu-al}}
 	
 	\begin{figure}[ht]
 		\centering
@@ -288,8 +286,8 @@
 \subsection{Linking}
 
 \begin{frame}
-	\frametitle{Coreference resolution: Coreference resolution}
-	\framesubtitle{Linking: Mention-Pair model}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Mention-Pair model}
 	
 	\begin{itemize}
 		\item Detect if there is a coreference between two mentions.
@@ -305,8 +303,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Coreference resolution: Coreference resolution}
-	\framesubtitle{Linking: Mention-Rank model}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Mention-Rank model}
 	
 	\begin{itemize}
 		\item Among previous mentions, decide which one is the antecedent.
@@ -322,8 +320,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Coreference resolution: Coreference resolution}
-	\framesubtitle{Linking: Entity-based model}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Entity-based model}
 	
 	\begin{itemize}
 		\item Also called: cluster-ranking model
@@ -339,8 +337,8 @@
 \subsection{Evaluation}
 
 \begin{frame}
-	\frametitle{Coreference resolution: Coreference resolution}
-	\framesubtitle{Evaluation}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item \keyword{MUC}: \optword{Message Understanding Conference}
@@ -373,8 +371,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Coreference resolution: Coreference resolution}
-	\framesubtitle{Some humor}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
 		\vgraphpage{humor/humor-res.jpg}
@@ -387,8 +385,8 @@
 %===================================================================================
 
 \begin{frame}
-	\frametitle{Coreference resolution}
-	\framesubtitle{Related tasks}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
 		\item Used tasks
@@ -409,8 +407,8 @@
 \subsection{Entity linking}
 
 \begin{frame}
-	\frametitle{Coreference resolution: Related tasks}
-	\framesubtitle{Entity linking}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item Associate a mention in a text with its representation in a structured knowledge base.
@@ -433,8 +431,8 @@
 \subsection{Named entity recognition (NER)}
 
 \begin{frame}
-	\frametitle{Coreference resolution: Related tasks}
-	\framesubtitle{Named entity recognition (NER)}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
 		\item locate and classify named entities in a text
@@ -443,21 +441,21 @@
 		\item Recognition techniques
 		\begin{itemize}
 			\item \optword{Rules}: use rules and lists of names to search for entities and detect their types.
-			\item \optword{Features-based ML}: word embeddins, prefixes and suffixes, list membership, neighbors features, etc.
+			\item \optword{Features-based ML}: word embeddings, prefixes and suffixes, list membership, neighbors features, etc.
 			\item \optword{Sequences labeling}: As seen in chapter 5 using \keyword{IOB} annotation.
+			
 			\expword{\scriptsize
 			$ \underbrace{Google}_{B-ORG} $ 
 			$ \underbrace{LLC}_{I-ORG} $ 
-			$ \underbrace{est}_{O} $ 
-			$ \underbrace{fond\text{\textit{é}}e}_{O} $ 
-			$ \underbrace{dans}_{O} $ 
-			$ \underbrace{la}_{O} $ 
+			$ \underbrace{is}_{O} $ 
+			$ \underbrace{founded}_{O} $ 
+			$ \underbrace{in}_{O} $ 
 			$ \underbrace{Silicon}_{B-LOC} $ 
 			$ \underbrace{Valley}_{B-LOC} $ 
-			$ \underbrace{par}_{O} $ 
+			$ \underbrace{by}_{O} $ 
 			$ \underbrace{Larry}_{B-PER} $ 
 			$ \underbrace{Page}_{I-PER} $ 
-			$ \underbrace{et}_{O} $ 
+			$ \underbrace{and}_{O} $ 
 			$ \underbrace{Sergey}_{B-PER} $ 
 			$ \underbrace{Brin}_{I-PER} $
 			}
