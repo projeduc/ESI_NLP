@@ -1,0 +1,245 @@
+
+\setbeamersize{text margin left=10pt,text margin right=10pt}
+\usepackage{amsmath,amssymb} 
+\usepackage{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage[french, english]{babel}
+\usepackage{arabtex}
+\usepackage{txfonts}
+\usepackage{tipa}
+\usepackage{CJKutf8}
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{colortbl}
+\usepackage{tabularray}
+\usepackage{listingsutf8}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage[export]{adjustbox} %for images in table, also for frame
+\usepackage[many]{tcolorbox}
+\usepackage{wasysym}
+\usepackage[lined]{algorithm2e}
+\usepackage{alltt} %verbatim with commands
+\usepackage{amsmath}
+
+\tcbuselibrary{listings}
+
+%\hypersetup{
+%	colorlinks,
+%	urlcolor = blue
+%}
+
+%\renewcommand{\baselinestretch}{1.5}
+
+%\def\@acadyear{}
+%\def\acadyear#1{\def\@acadyear{#1}}
+%\def\insertacadyear{\@acadyear}
+
+\makeatletter
+\def\beamer@calltheme#1#2#3{%
+	\def\beamer@themelist{#2}
+	\@for\beamer@themename:=\beamer@themelist\do
+	{\IfFileExists{\beamer@themelocation/#3\beamer@themename.sty}{%
+			\usepackage[{#1}]{\beamer@themelocation/#3\beamer@themename}}{\usepackage[{#1}]{#3\beamer@themename}}
+		
+	}%
+}
+
+\def\usefolder#1{
+	\def\beamer@themelocation{#1}
+}
+\def\beamer@themelocation{}
+\makeatother
+
+\def\supit#1{\raisebox{0.8ex}{\small\it #1}\hspace{0.05em}}
+
+\AtBeginSection{%
+	\begin{frame}
+		\sectionpage
+	\end{frame}
+}
+
+\newcommand{\rottext}[2]{%
+	\rotatebox{90}{%
+	\begin{minipage}{#1}%
+		\raggedleft#2%
+	\end{minipage}%
+	}%
+}
+
+\usepackage{longtable}
+\usepackage{tabu}
+
+
+\let\oldcite\cite
+\renewcommand{\cite}[1]{{\bfseries\color{red}\oldcite{#1}}}
+
+\let\oldurl\url
+\renewcommand{\url}[1]{{\color{blue}\oldurl{#1}}}
+
+%\setbeamertemplate{headline}{}
+
+\definecolor{lightblue}{HTML}{D0D2FF}
+\definecolor{lightyellow}{HTML}{FFFFAA}
+\definecolor{darkblue}{HTML}{0000BB}
+\definecolor{olivegreen}{HTML}{006600}
+\definecolor{darkgreen}{HTML}{008B45} %009B55
+\definecolor{violet}{HTML}{6600CC}
+\definecolor{deeppink}{HTML}{FF1493}
+\definecolor{orangey}{HTML}{FFBB00}
+
+\newcommand{\keyword}[1]{\textcolor{red}{\bfseries\itshape #1}}
+\newcommand{\expword}[1]{\textcolor{olivegreen}{#1}}
+\newcommand{\optword}[1]{\textcolor{violet}{\bfseries #1}}
+
+\makeatletter
+\newcommand\mysphere{%
+	\parbox[t]{10pt}{\raisebox{0.2pt}{\beamer@usesphere{item projected}{bigsphere}}}}
+\makeatother
+
+%\let\oldtabular\tabular
+%\let\endoldtabular\endtabular
+%\renewenvironment{tabular}{\rowcolors{2}{white}{lightblue}\oldtabular\rowcolor{blue}}{\endoldtabular}
+
+
+\NoAutoSpacing %french autospacing after ":"
+
+\def\graphpath{}
+
+\newcommand{\changegraphpath}[1]{\def\graphpath{#1}}
+
+
+\newcommand{\vgraphpage}[2][.84\textheight]{%
+%	\begin{center}%
+		\includegraphics[height=#1]{\graphpath #2}%
+%	\end{center}%
+}
+
+\newcommand{\hgraphpage}[2][\textwidth]{%
+%	\begin{center}%
+		\includegraphics[width=#1]{\graphpath #2}%
+%	\end{center}%
+}
+
+\newcommand{\graphpage}[2][]{%
+	\includegraphics[#1]{\graphpath #2}%
+}
+
+\bibliographystyle{apalike}
+
+\newcommand{\insertbibliography}[2]{
+	\appendix
+	\section*{Bibliography}
+	\nocite{#2}
+%	\makeatletter % to change template
+%	\setbeamertemplate{headline}[default] % not mandatory, but I though it was better to set it blank
+%	\def\beamer@entrycode{\vspace*{-\headheight}} % here is the part we are interested in :)
+%	\makeatother
+	\begin{multicols*}{2}[\frametitle{\insertsection} \usebeamertemplate*{frametitle}]%\usebeamertemplate*{frametitle}\frametitle{Références}
+		\tiny
+		\bibliography{#1}
+	\end{multicols*}
+}
+
+\definecolor{my-grey}{RGB}{233, 233, 233}
+
+\newcommand{\insertlicence}{
+	\begin{frame}[plain]
+		\frametitle{License: CC-BY 4.0}
+		
+		\begin{tcolorbox}[colback=cyan,
+			colframe=cyan,  
+			arc=0pt,outer arc=0pt,
+			valign=top, 
+			halign=center,
+			width=\textwidth]
+			
+			\includegraphics[width=.5cm]{../img/licence/cc_icon_white_x2.png}
+			\includegraphics[width=.5cm]{../img/licence/attribution_icon_white_x2.png}
+			
+			\color{white}
+			\bfseries Attribution 4.0 International (CC BY 4.0) \\
+			\tiny \url{https://creativecommons.org/licenses/by/4.0/deed.en}
+			
+		\end{tcolorbox}\vspace{-.5cm}
+		\begin{tcolorbox}[colback=my-grey,
+			colframe=my-grey,  
+			center, arc=0pt,outer arc=0pt,
+			valign=top, 
+			halign=left,
+			width=\textwidth]
+			
+			\tiny
+			
+			\begin{center}
+				\bfseries\Large
+				You are free to:
+			\end{center}
+			
+			\begin{minipage}{0.83\textwidth}
+				\begin{itemize}
+					\item[] \textbf{Share} — copy and redistribute the material in any medium or format
+					\item[] \textbf{Adapt} — remix, transform, and build upon the material
+					for any purpose, even commercially.
+				\end{itemize}
+				
+				\vspace{12pt}
+				
+				\textit{The licensor cannot revoke these freedoms as long as you follow the license terms.}
+			\end{minipage}
+			\begin{minipage}{0.15\textwidth}
+				\includegraphics[width=\textwidth]{../img/licence/FreeCulturalWorks_seal_x2.jpg}
+			\end{minipage}
+			
+			
+			\begin{center}
+				\bfseries\Large
+				Under the following terms:
+			\end{center}
+			
+			\begin{itemize}
+				\item[] \textbf{Attribution} — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+				\item[] \textbf{No additional restrictions} — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+			\end{itemize}
+			
+		\end{tcolorbox}
+	\end{frame}
+}
+
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{\labelsep}
+
+\AtBeginDocument{
+	\newcolumntype{L}[2]{>{\vbox to #2\bgroup\vfill\flushleft}p{#1}<{\egroup}} 
+	
+	\begin{frame}[plain]
+		\maketitle
+	\end{frame}
+	
+	\insertlicence
+}
+
+\newcommand{\kurl}[1]{{\scriptsize\bfseries\color{orangey}\url{#1}}}
+
+% needs etoolbox; to break links after -
+\appto\UrlBreaks{\do\-}
+
+
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+
+\usefonttheme{structurebold}
+
+% figure caption
+\setlength\abovecaptionskip{2pt}
+
+% equations
+\AtBeginDocument{
+	\abovedisplayskip=0pt
+	\abovedisplayshortskip=0pt
+	\belowdisplayskip=0pt
+	\belowdisplayshortskip=0pt
+}

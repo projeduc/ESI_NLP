@@ -1,0 +1,1238 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US
+
+\documentclass[xcolor=table]{beamer}
+
+\usepackage{../extra/beamer/karimnlp}
+
+\input{options}
+
+\subtitle[01- Introduction]{Chapter 01\\Introduction to NLP} 
+
+\changegraphpath{../img/intro/}
+
+\begin{document}
+	
+\begin{frame}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Definitions}
+	
+	\begin{itemize}
+		\item \keyword{NLP}: Natural Language Processing.
+		\item all methods that make human language accessible to computers.
+	\end{itemize}
+	\begin{minipage}{0.78\textwidth}
+		\begin{itemize}
+			\item A subfield of:
+			\begin{itemize}
+				\item \optword{Linguistics}: scientific study of human language.
+				\item \optword{Computer science}: study of computation, automation and information.
+				\item \optword{Artificial intelligence}: the science and engineering of
+				making intelligent machines (John McCarthy, 1955).
+			\end{itemize}
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.20\textwidth}
+		\hgraphpage[\textwidth]{NLP.pdf}
+	\end{minipage}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Motivation}
+	
+	\begin{itemize}
+		\item Large volume of textual data;
+		
+		\item Texts: unstructured data;
+		
+		\item Communications;
+		
+		\item Popularity among companies;
+		
+		\item ...
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Some humor}
+	
+	\begin{center}
+		\vgraphpage{humor/humor.jpg}
+	\end{center}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Plan}
+	
+	\begin{multicols}{2}
+		%	\small
+		\tableofcontents
+	\end{multicols}
+
+\end{frame}
+
+%===================================================================================
+\section{History}
+%===================================================================================
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+
+	\hgraphpage{history.pdf}
+
+\end{frame}
+
+\subsection{AI birth and golden era}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: The 1950s}
+
+	\begin{itemize}
+		\item \optword{1951}: Shannon exploited probabilistic models of natural languages \cite{1951-shannon}.
+		\item \optword{1954}: Georgetown-IBM experiment to automatically translate 60 sentences from Russian to English.
+		\item \optword{1956}: Chomsky described a hierarchy of classes of formal grammars; known as \keyword{Chomsky hierarchy}.
+		\item \optword{1958}: Luhn (IBM) experimented on automatic text summarization by extraction \cite{1958-luhn}.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: The 1960s}
+
+	\begin{itemize}
+		\item \optword{1961}: Development of the first automatic parser at UPenn. \cite{1961-joshi,1962-harris} 
+		\item \optword{1964}: Weizenbaum has developed \keyword{ELIZA}, a simulation of a psychotherapist within the MIT AI lab.
+		\item \optword{1964}: Bobrow has developed \keyword{STUDENT} which is designed for reading and solving word problems found in high school algebra books. \cite{1964-bobrow}.
+		\item \optword{1967}: Brown corpus; the first electronic corpus.
+	\end{itemize}
+
+\end{frame}
+
+\subsection{AI Winter}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: The 1970s}
+
+	\begin{itemize}
+		\item \optword{1971}: Winograd (MIT) has developed \keyword{SHRDLU}, a natural language understanding program \cite{1971-winograd}.
+		\item \optword{1972}: Colby (Stanford) has created \keyword{PARRY}, a chatbot that simulates a person with paranoid schizophrenia.
+		\item \optword{1975}: \keyword{MARGIE} a system that makes inferences and paraphrases from sentences using language's conceptual representation.
+		\item \optword{1975}: \keyword{DRAGON}, a system for automatic speech recognition using hidden Markov models \cite{1975-baker}.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: The 1980s}
+
+	\begin{itemize}
+		\item \optword{1980}: \keyword{KL-One}, knowledge representation for processing syntax and semantics \cite{1980-bobrow}.
+		\item \optword{1986}: \keyword{TRUMP}, language analyzer using a lexical database \cite{1986-jacobs}.
+		\item \optword{1987}: \keyword{HPSG}; head-driven phrase structure grammar \cite{1987-sag-pollard}.
+		\item \optword{1987}: \keyword{MUC}; Message Understanding Conference which is financed by \keyword{DARPA}.
+		\item \optword{1988}: Using hidden Markov models for part of speech tagging \cite{1988-church}.
+		\item Symbolic solutions on speech processing and natural language generation.
+	\end{itemize}
+
+\end{frame}
+
+\subsection{AI Spring}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: The 1990s}
+
+	\begin{itemize}
+		\item \optword{1990}: Statistical approach for machine translation \cite{1990-brown-al}.
+		\item \optword{1993}: \keyword{Penn Treebank}, annotated English corpus \cite{1993-marcus-al}.
+		\item \optword{1995}: \keyword{Wordnet}, lexical database of English \cite{1995-miller}.
+		\item \optword{1996}: \keyword{SPATTER}, statistical lexical analyzer based on decision trees \cite{1996-magerman}.
+		\item Popularity of statistical methods and empirical evaluation.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: The 2000s}
+
+	\begin{itemize}
+		\item \optword{2003}: Neural language models \cite{2003-bengio-al}.
+		\item \optword{2006}: \keyword{Watson} (IBM), question/answering system.
+		\item Use of unsupervised and semi-supervised learning as alternatives to purely supervised learning.
+		\item Shift focus to semantic tasks.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: The 2010s}
+
+	\begin{itemize}
+		\item \optword{2011}: \keyword{Siri} (Apple),  a personal digital assistant (PDA). 
+		It was followed by \keyword{Alexa} (Amazon, \optword{2014}) and \optword{Google Assistant} (\optword{2016}).
+		\item \optword{2014}: Word embedding \cite{2014-lebret-collobert}.
+		\item \optword{2018}: Emergence of contextual representations (pre-trained language models) such as \keyword{ULMfit} (fast.ai) \cite{2018-howard-ruder}, \keyword{ELMO} (AllenNLP) \cite{2018-peters-al}, \keyword{GPT} (OpenAI) \cite{2018-radford-al}, \keyword{BERT} (Google) \cite{2018-devlin-al}, \keyword{XLM} (Facebook) \cite{2019-lample-conneau}.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: The 2020s}
+	
+	\begin{itemize}
+		\item \optword{2020}: Interpretability of neural NLP \cite{2020-belinkov-al,2020-kim-al,2020-jacovi-goldberg}.
+		\item \optword{2021}: Ethics of NLP \cite{2021-garridoMunoz-al,2021-field-al}.
+		\item \optword{2022}: Polyglot language models such as \keyword{Polyglot Prompt} \cite{2022-fu-al}.
+		\item \optword{2022}: Edge NLP (do more with less) \cite{2022-guo-al}.
+	\end{itemize}
+	
+\end{frame}
+
+%===================================================================================
+\section{Language processing levels}
+%===================================================================================
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+
+	\begin{center}
+		\vgraphpage{levels.pdf}
+	\end{center}
+
+\end{frame}
+
+\subsection{Phonetics, phonology \& orthography}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Phonetics}
+
+	\begin{itemize}
+		\item Study of the sounds or phones produced by the human vocal apparatus.
+		\item Branches:
+		\begin{itemize}
+			\item \optword{Articulatory phonetics} (most anatomical and physiological branch) describes how vowels and consonants are produced in various parts of the mouth and throat.
+			\item \optword{Acoustic phonetics} (the branch that has the closest affinities with physics) studies the sound waves that transmit vowels and consonants through the air from speaker to listener.
+			\item \optword{Auditory phonetics} (the branch that most interests psychologists) examines how the listener's brain decodes sound waves into vowels and consonants originally intended by the speaker.
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Phonetics (Articulation points of consonants)}
+
+	\begin{minipage}{0.55\textwidth}
+	\begin{itemize}
+		\item \optword{labial}: Lips. E.g., \expword{\textipa{[b], [p], [m], [f], [v]}}.
+		\item \optword{apical}: Tongue's tip or its anterior part. 
+		E.g., \expword{%
+			\textipa{[t], [d], [n], [r], }
+			\RL{^s} \textipa{[S],} 
+			\RL{_t} \textipa{[T],} 
+			\RL{_d} \textipa{[D]}
+		}
+		\item \optword{dorsal}: Posterior part of the tongue. E.g., \expword{\textipa{[c], [k], [g], [q],} \RL{.g} \textipa{[G]}}.
+		\item \optword{pharyngeal}: Pharynx. 
+		E.g., \expword{\RL{.h} \textipa{[\*h],} \RL{`} \textipa{[Q]}}.
+		\item \optword{glottal}: Glottis. 
+		E.g., \expword{\textipa{[h],} \RL{'} \textipa{[P]}}.
+	\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.43\textwidth}
+		\begin{figure}
+			\hgraphpage{vocaltract.pdf}\caption{Vocal tract \cite{2009-ball}}
+		\end{figure}
+	\end{minipage}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Phonetics (Articulation modes of consonants)}
+
+	\begin{itemize}
+		\item \optword{occlusive}: complete blockage of airflow.
+		E.g., \expword{\textipa{[p], [k], [b], [m], [n]}}.
+		
+		\item \optword{fricative}: mouth, pharynx or glottis tightening without there complete closure.
+		E.g., \expword{\textipa{[f], [v], [s]}}.
+		
+		\item \optword{Affricate}: airflow is blocked then released.
+		E.g., \expword{\textipa{[\t{\textteshlig}]}}.
+		
+		\item \optword{lateral}: airflow through a lateral channel (sometimes bilateral).
+		E.g., \expword{\textipa{[l]}}.
+		
+		\item \optword{nasal}: lowering the soft palate.
+		E.g., \expword{\textipa{[m], [n]}}.
+		
+		\item \optword{click}: with the tongue or lips without using the lungs.
+		E.g., \expword{\textipa{[!]} (tongue clicking)}.
+		
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Phonetics (IPA)}
+
+	\begin{center}
+		\vgraphpage{IPA2020_.pdf}
+	\end{center}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Phonology}
+
+	\begin{itemize}
+		\item Study of the sounds or phonemes of a given language.
+		\item Interested in sounds as elements of a system.
+	\end{itemize}
+	
+	\begin{exampleblock}{E.g.: Phoneme \textit{/r/}}
+		\begin{itemize}
+			\item In French, \textit{r} can be pronounced (in phonetics) as: Trill (rolled R) \expword{\textipa{[r]}}, Voiced uvular trill \expword{\textipa{[\;R]}}, or Voiced uvular fricative (Parisian) \expword{\textipa{[K]}}.
+			\item It is always transcribed in the same manner, e.g. \expword{rat /rat/}.
+			\item In Arabic, consonants \expword{\RL{r} \textipa{[r]}} and \expword{\RL{.g} \textipa{[G][K]}} have two different phonemes: \expword{\textipa{/r/}} and \expword{\textipa{/G/ /K/}} respectively. 
+			E.g., \expword{\RL{.gryb} \textipa{/G\ae ri:b/} (stranger)}.
+		\end{itemize}
+	\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Orthography}
+
+	\begin{itemize}
+		\item Study of the types and form of lemmas/morphemes.
+		\item Writing system (according to the \keyword{grapheme}): 
+		\begin{itemize}
+			\item \optword{logographic}: logograms, each is a unique grapheme denoting a lemma (word).
+			E.g., \expword{
+				Kanji (Japanese) : 
+				\begin{CJK}{UTF8}{min}日, 本, 語\end{CJK}
+			}.
+			\item \optword{syllabic}: symbols, each represents a syllable (vocalized sound).
+			E.g., \expword{
+				Hiragana (Japanese) : 
+				\begin{CJK}{UTF8}{min}る, た, め, の\end{CJK} ; 
+				Katakana (Japanese) : 
+				\begin{CJK}{UTF8}{min}セ, ク\end{CJK} ; 
+			}.
+			\item \optword{alphabetic}: letters; each represents a phoneme.
+			E.g., \expword{Latin: A, B, C, etc. }
+			\item \optword{abjad}: like the alphabetic writing system, but there are only consonants. 
+			E.g. \expword{Arabic: \RL{b}, \RL{t}, \RL{h}}.
+		\end{itemize}
+		\item Punctuation.
+		\item Writing rules.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
+
+	\begin{center}
+		\vgraphpage{humor/humor-phonetics.jpg}
+	\end{center}
+
+\end{frame}
+
+\subsection{Morphology and syntax}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Morphology}
+
+	\begin{itemize}
+		\item Study of word formation, including how new words are invented in languages.
+		\item Study of how words' forms vary according to their uses in sentences.
+		\item \keyword{Morpheme}: the smallest unit of language that has its own meaning. 
+		E.g., \expword{proper nouns, suffixes, etc.}
+		\item \keyword{Lexeme}: a set of all grammatical forms that have the same meaning.
+		\item \keyword{Lemma}: a chosen word to represent the lexeme.
+		\item Parts of speech: open class (\optword{adjective}, \optword{noun}, \optword{verb}) et closed class (\optword{adverb}, \optword{article}, \optword{conjunction}, \optword{interjection},  \optword{preposition}, \optword{pronoun}).
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Morphology}
+
+	\begin{itemize}
+		\item \optword{Isolating/analytical languages}: each word consists of one and only one morpheme. 
+		Morphological changes are few or even absent.
+		Among these languages: \expword{Mandarin, Vietnamese, Tai, Khmer, etc.}. 
+		E.g., \expword{\begin{CJK}{UTF8}{min}四个男孩\end{CJK} /sì ge nánhái/ ``four boys" (lit. ``four [entity of] masculine child")}.
+		\item \optword{Inflectional/synthetic languages}: words are formed from a \keyword{root} plus additional morphemes.
+		\begin{itemize}
+			\item \optword{Agglutinating languages}: morphemes are clearly phonetically distinguishable from each other.
+			Among these languages: \expword{Finnish, Turkish, Japanese, etc.}. 
+			E.g., \expword{\begin{CJK}{UTF8}{min}行く, 行きます\end{CJK}}.
+			\item \optword{Fusional languages}: it is not always easy to distinguish morphemes from root, or from each other.
+			Among these languages: \expword{Arabic, English, French, Berber languages, etc.}.
+			E.g., \expword{\RL{kitAb, kutub, 'wa'`.taynAkumuwh}, foot, feet}
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Inflectional morphology}
+
+	\begin{itemize}
+		\item Forming words without changing their categories or creating new lexemes.
+		\item Modifying lexemes form so that they adapt to different grammatical contexts.
+		\item \optword{Flexion}: \optword{declension} or \optword{conjugation}.
+		\item \optword{Affixation}:
+		\begin{itemize}
+			\item \optword{Prefix}: \expword{\RL{_dhb}} (past), \expword{\RL{y_dhb}} (present).
+			\item \optword{Infix}
+			\item \optword{Suffix} \expword{étudiant} (singular-masculine), \expword{étudiantes} (plural-feminine).
+		\end{itemize}
+		\item \optword{Reduplication}: \expword{super-duper, bye-bye, \begin{CJK}{UTF8}{min}きらきら\end{CJK}}.
+		
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Inflectional morphology (grammatical features)}
+
+	\begin{itemize}
+		\item \optword{Number}: singular, dual, trial, paucal, plural, etc. 
+		\item \optword{Person}: first, second, third, etc.
+		\item \optword{Gender}: masculine, feminine, neuter, common.
+		\item \optword{Case}: nominative, absolutive, accusative, ergative, etc.
+		\item \optword{Tense}: past, present, future.
+		\item \optword{Aspect}: accomplished/unaccomplished, progressive, perfective/imperfective, iterative, prospective.
+		\item \optword{Voice}: active, medium, passive, etc.
+		\item \optword{Polarity}: affirmative, negative.
+		\item \optword{Politeness}: informal, formal, etc.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Derivational morphology}
+
+	\begin{itemize}
+		\item Forming words by changing part of speech (\expword{play, player}) or by creating new lexemes (\expword{do, undo}).
+		
+		\item \optword{Affixation}: using prefixes, infixes and/or suffixes. 
+		E.g., \expword{happy (ADJ), unhappy (ADJ), unhappiness (N)}; \expword{\RL{jhd} (V), \RL{ijthd} (V)}.
+		
+		\item \optword{Compounding}: by merging words into one.
+		E.g., \expword{wind (N) + mill (N) = windmill (N)}.
+		
+		\item \optword{Blending}: by merging fragments of words into one.
+		E.g., \expword{porter (V) + manteau (N) = portemanteau (N)}; \expword{breakfast (N) + lunch (N) = brunch (N)}
+		
+		\item \optword{Conversion}: by changing a word's part of speech without any modification. 
+		E.g., \expword{orange (fruit, N), orange (color, ADJ)}; \expword{visit-er (V), visite (N)}; \expword{fish (N), to fish (V)}.
+		
+		\item \optword{Truncation}:
+		E.g., \expword{bibliographie, biblio}, \expword{information, info}.
+		
+		\item \optword{Reduplication}: E.g., \expword{\RL{kr} (V), \RL{krkr} (V)}.
+		
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Syntax}
+
+	\begin{itemize}
+		\item Sentence structure: how words are combined to form sentences.
+		\item Parts of speech (verb, noun, adjective, etc.) of words in a sentence (PoS tagging).
+		\item Word order according to \keyword{Subject (S)}, \keyword{Verb (V)} and \keyword{Object (O)}.
+		\item Grammatical functions: \expword{Subject, Direct object, Indirect object, etc.}
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Syntax (Word order)}
+
+	\begin{table}
+		\begin{tblr}{
+				colspec = {p{.1\textwidth}p{.15\textwidth}p{.65\textwidth}},
+				row{odd} = {lightblue},
+				row{even} = {lightyellow},
+				row{1} = {darkblue},
+			} 
+			\textcolor{white}{Order} & \textcolor{white}{Proportion} & \textcolor{white}{Examples} \\
+			SOV & 44.78\% & Japanese, Latin, Tamil, Basque, Urdu, Ancient Greek, Bengali, Hindi, Sanskrit, Persian, Korean \\
+			SVO & 41.79\% & French, Mandarin, Russian, English, Hausa, Italian, Malay (language), Spanish, Thai\\
+			VSO & 9.20\% & Irish, Arabic, Biblical Hebrew, Filipino, Tuareg languages, Welsh \\
+			VOS & 2.99\% & Malagasy, Baure, Car (language) \\
+			OVS & 1.24 \% & Apalai, Hixkaryana, Klingon (language) \\
+		\end{tblr}
+		\caption{Words Order proportions based on 402 languages \cite{1988-blake}}
+	\end{table}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Syntax (Word order, examples)}
+
+	\begin{itemize}
+		\item \textcolor{blue}{Subject}, \textcolor{red}{Verb}, \textcolor{green}{Object}
+	\end{itemize}
+	
+	\begin{columns}
+	\begin{column}{0.52\textwidth}
+		\begin{exampleblock}{Example SOV [Japanese]}
+			\begin{CJK}{UTF8}{min}
+				\textcolor{blue}{カリムさん}は\textcolor{green}{日本語}を\textcolor{red}{勉強します}。
+			\end{CJK}
+		\end{exampleblock}
+	\end{column}
+	%
+	\begin{column}{0.42\textwidth}
+		\begin{exampleblock}{Example SVO [English]}
+			\textcolor{blue}{Karim} \textcolor{red}{learns} \textcolor{green}{English}.
+		\end{exampleblock}
+	\end{column}%
+	\end{columns}
+	\begin{columns}
+	\begin{column}{0.49\textwidth}
+		\begin{exampleblock}{Example VSO [Arabic]}
+			\begin{flushright}
+				\color{black}.
+				\color{green} \RL{al-`rbyT}%
+				\color{blue} \RL{krym} 
+				\color{red} \RL{yt`llm} 
+			\end{flushright}
+		\end{exampleblock}
+	\end{column}
+	\end{columns}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Syntax (Constituency grammar)}
+
+	\begin{itemize}
+		\item A \keyword{sentence} is composed of several \keyword{phrases} which includes words and other phrases.
+		\item A phrase contains a \keyword{head} (\keyword{nucleus}) which is the central element.
+		\item Depending on its head, a phrase can be: nominal (\keyword{NP}), adjectival (\keyword{AP}), verbal (\keyword{VP}) or prepositional (\keyword{PP}).
+		\item The most used formal system to model the constituency structure of a sentence is the \keyword{context-free grammar} (Level 2 in \keyword{Chomsky}'s hierarchy).
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Syntax (Constituency grammar: example)}
+
+	\begin{columns}
+		\begin{column}{0.52\textwidth}
+		The grammar that generated this syntactic tree can be written as: 
+		
+		\begin{enumerate}
+			\item S $ \rightarrow $ NP VP
+			\item NP $ \rightarrow $ DET NP'
+			\item NP $ \rightarrow $ DET N
+			\item NP' $ \rightarrow $ ADJ N
+			\item VP $ \rightarrow $ V NP
+		\end{enumerate}
+	
+		The second rule is not written as \\(NP $ \rightarrow $ DET NP)\\ 
+		otherwise there can be several determiners to a noun.
+		
+		\end{column}
+		%
+		\begin{column}{0.42\textwidth}
+			\hgraphpage{const_gram.pdf}
+		\end{column}%
+	\end{columns}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Syntax (Dependency grammar)}
+
+	\begin{itemize}
+		\item Syntactic structure is described in terms of words and not phrases.
+		\item \optword{Dependency grammar}: a set of binary relations between the words of a sentence.
+		\item The relations can be: a nominal subject (\optword{nsubj}), an object (\optword{obj}), an adjective modifier (\optword{amod}), determiner (\optword{det}), etc.
+	\end{itemize}
+	
+	\begin{figure}
+		\centering
+		\hgraphpage[0.6\textwidth]{dep_gram_.pdf}
+		\caption{Dependencies example, generated using \url{https://corenlp.run/}}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
+
+	\begin{center}
+		\vgraphpage{humor/humor-syntax.jpg}
+	\end{center}
+
+\end{frame}
+
+\subsection{Semantics}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+
+	\begin{itemize}
+		\item Study of meaning.
+		\begin{itemize}
+			\item \optword{Lexical semantics}: words meaning.
+			\item \optword{Propositional semantics}: sentences meaning.
+		\end{itemize}
+	\end{itemize}
+	
+	\begin{exampleblock}{Example of different meanings}
+		The word \expword{chicken} has many meanings (from \url{http://wordnetweb.princeton.edu/perl/webwn})
+		\begin{itemize}
+			\item The cat is chasing some \expword{chickens}. ``\textit{a domestic fowl bred for flesh or eggs.}"
+			\item I ate some \expword{chicken}. ``\textit{the flesh of a chicken used for food.}"
+			\item Don't be a \expword{chicken}! ``\textit{A person who lacks confidence, is irresolute and wishy-washy.}"
+		\end{itemize}
+		
+	\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Words meaning}
+
+	\begin{itemize}
+		\item In logographic systems, a \keyword{grapheme} represents one or more meanings (usually with multiple pronunciations).
+		
+		\begin{CJK}{UTF8}{min}
+			\expword{川} (river), \expword{山} (mountain), 
+			
+			\expword{音} (sound, noise) + \expword{楽} (music, comfort, ease) = \expword{音楽} (music)
+		\end{CJK}
+	
+		\item A word can have several meanings (\keyword{Polysemy}).
+		\item The meaning of a word is built...
+		\begin{itemize}
+			\item of a set of ``semantic primitives".
+			\item using relations between morphemes (a network of meanings).
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Words meaning (Semic analysis)}
+
+	\begin{itemize}
+		\item Proposed by Eric Buyssens in the 1930s and developed by Bernard Pottier in the 1960s.
+		\item \keyword{Seme} a minimal unit of meaning (minimal semantic feature).
+		\item \keyword{Sememe} a seme cluster corresponding to a lexical unit.
+		\item Words having one or more positive semes in common belong to the same semantic field.
+	\end{itemize}
+	
+	\begin{exampleblock}{Example of semic analysis}
+		\centering
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Word/Seme & animate & domestic & feline \\
+			\hline
+			Cat & + & + & + \\
+			\hline
+			Lion & + & - & + \\
+			\hline
+			Dog & + & + & - \\
+			\hline
+		\end{tabular}
+	\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Words meaning (Semantic relations)}
+
+	\begin{itemize}
+		\item \optword{Synonymy}: if a word is substituted for another in a sentence without changing the meaning, then these two words are synonyms.
+		\item \optword{Antonymy}: the opposite meaning. The two words must express two values of the same property. E.g., \expword{big} and \expword{small} express the property \expword{size}.
+		
+		\item \optword{Hyponymy}: a word with a more specific meaning than another.
+		E.g., \expword{cat} is the hyponym of \expword{feline} hyponym of \expword{animal}.
+		 
+		\item \optword{Hypernymy}: a word with a more generic meaning.
+		E.g., \expword{feline} is the hyperonym/hypernym of \expword{cat}.
+		
+		\item \optword{Meronymy}: a word that denotes a part of another.
+		E.g., \expword{wheel} is a meronym of \expword{car}.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Propositions meaning}
+
+	\begin{minipage}{0.5\textwidth}
+	\begin{itemize}
+		\item First-order logic.
+		\item \keyword{predicate} is a property of entities. 
+		E.g. \expword{Possess, Person}.	
+		\item \keyword{constant} a specific world entity.
+		E.g. \expword{Karim, Algeria, ESI}.
+		\item \keyword{variable} denotes an anonymous entity. 
+		E.g. \expword{x, y}.
+		\item \keyword{function} results in a specific entity without the need to create a new constant.
+		E.g. \expword{locationOf : locationOf(ESI) vs. locationOfESI}.
+	\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.48\textwidth}
+		\begin{figure}
+			{\tiny\bfseries
+			\begin{tabular}{rcl}
+				\hline\hline
+				Formula & \textrightarrow & AtomicFormula \\
+				& \textbar        & Formula Connective Formula \\
+				& \textbar        & Quantifier Variable, ... Formula \\
+				& \textbar        & $\textlnot$ Formula \\
+				& \textbar        & (Formula) \\
+				AtomicFormula & \textrightarrow & Predicate (Term, ...) \\
+				Term    & \textrightarrow & Function(Term, ...) \\
+				& \textbar        & Constant \\
+				& \textbar        & Variable \\
+				Connective & \textrightarrow & $\wedge$ \textbar $\vee$ \textbar $\Rightarrow$ \\
+				Quantifier & \textrightarrow & $\forall$ \textbar $\exists$ \\
+				Constant & \textrightarrow & ESI \textbar Karim \textbar Algérie ...\\
+				Variable & \textrightarrow & x \textbar y \textbar ... \\
+				Predicate & \textrightarrow & Ecole \textbar EnseignatA \textbar Utiliser \textbar ... \\
+				Function & \textrightarrow & EmplacementDe \textbar ... \\
+				\hline\hline
+			\end{tabular}
+		}
+			\caption{Syntax adapted from \cite{2002-russell-norvig} describing the representation of first-order logic \cite{2019-jurafsky-martin}}
+		\end{figure}
+	\end{minipage}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Propositions meaning (Example)}
+
+	\begin{exampleblock}{Example of a semantic representation}
+		\begin{itemize}
+			%	\item I have a car \cite{2019-jurafsky-martin}
+			%	\[%
+			%	\exists\, e, y\, Having(e) \wedge Haver(e, Speaker) \wedge HadThing(e, y) \wedge Car(y)
+			%	\]
+			\item Each of some students owns two computers.
+			\item Two computers are owned by each of some students.
+			\item Some students possess two computers individually.
+			\item Two computers are owned by each of certain students.
+			\item $S = Student, \; C = Computer, \; O = Own$
+			\item $\exists x (S(x) \wedge \forall y ( C(y) \Rightarrow O(x, y)) )$ \textcolor{red}{\XBox}
+			\item $\exists x (S(x) \wedge \exists y, z (( (C(y) \wedge O(x, y) ) \wedge (C(z) \wedge O(x, z) ) ))$ \textcolor{red}{\XBox}
+			\item $\exists x (S(x) \wedge \exists y, z (\neg y = z \wedge ( (C(y) \wedge P(x, y) ) \wedge (C(z) \wedge O(x, z) ) ))$ \textcolor{green}{\CheckedBox}
+			\item $\exists x (S(x) \wedge \exists y ((C(y) \wedge O(x, twoOf(y)) ))$ \textcolor{green}{\CheckedBox}
+		\end{itemize}
+	\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Propositions meaning (Inference)}
+
+	\begin{exampleblock}{Example of inference}
+		\centering
+		\begin{tabular}{lll}
+			Each human is mortal.  & & Socrates is a human. \\
+			$\forall x (Human(x) \Rightarrow Mortal(x))$ && $Human(Socrates)$ \\
+			\hline
+			\multicolumn{3}{c}{$Mortal(Socrates)$}\\
+		\end{tabular}
+		
+	\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
+
+	\begin{center}
+		\vgraphpage{humor/humor-semantics.jpg}
+	\end{center}
+
+\end{frame}
+
+\subsection{Pragmatics and discourse}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Pragmatics (Motivation)}
+
+	\begin{minipage}{0.7\textwidth}
+	\begin{itemize}
+		\item Imagine: we are in an anniversary;
+		\item A person shouted: ``Candles!" ;
+		\item We can immediately understand that there are no candles on the pie.
+		\item \optword{Question}: how can we infer that?
+		\item \optword{Answer}: from \keyword{context}.
+	\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.28\textwidth}
+		\hgraphpage{pragmatics.pdf}
+	\end{minipage}
+	
+	\vfill
+	\begin{tabular}{|p{.4\textwidth}|p{.5\textwidth}|}
+		\hline
+		\bfseries Semantics & \bfseries Pragmatics \\
+		\hline 
+		\multicolumn{2}{|l|}{A person \textbf{A} arrived late for an appointment.} \\
+		\multicolumn{2}{|l|}{\textbf{B}: ``What time do you think it is?"} \\
+		\hline 
+		\textbf{A} announces the time &  \textbf{A} explains the reason for the delay \\
+		\hline
+	\end{tabular}
+	
+	\vfill 
+	
+	\optword{Humor}: \expword{``I'm sorry" and ``My bad" have the same meaning ... Unless you are in a funeral}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Pragmatics (Reasoning)}
+
+	\begin{itemize}
+		\item \optword{Implicature}: refers to what the speaker means implicitly.
+		According to \cite{1979-Grice}, the interlocutors must respect certain conversational norms (maxims): quantity, quality, relevance and manner.
+		
+		E.g. \expword{Karim, who is lazy, has stopped writing. \textrightarrow\ 
+			Karim was writing. Karim is lazy. Karim no longer writes. There is an entity called Karim.}
+		
+		\item \optword{Presupposition}: refers to the assumptions made by the interlocutors during a communication.
+		
+		\item \optword{Speech act}: refers to the linguistic interaction of the speaker in order to act on his environment. A list of speech acts is provided by \cite{1962-austin}: declaration, order, question, prohibition, greeting, invitation, congratulation, apology.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Discourse (Coreference)}
+
+	\begin{exampleblock}{Example of coreference}
+		\begin{itemize}
+			\item \keyword{The cat} doesn't fit in the box because \keyword{it} is too big.
+			\item The cat doesn't fit in \keyword{the box} because \keyword{it} is too small.
+		\end{itemize}
+	\end{exampleblock}
+	
+	\begin{itemize}
+		\item \optword{Pronouns}: \expword{the cat} chased a mouse and \expword{it} is playing with it.
+		\item \optword{Nominal phrases}: \expword{Apple} is a computer manufacturer. \expword{The firm} is known worldwide.
+		\item \optword{Zero Anaphora}: in languages like Japanese, sometimes the reference is omitted.
+		\item \optword{Nouns}: \expword{International Business Machine} is an American company. Like Apple, \expword{IBM} manufactures computers.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Discourse (Coherence 1)}
+
+	\begin{itemize}
+		\item Logical links between units (sentences and propositions) of the text.
+		\item \keyword{Rhetorical Structure Theory (RST)}: the most widely used discourse model.
+		\item Two types of clauses: \optword{nuclear} and \optword{satellite}
+		\begin{itemize}
+			\item \expword{The student was absent yesterday. He was sick.}
+			\item First sentence is a nucleus since it describes the main event.
+			\item Second sentence is a satellite since it depends on the first.
+		\end{itemize}
+		\item There are several coherence relations: reason, elaboration, evidence, attribution, narration, etc.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Discourse (Coherence 2)}
+
+	\begin{exampleblock}{Example of "reason"}
+		[\textsubscript{N} The student was absent yesterday.] [\textsubscript{S} He was sick.]
+	\end{exampleblock}
+	
+	\begin{exampleblock}{Example of "elaboration"}
+		[\textsubscript{N} The exam is easy.] [\textsubscript{S} It takes only one hour.]
+	\end{exampleblock}
+	
+	\begin{exampleblock}{Example of "evidence"}
+		[\textsubscript{N} Kevin must be here.] [\textsubscript{S} His car is parked outside.]
+	\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor}
+
+	\begin{center}
+		\vgraphpage{humor/humor-pragmatics.jpg}
+	\end{center}
+
+\end{frame}
+
+%===================================================================================
+\section{Applications of NLP}
+%===================================================================================
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
+	
+\end{frame}
+
+\subsection{Tasks}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Morphosyntax}
+
+	\begin{itemize}
+		\item \optword{Sentence Boundary Disambiguation and Words Tokenization}: breaking text into smaller units for easier processing.
+		\item \optword{Stemming and lemmatization}: reducing inflectional (sometimes also derivational) forms of a word to a common base form.
+		\item \optword{Part of Speech tagging}: finding parts of speech of a sentence's words.
+		\item \optword{Parsing}: finding the syntactic structure of a sentence (how it was formed).
+		\item \optword{Terminology extraction}: searching for existing terminologies in a text.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Semantics}
+
+	\begin{itemize}
+		\item \optword{Word-sense disambiguation}: identifying a a word's meaning.
+		\item \optword{Semantic role labeling}: assigning semantic roles (agent, theme, etc.) to words or phrases in a sentence.
+		\item \optword{Named Entity Recognition}: extracting names of people, names of organizations or companies, names of places, quantities, distances, values, dates, etc.
+		\item \optword{Semantic analysis}: finding the semantic representation of a text.
+		\item \optword{Paraphrase}: formulating a text differently.
+		\item \optword{Entailment}: checking if a segment of the text is true implies that another is also true.
+		\item \optword{Automatic text generation}.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Discourse}
+
+	\begin{itemize}
+		\item \optword{Coreference resolution}: linking the different references in a text.
+		\item \optword{Coherence}: looking for relations between sentences.
+		\item \optword{Ellipsis resolution}: finding omitted elements of text.
+		Example of an ellipsis: \expword{``Peter eats cherries, Paul strawberries"}.
+	\end{itemize}
+
+\end{frame}
+
+\subsection{Systems}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Machine translation}
+
+	\begin{itemize}
+		\item Translation of a text from a language to another.
+	\end{itemize}
+	
+	\begin{figure}
+		\hgraphpage{exp.MT.png}
+		\caption{Example of Google translate.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Automatic text summarization}
+
+	\begin{itemize}
+		\item Generating a compact version of a text.
+	\end{itemize}
+	
+	\begin{figure}
+		\hgraphpage{exp.ATS.png}
+		\caption{Example of esummarizer.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Question/Answering}
+
+	\begin{itemize}
+		\item Affording answers to questions formulated in natural language.
+	\end{itemize}
+	
+	\begin{figure}
+		\hgraphpage{exp.QR.png}
+		\caption{Example of START.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Conversational agents (chatbots)}
+
+	\begin{itemize}
+		\item Chatting with a user.
+	\end{itemize}
+	
+	\begin{figure}
+		\centering
+		\hgraphpage[.5\textwidth]{exp.chatbot.png}
+		\caption{Example of Cleverbot.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Information extraction}
+
+	\begin{itemize}
+		\item \optword{Text mining}: extraction of knowledge from a text.
+		\item \optword{Sentiment analysis}: finding existing sentiments in a text.
+		E.g., \expword{checking whether users are satisfied with a product or not}.
+		\item \optword{Automatic document recommendation}: presenting items that are likely to interest a user.
+		E.g., \expword{recommend books}.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Memes generation}
+
+	\begin{figure}
+		\centering
+		\vgraphpage[0.7\textheight]{exp.meme.png}
+		\caption{Architecture to generate memes \cite{sadasivam2020memebot}.}
+	\end{figure}
+
+\end{frame}
+
+
+\subsection{Business}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Commerce}
+
+	\begin{itemize}
+		\item \optword{Publicity}: identifying new audiences potentially interested in certain products.
+		\item \optword{Customer Service}: using chatbots to answer potential customer questions.
+		Also, using sentiment analysis to get an idea about customers opinions on the company's products.
+		\item \optword{Market Intelligence}: monitoring blogs, websites and social networks to analyze market trends and get an idea of the competition.
+		\item \optword{Recruitment}: filtering CVs to find candidates faster and without bias.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: E-Governance}
+
+	\begin{itemize}
+		\item \optword{Government/Citizen Communication}: Illiterate citizens can share their opinions using audio/video, which can be translated into text. Similarly, a message to citizens can be transformed into a voice message.
+		\item \optword{Opinion mining}: extraction of comments, complaints and criticisms on a particular policy, thus determining the general consensus on this subject.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Health}
+
+	\begin{itemize}
+		\item Structuring medical documents to facilitate their use.
+		\item Researching, analyzing and interpreting massive amounts of patient datasets.
+		\item Predicting diseases based on symptoms and medical records.
+		\item Generating reports.
+		\item Using virtual assistants to monitor and assist patients.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Education}
+
+	\begin{itemize}
+		\item Language assessment: reading, writing and speaking.
+		\item Spell checking.
+		\item Automatic assessment of students work, such as essays and answers.
+		\item E-learning by integrating chatbots with games, which promotes an active learning environment.
+	\end{itemize}
+
+\end{frame}
+
+%===================================================================================
+\section{NLP Challenges}
+%===================================================================================
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
+	
+\end{frame}
+
+\subsection{Resources}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+
+	\begin{itemize}
+		\item Lack of tools and datasets for less spoken languages.
+		\item Manual annotation of training and test corpora.
+		\item Large document processing: machine learning is limited when it comes to representing long contexts.
+	\end{itemize}
+
+\end{frame}
+
+\subsection{Language understanding}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Ambiguity and Coreference}
+
+	\begin{itemize}
+		\item \keyword{polysemy}: a word with multiple meanings.
+		E.g. \expword{Indian: from India, native to the Americas}.
+		\item \keyword{enantiosemy}: a polysemous term with two antonymous meanings.
+		E.g. \expword{Regret, denotes complaint or nostalgia: ``I regret my childhood".}
+		\item \keyword{Trope} (figurative language): metaphors (\expword{``It's raining cats and dogs"}), metonomy (\expword{``The room applauded" [the people in the room]}), irony (\expword{``What a beautiful day!" [to mean that it's raining cats and dogs.]}).
+		\item Co-references in long texts (ambiguity in reference choice).
+		Ex. \expword{\underline{Table data} is dumped into \underline{a delimited text file}, which is sent to \underline{the remote site} where \underline{it} is loaded into the destination database. }
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Human aspect}
+
+	\begin{itemize}
+		\item \optword{Personality}: how to model a personality? how does personality affect speech?
+		\item \optword{Variations and non-standard communication}: users do not respect writing standards of a language. E.g., \expword{chat language, Arabizi, Frenglish, etc.}
+		\item \optword{Intention}: there are sentences that do not mean what we understand directly; they mean something else.
+		\item \optword{Emotions}: sentences can change meaning depending on the accompanied emotions.
+	\end{itemize}
+
+\end{frame}
+
+
+\subsection{Evaluation}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+
+	\begin{itemize}
+		\item \optword{Manual evaluation}
+		\begin{itemize}
+			\item takes time (high time cost).
+			\item sometimes requires experts (high cost in terms of expenses).
+			\item problem of evaluator subjectivity and inter-evaluator agreement.
+		\end{itemize}
+		\item \optword{Automatic evaluation}
+		\begin{itemize}
+			\item several aspects are difficult to assess automatically.
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+\subsection{Ethics}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+
+	\begin{itemize}
+		\item \optword{Privacy}: collected data may contain private information of individuals. Companies can store information about their users.
+		\item \optword{Bias and Discrimination}: Corpora used to train a system may cause bias.
+		\item \optword{Usage}: espionage and social engineering, loss of jobs due to automation, etc.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some Humor}
+
+	\begin{center}
+		\vgraphpage{humor/humor-ethics.jpg}
+	\end{center}
+
+\end{frame}
+
+\insertbibliography{NLP01}{*}
+
+\end{document}
+
