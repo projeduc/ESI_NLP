@@ -770,6 +770,21 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Droupout}
+	
+	\begin{itemize}
+		\item When training large neural networks on a small dataset, overfitting can occur.
+		\item One solution is to reduce the size of the network.
+		\item Another is to temporarily deactivate connections in a random manner.
+		\item This technique is called \optword{dropout}.
+		\item The dropout layer takes a dropout rate as a parameter.
+		\item This layer deactivates some outputs (considers them as 0) during training (not during inference).
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Some humor}
 	
 	\begin{center}
@@ -1046,6 +1061,16 @@
 	
 \end{frame}
 
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Bidirectional RNN}
+	
+	\begin{center}
+		\hgraphpage[0.8\textwidth]{bi-rnn_exp.pdf}
+	\end{center}
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -1189,7 +1214,7 @@
 		\item Pooling can also be used.
 		\item A \keyword{MLP} layer (or several) is used at the end to estimate the class.
 		\item \textbf{Problem}: Technically, we cannot define a neural network with a variable number of words.
-		\item \textbf{Solution}: \textcolor{yellow!50}{A maximum number must be defined; if the number of words is lower, padding is added; otherwise, extra words are deleted.}
+		\item \textbf{Solution}: \textcolor{yellow!30}{A maximum number must be defined; if the number of words is lower, padding is added; otherwise, extra words are deleted.}
 	\end{itemize}
 	
 \end{frame}
@@ -1216,7 +1241,7 @@
 		\item The last cell generates a representation of the text (the probability of the last word's occurrence given the past words).
 		\item This representation is introduced to a \keyword{MLP} to estimate the class of the text.
 		\item \textbf{Problem}: Technically, during training, words of different sizes cannot be processed with a single matrix operation.
-		\item \textbf{Solution}: \textcolor{yellow!50}{A maximum number must be defined; if the words number is lower, padding is added; otherwise, extra words are deleted}
+		\item \textbf{Solution}: \textcolor{yellow!30}{A maximum number must be defined; if the words number is lower, padding is added; otherwise, extra words are deleted}
 	\end{itemize}
 	
 \end{frame}
@@ -1505,6 +1530,8 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle}
 	\framesubtitle{\insertsection}
+	
+	\hgraphpage{attention_intro.pdf}
 	
 %	\begin{itemize}
 %		\item Attention mechanism is used to give more importance to some part of the input data more than others.
