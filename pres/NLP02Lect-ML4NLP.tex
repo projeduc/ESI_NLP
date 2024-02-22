@@ -1284,7 +1284,7 @@
 		\item \optword{B-CLS} marks the beginning of the class.
 		\item \optword{I-CLS} marks the continuation of the class.
 		\item \optword{O} means "no class".
-		\item Example, \expword{Abdelkrime/\textsubscript{\bfseries B-PERSON} Aries/\textsubscript{\bfseries B-PERSON}  is/\textsubscript{\bfseries O} a/\textsubscript{\bfseries O} teacher/\textsubscript{\bfseries O} at/\textsubscript{\bfseries O} the/\textsubscript{\bfseries O} Ecole/\textsubscript{\bfseries B-INSTITUTE} nationale/\textsubscript{\bfseries I-INSTITUTE} Supérieure/\textsubscript{\bfseries I-INSTITUTE} d'/\textsubscript{\bfseries I-INSTITUTE} Informatique/\textsubscript{\bfseries I-INSTITUTE}}.
+		\item Example, \expword{Abdelkrime/\textsubscript{\bfseries B-PERSON} Aries/\textsubscript{\bfseries I-PERSON}  is/\textsubscript{\bfseries O} a/\textsubscript{\bfseries O} teacher/\textsubscript{\bfseries O} at/\textsubscript{\bfseries O} the/\textsubscript{\bfseries O} Ecole/\textsubscript{\bfseries B-INSTITUTE} nationale/\textsubscript{\bfseries I-INSTITUTE} Supérieure/\textsubscript{\bfseries I-INSTITUTE} d'/\textsubscript{\bfseries I-INSTITUTE} Informatique/\textsubscript{\bfseries I-INSTITUTE}}.
 	\end{itemize}
 \end{frame}
 
@@ -1639,6 +1639,16 @@
 	\item Additive attention (Bahdanau Attention)
 	\[a(Q, K) = W_v^\top \cdot \tanh(W_q Q + W_k K)\]
 \end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Example}
+	
+	\begin{center}
+		\vgraphpage{attention_exp.pdf}
+	\end{center}
 	
 \end{frame}
 

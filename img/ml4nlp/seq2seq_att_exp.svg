@@ -26,9 +26,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.66209213"
-     inkscape:cx="314.91086"
-     inkscape:cy="60.414553"
+     inkscape:zoom="0.93633967"
+     inkscape:cx="435.73931"
+     inkscape:cy="348.16425"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -9012,5 +9012,24 @@
          inkscape:original-d="m 116.69942,291.47282 c -0.0118,1.12223 -0.0239,2.24418 -0.0362,3.36587"
          inkscape:path-effect="#path-effect13191-2-6-60-1-18-7-1" />
     </g>
+    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,149.00562,173.08506)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#9600ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="flowRoot361-49-5-99-3-3-8-3"
+       xml:space="preserve"><flowRegion
+         style="line-height:100%;fill:#9600ff;fill-opacity:1"
+         id="flowRegion363-83-1-7-5-2-0-3"><rect
+           style="fill:#9600ff;stroke-width:1px;fill-opacity:1"
+           y="127.5433"
+           x="16"
+           height="53.01973"
+           width="79.304733"
+           id="rect365-85-7-82-6-6-2-3" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;line-height:80%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#9600ff;fill-opacity:1"
+         id="flowPara5582-22-4-5-2-5-1-7">initially</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.3333px;line-height:80%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#9600ff;fill-opacity:1"
+         id="flowPara1"><flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#9600ff;fill-opacity:1"
+   id="flowSpan1">zeros</flowSpan>  </flowPara></flowRoot>
   </g>
 </svg>
