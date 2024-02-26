@@ -125,7 +125,7 @@
 		\end{itemize}
 		\item Text beginning: \keyword{\textasciicircum}
 		\begin{itemize}
-			\item E.g., \expword{/\textasciicircum K/}:  \expword{K}ill Karim.
+			\item E.g., \expword{/\textasciicircum K/}:  \expword{K}ey of Karim.
 		\end{itemize}
 		\item Text ending: \keyword{\$}
 		\begin{itemize}
@@ -166,7 +166,7 @@
 	\begin{itemize}
 		\item Text editors use REs for search and replacement.
 		\item Most programming languages introduce a mechanism to use REs.
-		\item Data Extraction: E.g., \expword{extract emails and phone numbers from blogs and social media}.
+		\item Data Extraction: e.g., \expword{extract emails and phone numbers from blogs and social media}.
 		\item \url{https://github.com/kariminf/aruudy}
 		\begin{itemize}
 			\item \textit{One of my crazy projects}.
@@ -208,7 +208,7 @@
 	\framesubtitle{\insertsubsection: Edit operations}
 
 	\begin{itemize}
-		\item \optword{Insertion}: inserting a character to a string.\\
+		\item \optword{Insertion}: inserting a character into a string.\\
 		$uv \rightarrow uxv \,/\, u, v \in X^*;\, uv \in X^+;\, x \in X$
 		\begin{itemize}
 			\item \expword{case $ \rightarrow $ casse, entraînement $ \rightarrow $ entraînnement }
@@ -226,7 +226,7 @@
 			\item \expword{design $ \rightarrow $ dezign, croient $ \rightarrow $ croyent }
 		\end{itemize}
 		
-		\item \optword{Transposition}: changing two characters position.\\
+		\item \optword{Transposition}: changing two characters' positions.\\
 		$uxwyv \rightarrow uywxv \,/\, u, v, w \in X^*;\, x, y \in X;\, x \ne y$
 		\begin{itemize}
 			\item \expword{play $ \rightarrow $ paly, cueillir $ \rightarrow $ ceuillir}
@@ -291,10 +291,10 @@
 	\[
 	D[i, j] = \min 
 	\begin{cases}
-	D[i - 1, j] + 1 \text{ //Deletion}\\
-	D[i, j-1] + 1 \text{ //Insertion}\\
+	D[i - 1, j] + 1 \text{ // Deletion}\\
+	D[i, j-1] + 1 \text{ // Insertion}\\
 	D[i-1, j-1] + \begin{cases}
-	2 & \text{ if } X[i] \ne Y[j] \\
+	2 & \text{ if } X[i] \ne Y[j] \text{ // Substitution}\\
 	0 & \text{ otherwise}
 	\end{cases}
 	\end{cases}
@@ -341,8 +341,8 @@
 	\framesubtitle{\insertsubsection: Some applications}
 
 	\begin{itemize}
-		\item \optword {file revision}: E.g., the UNIX \expword{diff} command which compares two files.
-		\item \optword {spell checking}: suggesting possible corrections for a spell error (E.g. \expword{Hunspell}).
+		\item \optword {file revision}: e.g., the UNIX \expword{diff} command which compares two files.
+		\item \optword {spell checking}: suggesting possible corrections for a spell error (e.g. \expword{Hunspell}).
 		\item \optword {plagiarism detection}: Here, words are used instead of characters.
 		\item \optword {spam filtering}: Sometimes spammers intentionally use spell errors to deceive spam detection tools.
 		\item \optword {bioinformatics}: similarity between two DNA sequences.
@@ -355,7 +355,7 @@
 	\framesubtitle{\insertsubsection: Exercise}
 	
 	\begin{itemize}
-		\item In order to write the word "magnificent", the wrong word: "magnecifint" was written instead. Indicate each edit operation position(s) according to the correct word (If the operation does not exist, write 0. Transposition and substitution are prioritized, i.e. they must not e considered as a combination of insertion/deletion operations):
+		\item In order to write the word ``\textbf{magnificent}", the wrong word: ``\textbf{magnecifint}" was written instead. Indicate each edit operation position(s) according to the correct word (If the operation does not exist, write 0. Transposition and substitution are prioritized, i.e. they must not e considered as a combination of insertion/deletion operations):
 		\begin{tabular}{|lll|}
 			\hline 
 			Insertion : ............ & & Substitution  : ............ \\
@@ -363,8 +363,8 @@
 			\hline
 		\end{tabular}
 		
-		\item Calculate Hamming and Levenstein distances of the two words: ``tray" et ``tary".
-		Indicate different edit operation for each distance. Redo the same thing with Lavenstein distance (substitution weight = 1).
+		\item Calculate Hamming and Levenstein distances of the two words: ``\textbf{tray}" and ``\textbf{tary}".
+		Indicate different edit operations for each distance. Redo the same thing with Lavenstein distance (substitution weight = 1).
 	\end{itemize}
 	
 \end{frame}
@@ -398,7 +398,7 @@
 		\begin{itemize}
 			\item Periods are not always used to mark sentence ending.
 		\end{itemize}
-		\item Words are separates by blanks.
+		\item Words are separated by blanks.
 		\begin{itemize}
 			\item Not always!
 		\end{itemize}
@@ -415,9 +415,9 @@
 	\begin{itemize}
 		\item \expword{/[.?!]/} is a simple RE to delimit sentences (French, English, etc.).
 		\item Periods are used in numbers: \expword{123,456.78 (American style) 123.456,78 (European style)}
-		\item Abbreviations contain periods.
-		\item Long sentences are hard to process; it will be better to split them.
-		\item Quotations.
+		\item Abbreviations contain periods. e.g. \expword{exempli gratia (e.g.), Doctor of Philosophy (Ph.D.), page (p.)}.
+		\item Long sentences are hard to process; it will be better to split them. e.g. \expword{After he woke up, Karim showered, brewed a cup of coffee, and settled down to start his workday.}.
+		\item Quotations. e.g. \expword{After receiving the news, Karim exclaimed, "I can't believe it! This is incredible!"}
 		\item Some languages, such as Thai, do not use markers to delimit sentences.
 	\end{itemize}
 
@@ -432,10 +432,58 @@
 		\item \optword{Parts of speech (PoS)}: PoS can be used to decide a sentence boundary.
 		\item \optword{Word length}: abbreviations are usually short.
 		\item \optword{Prefixes and suffixes}: words having infixes are less probable to be abbreviations.
-		\item \optword{Abbreviations classes} 
+		\item \optword{Abbreviation's class}: some abbreviations can be in the end of a sentence (e.g. \expword{Inc.}).
 		\item \optword{Proper nouns}: proper nouns always start with an uppercase; they can occur in the middle of a sentence.
 	\end{itemize}
 
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Detection (rule based)} 
+	
+	\vskip-3pt
+	\begin{exampleblock}{Example of a simple rule-based SBD algorithm}
+		\tiny
+		\begin{algorithm}[H]
+			\vskip-3pt
+			\KwData{text}
+			\KwResult{list of sentences' start positions}
+			
+			positions = [0]\;
+			
+			\ForEach{delimiter $ d_{\sim !?.} \in text $ }{
+				
+				\eIf{$ d_{\sim !?} $}{
+					positions \textleftarrow\ positions $ \cup $ \{position(d)+1\}
+				}{
+					\If{word after d starts with uppercase}{
+						\eIf{word before d has infixes or has more than 5 letters or not a noun}{
+							positions \textleftarrow\ positions $ \cup $ \{position(d)+1\}
+						}{
+							\If{word before d $ \in $ list of ending abbr.}{positions \textleftarrow\ positions $ \cup $ \{position(d)+1\}}
+						}
+					}
+				}
+			}
+			
+			\Return positions\;
+			
+		\end{algorithm}
+	\end{exampleblock}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Detection (ML-based)} 
+	
+	\begin{figure}
+		\centering
+		\hgraphpage[0.9\textwidth]{SBD-basicML.pdf}
+		\caption{Example of ML-based SBD model with predifined features}
+	\end{figure}
+	
 \end{frame}
 
 \begin{frame}
@@ -709,7 +757,7 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Stemming (E.g. Porter algorithm)}
+	\framesubtitle{\insertsubsection: Stemming (e.g. Porter algorithm)}
 
 	\begin{itemize}
 		\item A set of rules: condition/action.
@@ -717,12 +765,12 @@
 		\item \optword{Condition on the stem}:
 		\begin{itemize}
 			\item length, ending, if it contains vowels, etc.
-			\item E.g., \expword{(*v*) Y \textrightarrow\ I: happy \textrightarrow\ happi, sky \textrightarrow\ sky}
+			\item e.g., \expword{(*v*) Y \textrightarrow\ I: happy \textrightarrow\ happi, sky \textrightarrow\ sky}
 		\end{itemize}
 		\item \optword{Condition on the affix}:
 		\begin{itemize}
 			\item For Porter stemmer, there is only suffixes 
-			\item E.g., \expword{SSES \textrightarrow\ SS, ATIONAL \textrightarrow\ ATE}
+			\item e.g., \expword{SSES \textrightarrow\ SS, ATIONAL \textrightarrow\ ATE}
 		\end{itemize}
 		\item \optword{Condition on the rules}:
 		\begin{itemize}
@@ -739,8 +787,8 @@
 	\begin{itemize}
 		\item Search canonical form of a word.
 		\item Result: \keyword{lemma}.
-		\item E.g., \expword{comprennent \textrightarrow comprendre, better \textrightarrow good}.
-		\item Word's context is used. E.g. \expword{saw \textrightarrow\ (V) see ou (N) saw}.
+		\item e.g., \expword{comprennent \textrightarrow comprendre, better \textrightarrow good}.
+		\item Word's context is used. e.g. \expword{saw \textrightarrow\ (V) see ou (N) saw}.
 		\item \optword{Lexical bases}:
 		\begin{itemize}
 			\item \url{https://www.nltk.org/api/nltk.stem.html} (NLTK WordNetLemmatizer)
