@@ -308,7 +308,15 @@
 	\framesubtitle{\insertsection}
 
 \begin{itemize}
-	\item 
+	\item Language models are probabilistic models over un entity (word, character, etc.) given some context (some words or characters in its proximity).
+	\item Like N-grams, neural networks can learn to express such probabilities
+	\item In this case, each entity is encoded into a onehot over thee vocabulary
+	\item Types
+	\begin{itemize}
+		\item Simple MLPs
+		\item RNNs
+		\item Transformers (\keyword{Seen already in chapter 02})
+	\end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -418,6 +426,14 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle}
 	\framesubtitle{\insertsection}
+	
+	\begin{itemize}
+		\item Every system/architecture/method/model has its evaluation manner
+		\item A language model's function is to detect the occurrence of an entity given some others in its proximity
+		\item In this case, our evaluation metric must represent this function
+		\item Sometimes, a language model is used in other tasks such as machine translation
+		\item It can perform well according to its functionality, but not withing another system 
+	\end{itemize}
 	
 \end{frame}
 

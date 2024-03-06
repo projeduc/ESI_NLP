@@ -461,7 +461,11 @@
 						\eIf{word before d has infixes or has more than 5 letters or not a noun}{
 							positions \textleftarrow\ positions $ \cup $ \{position(d)+1\}
 						}{
-							\If{word before d $ \in $ list of ending abbr.}{positions \textleftarrow\ positions $ \cup $ \{position(d)+1\}}
+							\eIf{word before d not in list of abbreviations}{
+								positions \textleftarrow\ positions $ \cup $ \{position(d)+1\}
+							}{
+								\If{word before d $ \in $ list of ending abbr.}{positions \textleftarrow\ positions $ \cup $ \{position(d)+1\}}
+							}
 						}
 					}
 				}

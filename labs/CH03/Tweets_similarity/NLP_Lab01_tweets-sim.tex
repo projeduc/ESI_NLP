@@ -1,0 +1,239 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[arabic,french,english]{babel}
+\usepackage{txfonts}
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{natbib}
+\usepackage{arabtex}
+
+\usepackage{turnstile}%Induction symbole
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{24pt}
+
+%\usepackage{etoolbox}
+%\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+\fancyhf{}
+
+\lfoot{Abdelkrime Aries}
+\cfoot{2023-2024/ESI/2CSSID/NLP}
+\rfoot{\textbf{\thepage}}
+%
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{1pt}
+
+\newcommand\repeatstr[1]{\leavevmode\xleaders\hbox{#1}\hfill\kern0pt}
+
+\renewcommand{\bibsection}{}
+\bibliographystyle{humannat}
+
+\newcommand{\kurl}[1]{{\scriptsize\bfseries\url{#1}}}
+
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+	
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+\pagestyle{fancy}
+
+\noindent
+\begin{tabular}{ll}
+	\multirow{3}{*}{\includegraphics[width=1.6cm]{../../../extra/logo/esi.nlp.pdf}} & \'Ecole national Supérieure d'Informatique, Algiers\\
+	& 2CSSID (2023-2024)\\
+	& Natural Language Processing (NLP)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{1pt}\\[-0.25cm]
+\begin{center}
+	{\LARGE \textbf{Lab01: Tweets' similarity}}
+	\begin{flushright}
+		Abdelkrime Aries
+	\end{flushright}
+\end{center}\vspace*{-0.25cm}
+\noindent\rule{\textwidth}{1pt}
+
+
+We want to implement a small program to detect similar tweets. 
+Our target population is Algerians (Algerian tweets) which use Arabic, Berber, English, French and Arabizi.
+One use case is to detect spammers and robots since they tend to repeat their tweets with some minor adjustments.  
+
+\section{Tweets' description}
+
+The tweets were downloaded from \url{https://www.kaggle.com/datasets/didamarouane/algerian-tweets} (4134 tweets).
+We deleted line breaks in tweets so they will be more manageable.
+some tweets were deleted because they contain just links and/or tags, others for being inappropriate or too redundant/short.
+Some were deleted because they were in Spanish, Chinese, etc.
+2455 tweets remain. 
+
+\subsection{Language}
+
+Let's consider the combination between each spoken language and writing system as a separate language.
+In this case, Algerians use these different languages in this dataset (alphabetical order): Algerian dialect (Arabizi: in Latin script), Algerian dialect (Arabic script), Berber (Latin script), English (Arabic script), English (Latin script), French (Arabic script) and Standard Arabic.
+Sometimes, these are all mixed into one tweet.
+%\begin{verbatim}
+%%@Ad64141455 View \RL{من مكتب الوالد} Les bananiers tbali Rak metwa7ech ?! https://t.co/SSjjlxm8n5
+%\end{verbatim}
+
+%An example of Standard Arabic is given as:
+%بدلاً من التطفل علي خصوصيات الناس ، حاول ان تتطفل على المناطق المظلمة في عقلك ، تلك البقع التي لم تحظى بنعمة الفهم حتى الآن .
+%Another of Algerian Arabizi:
+%@nahatchunyemak yakho rak dir fiha bl3ani wla mata3rfch t9ra ? , golt ya9der fl futur ki ykemel ya carrière ta3o yw… https://t.co/ErHQv7XGLt
+%A mix between English and Arabizi
+%@seifooxx happy birthday khoya leziiz 🫶🏼🎉
+%Three Berber tweets
+%@Kiym8FbY0ga8Xdb @khaleddrareni Félicitations @khaleddrareni et affud iggarzen
+%@GhilasAinouche Tiqti tamgradt ar ungif
+%@seddik51033299 Arnuyas en kilos sɣuri Azulus i @seddik51033299
+
+\subsection{Links, emails and tags}
+
+All links are shortened as \url{https://t.co/} followed by an ID combined from basic Latin letters (uppercase and lowercase), numbers and underscores. 
+Example:
+\begin{verbatim}
+https://t.co/SSjjlxm8n5
+\end{verbatim}
+
+Emails are Latin letters (uppercase and lowercase), numbers, dots and underscores followed by @ followed by Latin letters (uppercase and lowercase), numbers, dots and underscores; then a dot then a string of letters.
+
+Tags can be user tags; starting with @ followed by a string of basic Latin letters (uppercase and lowercase), numbers and underscores. 
+They can be hash tags; starting with \# followed by a string of anything but the space.
+\begin{verbatim}
+@Honeygain_App #ReferralCode BAKLI434 
+\end{verbatim}
+
+\section{Program description}
+
+Here, different functions are described; either those implemented or not. 
+You have to understand how they are implemented to respond on the different questions.
+
+\subsection{Word similarity}
+
+This function calculates the similarity between two words based on their letters.
+This similarity is based on Levenstein distance; the less the words are distant, the more they are similar.
+Given two words $w_1$ and $w_2$, it is calculated as follows:
+\[sim(w_1, w_2) = \frac{\max(|w_1|, |w_2|) - levenstein(w_1, w_2)}{\max(|w_1|, |w_2|)}\]
+
+\textbf{\slshape This must be implemented}.
+
+\subsection{Tweet normalization}
+
+First, spaces are doubled (for each space, we add another).
+Then, the all letters are transformed into lowercase (for Latin script).
+Also, Tashkiil and Tatweel are deleted (For Arabic script).
+When normalizing the text, you can add as much consecutive spaces as you want since \textbf{split} function will ignore them.
+Use \textbf{re.sub} to complete this task (normally no more than 25 operations is needed)
+
+The first normalization step is to replace:
+\begin{itemize}
+	\item Mails with a token \textbf{[MAIL]}
+	\item User tags with a token \textbf{[USER]}
+	\item Hash tags with a token \textbf{[HASH]}
+	\item Links with a token \textbf{[LINK]}
+\end{itemize}
+
+The second step is to normalize words (without tokenization). 
+Let's start with Latin based scripts (French, English, Berber):
+\begin{itemize}
+	\item Replace accentuated \textbf{e}'s and \textbf{a}'s with \textbf{e} and \textbf{a} respectively.
+	\item The ending \textbf{s} must be deleted (plural; even if it is not a plural).
+	\item French suffixes (ir, er, ement, ien, iens, euse, euses, eux) must be deleted.
+	\item English suffixes (ly, al) must be deleted. If the word ends with \textbf{ally}, we delete just \textbf{ly}.
+	\item Berber suffixes (yas, en) must be deleted. For example: iggarzen \textrightarrow\ iggarz, arnuyas \textrightarrow\ arnu
+	\item English contractions must be transformed into their origin. Such as: it's \textrightarrow\ it is, don't \textrightarrow\ do not
+	\item French contractions must be transformed into their origin. Such as: qu'ont \textrightarrow\ que ont, s'abstenir \textrightarrow\ se abstenir, p'tit \textrightarrow\ petit.
+\end{itemize}
+
+DZ Arabizi has some Arabic rules as well as rules specific to Algerian population. 
+The difference, it is written in Latin script.
+These are the rules which must be implemented:
+\begin{itemize}
+	\item Negation must be deleted (ma...ch). For example, mal9itch \textrightarrow\ l9it
+	\item Suffix \textbf{k, km} variations must be deleted. ywaf9ek \textrightarrow\ ywaf9, ya3tik \textrightarrow\ ya3ti, 3ndk \textrightarrow\ 3nd, 3ndkm \textrightarrow\ 3nd
+	\item Suffixes \textbf{a, i, o, ou} must be deleted when the radical is two letters or more. This must be after the last rule in case of suffixes \textbf{ak, ik, ok, ouk}
+	For example, yetfarjou \textrightarrow\ yetfarj, fhamto \textrightarrow\ fhamt, mousiba \textrightarrow\ mousib, wladi \textrightarrow\ wlad
+	\item Suffixes \textbf{h, ha} must be deleted when the radical is two letters or more.
+	For example, khatih \textrightarrow\ khati, katiha \textrightarrow\ khati
+\end{itemize}
+
+Standard Arabic and Dz Arabic are written using Arabic script.
+\begin{itemize}
+	\item Algerian negation must be split. 
+	For example, \RL{mnlbsw^s} \textrightarrow\ \RL{mA nlbsw}, \RL{mAnlbsw^s} \textrightarrow\ \RL{mA nlbsw}, \RL{nlbsw^s} \textrightarrow\ \RL{mA nlbsw}
+	\item \textbf{Al} qualifier variants (\RL{Al, l-l, fl, wAl, wl, bl, bAl}) must be deleted if the rest is 2 or more letters. 
+	For example, \RL{Alb.hr} \textrightarrow\ \RL{b.hr}, \RL{l-lb.hr} \textrightarrow\ \RL{b.hr}, \RL{flb.hr} \textrightarrow\ \RL{b.hr}, \RL{wAlb.hr} \textrightarrow\ \RL{b.hr}, \RL{wlb.hr} \textrightarrow\ \RL{b.hr},
+	\item Standard Arabic plural suffixes (\RL{yn, wn, At}) as well as a borrowed suffix from French (\RL{Al}).
+	For example, \RL{rAy.hyn} \textrightarrow\ \RL{rAy.h}, \RL{yjrwn} \textrightarrow\ \RL{yjr}, \RL{iti.hAdAt} \textrightarrow\ \RL{iti.hAd}, \RL{swntrAl} \textrightarrow\ \RL{swntr}, 
+	\item Arabic object pronouns (\RL{ny, k, h, hA, nA, kmA, km, kn, hmA, hm, hn}) which are suffixes, as well as \RL{wA} must be deleted if the rest if 2 letters or more.
+	For example, \RL{bAlhA} \textrightarrow\ \RL{bAl}, \RL{bAlkm} \textrightarrow\ \RL{bAl}, \RL{yrmwA} \textrightarrow\ \RL{yrm}, 
+	\item Some other Arabic and Algerian suffixes must be deleted (\RL{A, w, y, T}) if the rest if 2 letters or more. 
+	For example, \RL{rAy.hA} \textrightarrow\ \RL{rAy.h}, \RL{qAlw} \textrightarrow\ \RL{qAl}, \RL{sknT} \textrightarrow\ \RL{skn}
+\end{itemize}
+
+\textbf{\slshape This must be implemented}.
+
+\subsection{Get similar word}
+
+Given a word $ w $ and a list of words $ [w'_1, \cdots, w'_n] $, the most similar word $ w'_s $ is found using the function you completed earlier.
+
+\textbf{\slshape This is already implemented}.
+
+\subsection{Tweets' similarity}
+
+Given two tweets $ T = [w_1, \cdots, w_n]$ and $ T' = [w'_1, \cdots, w'_m] $, their similarity is calculated as follows:
+\[sim(T, T') = \frac{\sum_{w \in T} \max_{w' \in T'} sim(w, w') + \sum_{w' \in T'} \max_{w \in T} sim(w', w)}{n + m}\]
+
+\textbf{\slshape This is already implemented}.
+
+
+\section{Questions}
+
+Answer these questions at the start of your code, as comments.
+\begin{enumerate}
+	\item What are the problem(s) with normalization in our case (Algerian tweets)?
+	
+	\item Why word similarity is based on edit distance and not vectorization such as TF?
+	
+	\item Why tweets similarity is proposed as such? (not another formula such as the sum of similarity of the first tweet's words with the second's divided by max length)
+	
+	\item Technical question: why blanks are being duplicated before using regular expressions in our case?
+	
+\end{enumerate}
+
+
+\section{Evaluation}
+
+\begin{itemize}
+	\item Duration: 1h (You have to return your work at the end of session)
+	\item Grade
+	\begin{itemize}
+		\item \textbf{word similarity grade} (2pts) = no detail (it is so simple).
+		\item \textbf{tweet normalization grade} (12pts) = mails, tags and links (3pts = 4*0.75pt) + words'  (8pts = 16*0.5pts) + number of substitution regular expressions (1pt = [25, 27, 29, 31] * 0.25pt).
+		\item \textbf{questions grade} (4pts) = 1pt for each question.
+		\item \textbf{In time grade} (2pts): after the deadline, each late minute is -0.25. So, 8 minutes then you will get 0.
+	\end{itemize}
+\end{itemize}
+
+\end{document}
