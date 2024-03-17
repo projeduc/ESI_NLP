@@ -1,0 +1,363 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{wasysym}
+
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{0pt} % 24pt
+
+
+\begin{document}
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+
+\noindent
+\begin{tabular}{ll}
+\multirow{3}{*}{\includegraphics[width=1.5cm]{../extra/logo/esi.nlp.pdf}} & 
+\'Ecole national Supérieure d'Informatique (ESI), Algiers\\
+& 2CSSID (2022-2023)\\
+& Natural Language Processing (NLP)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+\begin{center}
+{\LARGE \textbf{Tutorial: Basic text processing}}
+\begin{flushright}
+	Abdelkrime Aries
+\end{flushright}
+\end{center}\vspace{-0.5cm}
+\noindent\rule{\textwidth}{2pt}
+
+\section{Regular Expressions}
+
+\subsection{}
+
+\begin{itemize}
+	\item Find the regular expression which searches all conjugations of the verb "\textbf{go}" (whithout auxilary verb). 
+	\item Given a log, we want to list all lines starting with "\textbf{Error}"; containing a number (which starts with a digit other than zero, has 3 to 5 consecutive zeros and ends with a digit other than zero); and ending with "\textbf{...}"
+	\item Find a regular expression which searches for words containing letters "l", "i" and "n" in this order. The beginning of the word can be in uppercase, the rest in lowercase. For example, \textbf{lion, Linux, violin, absolution, Aladdin, ...}
+\end{itemize}
+
+\subsection{Master 2023/2024}
+
+Read this text: "\textbf{Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river.  He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier.}"
+
+Select all words which are captured using the regular expression (RE) \textbf{/\textbackslash s(.{3}[\textasciicircum o]*h)/}:
+
+\begin{center}
+	\begin{tabular}{|llllllll|}
+	\hline
+	\Square\ fish & 
+	\Square\ dish & 
+	\Square\ fished & 
+	\Square\ childish &
+	\Square\ foolish &
+	\Square\ wish &
+	\Square\ wishes &
+	\Square\ finish \\
+	\hline
+\end{tabular}
+\end{center}
+
+\subsection{Midterm 2022/2023}
+
+Let's read this quote: ``\textbf{In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled
+with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down
+on or to eat: it was a hobbit-hole, and that means comfort.}".
+Select the regular(s) expression(s) which guaranty max stop-words filtering without deleting other words:
+
+\begin{center}
+	\begin{tabular}{|lllll|}
+	\hline
+	\Square\ /.\{,3\}\textbackslash s// & 
+	\Square\ /\textbackslash sth(e(re)?|at)\textbackslash s/\textbackslash s/ & 
+	\Square\ /\textbackslash syet\textbackslash s/\textbackslash s/ & 
+	\Square\ /\textbackslash sw(as|ith)\textbackslash s/\textbackslash s/ &
+	\Square\ /\textbackslash sdown\textbackslash s/\textbackslash s/ \\
+	
+	\Square\ / .\{,2\}\textbackslash s// &
+	\Square\ /\textbackslash s.\{,3\}\textbackslash s/\textbackslash s/ &
+	\Square\ /\textbackslash s[Nn]o[tr](hing)?\textbackslash s/\textbackslash s/ &
+	\Square\ /\textbackslash sand\textbackslash s/\textbackslash s/ &
+	\Square\ /\textbackslash s.\{,2\}\textbackslash s/\textbackslash s/ \\
+	\hline
+\end{tabular}
+\end{center}
+
+\subsection{Midterm 2021/2022}
+
+Here is a passage: "\textbf{Vers le même temps, le Thénardier lui écrivit que décidément il avait attendu avec beaucoup trop de bonté, et qu'il lui fallait cent francs, tout de suite ; sinon qu'il mettrait à la porte la petite Cosette, toute convalescente de sa grande maladie, par le froid, par les chemins, et qu'elle deviendrait ce qu'elle pourrait, et qu'elle crèverait, si elle voulait.}". 
+
+We applied replacements with the following two regular expressions (in this order): (1) \textbf{/ (.\{3,\}er)ait / \textbackslash1 /} (2) / (.\{3,\})ait / \textbackslash1oir /.  
+The "\textit{sed (linux)}" notation is used: \textbf{/expression/replacement/}. Select new expressions: 
+\begin{center}
+	\begin{tabular}{|llllllll|}
+		\hline
+		\Square\ écrivoir & 
+		\Square\ avoir & 
+		\Square\ mettroir & 
+		\Square\ deviendroir &
+		\Square\ deviendr & 
+		\Square\ pouvoir & 
+		\Square\ crever & 
+		\Square\ crevoir \\
+		
+		\Square\ écrire & 
+		\Square\ falloir & 
+		\Square\ mettre & 
+		\Square\ devenir &
+		\Square\ pourroir & 
+		\Square\ crèver & 
+		\Square\ crèveroir & 
+		\Square\ vouloir \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Master 2021/2022}
+
+Select all recognized expressions using the RE: \textbf{/[A-Za-z]\textbackslash w*@\textbackslash w\{3,\}\textbackslash.[A-Za-z]\{2,3\}/}, given \textbackslash \textbf{w $\equiv$ [a-zA-Z0-9\_]}:
+\begin{center}
+	\begin{tabular}{|llll|}
+		\hline
+		\Square\ AB\_aries@esi.dz & 
+		\Square\ \_ab\_aries@esi.dz & 
+		\Square\ ab\_aries@esi.edu.dz  & 
+		\Square\ ab\_@esi.edu \\
+		\Square\ ab\_aries@es.dz & 
+		\Square\ ab\_aries@esi.educ &
+		\Square\ aaries@e9si.dz & 
+		\Square\ a\_@\_e\_.dz \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+
+
+\section{edit distance}
+
+\subsection{}
+
+\begin{itemize}
+	\item Calculate Hamming and Levenstein distances of the two words: ``\textbf{tray}" and ``\textbf{tary}".
+	Indicate different edit operations for each distance. Redo the same thing with Lavenstein distance (substitution weight = 1).
+\end{itemize}
+
+\subsection{Master 2023/2024}
+
+Read this text: "\textbf{Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river.  He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier.}"
+
+Select words pairs which do not have the same Hamming and Levenstein (Ins=Del=1, Sub=2) distance:
+\begin{center}
+	\begin{tabular}{|lllll|}
+		\hline
+		\Square\ fish/dish & 
+		\Square\ fish/fished & 
+		\Square\ like/Like & 
+		\Square\ his/out &
+		\Square\ wish/wish\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Midterm 2022/2023}
+
+Calculate these edit distances based on Levenstein (Deletion cost = Insertion cost = 1; Substitution cost = 2) 
+\begin{center}
+	\begin{tabular}{|l|p{2cm}|p{2cm}|}
+		\hline
+		& dirty & fill \\
+		\hline
+		nasty & & \\
+		\hline
+		smell & & \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Master 2022/2023}
+
+Select the words that require a single editing operation in order to get the word "Levenstein" according to the Levenstein distance: 
+\begin{center}
+	\begin{tabular}{|llll|}
+		\hline
+		\Square\ Levnstein & \Square\ Levenstien & \Square\ Levensteine & \Square\ Lefenstein \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Midterm 2021/2022}
+
+What are the edit distances between the word "grande" and "garden"? Here the substitution cost is 1
+\begin{center}
+	\begin{tabular}{|l|c|c|c|c|c|c|c|}
+		\hline
+		Distance & Not applicable & 0 & 1 & 2 & 3 & 4 & 5 \\ \hline
+		Hamming & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\ \hline
+		Levenstein & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Master 2021/2022}
+
+\begin{itemize}
+	\item In order to write the word "\textbf{magnificent}", the wrong word: "\textbf{magnecifint}" was written instead. 
+	Indicate each edit operation position(s) according to the correct word (If the operation does not exist, write 0. 
+	Transposition and substitution are prioritized, i.e. they must not e considered as a combination of insertion/deletion operations):
+	\begin{center}
+		\begin{tabular}{|lll|}
+		\hline 
+		Insertion : ............ & & Substitution  : ............ \\
+		Deletion  : ............ & & Transposition : ............ \\
+		\hline
+	\end{tabular}
+	\end{center}
+	
+\end{itemize}
+
+
+
+\section{Text segmentation}
+
+\subsection{Master 2023/2024}
+
+Read this text: "\textbf{Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river.  He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier.}"
+
+Select all REs which detect which dot is \textbf{not} an end-of-sentence marker in our previous text:
+\begin{center}
+	\begin{tabular}{|lllll|}
+		\hline
+		\Square\ /\textbackslash./ & 
+		\Square\ /\textbackslash.\textbackslash s[A-Z]/ & 
+		\Square\ /.{2}\textbackslash./ & 
+		\Square\ /(\textasciicircum|\textbackslash s).{2}\textbackslash./ &
+		\Square\ /(\textasciicircum|\textbackslash s)[A-Z].*\textbackslash./\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Midterm 2022/2023}
+
+Let's read this quote: ``\textbf{In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled
+with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down
+on or to eat: it was a hobbit-hole, and that means comfort.}".
+
+We want to segment this quote into sentences (explanation is considered as a new sentence). Select a set of these methods to be sufficient and necessary:
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		\Square\ RE: /[.:]/ & 
+		\Square\ Uppercase letters & 
+		\Square\ Proper nouns \\
+		\Square\ List of abbreviations &
+		\Square\ Parts of speech &
+		\Square\ Words lengths\\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\section{Morphology, normalization and filtering}
+
+\subsection{Midterm 2021/2022}
+
+Here is a passage in French: "\textbf{Vers le même temps, le Thénardier lui écrivit que décidément il avait attendu avec beaucoup trop de bonté, et qu'il lui fallait cent francs, tout de suite ; sinon qu'il mettrait à la porte la petite Cosette, toute convalescente de sa grande maladie, par le froid, par les chemins, et qu'elle deviendrait ce qu'elle pourrait, et qu'elle crèverait, si elle voulait.}".
+
+We noticed that there were several words that end in "ait" and which are not subjunctive verbs; like the nouns "souhait", "parfait", "lait", etc.
+Also, there are verbs which are so irregular that they do not keep their forms; like "être" → "soit". 
+Select possible solutions:
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		\Square\ Regular expressions & 
+		\Square\ Text segmentation & 
+		\Square\ Lexical bases \\
+		\Square\ Edit Distance &
+		\Square\ Filtering stop words &
+		\Square\ PoS tagging\\
+		\hline
+	\end{tabular}
+\end{center}
+
+Choose, for each word before and after its transformation, the used form reduction operation(s):
+\begin{center}
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		before/after transformation & 
+		Lemmatization & 
+		Stemming &
+		None\\
+		\hline
+		fallait/fall & \Square & \Square\ & \Square \\ \hline
+		voulait/vouloir & \Square & \Square\ & \Square \\ \hline
+		pourrait/pourroir & \Square & \Square\ & \Square \\ \hline
+		chemins/chemin & \Square & \Square\ & \Square \\ \hline
+
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Master 2021/2022}
+
+What are the sufficient features to detect the sentence boundary in the text "\textbf{I met Mr. Karim. He is at Hassiba Ave. He went to buy a PC.}" (Ave.=venue), given that we applied a normalization phase? 
+The latter transforms abbreviations/acronyms to their long versions by keeping the period when the following word begins with a capital letter and the abbreviation can occur at the end of the sentence (useful but not necessary features in this text are considered erroneous):
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		\Square\ Case (after ".") &
+		\Square\ Grammatical category (before ".") &
+		\Square\ Word length (before ".") \\
+		\Square\ Proper noun (before ".") &
+		\Square\ Grammatical category (after ".") &
+		\Square\ Word length (after ".") \\
+		\Square\ Proper noun (after ".") &
+		\Square\ Abbreviation classes &
+		\Square\ None; The "." is enough \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Choose, for each task, the form reduction operation(s) often used (with elimination of affixes):
+\begin{center}
+	\begin{tabular}{|llll|}
+		\hline
+		Task & Lemmatization & Stemming & None \\
+		\hline
+		Information Retrieval (IR) & \Square & \Square & \Square \\
+		Language understanding (NLU) & \Square & \Square & \Square \\
+		BERT representation & \Square & \Square & \Square \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\end{document}
