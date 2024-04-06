@@ -701,8 +701,9 @@
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Arc-eager (example)}
 
+	\vskip-6pt
 	\begin{exampleblock}{Example of unlabeled derivations of the sentence ``He writes the solution and its explanation" using Arc-eager}
-		\centering\bfseries\fontsize{6}{10}\selectfont
+		\centering\bfseries\fontsize{5.5}{10}\selectfont
 		\begin{tblr}{
 				colspec = {llll},
 				row{odd} = {lightblue},
@@ -724,10 +725,11 @@
 			08. [ROOT, writes, solution, \textcolor{red}{and}] & \textcolor{red}{its} explanation & SHIFT & / \\
 			09. [ROOT, writes, solution, and, \textcolor{red}{its}] & \textcolor{red}{explanation} & ARC-LEFT & its \textleftarrow\ explanation \\
 			10. [ROOT, writes, solution, \textcolor{red}{and}] & \textcolor{red}{explanation} & ARC-LEFT & and \textleftarrow\ explanation\\	
-			11. [ROOT, writes, \textcolor{red}{solution}] & \textcolor{red}{explanation} & REDUCE & /\\
-			12. [ROOT, \textcolor{red}{writes}] & \textcolor{red}{solution} & ARC-RIGHT & writes \textrightarrow\ solution\\
-			13. [ROOT, \textcolor{red}{solution}] & $\emptyset$ & REDUCE & / \\
-			14. [ROOT] & $\emptyset$ & END & / \\
+			11. [ROOT, writes, \textcolor{red}{solution}] & \textcolor{red}{explanation} & ARC-RIGHT &  solution \textrightarrow\ explanation \\
+			12. [ROOT, writes, solution, \textcolor{red}{explanation}] & $\emptyset$ & REDUCE & / \\
+			13. [ROOT, writes, \textcolor{red}{solution}] & $\emptyset$ & REDUCE & / \\
+			14. [ROOT, \textcolor{red}{writes}] & $\emptyset$ & REDUCE & / \\
+			15. [ROOT] & $\emptyset$ & END & / \\
 	%		\hline\hline
 		\end{tblr}
 	\end{exampleblock}
@@ -820,7 +822,7 @@
 			
 			\ForEach{$ v \in V$}{ 
 				$bestInArc \leftarrow \arg\max_{e = (u, v) \in E} G.p(e) $;
-				$F \leftarrow F \cup meilleurInArc$\;
+				$F \leftarrow F \cup bestInArc$\;
 				\lForEach{$e = (u, v) \in E$}{ 
 					$ G.p(e) \leftarrow G.p(e) - G.p(bestInArc) $
 				}

@@ -1,0 +1,217 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{wasysym}
+
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{0pt} % 24pt
+
+
+\begin{document}
+	
+	%\selectlanguage {french}
+	%\pagestyle{empty} 
+	
+	\noindent
+	\begin{tabular}{ll}
+		\multirow{3}{*}{\includegraphics[width=1.5cm]{../extra/logo/esi.nlp.pdf}} & 
+		\'Ecole national Supérieure d'Informatique (ESI), Algiers\\
+		& 2CSSID (2022-2023)\\
+		& Natural Language Processing (NLP)
+	\end{tabular}\\[.25cm]
+	\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+	\begin{center}
+		{\LARGE \textbf{Tutorial: Language models}}
+		\begin{flushright}
+			Abdelkrime Aries
+		\end{flushright}
+	\end{center}\vspace{-0.5cm}
+	\noindent\rule{\textwidth}{2pt}
+
+\section{Quizzes}
+
+\subsection{Master 2023/2024}
+
+Read this training text: "\textbf{Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river.  He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier. }".
+
+Select all correct propositions about language models:
+
+\begin{longtable}{|p{.45\textwidth}p{.45\textwidth}|}
+	\hline 
+	\Square\ p\textsubscript{Ngram} (fish|w) is the same as p\textsubscript{Ngram}(PoS\textsubscript{fish}|PoS\textsubscript{w}). &
+	\Square\ RNNs capture the dependency (Dr. → fish).\\
+	\Square\ p\textsubscript{Ngram}(fish|w) is not dependent on "fish" PoS. &
+	\Square\ Transformers capture the dependency (fish ← river).\\
+	\Square\ p\textsubscript{Ngram}(fish|w) is not the same as p(fished|w). &
+	\Square\ p\textsubscript{Transformers}(fish|sentence) $ \propto $ p\textsubscript{Bi-RNNs}(fish|sentence).\\
+	\hline
+\end{longtable}
+
+\subsection{Midterm 2022/2023}
+
+Among these propositions about language models (LMs), select the ones which are correct:
+
+\begin{longtable}{|p{.95\textwidth}|}
+	\hline 
+	\Square\ LMs can capture some syntactic relations between words.\\
+	\Square\ LMs can be used to generate parsing trees out-of-the-box (without any change).\\
+	\Square\ LMs are as useful as the data on which  they are trained.\\
+	\Square\ LMs based on N-grams can be improved only by increasing the context (N factor).\\
+	\Square\ LMs based on RNNs are more general than those based on N-grams in terms of probability estimation.\\
+	\Square\ LMs based on RNNs always give a better perplexity than those based on N-grams.\\
+	\hline
+\end{longtable}
+
+\subsection{Master 2021/2022}
+
+Select right propositions:
+
+\begin{longtable}{|p{.95\textwidth}|}
+	\hline 
+	\Square\ In PoS using HMM, transitions between states (parts of speech) are represented as a LM. \\
+	\Square\ Some smoothing methods can fix out of vocabulary problem. \\
+	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is higher than that of ``\textbf{a course Karim teaches}". \\
+	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is equal to that of ``\textbf{a course Karim teaches}".\\
+	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is less than that of ``\textbf{a course Karim teaches}".\\
+	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is higher than that of ``\textbf{a course Karim teaches}". \\
+	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is equal to that of ``\textbf{a course Karim teaches}".\\
+	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is less than that of ``\textbf{a course Karim teaches}".\\
+	\hline
+\end{longtable}
+
+\section{N-grams}
+
+\subsection{}
+
+Given these training sentences: 
+
+\begin{tabular}{|lllll|}
+	\hline
+	The courses are interesting && The course is interesting && He teaches a course \\
+	He teaches some interesting courses && His course is interesting &&\\
+	\hline
+\end{tabular}
+
+\begin{enumerate}
+	\item using a bigram model with Laplace smoothing, calculate these expressions' probabilities: ``The courses are interesting", ``The courses is interesting" and ``The courses his interesting".
+	\item What do you notice?
+	\item Now, apply lemmatization on these sentences.
+	Calculate these two expressions' probabilities:  ``The courses are interesting" and ``The courses is interesting".
+	\item Is lemmatization useful for spell checking task using language models? Justify.
+\end{enumerate}
+
+\subsection{Master 2023/2024}
+
+These are three sentences:
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		I light the light & 
+		light the house &
+		You lighted a beautiful torch \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Let BM be a bigram model. Calculate the probabilities using the following models (NaN=0): 
+\begin{center}
+	\begin{tabular}{|l|l|l|l|l|}
+	\hline
+	& BM(TB) & BM\textsubscript{Laplace} (TB) & BM(Lemma(TB)) & BM(TB\textsubscript{|w|>1}) \\
+	\hline
+	p(light|You) &&&&\\
+	\hline
+	p(You light it) &&&& \\
+	\hline
+\end{tabular}
+\end{center}
+
+\subsection{Midterm 2022/2023}
+
+These are three sentences:
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		I light the torch &
+		You torch the house &
+		I house the light \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Using a bigram model with Laplace smoothing (paddings must be included into vocabulary), we implemented an auto-completion program. Given this words' sequence "You light the …", which is the more probable word: "torch" or "house", or are they equally probable? Justify using calculations.
+
+\subsection{Master 2022/2023}
+
+These are three sentences:
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		it rains cats and dogs &
+		dogs chase cats &
+		it rains \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Using a bigram model with Laplace smoothing, calculate these probabilities:
+\begin{itemize}
+	\item P(</s>|dogs)
+	\item P(cats chase dogs)
+\end{itemize}
+
+\subsection{Midterm 2021/2022}
+
+These are four sentences:
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		I fish small fish &&
+		I swim like fish \\
+		ducks swim &&
+		I like big fish \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Using a trigram model with Laplace smoothing (assuming the vocabulary is different words without counting padding marks), calculate the probability of the sentence "\textbf{ducks like fish}".
+
+
+
+
+
+
+\end{document}

@@ -3,6 +3,11 @@
 % !TEX encoding = UTF-8
 % !TeX spellcheck = en_US
 
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
 \documentclass[11pt, a4paper]{article}
 %\usepackage{fullpage}
 \usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
@@ -32,70 +37,32 @@
 
 \renewcommand{\baselinestretch}{1}
 
-\setlength{\parindent}{24pt}
+\setlength{\parindent}{0pt} % 24pt
 
 
 \begin{document}
-
-%\selectlanguage {french}
-%\pagestyle{empty} 
-
-\noindent
-\begin{tabular}{ll}
-\multirow{3}{*}{\includegraphics[width=1.5cm]{../extra/logo/esi.nlp.pdf}} & 
-\'Ecole national Supérieure d'Informatique\\
-& 2\textsuperscript{nd} year second cycle (2CSSID)\\
-& NLP: Natural Language Processing (2022-2023)
-\end{tabular}\\[.25cm]
-\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
-\begin{center}
-{\LARGE \textbf{Tutorial 01}}
-\begin{flushright}
-	Abdelkrime Aries
-\end{flushright}
-\end{center}\vspace{-0.5cm}
-\noindent\rule{\textwidth}{2pt}
-
-\section*{1. Language models}
+	
+	%\selectlanguage {french}
+	%\pagestyle{empty} 
+	
+	\noindent
+	\begin{tabular}{ll}
+		\multirow{3}{*}{\includegraphics[width=1.5cm]{../extra/logo/esi.nlp.pdf}} & 
+		\'Ecole national Supérieure d'Informatique (ESI), Algiers\\
+		& 2CSSID (2022-2023)\\
+		& Natural Language Processing (NLP)
+	\end{tabular}\\[.25cm]
+	\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+	\begin{center}
+		{\LARGE \textbf{Tutorial: PoS tagging}}
+		\begin{flushright}
+			Abdelkrime Aries
+		\end{flushright}
+	\end{center}\vspace{-0.5cm}
+	\noindent\rule{\textwidth}{2pt}
 
 
-\subsection*{1.1.}
-
-Select right propositions :
-
-\begin{longtable}{|p{.95\textwidth}|}
-	\hline 
-	\Square\ Some smoothing methods can fix out of vocabulary problem. \\
-	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is higher than that of ``\textbf{a course Karim teaches}". \\
-	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is equal to that of ``\textbf{a course Karim teaches}".\\
-	\Square\ Given a unigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is less than that of ``\textbf{a course Karim teaches}".\\
-	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is higher than that of ``\textbf{a course Karim teaches}". \\
-	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is equal to that of ``\textbf{a course Karim teaches}".\\
-	\Square\ Given a bigram model trained on standard English, the perplexity of the sentence ``\textbf{Karim teaches a course}" is less than that of ``\textbf{a course Karim teaches}".\\
-	\hline
-\end{longtable}
-
-\subsection*{1.2.}
-
-Given these training sentences: 
-
-\begin{tabular}{|lllll|}
-	\hline
-	The courses are interesting && The course is interesting && He teaches a course \\
-	He teaches some interesting courses && His course is interesting &&\\
-	\hline
-\end{tabular}
-
-\begin{enumerate}
-	\item using a bigram model with Laplace smoothing, calculate these expressions' probabilities: ``The courses are interesting", ``The courses is interesting" and ``The courses his interesting".
-	\item What do you notice?
-	\item Now, apply lemmatization on these sentences.
-	Calculate these two expressions' probabilities:  ``The courses are interesting" and ``The courses is interesting".
-	\item Is lemmatization useful for spell checking task using language models? Justify.
-\end{enumerate}
-
-
-\section*{2. PoS tagging}
+\section*{2. }
 
 \subsection*{2.1.}
 
