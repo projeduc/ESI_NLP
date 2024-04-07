@@ -1,0 +1,195 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts} 
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{wasysym}
+
+
+\usepackage{turnstile}%Induction symbole
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
+\usetikzlibrary{decorations.pathmorphing}
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{0pt} % 24pt
+
+
+\begin{document}
+	
+	%\selectlanguage {french}
+	%\pagestyle{empty} 
+	
+	\noindent
+	\begin{tabular}{ll}
+		\multirow{3}{*}{\includegraphics[width=1.5cm]{../extra/logo/esi.nlp.pdf}} & 
+		\'Ecole national Supérieure d'Informatique (ESI), Algiers\\
+		& 2CSSID (2022-2023)\\
+		& Natural Language Processing (NLP)
+	\end{tabular}\\[.25cm]
+	\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
+	\begin{center}
+		{\LARGE \textbf{Tutorial: Parsing}}
+		\begin{flushright}
+			Abdelkrime Aries
+		\end{flushright}
+	\end{center}\vspace{-0.5cm}
+	\noindent\rule{\textwidth}{2pt}
+
+
+\section{Quizzes}
+
+\subsection{Midterm 2022/2023}
+
+Among these propositions about text parsing, select the correct ones:
+
+\begin{longtable}{|p{.95\textwidth}|}
+	\hline 
+	\Square\ CFG-based parsing generates a tree which has PoS as leaf nodes. \\
+	\Square\ Dependency parsing also generates a tree structure. \\	
+	\Square\ Dependency formalism is based on syntactic functions. \\
+	\Square\ CKY's original algorithm uses only CFGs in Chomsky normal form. \\
+	\Square\ CKY's original algorithm always generates a tree similar to that defined by the syntacticians. \\
+	\Square\ Probabilistic CKY is trained on a dataset the same as the plain CKY algorithm. \\
+	\Square\ Transition-based parsing is trained using an unsupervised method. \\
+	\Square\ Arc-standard finds dependencies earlier than Arc-eager. \\
+	\Square\ Graph-based parsing is mainly used for constituency parsing.\\
+	\hline
+\end{longtable}
+
+\section{Constituency parsing}
+
+\subsection{Midterm 2022/2023}
+
+Given this grammar:
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		S → NP  VP & P → I | You & V → light | torch | house \\
+		NP → P | D N & D → the & N → light | torch | house \\
+		VP → V NP & &\\
+		\hline
+	\end{tabular}
+\end{center}
+
+Complete this CKY analysis
+\begin{center}
+	\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+		\hline
+		You & light & the & house \\
+		\hline
+		(NP, 0, 0, 0) &&& \\
+		\hline
+		\multicolumn{1}{l|}{} & (V, 0, 0, 0) \newline (N, 0, 0, 0) & --- & \\
+		\cline{2-4}
+		\multicolumn{2}{l|}{} & (D, 0, 0, 0) & (NP, 3, 1, 2) \\
+		\cline{3-4}
+		\multicolumn{3}{l|}{} & \\
+		\cline{4-4}
+	\end{tabular}
+\end{center}
+
+Given the treebank
+\begin{center}
+	\begin{tabular}{|lll|}
+		\hline
+		I/PN fish/VB small/AJ fish/NM &&
+		I/PN swim/VB like/PR fish/NM \\
+		ducks/NM swim/VB &&
+		I/PN like/VB big/AJ fish/NM \\
+		\hline
+	\end{tabular}
+\end{center}
+Calculate \textbf{P(NP → D N)} using the original grammar (no smoothing).
+
+\section{Dependency parsing (Transition)}
+
+\subsection{Midterm 2022/2023}
+
+Complete this Arc-eager parsing ("Oracle" is well trained) 
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$ \sigma $ (Stack) & $ \beta $ (Buffer) & Action & Arc of A \\
+		\hline
+		[ROOT] & You light the house & SHIFT & / \\
+		\hline
+		 &  &  & light→You \\
+		\hline
+		[ROOT] &  &  &  \\
+		\hline
+		 &  & SHIFT & / \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\section{Dependency parsing (Graph)}
+
+\subsection{Midterm 2022/2023}
+
+Complete this Chu-Liu/Edmonds parsing. 
+Consider all vertices at once and not just one at the time. 
+Draw two graphs based on the following one (two steps). 
+Cycles take precedence. 
+For the sake of simplicity, let's suppose we deleted some arcs using a pre-processing step. 
+
+\begin{center}
+	\begin{tikzpicture}[
+		> = stealth, % arrow head style
+		shorten > = 1pt, % don't touch arrow head to node
+		auto,
+		node distance = 3cm, % distance between nodes
+		semithick, % line style
+		font=\small
+		]
+		
+		\tikzstyle{every state}=[
+		draw = black,
+		thick,
+		fill = white,
+		minimum size = 4mm
+		]
+		
+		\node[circle,draw] (root) {root};
+		\node[circle,draw] (house) [below left of=root] {house};
+		\node[circle,draw] (the) [left of=house] {the};
+		\node[circle,draw] (light) [right of=house] {light};
+		\node[circle,draw] (you) [right of=light] {you};
+		
+		\path[->] 	
+		(root) 	edge [bend right] node {4} (the)
+		        edge [bend right] node {4} (house)
+		        edge [bend left] node {12} (light)
+		        edge [bend left] node {4} (you)
+		(the) 	edge [bend left] node {8} (house)
+		(house)	edge [bend left] node {7} (the)
+		        edge [bend left] node {5} (light)        
+		(light)	edge [bend left] node {7} (house)
+		        edge [bend left] node {7} (you) 
+		(house)	edge [bend left] node {7} (the)
+		(you)	edge [bend left] node {5} (light)
+		;
+	\end{tikzpicture}
+\end{center}
+
+\end{document}
