@@ -26,14 +26,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.38150838"
-     inkscape:cx="847.94991"
-     inkscape:cy="598.93835"
+     inkscape:zoom="0.76301676"
+     inkscape:cx="655.94889"
+     inkscape:cy="251.63274"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="695"
+     inkscape:window-width="1536"
+     inkscape:window-height="792"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -1116,14 +1116,14 @@
        xml:space="preserve"><flowRegion
          style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20.6818px;font-family:'Crimson Pro';-inkscape-font-specification:'Crimson Text, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#008000"
          id="flowRegion13806-0-4-1-8-7-7-6-2-62-5-4-1"><rect
-           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20.6818161px;font-family:'Crimson Pro';-inkscape-font-specification:'Crimson Text, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#008000"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20.6818px;font-family:'Crimson Pro';-inkscape-font-specification:'Crimson Text, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#008000;stroke-width:1px"
            y="-85.272057"
            x="318.19806"
            height="27.842264"
            width="269.73639"
            id="rect13808-0-2-6-4-2-7-1-0-70-8-75-8" /></flowRegion><flowPara
          id="flowPara1722-73"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.6818px;font-family:'Crimson Pro';-inkscape-font-specification:'Crimson Pro, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">λP.λQ. P(x) ∧ Q(x)</flowPara></flowRoot>
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.6818px;font-family:'Crimson Pro';-inkscape-font-specification:'Crimson Pro, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">λP.λQ.∃x P(x) ∧ Q(x)</flowPara></flowRoot>
     <flowRoot
        transform="matrix(0.46625822,0,0,0.48923181,-133.92324,273.36693)"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Pro';letter-spacing:0px;word-spacing:0px;fill:#008000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

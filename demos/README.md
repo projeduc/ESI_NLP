@@ -8,12 +8,12 @@ This means, we will show only the task described in a given chapter.
 
 |Tool|Demo|Language|Tasks|
 |---|---|---|---|
-| [AllenNLP](https://allennlp.org/|https://demo.allennlp.org/) |Python | |
+| [AllenNLP](https://allennlp.org/)|[Demo](https://demo.allennlp.org/) |Python | |
 | [BERT](https://github.com/google-research/bert) | |Python|LM|
 | [CogCompNLP](https://github.com/CogComp/cogcomp-nlp) | | Java | |
 | [compromise](https://github.com/spencermountain/compromise) | |Javascript| |
 | [BlingFire](https://github.com/microsoft/BlingFire) | |Multiple (C++)|Preprocessing|
-| [CoreNLP](https://stanfordnlp.github.io/CoreNLP/) | https://corenlp.run/|Java| |
+| [CoreNLP](https://stanfordnlp.github.io/CoreNLP/) | [Demo](https://corenlp.run/) |Java| |
 | [ERNIE](https://github.com/thunlp/ERNIE) | |Python|LM|
 | [FastText](https://fasttext.cc/) | |Python|Text classification and word representation|
 | [Flair](https://github.com/flairNLP/flair) | |Python|NER, PoS|

@@ -1,0 +1,161 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[arabic,french,english]{babel}
+\usepackage{txfonts}
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{natbib}
+\usepackage{arabtex}
+
+\usepackage{turnstile}%Induction symbole
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{24pt}
+
+%\usepackage{etoolbox}
+%\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+\fancyhf{}
+
+\lfoot{Abdelkrime Aries}
+\cfoot{2023-2024/ESI/2CSSID/NLP}
+\rfoot{\textbf{\thepage}}
+%
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{1pt}
+
+\newcommand\repeatstr[1]{\leavevmode\xleaders\hbox{#1}\hfill\kern0pt}
+
+\renewcommand{\bibsection}{}
+\bibliographystyle{humannat}
+
+\newcommand{\kurl}[1]{{\scriptsize\bfseries\url{#1}}}
+
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+	
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+\pagestyle{fancy}
+
+\noindent
+\begin{tabular}{ll}
+	\multirow{3}{*}{\includegraphics[width=1.6cm]{../../../extra/logo/esi.nlp.pdf}} & \'Ecole national Supérieure d'Informatique, Algiers\\
+	& 2CSSID (2023-2024)\\
+	& Natural Language Processing (NLP)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{1pt}\\[-0.25cm]
+\begin{center}
+	{\LARGE \textbf{Lab02: Tweets' grammaticality judgment}}
+	\begin{flushright}
+		Abdelkrime Aries
+	\end{flushright}
+\end{center}\vspace*{-0.25cm}
+\noindent\rule{\textwidth}{1pt}
+
+Grammaticality refers to how well a sentence conforms to the rules of a particular language. 
+It seeks to judge structure and not meaning. 
+In this lab, we want to test Algerian tweets statistically.
+In other word, we want to identify the grammatical status of a tweet directly with the probability of its occurrence.
+We chose to us N-Grams.
+
+\section{Program description}
+
+Here, different functions are described; either those implemented or not. 
+You have to understand how they are implemented to respond on the different questions.
+
+\subsection{Ngram class}
+
+Given an already implemented Bi-grams class (N=2), implement a new one with N predefined.
+The class must:
+\begin{itemize}
+	\item take in consideration the case where N is less than 1 or greater than 6 (must not be accepted);
+	\item support both Lidstone and Interpolation smoothing. 
+	Let say for both, the parameters are predefined (in case of interpolation, no need to estimate them using another validation dataset);
+	\item The parameters must be defined in the constructor;
+	\item Interpolation parameters are from the lowest order to the highest;
+	\item The smoothing type must be defined while predicting.
+\end{itemize}
+
+These are some recommendations concerning \textbf{score} function:
+\begin{itemize}
+	\item Any division by zero will have a log probability of \textbf{-math.inf}
+	\item log probability of 0 is \textbf{-math.inf}
+	\item For unigrams, the probability of interpolation is that of Lidstone;
+	\item For n-grams $ n>1 $, using interpolation, we consider higher order as 0 when probability is 0 or there is division by zero.
+	Example, 0.7 * -inf + 0.3 * 0.02 is 0.06 and not -inf (-inf will be handled as a 0)
+	
+	\item For easier interpolation, we will not consider $ p(</s>) $.
+	In this case, $ p_I(</s>|help\ you) = 0.5 p(</s>|help\ you) + 0.3 p(</s>|you) + 0.2 p(</s>) = 0.5 p(</s>|help\ you) + 0.3 p(</s>|you)$
+\end{itemize}
+
+For \textbf{predict} function, anything plus minus infinity is minus infinity
+
+\textbf{\slshape This must be implemented}.
+
+\subsection{Grammaticality class}
+
+
+\textbf{\slshape Not implemented}.
+
+\section{Questions}
+
+Answer these questions at the start of your code, as comments.
+\begin{enumerate}
+	\item We want to consider unknown words in general texts, propose a solution (not smoothing, you can use something other than Ngrams).
+	We want to take in consideration different variants of Arabizi, propose a solution.
+	
+	\item If we train a model on the inverse of texts.
+	Will we get the same probability as the one in the right direction? Why?
+	Will this affect grammaticality judgment? Why?
+	
+	\item Can we use Viterbi to calculate the probability of a text? Why/How?
+	
+	\item Describe how can we decide that a text is grammatical or not based on its probability.
+	
+\end{enumerate}
+
+
+\section{Evaluation}
+
+\begin{itemize}
+	\item Duration: 1h
+	\item Grade
+	\begin{itemize}
+		\item \textbf{Exceptions} (1pt) = $ N < 1 $ (0.5pts) + $ N > 6 $ (0.5pts)
+		\item \textbf{fit grade} (6pts) = processing all data (2pts) + all N-grams (2pts) + all less than N-- grams (2pts).
+		\item \textbf{score grade} (5pts) = correct and less complex estimation (2pts) + applying smoothing (2pt) + log probability (1pt).
+		\item \textbf{predict grade} (3pts) = correctly calculate the log probability (2pts) + correctly taking smoothing in consideration (1pt).
+		\item \textbf{questions grade} (4pts) = 1pt for each question.
+		\item \textbf{In time grade} (1pt): after the deadline, each late 2 minutes are -0.25. So, 8 minutes then you will get 0.
+	\end{itemize}
+\end{itemize}
+
+\vfill
+\begin{flushright}
+	\textit{Ramadan kareem}
+\end{flushright}
+
+\end{document}
