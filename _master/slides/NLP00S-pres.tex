@@ -9,8 +9,10 @@
 
 %\usepackage{stix}
 
-\title[ESI - NLP(master): Presentation] %
-{Natural language processing (Master)\\Course (also, curse) presentation} 
+\title[ESI - NLP(master)] %
+{Natural language processing (Master)} 
+
+\subtitle[Presentation]{Course (also, curse) presentation}
 
 \setbeamertemplate{headline}{}
 
@@ -79,7 +81,7 @@
 
 \optword{Course components:}
 \begin{itemize}
-	\item \textbf{Lectures:} 17 hours.
+	\item \textbf{Lectures:} 21 hours.
 	\item \textbf{Quizzes:} online, the end of the day before midnight (graded).
 	\item \textbf{Labs:} 9 hours (graded).
 	\item \textbf{Online Demos:} {\scriptsize\url{https://github.com/projeduc/ESI_NLP/tree/main/demos}}.
@@ -106,9 +108,9 @@
 
 \optword{What?}
 \begin{enumerate}
-	\item Introduction to NLP ($\sim$2h);
-	\item ML for NLP ($\sim$4h);
-	\item Basic text processing ($\sim$2h);
+	\item Introduction to NLP ($\sim$2h30);
+	\item ML for NLP ($\sim$6h);
+	\item Basic text processing ($\sim$3h);
 	\item Language models ($\sim$1h30);
 	\item Part of Speech (PoS) tagging ($\sim$1h30);
 	\item Word semantics ($\sim$3h);
@@ -167,77 +169,78 @@
 \begin{frame}
 	\frametitle{Schedule}
 	
-	\scriptsize
-	\begin{tblr}{
-			colspec = {p{.12\textwidth}lp{.37\textwidth}lp{.38\textwidth}},
-			row{odd} = {lightblue, valign=m},
-			row{1} = {darkblue, fg=white, font=\bfseries, valign=m, halign=c},
-			column{2,4}={white},
-			column{1}={bg=darkblue, fg=white, font=\bfseries, valign=m},
-			row{even} = {white},
-			cell{1}{1}={white},
-			cell{3}{3}={red},
-			cell{13,15}{3,5}={green},
-			cell{5,13}{5}={red},
-			cell{9}{1,3,5}={red},
-			stretch = 0,
-			colsep=3pt,
-			rowsep=3pt,
-		}
-		
-		
-		%	\hline
-		&& 9H00 - 12H00 && 13H00 - 16H00 \\
-		
-		&&&&\\
-		
-		%	\hline
-		Sunday \newline 2023-12-03 && NOTHING, {\tiny\color{yellow}Just 11 students have been tortured by ST exam}&&
-		\textbf{Course presentation} (this one) \newline 
-		\textbf{Lect01.} Introduction to NLP \\
-		
-		&&&&\\
-		
-		%	\hline
-		Monday \newline 2023-12-04 && \textbf{Lect02.} ML for NLP {\tiny\color{yellow}Longer than expected, because of SIQ1 students (15)}&&  
-		NOTHING, {\tiny\color{yellow}Happy lazy half day ... ops! QUIZ} \\
-		
-		&&&&\\
-		
-		%	\hline
-		Tuesday \newline 2023-12-05 && \textbf{Lect02.} ML for NLP {\tiny\color{yellow}When will it end?!}\newline \textbf{Lect03.} Basic text processing&&
-		\textbf{Lect04.} Language models\newline \textbf{Lect05.} Part of Speech (PoS) tagging \\
-		
-		&&&&\\
-		
-		%	\hline
-		Wednesday \newline Thursday && NOTHING, {\tiny\color{yellow}Happy break ... Not the 12 students having IE course (no break for you)} && 
-		{\tiny\color{yellow}In the meantime, try practicing NLP tools}\\
-		
-		&&&&\\
-		
-		%	\hline
-		Sunday \newline 2023-12-10 && \textbf{Lect06.} Word semantics &&  
-		\textbf{Lect07.} Some applications
-		 \\
-		 
-		 
-		 &&&&\\
-		 
-		 %	\hline
-		 Monday \newline 2023-12-11 && \textbf{Lab01.} NLP task implementation &&  
-		 NOTHING, {\tiny\color{yellow}You can rest till the next horror lab. No rest for the 13 students having MLA.}
-		 \\
-		 
-		 &&&&\\
-		 
-		 %	\hline
-		 Tuesday \newline 2023-12-12 && \textbf{Lab02.} Improving our NLP task && 
-		 \textbf{Lab03.} Writing a paper about our task
-		 \\
-		
-	\end{tblr}
+	Always check the online planning. 
 	
+	The durations are based on the worst case; it can be less if the lectures go smoother.
+	
+%	\scriptsize
+%	\begin{tblr}{
+%			colspec = {p{.12\textwidth}lp{.37\textwidth}lp{.38\textwidth}},
+%			row{odd} = {lightblue, valign=m},
+%			row{1} = {darkblue, fg=white, font=\bfseries, valign=m, halign=c},
+%			column{2,4}={white},
+%			column{1}={bg=darkblue, fg=white, font=\bfseries, valign=m},
+%			row{even} = {white},
+%%			cell{1}{1}={white},
+%%			cell{3}{3}={red},
+%%			cell{13,15}{3,5}={green},
+%			cell{3,9}{5}={red},
+%%			cell{9}{1,3,5}={red},
+%			stretch = 0,
+%			colsep=3pt,
+%			rowsep=3pt,
+%		}
+%		
+%		
+%		%	\hline
+%		&& 9H00 - 12H00 && 13H00 - 16H00 \\
+%		
+%		&&&&\\
+%		
+%		%	\hline
+%		Wednesday \newline 2024-10-30 
+%		&& 
+%		\textbf{Course presentation} (this one) \newline 
+%		\textbf{Lect01.} Introduction to NLP
+%		&& \color{yellow}Infovis \\
+%		
+%		&&&&\\
+%		%	\hline
+%		Thursday \newline 2024-10-31  
+%		&& \textbf{Lect02.} ML for NLP (part 1)
+%		&&  \textbf{Lect02.} ML for NLP (part 2) \\
+%		
+%		&&&&\\
+%		
+%		%	\hline
+%		Monday \newline 2024-11-04 
+%		&& \textbf{Lect03.} Basic text processing
+%		&& \textbf{Lect04.} Language models\newline \textbf{Lect05.} Part of Speech (PoS) tagging \\
+%		
+%		&&&&\\
+%		
+%		%	\hline
+%		Wednesday \newline 2024-11-06  
+%		&& \textbf{Lect06.} Word semantics
+%		&& \color{yellow}Infovis \\
+%		
+%		&&&&\\
+%		
+%		%	\hline
+%		Thursday \newline 2023-11-07 
+%		&&  \textbf{Lect07.} Some applications
+%		&&  \textbf{Lab01.} NLP task implementation \\
+%		 
+%		 
+%		&&&&\\
+%		 
+%		%	\hline
+%		Monday \newline 2023-11-11 
+%		&& \textbf{Lab02.} Improving our NLP task  
+%		&& \textbf{Lab03.} Writing a paper about our task\\
+%		
+%	\end{tblr}
+%	
 \end{frame}
 
 \begin{frame}

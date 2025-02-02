@@ -1,0 +1,223 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en
+
+\documentclass[11pt, a4paper]{article}
+%\usepackage{fullpage}
+\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=2cm]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{txfonts}
+\usepackage[]{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{natbib}
+
+\usepackage{turnstile}%Induction symbole
+
+\renewcommand{\baselinestretch}{1}
+
+\setlength{\parindent}{24pt}
+
+%\usepackage{etoolbox}
+%\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+\fancyhf{}
+
+\lfoot{Dr. Abdelkrime Aries}
+\cfoot{2024-2025/ESI/Master/NLP}
+\rfoot{\textbf{\thepage}}
+%
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{0pt}
+
+\newcommand\repeatstr[1]{\leavevmode\xleaders\hbox{#1}\hfill\kern0pt}
+
+\renewcommand{\bibsection}{}
+\bibliographystyle{humannat}
+
+\newcommand{\kurl}[1]{{\scriptsize\bfseries\url{#1}}}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+%\selectlanguage {french}
+%\pagestyle{empty} 
+\pagestyle{fancy}
+
+\noindent
+\begin{tabular}{ll}
+\multirow{3}{*}{\includegraphics[width=1.6cm]{../../extra/logo/esi.nlp.pdf}} & \'Ecole national Supérieure d'Informatique, Algiers\\
+& Master 2024-2025\\
+& Natural Language Processing (NLP)
+\end{tabular}\\[.25cm]
+\noindent\rule{\textwidth}{1pt}\\[-0.25cm]
+\begin{center}
+{\LARGE \textbf{Syllabus}}
+\begin{flushright}
+	Dr. Abdelkrime Aries
+\end{flushright}
+\end{center}\vspace*{-0.25cm}
+\noindent\rule{\textwidth}{1pt}
+
+\begin{abstract}
+	Natural Language Processing (NLP) is an interdisciplinary field involving linguistics, computer science, and artificial intelligence. 
+	It is a domain of research and computer application dedicated to the understanding and generation of human language by computers. 
+	With the emergence of language models such as OpenAI's GPT, Google's BERT, and others, NLP has become a rapidly growing field with increasing importance in various industries and domains.
+	
+	NLP covers a wide range of topics, and it would be impossible to cover them all in a week. 
+	However, in this seminar, we will focus on the most relevant and current tasks in scientific research.
+\end{abstract}
+
+\section{General information}
+
+\begin{minipage}{0.44\textwidth}
+		
+	\subsection{Prerequisites}
+	
+	\begin{itemize}
+		\item Basic knowledge of languages (vocabulary, grammar, etc.);
+		\item Data structures (1CP-ALSDD);
+		\item Probability and statistics \\(2CP-PRST1, 2CP-PRST2);
+		\item Algebra and calculus \\(2CP-ANAL3, 2CP-ALG3, 2CP-ANAL4);
+		\item Language theory (1CS-THP);
+		\item Operations research (1CS-RO);
+		\item Machine learning (2CS-ML or 2CS-BDM).
+	\end{itemize}
+
+\end{minipage}
+\begin{minipage}{0.05\textwidth}
+	\hspace{2pt}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+	\subsection{Objectives}
+	
+	\begin{itemize}
+		\item Learn some linguistic concepts;
+		\item Apply concepts covered in the prerequisite modules to solve NLP tasks;
+		\item Discover some NLP tools and resources;
+		\item Understand the research directions in this field;
+		\item Acquire the ability to articulate a novel NLP methodology and assess its viability within the framework of a scholarly publication.
+	\end{itemize}
+	
+\end{minipage}
+
+\section{Outline}
+
+\subsection{Lecture}
+
+\begin{enumerate}
+	\item \textbf{Introduction}: History, Language processing levels, Applications of NLP, NLP Challenges.
+	\item \textbf{Machine learning for NLP}: Machine learning (review), Text classification, Sequences classification, Attention.
+	\item \textbf{Basic text processing}: Characters, Text segmentation, Text normalization and filtering, Morphology.
+	\item \textbf{Language models}: N-gram model, Neural models, Evaluation.
+	\item \textbf{Part-of-speech tagging}: Sequences labeling, Task description, Approaches.
+	\item \textbf{Word semantics}: Lexical databases, Vector representation of words, Word embedding, Word Sense Disambiguation (WSD).
+	\item \textbf{Some applications}: discussion of some research works in this field.
+\end{enumerate}
+
+\subsection{Practical}
+
+\begin{itemize}
+	\item \textbf{Lab01}: Discovery of some NLP tools.
+	The purpose of this lab is to assess the student's ability to follow instructions in order to create an application. Additionally, students will learn how to use some NLP tools.
+	A perfect solution is one that precisely follows the lab's instructions.
+	\item \textbf{Lab02}: Developing an NLP application.
+	The purpose of this practical work is to test the student's ability to enhance an existing application based on some metrics.
+	\item \textbf{Lab03}: Writing an article on this application.
+	The purpose of this practical work is to teach students how to write an article in the field of NLP and showcase their work. 
+	Additionally, students will learn how to use \LaTeX.
+\end{itemize}
+%\clearpage
+
+The practical work can be done individually or in collaboration with a partner. Before participating in the practical work, it is essential to have a personal computer and a working environment, either by using online Colab (requiring an internet connection) or by having Anaconda installed.
+In case of choosing Anaconda, you will need to install other tools like NLTK and TensorFlow. A \LaTeX\ editing environment is also required, either by using Overleaf (which requires an internet connection) or by installing \LaTeX\footnote{\LaTeX: \kurl{https://www.latex-project.org/get/}} on your machine.
+
+\section{Evaluation}
+
+Students will be evaluated using three methods:
+\begin{itemize}
+	\item \textbf{Quizzes (20\%)}: There will be at least 3 online quizzes. 
+	Each quiz will cover the chapters seen during the same day.
+	It must be completed individually before the end of the day (23h59).
+	\item \textbf{Labs (30\%)}: The labs are already described in "Practical" section.
+	\item \textbf{Written Exam (50\%)}: The exam is the most important part of evaluation. 
+	Being absent on the day of the exam means a disqualification from this course.
+\end{itemize}
+
+\section{Bibliography}
+
+\subsection{Similar courses}
+
+\begin{itemize}
+	\item "\textit{NLP S21}" (up to date).
+	Carnegie Mellon Univ. 
+	\kurl{http://demo.clab.cs.cmu.edu/NLP/}
+	
+	\item "\textit{CS388: NLP}" (2018). 
+	Univ. of Texas. 
+	\kurl{https://www.cs.utexas.edu/~mooney/cs388/}
+	
+	\item "\textit{CSE 517: NLP}" (NA).
+	Univ. of Washington.
+	\kurl{https://courses.cs.washington.edu/courses/cse517/}
+	
+	\item "\textit{CS 294-5: Statistical NLP}" (2005). 
+	Univ. of Berkely. 
+	\kurl{https://people.eecs.berkeley.edu/~klein/cs294-5/index.html}
+	
+	\item "\textit{CS224n: NLP with Deep Learning}" (up to date).
+	Stanford Univ.
+	\kurl{https://web.stanford.edu/class/cs224n/}
+	
+	\item "\textit{CS 5340/6340: NLP}" (up to date). 
+	Univ. of Utah.
+	\kurl{https://my.eng.utah.edu/~cs5340/schedule.html}
+\end{itemize}
+
+\subsection{To read (NLP)}
+
+\begin{itemize}
+	\item "\textit{TALN - course (ESI)}" [FR].
+	Abdelkrime Aries. 
+	\kurl{https://github.com/projeduc/ESI_2CS_TALN/releases/download/4.0/taln_v2.pdf}
+	
+	
+	\item "\textit{Speech and Language Processing}".
+	Dan Jurafsky and James H. Martin.
+	\kurl{https://web.stanford.edu/~jurafsky/slp3/}
+	
+	\item "\textit{NLP}".
+	Jacob Esenstein.
+	\kurl{https://cseweb.ucsd.edu/~nnakashole/teaching/eisenstein-nov18.pdf}
+	
+	\item "\textit{Modern Approaches in NLP - course (LMU Munich)}".
+	Carolin Becker, et al.
+	\kurl{https://slds-lmu.github.io/seminar_nlp_ss20/index.html}
+\end{itemize}
+
+\subsection{To read (ML)}
+
+\begin{itemize}
+	\item "\textit{Dive into Deep Learning}" [online].
+	Many authors (Amazon).
+	\kurl{https://d2l.ai/index.html}
+	
+	\item "\textit{Deep Learning - course (NYU Center for data science)}".
+	Yann LeCun and Alfredo Canziani.
+	\kurl{https://atcold.github.io/pytorch-Deep-Learning/}
+\end{itemize}
+
+\end{document}
