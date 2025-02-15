@@ -205,10 +205,11 @@
 	\frametitle{\inserttitle}
 	\framesubtitle{NLP: Text generation}
 	
-%	TODO 
 	\begin{itemize}
-		\item 
+		\item It is simply the task of finding the next word given the past ones
 	\end{itemize}
+	
+	\[\hat{w}_i = \arg\max\limits_{w_i} P(w_i | \hat{w}_{1}, \cdots, \hat{w}_{i-1})\]
 	
 \end{frame}
 
@@ -234,7 +235,17 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item 
+		\item For text classification, we have to ensure a fixed sized encoding for all texts (vector)
+		\item For sequence classification/tagging
+		\begin{itemize}
+			\item HMMs are traditionally used
+			\item MLPs and other algorithms can be used in a Markovian fashion 
+		\end{itemize}
+		\item For text generation
+		\begin{itemize}
+			\item Bigrams are traditionally used
+			\item MLPs and other algorithms can be used in a Markovian fashion 
+		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
@@ -447,7 +458,7 @@
 	
 \end{frame}
 
-\subsection{MEMM for for Sequence classification}
+\subsection{MEMM/MLP for for Sequence classification}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -477,12 +488,34 @@
 	
 \end{frame}
 
-% TODO
+
 \subsection{Text generation}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
+	
+	\begin{itemize}
+		\item Using NGrams with a size N
+		\item The probability of each word $ w_i $ is calculated based on $N-1$ past words
+		\item The most probable word is chosen
+		\[\hat{w}_i = \arg\max\limits_{w_i} P(w_i | w_{i-N+1}, \cdots, w_{i-1})\]
+		\item The probabilities of NGrams are estimated based on a training corpus
+		\item \keyword{This will be seen in "Language models" chapter}
+		\item MLPs can be used in the same fashion
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: MLP-based text generation (example)}
+	
+	\[\hat{w}_i = \arg\max\limits_{w_i} P(w_i | \hat{w}_{i-N+1}, \cdots, \hat{w}_{i-1})\]
+	
+	\begin{center}
+		\vgraphpage[0.7\textheight]{text_gen_MLP_exp.pdf}
+	\end{center}
 	
 \end{frame}
 
@@ -496,7 +529,19 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item 
+		\item For text classification, 
+		\begin{itemize}
+			\item we have to ensure a fixed sized encoding for all texts (matrix)
+			\item an MLP is used as output 
+		\end{itemize}
+		\item For sequence classification/tagging
+		\begin{itemize}
+			\item Like classification, but past tags can be used as a second channel 
+		\end{itemize}
+		\item For text generation
+		\begin{itemize}
+			\item Like classification; but instead of a class, the next word is estimated
+		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
@@ -529,16 +574,24 @@
 	
 \end{frame}
 
-%TODO CNN for Sequence classification
 \subsection{Sequence classification}
 
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+	
+	\vgraphpage{text_seq_CNN_exp.pdf}
+	
+\end{frame}
 
-% TODO CNN for Text generation
+
 \subsection{Text generation}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
+	
+	\vgraphpage{text_gen_CNN_exp.pdf}
 	
 \end{frame}
 
@@ -552,7 +605,19 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item 
+		\item For text classification, 
+		\begin{itemize}
+			\item the last state is used as input to an MLP
+			\item the MLP estimates the class
+		\end{itemize}
+		\item For sequence classification/tagging
+		\begin{itemize}
+			\item An MLP is used to encode each word's state
+		\end{itemize}
+		\item For text generation
+		\begin{itemize}
+			\item The next word is estimated until reaching "end of sentence" tag
+		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
@@ -564,14 +629,14 @@
 	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
-			\item For each word of the text, a vector representation must be defined (vector of \keyword{N} elements).
-			\item The RNN network creates M cells corresponding to the \keyword{M} words.
-			\item Each cell calculates an intermediate state (vector) and passes it to the next cell.
-			\item The last cell generates a representation of the text (the probability of the last word's occurrence given the past words).
-			\item This representation is introduced to a \keyword{MLP} to estimate the class of the text.
-			\item \textbf{Problem}: Technically, during training, words of different sizes cannot be processed with a single matrix operation.
-			\item \textbf{Solution}: \textcolor{yellow!30}{A maximum number must be defined; if the words number is lower, padding is added; otherwise, extra words are deleted}
-		\end{itemize}
+		\item For each word of the text, a vector representation must be defined (vector of \keyword{N} elements).
+		\item The RNN network creates M cells corresponding to the \keyword{M} words.
+		\item Each cell calculates an intermediate state (vector) and passes it to the next cell.
+		\item The last cell generates a representation of the text (the probability of the last word's occurrence given the past words).
+		\item This representation is introduced to a \keyword{MLP} to estimate the class of the text.
+		\item \textbf{Problem}: Technically, during training, words of different sizes cannot be processed with a single matrix operation.
+		\item \textbf{Solution}: \textcolor{yellow!30}{A maximum number must be defined; if the words number is lower, padding is added; otherwise, extra words are deleted}
+	\end{itemize}
 	
 \end{frame}
 
@@ -599,11 +664,23 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection}
+	\framesubtitle{\insertsubsection: Language model}
 	
-	Language model
-	GAN-based decoder
+	\vgraphpage{text_gen_RNN_exp.pdf}
 	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: GAN-based decoder}
+	
+	\begin{figure}
+		\hgraphpage{text_gen_RNNGAN_exp_.pdf}
+		\caption{The illustration of SeqGAN. 
+			Left: \textit{D} is trained over the real data and the generated data by \textit{G}. 
+			Right: \textit{G} is trained by policy gradient where the final reward signal is provided
+			by \textit{D} and is passed back to the intermediate action value via Monte Carlo search. \cite{SeqGAN}}
+	\end{figure}
 	
 \end{frame}
 
@@ -618,48 +695,97 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item 
+		\item Transformers can be used for the 3 tasks
+		\begin{itemize}
+			\item Both encoder and decoder based ones can be used for classification
+			\item encoder based ones are more adapt for sequence classification
+			\item decoder based ones are more adapt for text generation
+		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
 
-% TODO Transformers for Text classification
+
 \subsection{Text classification}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection}
+	\framesubtitle{\insertsubsection: encoder-based (example)}
 	
-	encoder-based
-	decoder-based
-	full-transformer
+	\begin{center}
+		\vgraphpage{text_class_bert_exp.pdf}
+	\end{center}
 	
 \end{frame}
 
-% TODO Transformers for Sequence classification
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: decoder-based (example)}
+	
+	\hgraphpage{gpt-arch_.pdf}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: full-transformer (example)}
+	
+	\hgraphpage{t5-arch_.pdf}
+	
+\end{frame}
+
+
 \subsection{Sequence classification}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection}
+	\framesubtitle{\insertsubsection: encoder-based (example)}
 	
-	encoder-based
-	decoder-based
-	full-transformer
+	\begin{center}
+		\vgraphpage{text_seq_bert_exp.pdf}
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: decoder-based and full-transformer}
+	
+	\begin{itemize}
+		\item Some ideas (\keyword{not based on existing research articles})
+		\item Input the text and generate the tags one by one
+		\item For full transformers
+		\begin{itemize}
+			\item the encoder has the sentence as input 
+			\item the decoder has the past generated tags as input to output next tag  
+		\end{itemize}
+		\item For decoder-based architectures
+		\begin{itemize}
+			\item the decoder has the sentence as input 
+			\item a separator
+			\item and past generated tags.
+		\end{itemize}
+	\end{itemize}
+	
 	
 \end{frame}
 
 
-% TODO Transformers for Text generation
 \subsection{Text generation}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
 	
-	encoder-based
-	decoder-based
-	full-transformer
+	\begin{itemize}
+		\item Decoder-based language models are inherently designed to generate text
+		\item Encoder-based language models
+		\begin{itemize}
+			\item Masked Language Modeling (MLM) for Fill-in-the-Blanks
+			\item Training a generator based on their outputs
+			\item etc.
+		\end{itemize}
+	\end{itemize}
 	
 \end{frame}
 
