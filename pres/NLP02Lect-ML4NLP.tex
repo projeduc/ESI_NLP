@@ -261,7 +261,7 @@
 	
 \end{frame}
 
-\subsection{HMM for Sequence classification}
+\subsection{Sequence classification}
 
 
 \begin{frame}
@@ -373,7 +373,7 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Training}
+	\framesubtitle{\insertsubsection: HMM Training}
 	
 	\begin{itemize}
 			\item States are tags (categories) $t_i$.
@@ -395,7 +395,7 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Labeling (tag decoding)}
+	\framesubtitle{\insertsubsection: HMM Labeling (tag decoding)}
 	
 	\begin{itemize}
 			\item Given
@@ -425,7 +425,7 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Viterbi algorithm}
+	\framesubtitle{\insertsubsection: HMM \& Viterbi algorithm}
 	
 	\begin{block}{Viterbi}
 			\scriptsize
@@ -458,11 +458,9 @@
 	
 \end{frame}
 
-\subsection{MEMM/MLP for for Sequence classification}
-
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection}
+	\framesubtitle{\insertsubsection: MEMM/MLP}
 	
 	\begin{itemize}
 			\item Let $x_{n}^{m} = x_n x_{n+1} \ldots x_{m-1} x_m$
@@ -516,6 +514,21 @@
 	\begin{center}
 		\vgraphpage[0.7\textheight]{text_gen_MLP_exp.pdf}
 	\end{center}
+	
+\end{frame}
+
+\subsection{Embedding Layer}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+	
+%	\[\hat{w}_i = \arg\max\limits_{w_i} P(w_i | \hat{w}_{i-N+1}, \cdots, \hat{w}_{i-1})\]
+	
+%	\begin{center}
+%		\vgraphpage[0.7\textheight]{text_emb_exp.pdf}
+%	\end{center}
+	\hgraphpage[\textwidth]{text_emb_exp.pdf}
 	
 \end{frame}
 
