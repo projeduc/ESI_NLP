@@ -1,0 +1,195 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass{../../../extra/aakpract/aakpract}
+
+\settitle{Word embedding and attention}
+\setversion{Lab03}
+\setyear{2024-2025}
+\setauthor{Mr. Abdelkrime Aries}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+	\begin{minipage}{0.8\textwidth}
+		\small
+		We want to implement some concepts linked to word embedding from scratch.
+		The purpose is to learn these concepts by doing so.
+		Also, we want to learn how to implement a simple API in python (the open source way) and how to unit test it.
+	\end{minipage}
+\end{center}
+
+\section{Implementation}
+
+In this lab, we will try to implement a simple python API; let's call it "myapi" for simplicity.
+The architecture is shown in figure \ref{fig:myapi} where the packages represent Python's modules (files).
+In this case, the project's root (i.e. \_\_init\_\_.py) defines an interface "Module" implemented by an abstract class "Layer".
+Mainly, all types of layers must implement the forward and backward functions:
+\begin{itemize}
+	\item forward: returns the output of the layer based on the input and internal parameters if any. 
+	It may also save some information to be used in the backward step.
+	\item backward: gets a vector of gradients (the same shape as the output's) and a learning rate.
+	It updates the layer's parameters and returns the gradients with respect to (w.r.t.) the input, so it can be used by the past layer.
+\end{itemize}
+
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/class_diagram.pdf}
+	\caption{Class diagram of "myapi" project}
+	\label{fig:myapi}
+\end{figure}
+
+For the description of the forward and backward mathematically, let's follow these notations:
+\begin{itemize}
+	\item $M$: the number of samples; in our case, the number of sentences.
+	\item $T$: the size of the sequence; in our case, the maximum number of words per sentence.
+	\item $N$: the features size; can be the encoding of each word.
+	\item $V$: the size of vocabulary.
+	\item $(X, Y)$: the (input, output) of the layer.
+\end{itemize}
+
+The abstract class \textbf{Layer} adds two methods: forward\_single and backward\_single. 
+These functions are useful when we have a tensor of dimension 3 (when there is sequences).
+In this case, the operations mostly are done on the two last dimensions (sequence and feature).
+So, for a batch, we just call these methods iteratively.
+
+\subsection{Implemented parts}
+
+Many functions similar to those of numpy have been implemented in the two modules: 
+They are not as optimized as those of numpy since this one implement them using C/Rust.
+In addition, the Linear layer is implemented as an example to how you must impement the others.
+
+\subsection{Embedding class}
+
+The parameters are the same shape as those of linear layer, but they are seen as a lookup table.
+But, the input of the forward step is a list of integers (indices) instead of a list of list of floats.
+
+$W \in \mathbb{R}^{V \times N}, X \in \mathbb{Z}^{M \times T}, Y \in \mathbb{R}^{M \times T \times N} $
+
+
+\begin{equation}
+	Y_{m,t} = W_{X_{m,t}}; \text{ for } m = 1, \cdots, M;\ t = 1, \cdots, T
+\end{equation}
+
+This is how the gradients are calculated w.r.t. parameters proper to a given vocabulary index $v$
+\begin{equation}
+	\frac{\partial J}{\partial W_{v,:}} = \sum_{m=1}^M \sum_{t=1}^T \frac{\partial J}{\partial Y_{m,t}} \cdot \mathbf{1}(X_{m,t} = v)
+\end{equation}
+
+where:
+$\mathbf{1}(X_{m,t} = v)$ is the indicator function (1 if \( X_{m,t} = v \), else 0);
+\( \frac{\partial J}{\partial Y_{m,t}} \) is the upstream gradient at position \((m, t)\); 
+\( v \) is the index (vocabulary ID).
+
+\textbf{Note:} This layer is usually the first, so no need to calculate the gradient w.r.t. the input.
+
+\subsection{ScaledDotProductAttention class}
+
+$\text{Queries: } Q \in \mathbb{R}^{M \times T \times N},  \text{Keys: } K \in \mathbb{R}^{M \times T \times N},  \text{Values: } V \in \mathbb{R}^{M \times T \times N}, Y \in \mathbb{R}^{M \times T \times N}$
+
+$\text{Scores: } S \in \mathbb{R}^{M \times T \times T},  \text{Percentages: } P \in \mathbb{R}^{M \times T \times T}$
+
+Let's simplify it by implementing the forward and backward just for a single sample $m$
+\begin{equation}
+	S_m = \frac{Q_m \cdot K_m^\top}{\sqrt{N}};\ P_m = Softmax(S_m);\ \ \ \ \text{ for } m = 1, \cdots, M
+\end{equation}
+
+\begin{equation}
+	Y_m = P_m \cdot V_m
+\end{equation}
+
+There is no parameters to update, but this layer must return the gradients w.r.t. Q, K and V.
+The following equations indicate how to calculate those for one sample (for a batch, we just stack them).
+
+\begin{equation}
+	\frac{\partial J}{\partial P_{m}} = \frac{\partial J}{\partial Y_{m}} \cdot V^\top
+\end{equation}
+
+\begin{equation}
+	\frac{\partial J}{\partial S_{m}} = P_m \odot (\frac{\partial J}{\partial P_{m}} - \sum_{t=1}^{T} P_{m, t} \frac{\partial J}{\partial P_{m, t}})
+\end{equation}
+
+\begin{equation}
+	\frac{\partial J}{\partial Q_{m}} = \frac{1}{\sqrt{N}} (\frac{\partial J}{\partial S_{m}} \cdot K_m);
+	\ \ \ \
+	\frac{\partial J}{\partial K_{m}} = \frac{1}{\sqrt{N}} (\frac{\partial J}{\partial S_{m}}^\top \cdot Q_m);
+	\ \ \ \
+	\frac{\partial J}{\partial V_{m}} = P_m^\top \cdot \frac{\partial J}{\partial Y_{m}}
+\end{equation}
+
+
+\subsection{LayerNorm class}
+
+$X \in \mathbb{R}^{M \times T \times N}, Y \in \mathbb{R}^{M \times T \times N}, \gamma\in \mathbb{R}^{N}, \beta \in \mathbb{R}^{N}$
+
+\begin{equation}
+	Y = \frac{X - E[X]}{\sqrt{Var[X] + \epsilon}} * \gamma + \beta
+\end{equation}
+
+The gradients w.r.t. $\gamma, \beta$ (to update them) are calculated as:
+\begin{equation}
+	\frac{\partial J}{\partial \gamma} = \sum_{m=1}^{M} \sum_{t=1}^{T} \frac{\partial J}{\partial Y_{m,t}} \cdot \frac{X_{m,t} - E[X]}{\sqrt{Var[X_{m}] + \epsilon}};
+	\ \ \ \ \ \ \ \
+	\frac{\partial J}{\partial \beta} = \sum_{m=1}^{M} \sum_{t=1}^{T} \frac{\partial J}{\partial Y_{m,t}}
+\end{equation}
+
+The gradients w.r.t. to the input is implemented (did not have the time to verify it); so, let it be for now.
+%\begin{equation}
+%	\frac{\partial J}{\partial X_{m,t}} = \frac{1}{\sqrt{Var[X_{m}] + \epsilon}} \cdot \gamma \cdot
+%	(\frac{\partial J}{\partial Y_{m,t}} - \frac{1}{T} \sum_{t=1}^{T} \partial Y_{m,t}})
+%\end{equation}
+
+%\section{Questions}
+%
+%Answer these questions in the same file as the code.
+%
+%\begin{enumerate}
+%	\item "If PoS tagging is used with CKY, there will be no ambiguities". True or False? Justify.
+%	\item "If PoS tagging is used with CKY, there will be no out-of-vocabulary problem". True or False? Justify.
+%\end{enumerate}
+
+\section{Logistics}
+
+This lab must be done in a team of no more than \textbf{2} students.
+It takes \textbf{1h15} (the assignment must be submitted at the end of the session).
+Since the lab was not thoroughly tested, the deadline is midnight exceptionally.
+
+\subsection{Evaluation}
+
+\begin{itemize}
+	\item To evaluate your work, some unit tests using pytest were intended. 
+	Unfortunately, there were no time to design such units.
+	\item The code will be evaluated manually (by reading it); not based on any outputs.
+\end{itemize}
+
+\subsection{Submitting}
+
+\begin{itemize}
+	\item Submit only "\textbf{layers.py}" file.
+	Rename it "\textbf{layers\_name1\_name2.py}".
+	\item You have to put your names inside as contributors.
+	\item Late submission policy: You will loose 2 points after 1 day from the deadline; after that, it is a forfeit.
+	\item Not attending the session will result in minus 2 points.
+\end{itemize}
+
+\subsection{Grading}
+
+Grade = Grade\_imp\_Embedding + Grade\_imp\_Attention + Grade\_imp\_Norm + Grade\_compliance
+	\begin{itemize}
+		\item \textbf{Grade\_imp\_Embedding}: (6pts)
+		\item \textbf{Grade\_imp\_Attention}: (6pts)
+		\item \textbf{Grade\_imp\_Norm}: (4pts)
+		\item \textbf{Grade\_compliance}: Attendance (2points) + On-time Submission (2points)
+	\end{itemize}
+
+\begin{flushright}
+	Good luck\footnote{By luck, I mean: working without having unwanted exceptions; not: waiting for the solution to show itself.}
+\end{flushright}
+
+
+\end{document}

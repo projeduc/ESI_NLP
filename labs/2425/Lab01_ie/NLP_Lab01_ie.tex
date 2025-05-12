@@ -1,0 +1,127 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass{../../../extra/aakpract/aakpract}
+
+\settitle{Information extraction}
+\setversion{Lab01}
+\setyear{2024-2025}
+\setauthor{Mr. Abdelkrime Aries}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+	\begin{minipage}{0.8\textwidth}
+		\small
+		We want to extract email addresses, social media links, and phone numbers found on the "Contact Us" pages of websites in Algeria.
+		The problem is that these pages present this information in various formats.
+		To retrieve and unify these formats, we will use regular expressions.
+	\end{minipage}
+\end{center}
+
+%We want to extract email addresses, social media links, and phone numbers found on the "Contact Us" pages of websites in Algeria.
+%The problem is that these pages present this information in various formats.
+%To retrieve and unify these formats, we will use regular expressions.
+
+\section{Information to Extract}
+
+Here, we will describe some existing variations of the information found on these pages.
+This is not a complete list; therefore, you must open the pages where the system failed to identify the information to locate unrecognized formats.
+
+\subsection{Social Media}
+
+We are interested in the following social networks: Facebook, Twitter, YouTube, LinkedIn, and Instagram.
+When an address is found, it should be returned in the following format: "\textbf{\textless network\_type\textgreater:\textless name\textgreater}".
+Example: "\textbf{facebook:ESI.Page}".
+We only want to retrieve specific addresses:
+\begin{itemize}
+	\item \textbf{LinkedIn}: Only retrieve social media links of the "company" type.
+	
+	For example, "https://www.linkedin.com/company/airalgerie".
+	
+	\item \textbf{Youtube}: Only retrieve addresses of the "channel" type.
+	
+	For example, "https://www.youtube.com/channel/UC4pwuVraHCCElwQ1dIl1g8Q".
+\end{itemize}
+
+\subsection{Phone Numbers}
+
+Phone numbers come in various formats. For example: (023) 93 91 32 ; 023 93 91 32 ; 023 93.91.32 ; 023 93.91. 32 ; 023939132 ;
++213 23 93 91 32 ; + 213 23 93 91 32 ; 00 213 23 93 91 32 ; +213 (0) 23 93 91 32 ; +213 023 93 91 32 ; 023 93-91-32 ; etc.
+This list is not exhaustive; failed files must be examined to detect additional formats.
+The required format is: "(0XX) XX XX XX" where X is a digit.
+For mobile numbers, the format will be: "(0XXX) XX XX XX".
+Additional conditions:
+\begin{itemize}
+	\item For numbers like (023) 93 91 32/41, you must extract: (023) 93 91 32 et (023) 93 91 41. 
+	There might be spaces between the digits and the "/".
+	\item The same rule applies to formats like: (023) 93 91 32 à 41.
+	\item Another format is: (023) 93 91 32 ou 41 ou 51. 
+	In this case, extract all three numbers, replacing the last two digits accordingly.
+\end{itemize}
+
+\subsection{Email Addresses}
+
+There are no specific conditions for email addresses.
+They must be clickable; i.e. they must be shown on the page and not commented.
+
+\section{Technical Specifications}
+
+\begin{itemize}
+	\item \textbf{Programming language}: Python.
+	The program responsible for reading and evaluation is already fully implemented.
+	\item \textbf{Regular Expressions \& Replacement Methods}: 
+	Introduce the regular expressions and replacement patterns.
+	You can use multiple patterns but should minimize the number of rules to avoid multiple passes (which would increase processing time). 
+	For example, 
+	\begin{small}
+		\begin{verbatim}
+			(re.compile(u'(\w+)@(\w+)\.(\w+)'), '\$1@\$2.\$3')
+		\end{verbatim}
+	\end{small}\vspace{-0.5cm}
+	\item \textbf{Data}: consists of some html files and a "\textbf{ref.txt}" file containing the expected results.
+	\begin{itemize}
+		\item \textbf{Validation}: Shared with this assignment to test the regex.
+		\item \textbf{Test}: Not shared. It is used to test that the regex are not too specific to the validation data.
+	\end{itemize}
+\end{itemize}
+
+\section{Logistics}
+
+This lab must be done in a team of no more than \textbf{2} students.
+It takes \textbf{1h15} (the assignment must be submitted at the end of the session).
+
+\subsection{Evaluation}
+
+\begin{itemize}
+	\item You have to add regular expressions to "\textbf{contacts.py}". 
+	Do not modify "\textbf{ie.py}" unless you want to print only the score and not the detail. In this case, comment "\textbf{printing(comp)}" in "\textbf{main}" function.
+	\item To evaluate your work:
+	\begin{small}
+		\begin{verbatim}
+			>> python ie.py val_data/
+		\end{verbatim}
+	\end{small}\vspace{-1cm}
+\end{itemize}
+
+\subsection{Submitting}
+
+\begin{itemize}
+	\item Submit only "\textbf{contacts.py}" file.
+	Rename it "\textbf{contacts\_name1\_name2.py}".
+	\item Late submission policy: you can submit after the end of the session till midnight, but you will loose 2 points.
+\end{itemize}
+
+\subsection{Grading}
+
+\begin{itemize}
+	\item Scoring: \\Grade = (F1\_eval + F1\_test) * 10 - (0.25 * (number\_rules\_greater15 - 15)) - late\_submission\_penalty.
+	\item late\_submission\_penalty = 0 if submitted at the end of the session, 2 before midnight, 2+ (0.25 * each hour).
+	\item Test dataset will be shared once all participants have returned their assignments. In this case, everyone can calculate his grade.
+\end{itemize}
+
+\end{document}

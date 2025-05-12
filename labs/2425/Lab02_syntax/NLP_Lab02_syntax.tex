@@ -1,0 +1,118 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass{../../../extra/aakpract/aakpract}
+
+\settitle{Parsing sentences using CKY}
+\setversion{Lab02}
+\setyear{2024-2025}
+\setauthor{Mr. Abdelkrime Aries}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+	\begin{minipage}{0.8\textwidth}
+		\small
+		In order to understand syntactic analysis, we want to implement CKY algorithm from scratch as well as the naive evaluation algorithm.
+	\end{minipage}
+\end{center}
+
+\section{Implementation}
+
+The algorithm is implemented in its entirety except for the functions to be completed.
+There are two classes:
+\begin{itemize}
+	\item CKY: Its constructor has as arguments the Chomsky normal form grammar (NCF) and the lexicon (a word and the list of grammatical categories).
+	It parses a sentence passed as a list of words.
+	\item Syntax: It uses CKY class to apply the syntactic analysis.
+	It generates a graphical syntax tree (based on the Dot language).
+	Also, it evaluates our parsing model.
+\end{itemize}
+
+In this lab, you must implement the "parse" method seen in the lecture, but modify it to accept unitary rules.
+Also, you must implement the method for comparing two trees.
+{\color{red} The tree is represented as a tuple which is comparable since it is hashable. In our case, you have to implement the traverse algorithm.}
+
+\subsection{Parsing}
+
+The method takes as input a list of words (sentence).
+It must use the FNC grammar (with unitary rules) and the lexicon that are introduced in the constructor.
+It must return the analysis matrix seen in the lecture:
+\begin{itemize}
+	\item a list of lists: to represent the rows and columns
+	\item a cell's content is a list: to represent the different possible rules
+	\item a rule is a tuple (A, k, iB, iC): A is the variable, k is used to calculate the position of B (with iB) and C (with iC) of the rule $A \rightarrow B C$.
+	If $A \rightarrow B$, there is no right part (A, k, iB, iC=-1).
+\end{itemize}
+
+\subsection{pr\_eval}
+
+This function takes a reference tree (which is a node) and a system-generated tree.
+It compares the two structures and returns (precision $P$, recall $R$).
+\begin{itemize}
+	\item TP is is the number of arcs traversed from the root in both trees (ref and sys).
+	\item $|ref|$ and $|sys|$ are the numbers of arcs in ref and sys trees respectively
+\end{itemize}
+
+\[P = \frac{TP}{|sys|},\ \ \ R = \frac{TP}{|ref|}\]
+
+Note: if one of the two trees exists and the other does not, the function should have (0, 0) as its result.
+If both do not exist, the function should return (1, 1).
+
+
+\section{Questions}
+
+Answer these questions in the same file as the code.
+
+\begin{enumerate}
+	\item "If PoS tagging is used with CKY, there will be no ambiguities". True or False? Justify.
+	\item "If PoS tagging is used with CKY, there will be no out-of-vocabulary problem". True or False? Justify.
+\end{enumerate}
+
+\section{Logistics}
+
+This lab must be done in a team of no more than \textbf{2} students.
+It takes \textbf{1h} (the assignment must be submitted at the end of the session).
+
+\subsection{Evaluation}
+
+\begin{itemize}
+	\item To evaluate your work, activate the evaluation:
+	\begin{small}
+		\begin{verbatim}
+			if __name__ == '__main__':
+			    test_cky()
+			    #test_eval_tree()
+			    #test_evaluate()
+		\end{verbatim}
+	\end{small}\vspace{-1cm}
+\end{itemize}
+
+\subsection{Submitting}
+
+\begin{itemize}
+	\item Submit only "\textbf{syntax.py}" file.
+	Rename it "\textbf{synatx\_name1\_name2.py}".
+	\item Late submission policy: You will loose 2 points after 1 day from the deadline; after that, it is a forfeit.
+	\item Not attending the session will result in minus 2 points.
+\end{itemize}
+
+\subsection{Grading}
+
+Grade = Grade\_parse + Grade\_pr\_eval + Grade\_questions + Grade\_compliance
+	\begin{itemize}
+		\item \textbf{Grade\_parse}: (7pts)
+		\item \textbf{Grade\_pr\_eval}: (5pts)
+		\item \textbf{Grade\_questions}: (2pts) + (2pts)
+		\item \textbf{Grade\_compliance}: Attendance (2points) + On-time Submission (2points)
+	\end{itemize}
+
+\begin{flushright}
+	Ramadhan Kareem
+\end{flushright}
+
+\end{document}

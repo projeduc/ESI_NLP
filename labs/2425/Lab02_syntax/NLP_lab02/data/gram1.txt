@@ -1,0 +1,54 @@
+# grammar in CNF: A \t B \t C ( A --> B C ) + ( A --> B )
+# ==========================================================
+
+S	NP	VP
+S	VPI
+
+NP	D	N
+NP	D	AP
+NP	P
+
+VP	V	NP
+VP	V	NP
+VP	MV	NP
+VP	MV
+
+VPI	I	NP
+
+AP	J	AP
+AP	J	N
+
+MV	M	I
+
+
+# lexicon : A \t word ( A --> word )
+# =================================
+
+P	je
+P	tu
+P	il
+P	elle
+V	forme
+V	veut
+V	veux
+V	mange
+V	est
+I	manger
+I	nager
+M	veut
+M	veux
+M	peut
+M	peux
+D	un
+D	une
+D	la
+D	le
+J	petite
+J	petit
+J	grand
+J	bleu
+N	petite
+N	forme
+N	phrase
+N	chat
+N	poisson

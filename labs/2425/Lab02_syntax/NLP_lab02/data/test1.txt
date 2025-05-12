@@ -1,0 +1,9 @@
+le grand chat veut manger le petit poisson	(S, (NP, (D, le), (AP, (J, grand), (N, chat))), (VP, (MV, (M, veut), (I, manger)), (NP, (D, le), (AP, (J, petit), (N, poisson)))))
+le poisson poisson poisson	NONE
+je veux manger un grand poisson	(S, (NP, (P, je)), (VP, (MV, (M, veux), (I, manger)), (NP, (D, un), (AP, (J, grand), (N, poisson)))))
+il mange un petit poisson bleu	NONE
+elle mange un petit poisson	(S, (NP, (P, elle)), (VP, (V, mange), (NP, (D, un), (AP, (J, petit), (N, poisson)))))
+tu forme une petite phrase	(S, (NP, (P, tu)), (VP, (V, forme), (NP, (D, une), (AP, (J, petite), (N, phrase)))))
+je forme une forme	(S, (NP, (P, je)), (VP, (V, forme), (NP, (D, une), (N, forme))))
+la phrase est une mange un poisson	NONE
+un petit poisson veut nager	(S, (NP, (D, un), (AP, (J, petit), (N, poisson))), (VP, (MV, (M, veut), (I, nager))))

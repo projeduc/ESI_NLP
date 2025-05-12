@@ -70,6 +70,14 @@
 	\frametitle{\insertshortsubtitle}
 	\framesubtitle{\insertsection}
 	
+	\begin{center}
+		Blank page 
+		
+		...
+		
+		Blank like my mind trying to think what to put in here
+	\end{center}
+	
 \end{frame}
 
 \subsection{Thematic roles}
@@ -538,12 +546,32 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle}
-	\framesubtitle{\insertsection}
+	\framesubtitle{\insertsection\ (Example)}
 
 	\begin{figure}
 		\hgraphpage{exp-srl_.pdf}
 		\caption{Example of ProbBank-based SRL [\url{https://demo.allennlp.org/semantic-role-labeling/}]}
 	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle}
+	\framesubtitle{\insertsection}
+	
+	\begin{itemize}
+		\item Rule-based / Linguistic Approaches.
+		
+		e.g. \expword{"NP [subject] + verb + NP [object]" → Agent + Verb + Patient}
+		
+		\item Statistical / Feature-based Machine Learning
+		
+		\item Neural-based
+		\begin{itemize}
+			\item RNN-based
+			\item Transformer-based
+		\end{itemize}
+	\end{itemize}
 	
 \end{frame}
 
@@ -598,7 +626,7 @@
 	
 \end{frame}
 
-\subsection{Neural-networks-based}
+\subsection{RNN-based}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -615,6 +643,88 @@
 		\begin{figure}
 			\hgraphpage{srl-lstm.pdf}
 			\caption{SRL system using LSTM \cite{2017-he-al}}
+		\end{figure}
+	\end{minipage}
+	
+\end{frame}
+
+\subsection{Transformer-based}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection\ \cite{2023-mohammadshahi-henderson}}
+	\begin{figure}
+		\centering
+		\vgraphpage[0.7\textheight]{SynG2G-Tr_.pdf}
+		\caption{Architecture of SynG2G-Tr \cite{2023-mohammadshahi-henderson}}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection\ \cite{2023-chanin}}
+	
+	3 subtasks as sequence-to-sequence tasks performed by T5 model
+	\begin{itemize}
+		\item Trigger identification
+		{\scriptsize\bfseries\color{olivegreen} 
+		\begin{verbatim}
+				input: "TRIGGER: It was no use trying the lift."
+				output: "It was no use *trying the *lift."
+		\end{verbatim}
+		}
+		\item Frame classification
+		{\scriptsize\bfseries\color{olivegreen} 
+		\begin{verbatim}
+				input: "FRAME Body_movement Building_subparts Cause_motion Cause_to_end 
+				        Connecting_architecture Theft: It was no use trying the *lift."
+				output: "Connecting_architecture"
+		\end{verbatim}
+		}
+		\item Argument extraction
+		{\scriptsize\bfseries\color{olivegreen} 
+		\begin{verbatim}
+				input: "ARGS Connecting_architecture | Part Connected_locations Creator 
+				        Descriptor Direction Goal Material Orientation Source Whole: 
+				        It was no use trying the *lift."
+				output: "Part='the lift'"
+		\end{verbatim}
+		}
+	\end{itemize}
+	
+	\begin{verbatim}
+		>> pip install frame-semantic-transformer
+	\end{verbatim}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection\ \cite{2020-kalyanpur}}
+	
+	\begin{minipage}{.58\textwidth}
+		\small
+		\begin{tabular}{|p{4cm}|p{2cm}|}
+			\hline
+			Input & Output \\
+			\hline
+			FRAME: 0 Two 1 of 2 the 3 cast 4
+			fainted 5 and 6 most 7 of 8 the 9 rest
+			10 * repaired * 11 to 12 the 13 nearest
+			14 bar 15 . & Self motion\\
+			&\\
+			ARGS for Self motion: 0 Two 1 of 2 the
+			3 cast 4 fainted 5 and 6 most 7 of 8 the
+			9 rest 10 * repaired * 11 to 12 the 13
+			nearest 14 bar 15 . & Self mover = 6-9 $|$ Goal = 11-14 $|$\\
+			\hline
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{.4\textwidth}
+		\begin{figure}
+			\hgraphpage{Kalyanpur2020_.pdf}
+			\caption{Multi-task model for semantic parsing \cite{2020-kalyanpur}}
 		\end{figure}
 	\end{minipage}
 	
@@ -817,6 +927,54 @@
 	
 \end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Parsing \cite{2023-lee-amr}}
+	
+	\begin{minipage}{.40\textwidth}
+	AMR graph:
+	\bfseries\scriptsize
+	\begin{verbatim}
+		(r / reveal-01
+		   :ARG0 (s / statistic)
+		   :ARG1 (t / tend-02
+		   :ARG1 (t2 / thing
+		   :ARG1-of (i / invest-01
+		   :ARG0 (c / country
+		      :wiki "Taiwan"
+		      :name (n / name
+		      :op1 "Taiwan"))
+		   :ARG2 (m / mainland)
+		      :mod (b / business)))
+		   :ARG2 (i2 / increase-01
+		   :ARG1 t2))
+		      :mod (a / also))
+	\end{verbatim}
+	\end{minipage}
+	\begin{minipage}{.58\textwidth}
+	Serialized AMR graph:
+	\bfseries\scriptsize
+	\begin{verbatim}
+		( reveal-01 :ARG0 ( statistic ) :ARG1
+		( tend-02 :ARG1 ( thing :ARG1-of ( invest-01
+		:ARG0 ( country :name ( name :op1 "Taiwan" ) )
+		:ARG2 ( mainland ) :mod ( business ) ) )
+		:ARG2 ( increase-01 :ARG1 thing ) ) :mod
+		( also ) )
+	\end{verbatim}
+	
+	\normalfont\normalsize
+	Input text with the task prefix (T5):
+	\bfseries\scriptsize
+	\begin{verbatim}
+		amr generation ; Statistics also revealed
+		that Taiwanese business investments in the
+		mainland is tending to increase
+	\end{verbatim}
+	\end{minipage}
+	
+\end{frame}
+
 
 \subsection{Semantic parsing}
 
@@ -956,6 +1114,19 @@ all z2.(dog(z2) -> exists z1.(bone(z1) & give(angus,z1,z2)))
 	\end{center}
 	
 \end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Some humor (Reasoning)}
+	
+	\begin{center}\bfseries\large
+		even chatGPT knows its limits
+		
+		\vgraphpage[0.7\textheight]{humor/chatgpt-solvr.png}
+	\end{center}
+	
+\end{frame}
+
 
 \insertbibliography{NLP08}{*}
 

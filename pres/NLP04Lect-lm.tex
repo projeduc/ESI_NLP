@@ -99,9 +99,9 @@
 		\]
 	\end{block}
 	
-	\begin{block}{Proability estimation using N-grams}
+	\begin{block}{Probability estimation using N-grams}
 		\[
-		P(w_1,\ldots, w_{m}) \approx \prod_{i=1}^m P(w_i | w_{i-k+1}, \ldots, w_{i-1})
+		P(w_1,\ldots, w_{m}) \approx \prod_{i=1}^m P(w_i | w_{i-N+1}, \ldots, w_{i-1})
 		\]
 	\end{block}
 
@@ -145,7 +145,7 @@
 		\item \keyword{Maximum likelihood estimator (MLE)}
 	\end{itemize}
 	
-	\begin{block}{Proability estimation using MLE}
+	\begin{block}{Probability estimation using MLE}
 		{\small \[%
 		P(w_i | w_{i-n+1},\ldots, w_{i-1}) = \frac{C(w_{i-n+1} \ldots w_{i-1} w_i)}{\sum_i C(w_{i-n+1} \ldots w_{i-1} w_i)}
 		= \frac{C(w_{i-n+1} \ldots w_{i-1} w_i)}{C(w_{i-n+1} \ldots w_{i-1})}
