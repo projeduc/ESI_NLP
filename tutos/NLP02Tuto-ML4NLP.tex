@@ -1,0 +1,137 @@
+% !TEX TS-program = pdflatex
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8
+% !TeX spellcheck = en_US
+
+\documentclass{../extra/aakpract/aakpract}
+
+\usepackage{listings}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+
+
+\settitle{Machine Learning for NLP}
+\setversion{Tutorial}
+\setyear{2025-2026}
+\setauthor{Dr. Abdelkrime Aries}
+\setfooter{Tutorial: ML for NLP}
+
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\begin{minipage}{0.85\textwidth}
+			\small\itshape
+%			This tutorial introduces the fundamental operations that constitute the basis of NLP systems. 
+%			Before building advanced models, it is essential to master the core mechanisms of text representation and transformation. 
+%			Tasks such as information retrieval, machine translation, question answering, or sentiment analysis all rely on precise preprocessing, segmentation, normalization, and distance computation.
+%			
+%			\vspace{6pt}
+%			The objective of this tutorial is therefore twofold. 
+%			First, it aims to develop a rigorous understanding of symbolic and probabilistic text processing techniques, including regular expressions, tokenization, edit distance, morphology, normalization, and filtering. 
+%			Second, it aims to strengthen algorithmic reasoning by requiring students to analyze linguistic phenomena formally and design correct computational solutions.
+%	
+		\end{minipage}
+	\end{center}
+	
+	\section{Critical thinking}
+	
+	\subsection{Midterm 2021/2022}
+	
+	Nous voulons développer un système de génération de texte en utilisant un modèle de langage basé sur les réseaux de neurones récurrents (ici, nous avons utilisé GRU). Afin d'entraîner le modèle, initialement, nous passons un vecteur de H zéros comme contexte et le padding "<s>" encodé en OneHot comme entrée. Ensuite, la sortie de la cellule GRU, qui est le nouveau contexte, est passée vers la cellule suivante. Aussi, elle est passée par un réseau de neurones à propagation avant (FFNN) afin de générer le mot suivant (un vecteur des probabilités de chaque mot du vocabulaire). A chaque itération, nous calculons l'erreur et nous passons le vrai mot et pas celui estimé vers la cellule suivante.
+	
+	Après l'entraînement du modèle, ce dernier est utilisé pour générer du texte. Premièrement, nous passons un contexte de zéro et le padding "<s>" par la cellule GRU. Le résultat est un vecteur de probabilités où nous choisissons le mot avec la probabilité maximale et nous le passons par la cellule suivante. Nous refaisons la même opération jusqu'à la génération du padding "<s>" (ici, nous n'utilisons pas "</s>" puisque le début d'une phrase <s> peut être considéré comme la fin d'une autre).
+	
+	\begin{tikzpicture}[
+		>=Stealth,
+		box/.style={draw, minimum width=2.5cm, minimum height=1.5cm, rounded corners},
+		smallbox/.style={draw, minimum width=0.4cm, minimum height=0.4cm},
+		softmax/.style={draw, ellipse, minimum width=2cm, minimum height=1cm},
+		every node/.style={font=\small}
+		]
+		
+		% --- Context ---
+		\node[left] (ctxlabel) at (0,0.5) {Contexte :\\ vecteur de H éléments};
+		
+		\foreach \i in {0,1,2} {
+			\node[smallbox] (c\i) at (\i*0.5,0) {0};
+		}
+		
+		% Arrow to first block
+		\draw[->] (1.5,0) -- (2.5,0);
+		
+		% --- First hidden block ---
+		\node[box] (h1) at (4,0) {};
+		
+		% mot1 input
+		\node[smallbox] (m1a) at (4,-2) {};
+		\node at (5,-2) {$\dots$};
+		\node[smallbox] (m1b) at (6,-2) {};
+		\node at (5,-2.7) {mot1 = $<s>$};
+		
+		\draw[->] (5,-2) -- (h1.south);
+		
+		% Arrow to projection
+		\draw[->] (h1) -- (6,0);
+		
+		% Projection boxes (vector V)
+		\node[smallbox] (v1a) at (6.5,0) {};
+		\node at (7.5,0) {$\dots$};
+		\node[smallbox] (v1b) at (8.5,0) {};
+		\node at (7.5,0.7) {vecteur de V éléments};
+		
+		% Softmax 1
+		\node[softmax] (s1) at (7.5,1.8) {Softmax};
+		
+		% connections
+		\draw[->] (v1a) -- (s1);
+		\draw[->] (v1b) -- (s1);
+		
+		% Output mot2
+		\node at (7.5,3) {mot2 = I};
+		
+		% Arrow to second block
+		\draw[->] (8.5,0) -- (10,0);
+		
+		% --- Second hidden block ---
+		\node[box] (h2) at (11.5,0) {};
+		
+		% mot2 input
+		\node[smallbox] (m2a) at (11.5,-2) {};
+		\node at (12.5,-2) {$\dots$};
+		\node[smallbox] (m2b) at (13.5,-2) {};
+		\node at (12.5,-2.7) {mot2 = I};
+		
+		\draw[->] (12.5,-2) -- (h2.south);
+		
+		% Arrow to projection
+		\draw[->] (h2) -- (14,0);
+		
+		% Projection boxes (vector V)
+		\node[smallbox] (v2a) at (14.5,0) {};
+		\node at (15.5,0) {$\dots$};
+		\node[smallbox] (v2b) at (16.5,0) {};
+		\node at (15.5,0.7) {vecteur de V éléments};
+		
+		% Softmax 2
+		\node[softmax] (s2) at (15.5,1.8) {Softmax};
+		
+		% connections
+		\draw[->] (v2a) -- (s2);
+		\draw[->] (v2b) -- (s2);
+		
+		% Output mot3
+		\node at (15.5,3) {mot3 = fish};
+		
+	\end{tikzpicture}
+	
+	\begin{enumerate}
+		
+		\item Nous avons remarqué que le modèle génère toujours la même phrase. Proposer un algorithme de génération qui règle ce problème sans ré-entraîner le modèle. (1pt)
+		\item Nous avons remarqué que les variations morphologiques (les suffixes) augmentent la complexité du système (des grands vecteurs pour représenter les mots ; donc, plus de temps d'entraînement et d'estimation). Proposer une amélioration sur cette architecture en générant les mots avec leurs variations morphologiques mais avec moins de taille. (2pts)
+		
+	\end{enumerate}
+	
+	
+\end{document}

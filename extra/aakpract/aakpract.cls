@@ -1,6 +1,6 @@
 % Designed by: Abdelkrime Aries
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{aakpract}[2025/02/22 v1.0 AAK Practicals class]
+\ProvidesClass{aakpract}[2026/02/24 v2.0 AAK Practicals class]
 
 %===============================================================
 % Options
@@ -20,7 +20,7 @@
 %
 %\ProcessOptions\relax
 
-\LoadClass[12pt, a4paper]{article}
+\LoadClass[11pt, a4paper]{article}
 
 
 %===============================================================
@@ -54,6 +54,8 @@
 \MakeOuterQuote{"}
 \usepackage{amssymb}
 \usepackage{wasysym}
+\usepackage{multicol} % for multiple columns
+
 %\DisableQuotes
 
 \definecolor{skyblue}{RGB}{150, 200, 255}
@@ -98,8 +100,11 @@
 
 \def\settitle#1{\def\@title{#1}}
 \def\setversion#1{\def\@version{#1}}
+\def\setfooter#1{\def\@footer{#1}}
 \def\setyear#1{\def\@syear{#1}}
 \def\setauthor#1{\def\@sauthor{#1}}
+
+\def\@footer{\@syear/ESI/2CSSID/NLP/\@version}
 
 %===============================================================
 % Adding elements
@@ -114,19 +119,19 @@
 	\fancyhf{}
 	\fancyfoot[C]{
 		\begin{tblr}{
-				colspec = {XlXlp{1cm}},
-				colsep=3pt,
-				rows = {valign=m, halign=c, abovesep=6pt, belowsep=6pt},
+				colspec = {Xp{0.5cm}Xp{0.5cm}p{1cm}},
+				colsep=2pt,
+				rows = {valign=m, halign=c, abovesep=3pt, belowsep=3pt},
 				cell{1}{1,3}={skyblue},
 				cell{1}{5}={darkblue, fg=white, font=\bfseries},
 			}
-			\@syear/ESI/2CSSID/NLP/\@version && \@sauthor && \thepage\\
+			\@footer && \@sauthor && \thepage\\
 		\end{tblr}
 	}
 }
 \renewcommand{\headrulewidth}{0pt}
 
-\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=1.5cm,includefoot]{geometry}
+\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=1cm,includefoot]{geometry}
 
 %\ifinfo
 %\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=1cm,includefoot,includehead,headheight=1.25cm,asymmetric]{geometry}
@@ -216,7 +221,7 @@
 			row{5} = {darkblue, fg=white, font=\bfseries\LARGE, abovesep=5mm, belowsep=5mm},
 			row{6} = {white, fg=darkblue, halign=r},
 		}
-		\SetCell[r=4]{l} \includegraphics[width=2cm]{../../../extra/logo/esi.nlp.pdf} && \'Ecole national Supérieure d'Informatique, Algiers, Algeria\\
+		\SetCell[r=4]{l} \includegraphics[width=2cm]{../extra/logo/esi.nlp.pdf} && \'Ecole national Supérieure d'Informatique, Algiers, Algeria\\
 		&& 2CSSID (\@syear)\\
 		&& Natural Language Processing (NLP)\\
 		&&\\

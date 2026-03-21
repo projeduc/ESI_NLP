@@ -3,361 +3,779 @@
 % !TEX encoding = UTF-8
 % !TeX spellcheck = en_US
 
-\documentclass[11pt, a4paper]{article}
-%\usepackage{fullpage}
-\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
-\usepackage[fleqn]{amsmath}
-\usepackage{amssymb}
-%\usepackage{indentfirst}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[french,english]{babel}
-\usepackage{txfonts} 
-\usepackage[]{graphicx}
-\usepackage{multirow}
-\usepackage{hyperref}
-\usepackage{parskip}
-\usepackage{multicol}
-\usepackage{wrapfig}
-\usepackage{amssymb}
-\usepackage{longtable}
-\usepackage{wasysym}
+\documentclass{../extra/aakpract/aakpract}
+
+\usepackage{listings}
 
 
-\usepackage{turnstile}%Induction symbole
-
-\usepackage{tikz}
-\usetikzlibrary{arrows, automata}
-\usetikzlibrary{decorations.pathmorphing}
-
-\renewcommand{\baselinestretch}{1}
-
-\setlength{\parindent}{0pt} % 24pt
-
+\settitle{Basic text processing}
+\setversion{Tutorial}
+\setyear{2025-2026}
+\setauthor{Dr. Abdelkrime Aries}
+\setfooter{Tutorial: Basic text processing}
 
 \begin{document}
-
-%\selectlanguage {french}
-%\pagestyle{empty} 
-
-\noindent
-\begin{tabular}{ll}
-\multirow{3}{*}{\includegraphics[width=1.5cm]{../extra/logo/esi.nlp.pdf}} & 
-\'Ecole national Supérieure d'Informatique (ESI), Algiers\\
-& 2CSSID (2022-2023)\\
-& Natural Language Processing (NLP)
-\end{tabular}\\[.25cm]
-\noindent\rule{\textwidth}{2pt}\\[-0.5cm]
-\begin{center}
-{\LARGE \textbf{Tutorial: Basic text processing}}
-\begin{flushright}
-	Abdelkrime Aries
-\end{flushright}
-\end{center}\vspace{-0.5cm}
-\noindent\rule{\textwidth}{2pt}
-
-\section{Regular Expressions}
-
-\subsection{}
-
-\begin{itemize}
-	\item Find the regular expression which searches all conjugations of the verb "\textbf{go}" (whithout auxilary verb). 
-	\item Given a log, we want to list all lines starting with "\textbf{Error}"; containing a number (which starts with a digit other than zero, has 3 to 5 consecutive zeros and ends with a digit other than zero); and ending with "\textbf{...}"
-	\item Find a regular expression which searches for words containing letters "l", "i" and "n" in this order. The beginning of the word can be in uppercase, the rest in lowercase. For example, \textbf{lion, Linux, violin, absolution, Aladdin, ...}
-\end{itemize}
-
-\subsection{Master 2023/2024}
-
-Read this text: "\textbf{Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river.  He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier.}"
-
-Select all words which are captured using the regular expression (RE) \textbf{/\textbackslash s(.{3}[\textasciicircum o]*h)/}:
-
-\begin{center}
-	\begin{tabular}{|llllllll|}
-	\hline
-	\Square\ fish & 
-	\Square\ dish & 
-	\Square\ fished & 
-	\Square\ childish &
-	\Square\ foolish &
-	\Square\ wish &
-	\Square\ wishes &
-	\Square\ finish \\
-	\hline
-\end{tabular}
-\end{center}
-
-\subsection{Midterm 2022/2023}
-
-Let's read this quote: ``\textbf{In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled
-with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down
-on or to eat: it was a hobbit-hole, and that means comfort.}".
-Select the regular(s) expression(s) which guaranty max stop-words filtering without deleting other words:
-
-\begin{center}
-	\begin{tabular}{|lllll|}
-	\hline
-	\Square\ /.\{,3\}\textbackslash s// & 
-	\Square\ /\textbackslash sth(e(re)?|at)\textbackslash s/\textbackslash s/ & 
-	\Square\ /\textbackslash syet\textbackslash s/\textbackslash s/ & 
-	\Square\ /\textbackslash sw(as|ith)\textbackslash s/\textbackslash s/ &
-	\Square\ /\textbackslash sdown\textbackslash s/\textbackslash s/ \\
 	
-	\Square\ / .\{,2\}\textbackslash s// &
-	\Square\ /\textbackslash s.\{,3\}\textbackslash s/\textbackslash s/ &
-	\Square\ /\textbackslash s[Nn]o[tr](hing)?\textbackslash s/\textbackslash s/ &
-	\Square\ /\textbackslash sand\textbackslash s/\textbackslash s/ &
-	\Square\ /\textbackslash s.\{,2\}\textbackslash s/\textbackslash s/ \\
-	\hline
-\end{tabular}
-\end{center}
-
-\subsection{Midterm 2021/2022}
-
-Here is a passage: "\textbf{Vers le même temps, le Thénardier lui écrivit que décidément il avait attendu avec beaucoup trop de bonté, et qu'il lui fallait cent francs, tout de suite ; sinon qu'il mettrait à la porte la petite Cosette, toute convalescente de sa grande maladie, par le froid, par les chemins, et qu'elle deviendrait ce qu'elle pourrait, et qu'elle crèverait, si elle voulait.}". 
-
-We applied replacements with the following two regular expressions (in this order): (1) \textbf{/ (.\{3,\}er)ait / \textbackslash1 /} (2) / (.\{3,\})ait / \textbackslash1oir /.  
-The "\textit{sed (linux)}" notation is used: \textbf{/expression/replacement/}. Select new expressions: 
-\begin{center}
-	\begin{tabular}{|llllllll|}
-		\hline
-		\Square\ écrivoir & 
-		\Square\ avoir & 
-		\Square\ mettroir & 
-		\Square\ deviendroir &
-		\Square\ deviendr & 
-		\Square\ pouvoir & 
-		\Square\ crever & 
-		\Square\ crevoir \\
-		
-		\Square\ écrire & 
-		\Square\ falloir & 
-		\Square\ mettre & 
-		\Square\ devenir &
-		\Square\ pourroir & 
-		\Square\ crèver & 
-		\Square\ crèveroir & 
-		\Square\ vouloir \\
-		\hline
-	\end{tabular}
-\end{center}
-
-\subsection{Master 2021/2022}
-
-Select all recognized expressions using the RE: \textbf{/[A-Za-z]\textbackslash w*@\textbackslash w\{3,\}\textbackslash.[A-Za-z]\{2,3\}/}, given \textbackslash \textbf{w $\equiv$ [a-zA-Z0-9\_]}:
-\begin{center}
-	\begin{tabular}{|llll|}
-		\hline
-		\Square\ AB\_aries@esi.dz & 
-		\Square\ \_ab\_aries@esi.dz & 
-		\Square\ ab\_aries@esi.edu.dz  & 
-		\Square\ ab\_@esi.edu \\
-		\Square\ ab\_aries@es.dz & 
-		\Square\ ab\_aries@esi.educ &
-		\Square\ aaries@e9si.dz & 
-		\Square\ a\_@\_e\_.dz \\
-		\hline
-	\end{tabular}
-\end{center}
-
-
-
-
-\section{edit distance}
-
-\subsection{}
-
-\begin{itemize}
-	\item Calculate Hamming and Levenstein distances of the two words: ``\textbf{tray}" and ``\textbf{tary}".
-	Indicate different edit operations for each distance. Redo the same thing with Lavenstein distance (substitution weight = 1).
-\end{itemize}
-
-\subsection{Master 2023/2024}
-
-Read this text: "\textbf{Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river.  He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier.}"
-
-Select words pairs which do not have the same Hamming and Levenstein (Ins=Del=1, Sub=2) distance:
-\begin{center}
-	\begin{tabular}{|lllll|}
-		\hline
-		\Square\ fish/dish & 
-		\Square\ fish/fished & 
-		\Square\ like/Like & 
-		\Square\ his/out &
-		\Square\ wish/wish\\
-		\hline
-	\end{tabular}
-\end{center}
-
-\subsection{Midterm 2022/2023}
-
-Calculate these edit distances based on Levenstein (Deletion cost = Insertion cost = 1; Substitution cost = 2) 
-\begin{center}
-	\begin{tabular}{|l|p{2cm}|p{2cm}|}
-		\hline
-		& dirty & fill \\
-		\hline
-		nasty & & \\
-		\hline
-		smell & & \\
-		\hline
-	\end{tabular}
-\end{center}
-
-\subsection{Master 2022/2023}
-
-Select the words that require a single editing operation in order to get the word "Levenstein" according to the Levenstein distance: 
-\begin{center}
-	\begin{tabular}{|llll|}
-		\hline
-		\Square\ Levnstein & \Square\ Levenstien & \Square\ Levensteine & \Square\ Lefenstein \\
-		\hline
-	\end{tabular}
-\end{center}
-
-\subsection{Midterm 2021/2022}
-
-What are the edit distances between the word "grande" and "garden"? Here the substitution cost is 1
-\begin{center}
-	\begin{tabular}{|l|c|c|c|c|c|c|c|}
-		\hline
-		Distance & Not applicable & 0 & 1 & 2 & 3 & 4 & 5 \\ \hline
-		Hamming & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\ \hline
-		Levenstein & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\
-		\hline
-	\end{tabular}
-\end{center}
-
-\subsection{Master 2021/2022}
-
-\begin{itemize}
-	\item In order to write the word "\textbf{magnificent}", the wrong word: "\textbf{magnecifint}" was written instead. 
-	Indicate each edit operation position(s) according to the correct word (If the operation does not exist, write 0. 
-	Transposition and substitution are prioritized, i.e. they must not e considered as a combination of insertion/deletion operations):
+	\maketitle
+	
 	\begin{center}
-		\begin{tabular}{|lll|}
-		\hline 
-		Insertion : ............ & & Substitution  : ............ \\
-		Deletion  : ............ & & Transposition : ............ \\
-		\hline
-	\end{tabular}
+		\begin{minipage}{0.85\textwidth}
+			\small\itshape
+			This tutorial introduces the fundamental operations that constitute the basis of NLP systems. 
+			Before building advanced models, it is essential to master the core mechanisms of text representation and transformation. 
+			Tasks such as information retrieval, machine translation, question answering, or sentiment analysis all rely on precise preprocessing, segmentation, normalization, and distance computation.
+			
+			\vspace{6pt}
+			The objective of this tutorial is therefore twofold. 
+			First, it aims to develop a rigorous understanding of symbolic and probabilistic text processing techniques, including regular expressions, tokenization, edit distance, morphology, normalization, and filtering. 
+			Second, it aims to strengthen algorithmic reasoning by requiring students to analyze linguistic phenomena formally and design correct computational solutions.
+	
+		\end{minipage}
 	\end{center}
 	
-\end{itemize}
-
-
-
-\section{Text segmentation}
-
-\subsection{Master 2023/2024}
-
-Read this text: "\textbf{Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river.  He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier.}"
-
-Select all REs which detect which dot is \textbf{not} an end-of-sentence marker in our previous text:
-\begin{center}
-	\begin{tabular}{|lllll|}
-		\hline
-		\Square\ /\textbackslash./ & 
-		\Square\ /\textbackslash.\textbackslash s[A-Z]/ & 
-		\Square\ /.{2}\textbackslash./ & 
-		\Square\ /(\textasciicircum|\textbackslash s).{2}\textbackslash./ &
-		\Square\ /(\textasciicircum|\textbackslash s)[A-Z].*\textbackslash./\\
-		\hline
-	\end{tabular}
-\end{center}
-
-\subsection{Midterm 2022/2023}
-
-Let's read this quote: ``\textbf{In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled
-with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down
-on or to eat: it was a hobbit-hole, and that means comfort.}".
-
-We want to segment this quote into sentences (explanation is considered as a new sentence). Select a set of these methods to be sufficient and necessary:
-\begin{center}
-	\begin{tabular}{|lll|}
-		\hline
-		\Square\ RE: /[.:]/ & 
-		\Square\ Uppercase letters & 
-		\Square\ Proper nouns \\
-		\Square\ List of abbreviations &
-		\Square\ Parts of speech &
-		\Square\ Words lengths\\
-		\hline
-	\end{tabular}
-\end{center}
-
-
-\section{Morphology, normalization and filtering}
-
-\subsection{Midterm 2021/2022}
-
-Here is a passage in French: "\textbf{Vers le même temps, le Thénardier lui écrivit que décidément il avait attendu avec beaucoup trop de bonté, et qu'il lui fallait cent francs, tout de suite ; sinon qu'il mettrait à la porte la petite Cosette, toute convalescente de sa grande maladie, par le froid, par les chemins, et qu'elle deviendrait ce qu'elle pourrait, et qu'elle crèverait, si elle voulait.}".
-
-We noticed that there were several words that end in "ait" and which are not subjunctive verbs; like the nouns "souhait", "parfait", "lait", etc.
-Also, there are verbs which are so irregular that they do not keep their forms; like "être" → "soit". 
-Select possible solutions:
-\begin{center}
-	\begin{tabular}{|lll|}
-		\hline
-		\Square\ Regular expressions & 
-		\Square\ Text segmentation & 
-		\Square\ Lexical bases \\
-		\Square\ Edit Distance &
-		\Square\ Filtering stop words &
-		\Square\ PoS tagging\\
-		\hline
-	\end{tabular}
-\end{center}
-
-Choose, for each word before and after its transformation, the used form reduction operation(s):
-\begin{center}
-	\begin{tabular}{|l|c|c|c|}
-		\hline
-		before/after transformation & 
-		Lemmatization & 
-		Stemming &
-		None\\
-		\hline
-		fallait/fall & \Square & \Square\ & \Square \\ \hline
-		voulait/vouloir & \Square & \Square\ & \Square \\ \hline
-		pourrait/pourroir & \Square & \Square\ & \Square \\ \hline
-		chemins/chemin & \Square & \Square\ & \Square \\ \hline
-
-		\hline
-	\end{tabular}
-\end{center}
-
-\subsection{Master 2021/2022}
-
-What are the sufficient features to detect the sentence boundary in the text "\textbf{I met Mr. Karim. He is at Hassiba Ave. He went to buy a PC.}" (Ave.=venue), given that we applied a normalization phase? 
-The latter transforms abbreviations/acronyms to their long versions by keeping the period when the following word begins with a capital letter and the abbreviation can occur at the end of the sentence (useful but not necessary features in this text are considered erroneous):
-\begin{center}
-	\begin{tabular}{|lll|}
-		\hline
-		\Square\ Case (after ".") &
-		\Square\ Grammatical category (before ".") &
-		\Square\ Word length (before ".") \\
-		\Square\ Proper noun (before ".") &
-		\Square\ Grammatical category (after ".") &
-		\Square\ Word length (after ".") \\
-		\Square\ Proper noun (after ".") &
-		\Square\ Abbreviation classes &
-		\Square\ None; The "." is enough \\
-		\hline
-	\end{tabular}
-\end{center}
-
-Choose, for each task, the form reduction operation(s) often used (with elimination of affixes):
-\begin{center}
-	\begin{tabular}{|llll|}
-		\hline
-		Task & Lemmatization & Stemming & None \\
-		\hline
-		Information Retrieval (IR) & \Square & \Square & \Square \\
-		Language understanding (NLU) & \Square & \Square & \Square \\
-		BERT representation & \Square & \Square & \Square \\
-		\hline
-	\end{tabular}
-\end{center}
-
+	\section{Regular expressions}
+	
+	\subsection{Text search}
+	
+	\begin{enumerate}
+		
+		\item Construct a regular expression that matches all inflected forms of the verb \textbf{``go''} (without auxiliary verbs) in an English text. 
+		The entire matched word must be captured in group \textbackslash 1 (i.e., the full lexical item, not a substring).
+		
+		\item Given a log file in which each line is processed independently, construct a regular expression that matches lines which:
+		begin with the string \textbf{``Error''}, terminate with the string \textbf{``...''}, and contain a number that:
+		\begin{itemize}
+			\item starts with a non-zero digit,
+			\item is followed by 3 to 5 consecutive zeros,
+			\item ends with a non-zero digit.
+		\end{itemize}
+		
+		\item Construct a regular expression that matches words containing the letters \textbf{l}, \textbf{i}, and \textbf{n} in this order (not necessarily consecutively). 
+		The entire matched word must be captured in group \textbackslash 1. 
+		The first letter of the word may be uppercase, while the remaining letters must be lowercase.  
+		Examples of matching words include: \textbf{lion}, \textbf{Linux}, \textbf{violin}, \textbf{absolution}, \textbf{Aladdin}.
+		
+	\end{enumerate}
+	
+	\subsection{Master 2025/2026 (Modified)}
+	
+	Read this text: \textbf{``At the start of a new project, researchers usually begin their experiments slowly. Then, they start collecting data more actively. As they progress, they keep a detailed record of their observations. They regularly update their plan to ensure the project stays on track.''}.
+	
+	We want to find some lemmas, select regular expressions (RE) that capture at least one word and order them by order of execution to lemmatize the text (if not selected, leave it empty).
+	
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|l|l|l|l|}
+			\cline{1-2}\cline{4-5}\cline{7-8}
+			/\textbackslash s(.*)ly\textbackslash s/\textbackslash s\$1\textbackslash s/ & .......... &&
+			/\textbackslash s(.*)ly([\textbackslash s.,])/\textbackslash s\$1\$2/ & .......... &&
+			/\textbackslash s(.*)ing([\textbackslash s.,])/\textbackslash s\$1\$2/ & .......... \\
+			\cline{1-2}\cline{4-5}\cline{7-8}
+			\multicolumn{8}{c}{}\\
+			\cline{1-2}\cline{4-5}\cline{7-8}
+			/\textbackslash s(.*)s([\textbackslash s.,])/\textbackslash s\$1\$2/ & .......... &&
+			/\textbackslash s(.*[\textasciicircum s])s([\textbackslash s.,])/\textbackslash s\$1\$2/ & .......... &&
+			/\textbackslash s(.*)er([\textbackslash s.,])/\textbackslash s\$1\$2/ & .......... \\
+			\cline{1-2}\cline{4-5}\cline{7-8}
+			\multicolumn{8}{c}{}\\
+			\cline{1-2}\cline{4-5}\cline{7-8}
+			/\textbackslash s(.*er)([\textbackslash s.,])/\textbackslash s\$1\$2/ & .......... &&
+			/\textbackslash s(.*)ation([\textbackslash s.,])/\textbackslash s\$1e\$2/ & .......... &&
+			/\textbackslash s(.*)ation([\textbackslash s.,])/\textbackslash s\$1\$2/ & .......... \\
+			\cline{1-2}\cline{4-5}\cline{7-8}
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2024/2025 (Modified)}
+	
+	Read this: \textbf{``Eid Mubarak! May this joyous occasion bring you peace, happiness, and prosperity. May your prayers be answered and your heart be filled with gratitude. Wishing you and your loved ones a blessed and joyful Eid!''}.
+	
+	For each greedy RE, give the number of matched strings in the past text.  Then, edit \textbf{one} letter (add/del/sub) so this new RE would match only \textbf{one} string. 
+	
+	
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Original RE &
+			Nbr of matches &
+			New RE \\
+			\hline
+			\texttt{/(\textasciicircum\textbar\textbackslash s)M[\textasciicircum.!?\textbackslash s]\{2,\}[.!?\textbackslash s]/} &
+			.......... & ........................................ \\
+			\hline
+			\texttt{/(\textasciicircum\textbar\textbackslash s)[\textasciicircum e]e.[.!?\textbackslash s]/} &
+			.......... & ........................................ \\
+			\hline
+			\texttt{/(\textasciicircum\textbar\textbackslash s)[\textasciicircum\textbackslash s]*[fl][\textasciicircum\textbackslash s]*[fl][\textasciicircum\textbackslash s]*\textbackslash s/} &
+			.......... & ........................................ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsection{Master 2024/2025 (Modified)}
+	
+	Read this text: \textbf{``Natural Language Processing (NLP) is a branch of computer science and AI. It helps computers understand and generate human language. NLP powers tools like virtual assistants, chatbots, and translation apps. It uses algorithms to process and analyze language data.''}.
+	
+	Link these regular expressions (RE) with the words they capture (in the past text)
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
+			\cline{2-4}\cline{6-8}\cline{10-11}
+			\multicolumn{1}{c}{} &
+			\multicolumn{3}{|c|}{\lstinline|\\s(.\{1,5\}s)\\s|} &
+			\multicolumn{1}{c}{} &
+			\multicolumn{3}{|c|}{\lstinline|\\s(.*[A-Z][^\\s]*)\\s|} &
+			\multicolumn{1}{c}{} &
+			\multicolumn{2}{|c|}{\lstinline|\\s(.*ch[^\\s]*)\\s|} &
+			\multicolumn{1}{c}{} \\
+			\cline{2-4}\cline{6-8}\cline{10-11}
+			\multicolumn{12}{c}{\vspace{1cm}} \\
+			
+			\hline
+			NLP &
+			language &
+			process &
+			tools &
+			chatbots &
+			AI &
+			algorithms &
+			generate &
+			helps &
+			branch &
+			Language &
+			uses \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsection{Midterm 2023/2024 (Modified)}
+	
+	Read this report about Palestine: \textbf{``The UN Security Council on Monday asked its membership committee to review the Palestinian Authority's decision to be made a full member state of the United Nations. The PA is currently a non-member observer state like the Vatican.''}.
+	
+	We used this RE "\verb|/Un.{2,3}d?/i|" where the flag "i" means "case-insensitive".  Select all possible matches (both greedy match and not-greedy) from this list:
+	
+	\begin{center}
+		\begin{tabular}{|lllllllll|}
+			\hline
+			\Square\ "UN" & 
+			\Square\ "Un" & 
+			\Square\ "un" & 
+			\Square\ "uncil" &
+			\Square\ "United" &
+			\Square\ "UN Se" &
+			\Square\ "UN S" &
+			\Square\ "unci" &
+			\Square\ "Unit" \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsection{Master 2023/2024 (Modified)}
+	
+	Read the following text:
+	
+	\textbf{``Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river. He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier.''}
+	
+	For each of the following regular expressions (REs), determine which words from the list below are matched.  
+	Each RE must be evaluated independently.  
+	Indicate your answer by writing the number of the matching RE inside the corresponding square (a word may match more than one RE).
+	
+	\begin{enumerate}
+		\item \verb|/\s(\S{3}[^o\s]*h)/|
+		\item \verb|/\s(.i[^i\s]*h)/|
+	\end{enumerate}
+	
+	\begin{center}
+		\begin{tabular}{|llllllll|}
+			\hline
+			\Square\ fish & 
+			\Square\ dish & 
+			\Square\ fished & 
+			\Square\ childish &
+			\Square\ foolish &
+			\Square\ wish &
+			\Square\ wishes &
+			\Square\ finish \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2022/2023 (Modified)}
+	
+	Consider the following excerpt:
+	
+	\textbf{``In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.''}.
+	
+	Select the regular expression(s) that guarantee maximum stop-word removal without removing non–stop words:
+	\begin{center}
+		\begin{tabular}{|lllll|}
+			\hline
+			\Square\ /.\{,3\}\textbackslash s// & 
+			\Square\ /\textbackslash sth(e(re)?$|$at)\textbackslash s/\textbackslash s/ & 
+			\Square\ /\textbackslash syet\textbackslash s/\textbackslash s/ & 
+			\Square\ /\textbackslash sw(as$|$ith)\textbackslash s/\textbackslash s/ &
+			\Square\ /\textbackslash sdown\textbackslash s/\textbackslash s/ \\
+			
+			\Square\ / .\{,2\}\textbackslash s// &
+			\Square\ /\textbackslash s.\{,3\}\textbackslash s/\textbackslash s/ &
+			\Square\ /\textbackslash s[Nn]o[tr](hing)?\textbackslash s/\textbackslash s/ &
+			\Square\ /\textbackslash sand\textbackslash s/\textbackslash s/ &
+			\Square\ /\textbackslash s.\{,2\}\textbackslash s/\textbackslash s/ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2021/2022 (Modified)}
+	
+	Consider the following excerpt:
+	
+	\textbf{``Vers le même temps, le Thénardier lui écrivit que décidément il avait attendu avec beaucoup trop de bonté, et qu'il lui fallait cent francs, tout de suite ; sinon qu'il mettrait à la porte la petite Cosette, toute convalescente de sa grande maladie, par le froid, par les chemins, et qu'elle deviendrait ce qu'elle pourrait, et qu'elle crèverait, si elle voulait.''}.
+	
+	Two successive replacements were applied using \textit{sed} (Linux) notation: \textbf{/expression/replacement/}.  
+	Within each numbered pair, the first replacement is applied, and its output becomes the input of the second replacement.  
+	Assume the regular expressions are non-greedy.
+	
+	For each pair, select the resulting word forms by writing the number of the corresponding pair inside the appropriate square.
+	
+	\begin{enumerate}
+		\item (1) \verb|/ (.{3,}er)ait / \1 /| (2) \verb|/ (.{3,})ait / \1oir /|
+		\item (1) \verb|/ (.+r)ait / \1e /| (2) \verb|/ (.+[^r])ait / \1oir /|
+	\end{enumerate}
+	
+	\begin{center}
+		\begin{tabular}{|llllllll|}
+			\hline
+			\Square\ écrivoir & 
+			\Square\ avoir & 
+			\Square\ mettroir & 
+			\Square\ deviendroir &
+			\Square\ deviendre & 
+			\Square\ pouvoir & 
+			\Square\ crever & 
+			\Square\ crevoir \\
+			
+			\Square\ écrire & 
+			\Square\ falloir & 
+			\Square\ mettre & 
+			\Square\ devenir &
+			\Square\ pourroir & 
+			\Square\ crèver & 
+			\Square\ crèveroir & 
+			\Square\ vouloir \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsection{Master 2021/2022}
+	
+	Select all recognized expressions using the RE: \textbf{/[A-Za-z]\textbackslash w*@\textbackslash w\{3,\}\textbackslash.[A-Za-z]\{2,3\}/}, given \textbackslash \textbf{w $\equiv$ [a-zA-Z0-9\_]}:
+	\begin{center}
+		\begin{tabular}{|llll|}
+			\hline
+			\Square\ AB\_aries@esi.dz & 
+			\Square\ \_ab\_aries@esi.dz & 
+			\Square\ ab\_aries@esi.edu.dz  & 
+			\Square\ ab\_@esi.edu \\
+			\Square\ ab\_aries@es.dz & 
+			\Square\ ab\_aries@esi.educ &
+			\Square\ aaries@e9si.dz & 
+			\Square\ a\_@\_e\_.dz \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\section{Edit distance}
+	
+	\subsection{Application}
+	
+	\begin{enumerate}
+		\item Calculate Hamming and Levenshtein distances between the two words: "\textbf{tray}" and "\textbf{tary}", indicating different edit operations for each distance. 
+		\item Redo the same thing with Levenshtein distance (substitution cost = 1).
+	\end{enumerate}
+	
+	\newpage
+	\subsection{Master 2025/2026 (Modified)}
+	
+	Compute the following edit distances (Insertion = 1, Deletion = 1, Substitution = 2):
+	
+	\begin{center}
+		\begin{tabular}{|l|p{5cm}|p{5cm}|}
+			\cline{2-3}
+			\multicolumn{1}{c|}{} & Distance(start, track) & Distance(project, progress) \\
+			\hline
+			Distance = Hamming & .................... & .................... \\
+			\hline
+			Distance = Levenshtein & .................... & .................... \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2024/2025 (Modified)}
+	
+	Select the minimum number of edit operations to transform "\textbf{filled}" to "\textbf{joyful}".
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Insertion & Deletion & Substitution \\
+			\hline
+			\Circle\ 0\ \ \Circle\ 1\ \ \Circle\ 2\ \ \Circle\ 3\ \ \Circle\ 4\ \ \Circle\ 5  & 
+			\Circle\ 0\ \ \Circle\ 1\ \ \Circle\ 2\ \ \Circle\ 3\ \ \Circle\ 4\ \ \Circle\ 5  &
+			\Circle\ 0\ \ \Circle\ 1\ \ \Circle\ 2\ \ \Circle\ 3\ \ \Circle\ 4\ \ \Circle\ 5  \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Master 2024/2025 (Modified)}
+	
+	Calculate the following distances (Ins=Del=1, Sub=2):
+	
+	\begin{center}
+		\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+			\cline{2-9}
+			\multicolumn{1}{c|}{} & NA & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+			\hline
+			Hamming(helps, apps) & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\
+			\hline
+			Hamming(uses, apps) & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\
+			\hline
+			Levenshtein(helps, apps) & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\
+			\hline
+			Levenshtein(apps, helps) & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	
+	\subsection{Midterm 2023/2024 (Modified)}
+	
+	Select the minimum number of edit operations to transform "\textbf{observer}" to "\textbf{Overberg}":
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Insertion & Deletion & Substitution \\
+			\hline
+			\Circle\ 0\ \ \Circle\ 1\ \ \Circle\ 2\ \ \Circle\ 3\ \ \Circle\ 4\ \ \Circle\ 5  & 
+			\Circle\ 0\ \ \Circle\ 1\ \ \Circle\ 2\ \ \Circle\ 3\ \ \Circle\ 4\ \ \Circle\ 5  &
+			\Circle\ 0\ \ \Circle\ 1\ \ \Circle\ 2\ \ \Circle\ 3\ \ \Circle\ 4\ \ \Circle\ 5  \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsection{Master 2023/2024 (Modified)}
+	
+	Select the word pairs that do not have the same Hamming and Levenshtein distances (Ins = Del = 1, Sub = 2):
+	
+	\begin{center}
+		\begin{tabular}{|lllll|}
+			\hline
+			\Square\ fish/dish & 
+			\Square\ fish/fished & 
+			\Square\ like/Like & 
+			\Square\ his/out &
+			\Square\ wish/wish\\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsection{Midterm 2022/2023 (Modified)}
+	
+	Calculate the following edit distances using the Levenshtein distance (Deletion cost = Insertion cost = 1; Substitution cost = 2) 
+	\begin{center}
+		\begin{tabular}{|l|p{2cm}|p{2cm}|}
+			\hline
+			& dirty & fill \\
+			\hline
+			nasty & & \\
+			\hline
+			smell & & \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Master 2022/2023 (Modified)}
+	
+	Select the words that require a single edit operation to obtain the word "Levenshtein" according to the Levenshtein distance: 
+	\begin{center}
+		\begin{tabular}{|llll|}
+			\hline
+			\Square\ Levnshtein & \Square\ Levenshtien & \Square\ Levenshteine & \Square\ Lefenshtein \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2021/2022 (Modified)}
+	
+	What are the edit distances between the words "grande" and "garden"? 
+	Here the substitution cost is 1
+	\begin{center}
+		\begin{tabular}{|l|c|c|c|c|c|c|c|}
+			\hline
+			Distance & Not applicable & 0 & 1 & 2 & 3 & 4 & 5 \\ \hline
+			Hamming & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\ \hline
+			Levenshtein & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle & \Circle \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Master 2021/2022}
+	
+	In order to write the word "\textbf{magnificent}", the incorrect word "\textbf{magnecifint}" was written instead. 
+	Indicate the position(s) of each edit operation with respect to the correct word. 
+	If an operation does not exist, write 0. 
+	Transposition and substitution are prioritized, i.e., they must not be considered as a combination of insertion and deletion operations.
+	
+	\begin{center}
+		\begin{tabular}{|llll|}
+			\hline 
+			Insertion : ............ & Substitution  : ............ &
+			Deletion  : ............ & Transposition : ............ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\section{Text segmentation}
+	
+	\subsection{Master 2025/2026 (Modified)}
+	
+	Read the following text: 
+	
+	\textbf{``At the start of a new project, researchers usually begin their experiments slowly. Then, they start collecting data more actively. As they progress, they keep a detailed record of their observations. They regularly update their plan to ensure the project stays on track.''}.
+	
+	Given any sentence from the text above, select the regular expressions that can correctly tokenize words in English, assuming standard writing conventions:
+	\begin{center}
+		\begin{tabular}{|lllll|}
+			\hline
+			\Square\ /[\textbackslash s.,]/ & 
+			\Square\ /[\textbackslash s.,]+/ & 
+			\Square\ /[\textbackslash s.,]\textbackslash s?/ & 
+			\Square\ /(\textbackslash s+\textbar[.,]\textbackslash s?)/ &
+			\Square\ /(\textbackslash s+\textbar[.,]\textbackslash s)/ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2024/2025 (Modified)}
+	
+	Read the following text:
+	
+	\textbf{``Eid Mubarak! May this joyous occasion bring you peace, happiness, and prosperity. May your prayers be answered and your heart be filled with gratitude. Wishing you and your loved ones a blessed and joyful Eid!''}.
+	
+	Whitespace was removed from the text before processing. 
+	Select the minimum number of techniques required to find sentence boundaries without using machine learning.
+	\begin{center}
+		\begin{tabular}{|llllll|}
+			\hline
+			\Square\ /\textbackslash s/ & 
+			\Square\ Uppercase letters & 
+			\Square\ Punctuations & 
+			\Square\ Extracted word's size &
+			\Square\ Dictionary match &
+			\Circle\ None \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsection{Master 2024/2025 (Modified)}
+	
+	Select all REs that detect dots which are not end-of-sentence markers in the previous text (Midterm 2024/2025).
+	\begin{center}
+		\begin{tabular}{|llllll|}
+			\hline
+			\Square\ /\textbackslash ./ & 
+			\Square\ /\textbackslash.\textbackslash s[A-Z]/ & 
+			\Square\ /.\{2\}\textbackslash./ & 
+			\Square\ /(\textasciicircum\textbar\textbackslash s).\{2\}\textbackslash./ &
+			\Square\ /(\textasciicircum\textbar\textbackslash s)[A-Z].*\textbackslash./ &
+			\Circle\ No choice \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\newpage
+	\subsection{Midterm 2023/2024 (Modified)}
+	
+	Read the following report about Palestine:
+	
+	\textbf{``The UN Security Council on Monday asked its membership committee to review the Palestinian Authority's decision to be made a full member state of the United Nations. The PA is currently a non-member observer state like the Vatican.''}.
+	
+	Assume that whitespace was removed from the text before processing. 
+	Is it possible to correctly tokenize at least some words without using machine learning?
+	
+	\begin{center}
+		\begin{tabular}{|llllll|}
+			\hline
+			\Square\ /\textbackslash s/ & 
+			\Square\ Uppercase letters & 
+			\Square\ Punctuations & 
+			\Square\ Extracted word's size &
+			\Square\ Dictionary match &
+			\Circle\ None \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Master 2023/2024 (Modified)}
+	
+	Read the following text:
+	
+	\textbf{``Dr. Watson does not like fish as a dish. Like his friend Mr. Sherlock, he prefers tea as a drink. He had a golden fish that he had recently fished out of a river.  He is not a childish person, yet he acts foolishly sometimes. He always wishes to finish his work earlier.''}
+	
+	Select all REs that detect dots which are \textbf{not} end-of-sentence markers in the text above:
+	
+	\begin{center}
+		\begin{tabular}{|lllll|}
+			\hline
+			\Square\ /\textbackslash./ & 
+			\Square\ /\textbackslash.\textbackslash s[A-Z]/ & 
+			\Square\ /.{2}\textbackslash./ & 
+			\Square\ /(\textasciicircum$|$\textbackslash s).{2}\textbackslash./ &
+			\Square\ /(\textasciicircum$|$\textbackslash s)[A-Z].*\textbackslash./\\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2022/2023}
+	
+	Consider the following quote:
+	
+	\textbf{``In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled
+		with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down
+		on or to eat: it was a hobbit-hole, and that means comfort.''}.
+	
+	We want to segment this quote into sentences (an explanation introduced by a colon is considered a new sentence). 
+	Select the minimal set of methods that is sufficient for this task:
+	\begin{center}
+		\begin{tabular}{|lll|}
+			\hline
+			\Square\ RE: /[.:]/ & 
+			\Square\ Uppercase letters & 
+			\Square\ Proper nouns \\
+			\Square\ List of abbreviations &
+			\Square\ Parts of speech &
+			\Square\ Words lengths\\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\section{Morphology, normalization and filtering}
+	
+	\subsection{Midterm 2024/2025 (Modified)}
+	
+	Our stemmer iteratively removes suffixes in the following order: ous, ness, ity, ed, er, s. 
+	For each word, identify its stem and determine whether the post-stemming operation is sufficient to recover the lemma from the stem.
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			& Lemma & Stem & \multicolumn{2}{|c|}{Post-stemming}\\
+			\hline
+			happiness & happy & .............................. & Replace .*i with .*y  & \Circle\ Y\ \ \Circle\ N\\
+			\hline
+			prosperity & prosper & .............................. & Stop stemming if a suffix was deleted before er  & \Circle\ Y\ \ \Circle\ N\\
+			\hline
+			prayers & pray & .............................. & Replace .*i with .*y   & \Circle\ Y\ \ \Circle\ N\\
+			\hline
+			answered & answer & .............................. & Use a dictionary to complete the word  & \Circle\ Y\ \ \Circle\ N\\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	Select all correct statements regarding these post-stemming operations (not limited to the examples above):
+	\begin{center}
+		\begin{tabular}{|l|}
+			\hline
+			\Square\  The last operation is more complex, as it requires consulting a dictionary.\\
+			\Square\  The first operation is the simplest, as it involves testing only the final letter.\\
+			\Square\  The second operation is also simple, requiring only that stemming be stopped.\\
+			\Square\  The first and last operations remain valid when the stem is identical to the lemma. \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsection{Master 2024/2025 (Modified)}
+	
+	Consider the following text:
+	
+	\textbf{"Natural Language Processing (NLP) is a branch of computer science and AI. It helps computers understand and generate human language. NLP powers tools like virtual assistants, chatbots, and translation apps. It uses algorithms to process and analyze language data. "}
+	
+	Using this text, indicate which of the following operations would produce the corresponding output shown below:
+	\begin{center}
+		\begin{tabular}{|l|c|c|c|c|}
+			\hline
+			& Stemming & Lemmatization & SW filtering & Normalization\\
+			\hline
+			NLP → Natural Language Processing & \Square & \Square & \Square & \Square \\
+			\hline
+			assistants → assist & \Square & \Square & \Square & \Square \\
+			\hline
+			and translation → transl & \Square & \Square & \Square & \Square \\
+			\hline
+			Language → language & \Square & \Square & \Square & \Square \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2023/2024 (Modified)}
+	
+	Consider the phrase: "\textbf{the Palestinian}". 
+	Using this phrase, indicate which of the following normalization or filtering operations would produce the outputs shown below:
+	\begin{center}
+		\begin{tabular}{|l|c|c|c|c|}
+			\hline
+			& Stemming & Lemmatization & Stop-word filtering & Other normalization \\
+			\hline
+			the Palestin & \Circle & \Circle & \Circle & \Circle \\
+			\hline
+			Palestinian & \Circle & \Circle & \Circle & \Circle \\
+			\hline
+			the Palestine & \Circle & \Circle & \Circle & \Circle \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	Additionally, indicate the morphological process required to derive "\textbf{Palestinian}" from "\textbf{Palestine}":
+	\begin{center}
+		\begin{tabular}{|lllll|}
+			\hline
+			\Circle\ Flexion & 
+			\Circle\ Derivation & 
+			\Circle\ Flexion then Derivation & 
+			\Circle\ Derivation then flexion & 
+			\Circle\ Otherwise \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Midterm 2021/2022 (Modified)}
+	
+	We aim to lemmatize all French verbs conjugated in the subjunctive present for il/elle (typically ending in "ait").
+	We observed two issues:
+	\begin{enumerate}
+		\item Some words ending in "ait" are not subjunctive verbs, e.g., nouns such as souhait, parfait, lait.
+		\item Certain verbs are highly irregular and do not retain predictable forms, e.g., être → soit.
+	\end{enumerate}
+	
+	Select all applicable solutions:
+	\begin{center}
+		\begin{tabular}{|lll|}
+			\hline
+			\Square\ Regular expressions & 
+			\Square\ Text segmentation & 
+			\Square\ Lexical resources \\
+			\Square\ Edit Distance &
+			\Square\ Stop-word filtering &
+			\Square\ PoS tagging\\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	For each word, indicate which form reduction operation(s) was (were) applied:
+	\begin{center}
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			before/after transformation & 
+			Lemmatization & 
+			Stemming &
+			None\\
+			\hline
+			fallait/fall & \Square & \Square\ & \Square \\ \hline
+			voulait/vouloir & \Square & \Square\ & \Square \\ \hline
+			pourrait/pourroir & \Square & \Square\ & \Square \\ \hline
+			chemins/chemin & \Square & \Square\ & \Square \\ \hline
+			
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\newpage
+	\subsection{Master 2021/2022}
+	
+	Identify the sufficient features to detect sentence boundaries in the following text:
+	
+	\textbf{``I met Mr. Karim. He is at Hassiba Ave. He went to buy a PC.''} 
+	
+	(Note: ``Ave.'' is an abbreviation for avenue. A normalization phase has been applied, converting abbreviations and acronyms to their full forms. It retains the period when the following word starts with a capital letter and the abbreviation may occur at the end of a sentence. Features that are useful but not strictly necessary in this text are considered erroneous.)
+	
+	\begin{center}
+		\begin{tabular}{|lll|}
+			\hline
+			\Square\ Case (after ".") &
+			\Square\ Grammatical category (before ".") &
+			\Square\ Word length (before ".") \\
+			\Square\ Proper noun (before ".") &
+			\Square\ Grammatical category (after ".") &
+			\Square\ Word length (after ".") \\
+			\Square\ Proper noun (after ".") &
+			\Square\ Abbreviation classes &
+			\Square\ None; The "." is enough \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	For each NLP task, indicate the form reduction operation(s) commonly used (including elimination of affixes):
+	\begin{center}
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			Task & Lemmatization & Stemming & None \\
+			\hline
+			Information Retrieval (IR) & \Square & \Square & \Square \\
+			\hline
+			Language understanding (NLU) & \Square & \Square & \Square \\
+			\hline
+			BERT representation & \Square & \Square & \Square \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\section{Critical thinking}
+	
+	\subsection{Master 2023/2024 (Modified)}
+	
+	We aim to design a model for automatic English verb conjugation. 
+	We assume access to a complete table of verb inflections covering tense, aspect, mood, voice, person, and number. 
+	This resource is used to train character-based models.
+	
+	\begin{enumerate}
+		\item Illustrate an example of an RNN-based model using a verb and one of its inflected forms of your choice. 
+		The example must clearly show how inputs and outputs are encoded.
+		
+		\item Illustrate a corresponding Transformer-based model for the same task.
+		
+		\item Although the training table is complete, the learned models often underperform compared to rule-based conjugation systems unless they are sufficiently large.
+		\begin{enumerate}
+			\item Explain why rule-based approaches are more suitable for this task.
+			\item Explain why this task may require models with a large number of parameters.
+		\end{enumerate}
+		
+		\item Consider using Wikipedia as a source of data for unsupervised training. 
+		Discuss the feasibility and limitations of this approach.
+	\end{enumerate}
+	
+	\subsection{Midterm 2022/2023 (Modified)}
+	
+	We aim to design an RNN-based model for English stemming.
+	 During training, a limitation was observed: the model can only process one word per batch.
+	
+	\begin{enumerate}
+		\item Discuss whether training a neural model is appropriate for this task. Justify your answer.
+		
+		\item Explain why the model cannot be trained using multiple words per batch, and propose a solution to address this limitation.
+		
+		\item Illustrate the model using the word ``caring'' (stem: ``car'').
+		
+		\item Explain how the model can be adapted to perform lemmatization instead of stemming, and illustrate it using the same word (lemma: ``care'').
+	\end{enumerate}
+	
+	
 \end{document}

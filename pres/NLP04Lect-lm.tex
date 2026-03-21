@@ -164,22 +164,22 @@
 
 	\begin{exampleblock}{Example of a training corpus (Bi-grams)}
 		\begin{itemize}
-			\item \textless s\textgreater a computer can help you \textless/s\textgreater
-			\item \textless s\textgreater he wants to help you \textless/s\textgreater
-			\item \textless s\textgreater he wants a computer \textless/s\textgreater
-			\item \textless s\textgreater he can swim \textless/s\textgreater
+			\item \textless s\textgreater\ a computer can help you \textless/s\textgreater
+			\item \textless s\textgreater\ he wants to help you \textless/s\textgreater
+			\item \textless s\textgreater\ he wants a computer \textless/s\textgreater
+			\item \textless s\textgreater\ he can swim \textless/s\textgreater
 		\end{itemize}
 	\end{exampleblock}
 	
 	\begin{itemize}
 		\item $P(can | he) = \frac{C(he\ can)}{C(he)} = \frac{1}{3}$
-		\item $P(\text{\textit{\textless s\textgreater he can help you \textless/s\textgreater}}) = 
+		\item $P(\text{\textit{he can help you}}) = 
 		\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{\frac{3}{4}}
 		\underbrace{P(can|he)}_{\frac{1}{3}} 
 		\underbrace{P(help|can)}_{\frac{1}{2}} 
 		\underbrace{P(you|help)}_{\frac{2}{2}}
 		\underbrace{P(\text{\textit{\textless/s\textgreater}}|you)}_{\frac{2}{2}} = 
-		\frac{1}{8}
+		\frac{1}{8} = \frac{1}{2^4}
 		$
 	\end{itemize}
 
@@ -207,10 +207,12 @@
 	
 		\item Problem of missing N-grams in the training corpus
 		\begin{itemize}
-			\item $P(\text{\textit{\textless s\textgreater he wants to swim \textless/s\textgreater}}) = 
-			P(he|\text{\textit{\textless s\textgreater}}) P(wants|he) P(to|wants) P(swim|to)  P(\text{\textit{\textless/s\textgreater}}|swim) = $
-			
-			$\frac{3}{4} \frac{2}{3} \frac{1}{2} \frac{0}{1} \frac{1}{1} = 0$
+			\item $P(\text{\textit{he wants to swim}}) = 
+			\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{\frac{3}{4}}\ 
+			\underbrace{P(wants|he)}_{\frac{2}{3}}\ 
+			\underbrace{P(to|wants)}_{\frac{1}{2}}\ 
+			\underbrace{P(swim|to)}_{\frac{0}{1}}\ 
+			\underbrace{P(\text{\textit{\textless/s\textgreater}}|swim)}_{\frac{1}{1}} = 0$
 		\end{itemize}
 		\item The intuition is to borrow a small portion of the existing N-gram probabilities to form the missing N-gram probability
 	\end{itemize}
@@ -237,11 +239,15 @@
 	\begin{exampleblock}{Example: Laplace smoothing}
 		\begin{itemize}
 			\item The corpus contains 9 different words
+			\item If you add new tokens, you have to count them into the vocabulary
 			\item $|V| = 9 + 2 = 11$ (Counting start and end markers)
-			\item $P(\text{\textit{\textless s\textgreater he wants to swim \textless/s\textgreater}}) = 
-			P(he|\text{\textit{\textless s\textgreater}}) P(wants|he) P(to|wants) P(swim|to) P(\text{\textit{\textless/s\textgreater}}|swim) = 
-			\frac{3 + 1}{4 + 11} \frac{2 + 1}{3 + 11} \frac{1 + 1}{2 + 11} \frac{0 + 1}{1 + 11} \frac{1 + 1}{1 + 11}
-			= \frac{4}{15} \frac{3}{14} \frac{2}{13} \frac{1}{12} \frac{2}{12} $
+			\item $P(\text{\textit{he wants to swim}}) = 
+			\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{\frac{3 + 1}{4 + 11} = \frac{4}{15}}\ 
+			\underbrace{P(wants|he)}_{\frac{2 + 1}{3 + 11} = \frac{3}{14}}\ 
+			\underbrace{P(to|wants)}_{\frac{1 + 1}{2 + 11} = \frac{2}{13}}\ 
+			\underbrace{P(swim|to)}_{\frac{0 + 1}{1 + 11} = \frac{1}{12}}\ 
+			\underbrace{P(\text{\textit{\textless/s\textgreater}}|swim)}_{\frac{1 + 1}{1 + 11} = \frac{2}{12}} 
+			= \frac{1}{2 * 3^2 * 5 * 7 * 13} $
 		\end{itemize}
 	\end{exampleblock}
 
@@ -262,15 +268,23 @@
 		Where $\sum_j \lambda_j = 1$
 		
 		$\lambda_3$, $\lambda_2$ and $\lambda_1$ are estimated using another tuning corpus
+		
+		\begin{itemize}
+			\item P(\text{\textit{\textless/s\textgreater}}) will be calculated; so "\textless/s\textgreater" must be considered in uni-grams
+		\end{itemize}
 	\end{block}
 	
 	\begin{exampleblock}{Example: Bi-gram interpolation}
 		\begin{itemize}
 			\item Lets say $\lambda_2=0.8$ and $\lambda_1=0.2$
-			\item P(\text{\textit{\textless/s\textgreater}}) will be calculated; we will consider "\textless/s\textgreater" in uni-grams
 			\item $P(\text{\textit{\textless s\textgreater he wants to swim \textless/s\textgreater}}) = 
-			P(he|\text{\textit{\textless s\textgreater}}) P(wants|he) P(to|wants) P(swim|to) P(\text{\textit{\textless/s\textgreater}}|swim) = 
-			(0.8\frac{3}{4} + 0.2\frac{3}{21}) (0.8\frac{2}{3} + 0.2\frac{2}{21}) (0.8\frac{1}{2} + 0.2\frac{1}{21}) (0.8\frac{0}{1} + 0.2\frac{1}{21}) (0.8\frac{1}{1} + 0.2\frac{4}{21})$
+			\underbrace{P(he|\text{\textit{\textless s\textgreater}})}_{(0.8\frac{3}{4} + 0.2\frac{3}{21})}\ 
+			\underbrace{P(wants|he)}_{(0.8\frac{2}{3} + 0.2\frac{2}{21})}\ 
+			\underbrace{P(to|wants)}_{(0.8\frac{1}{2} + 0.2\frac{1}{21})}\ 
+			\underbrace{P(swim|to)}_{(0.8\frac{0}{1} + 0.2\frac{1}{21})}\  
+			\underbrace{P(\text{\textit{\textless/s\textgreater}}|swim)}_{(0.8\frac{1}{1} + 0.2\frac{4}{21})} = $\\
+			$ \frac{2 * 11}{5 * 7} \frac{2 * 29}{3 * 5 * 7} \frac{2^2}{3 * 5 * 7} \frac{2^3 * 11}{3 * 5 * 7} = 
+			\frac{2^6 * 11^2 * 29}{3^3 * 5^4 * 7^4}$
 		\end{itemize}
 	\end{exampleblock}
 
@@ -308,14 +322,14 @@
 	\framesubtitle{\insertsection}
 
 \begin{itemize}
-	\item Language models are probabilistic models over un entity (word, character, etc.) given some context (some words or characters in its proximity).
+	\item Language models are probabilistic models over a unit (word, character, etc.) given some context (some words or characters in its proximity).
 	\item Like N-grams, neural networks can learn to express such probabilities
 	\item In this case, each entity is encoded into a onehot over thee vocabulary
 	\item Types
 	\begin{itemize}
 		\item Simple MLPs
 		\item RNNs
-		\item Transformers (\keyword{Seen already in chapter 02})
+		\item Transformers (\keyword{Already seen in chapter 02})
 	\end{itemize}
 \end{itemize}
 
