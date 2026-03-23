@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="260mm"
    height="180mm"
    viewBox="0 0 260 180"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="exp-graphe-analyse.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="exp-graph-parsing.svg"
    inkscape:export-filename="/home/kariminf/Github/projeduc/ESI_2CS_TALN/img/intro/niveaux.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-ydpi="90"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -26,20 +26,28 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="757.48758"
-     inkscape:cy="298.91471"
+     inkscape:zoom="1.3309995"
+     inkscape:cx="744.92888"
+     inkscape:cy="498.8732"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="695"
+     inkscape:window-width="1920"
+     inkscape:window-height="1008"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="1">
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
     <inkscape:grid
        type="xygrid"
-       id="grid5378" />
+       id="grid5378"
+       originx="0"
+       originy="0"
+       spacingy="1"
+       spacingx="1"
+       units="mm" />
   </sodipodi:namedview>
   <defs
      id="defs2">
@@ -2404,13 +2412,8 @@
        id="text15659"
        y="223.84216"
        x="63.367706"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
-         style="stroke-width:0.26458332px"
-         y="225.96089"
-         x="63.367706"
-         id="tspan15657"
-         sodipodi:role="line" /></text>
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve" />
     <g
        id="g17676"
        transform="translate(1.0583333,-120.64999)">
@@ -2437,8 +2440,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6">root</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6">root</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.38159"
          x="47.00436"
@@ -2450,7 +2454,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-4"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-98.41148,311.66597)"
+         transform="matrix(0.46625822,0,0,0.48923181,-98.41148,310.67139)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-9"
@@ -2461,8 +2465,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-6">Lisez</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-6">Read</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.50864"
          x="77.37999"
@@ -2474,7 +2479,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-9"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-65.030511,311.32524)"
+         transform="matrix(0.46625822,0,0,0.48923181,-66.422924,310.72849)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-4"
@@ -2485,8 +2490,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-3">le</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-3">the</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.35635"
          x="107.72686"
@@ -2498,7 +2504,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-70"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-37.329467,311.173)"
+         transform="matrix(0.46625822,0,0,0.48923181,-37.727299,310.37734)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-76"
@@ -2509,8 +2515,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-4">cours</flowPara></flowRoot>      <path
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-4">course</flowPara></flowRoot>
+      <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path1881"
@@ -2543,7 +2550,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">4</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">4</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2577,7 +2585,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">4</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">4</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2611,7 +2620,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-6" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-1"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">12</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">12</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2645,7 +2655,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">5</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">5</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2679,7 +2690,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-9" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-4"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">6</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">6</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2713,7 +2725,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">8</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">8</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2747,7 +2760,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-9" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-0"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">7</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">7</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2781,7 +2795,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-8" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-2"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">5</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">5</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2815,7 +2830,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-9-5" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-0-4"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">7</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">7</flowPara></flowRoot>
+      </g>
     </g>
     <g
        transform="translate(136.67645,-120.83592)"
@@ -2843,8 +2859,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-5">root</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-5">root</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.38159"
          x="47.00436"
@@ -2856,7 +2873,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-4-4"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-98.41148,311.66597)"
+         transform="matrix(0.46625822,0,0,0.48923181,-98.41148,310.87031)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-9-3"
@@ -2867,8 +2884,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1">Lisez</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1">Read</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.50864"
          x="77.37999"
@@ -2880,7 +2898,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-9-8"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-65.030511,311.32524)"
+         transform="matrix(0.46625822,0,0,0.48923181,-66.422924,310.33066)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-4-0"
@@ -2891,8 +2909,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-3-7">le</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-3-7">the</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.35635"
          x="107.72686"
@@ -2904,7 +2923,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-70-9"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-37.329467,311.173)"
+         transform="matrix(0.46625822,0,0,0.48923181,-37.727299,310.17842)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-76-3"
@@ -2915,8 +2934,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4">cours</flowPara></flowRoot>      <path
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4">course</flowPara></flowRoot>
+      <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path1881-37"
@@ -2949,7 +2969,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-21" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-7"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">4</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">4</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -2983,7 +3004,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-1" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-17"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">4</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">4</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3017,7 +3039,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-6-1" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-1-6"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1">12</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1">12</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3051,7 +3074,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-80" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-8"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">5</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">5</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3085,7 +3109,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-9-7" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-4-5"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">6</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">6</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3119,7 +3144,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1">8</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1">8</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3153,7 +3179,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-9-8" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-0-5"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1">7</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1">7</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3187,7 +3214,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-8-1" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-2-5"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">5</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">5</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3221,11 +3249,12 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-9-5-8" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-0-4-5"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">7</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000">7</flowPara></flowRoot>
+      </g>
       <flowRoot
          inkscape:transform-center-y="0.37417772"
          inkscape:transform-center-x="0.37417738"
-         transform="matrix(0.46625822,0,0,0.48923181,-34.230112,315.28718)"
+         transform="matrix(0.46625822,0,0,0.48923181,-34.031196,314.69043)"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#009600;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-9-7-9-8-2-3-3"
          xml:space="preserve"><flowRegion
@@ -3238,10 +3267,11 @@
              width="12.621017"
              id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-2" /></flowRegion><flowPara
            id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-7"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">8</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">8</flowPara></flowRoot>
+      <flowRoot
          inkscape:transform-center-y="0.37417772"
          inkscape:transform-center-x="0.37417738"
-         transform="matrix(0.46625822,0,0,0.48923181,-64.117829,315.68425)"
+         transform="matrix(0.46625822,0,0,0.48923181,-64.515661,315.28642)"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#009600;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-9-7-9-8-2-3-3-3"
          xml:space="preserve"><flowRegion
@@ -3254,7 +3284,8 @@
              width="12.621017"
              id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-2-3" /></flowRegion><flowPara
            id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-7-7"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">7</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">7</flowPara></flowRoot>
+      <flowRoot
          inkscape:transform-center-y="0.37417772"
          inkscape:transform-center-x="0.37417738"
          transform="matrix(0.46625822,0,0,0.48923181,-96.108566,314.9631)"
@@ -3270,7 +3301,8 @@
              width="12.621017"
              id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-2-0" /></flowRegion><flowPara
            id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-7-0"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">12</flowPara></flowRoot>    </g>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">12</flowPara></flowRoot>
+    </g>
     <g
        transform="translate(1.4388463,-58.656693)"
        id="g17676-4-5">
@@ -3297,8 +3329,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-5-6">root</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-5-6">root</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.38159"
          x="47.00436"
@@ -3321,8 +3354,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1-1">Lisez</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1-1">Read</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.50864"
          x="77.37999"
@@ -3345,8 +3379,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-3-7-6">le</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-3-7-6">the</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.35635"
          x="107.72686"
@@ -3358,7 +3393,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-70-9-2"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-37.329467,311.173)"
+         transform="matrix(0.46625822,0,0,0.48923181,-37.926215,310.57625)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-76-3-0"
@@ -3369,8 +3404,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4">cours</flowPara></flowRoot>      <path
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4">course</flowPara></flowRoot>
+      <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path1881-37-9"
@@ -3403,7 +3439,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-21-4" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-7-6"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-4</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-4</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3437,7 +3474,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-1-4" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-17-2"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-3</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-3</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3471,7 +3509,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-6-1-0" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-1-6-1"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3505,7 +3544,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-80-9" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-8-6"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-2</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-2</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3539,7 +3579,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-9-7-3" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-4-5-6"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-6</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-6</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3573,7 +3614,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-7" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-3"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3607,7 +3649,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-9-8-9" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-0-5-7"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3641,7 +3684,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-8-1-1" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-2-5-0"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-7</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-7</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3675,7 +3719,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-9-5-8-9" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-0-4-5-4"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-1</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-1</flowPara></flowRoot>
+      </g>
       <flowRoot
          inkscape:transform-center-y="0.37417772"
          inkscape:transform-center-x="0.37417738"
@@ -3692,7 +3737,8 @@
              width="12.621017"
              id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-2-08" /></flowRegion><flowPara
            id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-7-4"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">8</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">8</flowPara></flowRoot>
+      <flowRoot
          inkscape:transform-center-y="0.37417772"
          inkscape:transform-center-x="0.37417738"
          transform="matrix(0.46625822,0,0,0.48923181,-64.117829,315.68425)"
@@ -3708,7 +3754,8 @@
              width="12.621017"
              id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-2-3-2" /></flowRegion><flowPara
            id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-7-7-4"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">7</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">7</flowPara></flowRoot>
+      <flowRoot
          inkscape:transform-center-y="0.37417772"
          inkscape:transform-center-x="0.37417738"
          transform="matrix(0.46625822,0,0,0.48923181,-96.108566,314.9631)"
@@ -3724,7 +3771,8 @@
              width="12.621017"
              id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-2-0-7" /></flowRegion><flowPara
            id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-7-0-9"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">12</flowPara></flowRoot>    </g>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">12</flowPara></flowRoot>
+    </g>
     <g
        transform="translate(2.0886175,1.8499282)"
        id="g17676-4-5-8">
@@ -3751,8 +3799,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-5-6-1">root</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-5-6-1">root</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.38159"
          x="47.00436"
@@ -3764,19 +3813,20 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-4-4-1-6"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-98.41148,311.66597)"
+         transform="matrix(0.46625822,0,0,0.48923181,-98.269874,310.95794)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-9-3-0-3"
            style="fill:#000000"><rect
              id="rect13808-0-2-6-4-7-1-4-7-6-9-7-8-0"
-             width="388.90872"
-             height="66.46804"
+             width="25.771622"
+             height="27.308603"
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1-1-1">Lisez</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1-1-1">Read</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.35635"
          x="78.093529"
@@ -3788,7 +3838,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-70-9-2-1"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-69.079487,310.64383)"
+         transform="matrix(0.46625822,0,0,0.48923181,-67.380218,307.95332)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-76-3-0-7"
@@ -3799,8 +3849,11 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4-2">le cours</flowPara></flowRoot>      <path
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4-2">the </flowPara><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara2">course</flowPara></flowRoot>
+      <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path1881-37-9-9"
@@ -3833,7 +3886,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-21-4-3" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-7-6-7"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-4</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-4</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3867,7 +3921,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-1-4-6" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-17-2-0"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-3</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-3</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3901,7 +3956,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-6-1-0-2" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-1-6-1-4"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3935,7 +3991,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-80-9-8" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-8-6-6"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-2</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-2</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -3969,7 +4026,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-9-7-3-6" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-4-5-6-8"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-6</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-6</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -4003,7 +4061,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-8-1-1-7" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-2-5-0-0"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-7</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-7</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -4037,7 +4096,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-9-5-8-9-5" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-0-4-5-4-3"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1">-1</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1">-1</flowPara></flowRoot>
+      </g>
       <flowRoot
          inkscape:transform-center-y="0.37417772"
          inkscape:transform-center-x="0.37417738"
@@ -4054,7 +4114,8 @@
              width="12.621017"
              id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-2-0-7-7" /></flowRegion><flowPara
            id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-7-0-9-1"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">0</flowPara></flowRoot>      <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">0</flowPara></flowRoot>
+      <flowRoot
          inkscape:transform-center-y="0.37417772"
          inkscape:transform-center-x="0.37417738"
          transform="matrix(0.46625822,0,0,0.48923181,-64.064828,314.73395)"
@@ -4070,7 +4131,8 @@
              width="12.621017"
              id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-97-2-0-7-7-1" /></flowRegion><flowPara
            id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-4-7-0-9-1-2"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">-1</flowPara></flowRoot>    </g>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#009600;fill-opacity:1">-1</flowPara></flowRoot>
+    </g>
     <g
        transform="translate(162.76194,-57.464895)"
        id="g17676-4-5-8-6">
@@ -4097,8 +4159,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-5-6-1-9">root</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-5-6-1-9">root</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.38159"
          x="47.00436"
@@ -4110,7 +4173,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-4-4-1-6-9"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-98.41148,311.66597)"
+         transform="matrix(0.46625822,0,0,0.48923181,-98.41148,310.87031)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-9-3-0-3-7"
@@ -4121,8 +4184,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1-1-1-6">Lisez</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1-1-1-6">Read</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.35635"
          x="78.093529"
@@ -4134,7 +4198,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-70-9-2-1-5"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-69.079487,310.64383)"
+         transform="matrix(0.46625822,0,0,0.48923181,-67.687074,309.84817)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-76-3-0-7-2"
@@ -4145,8 +4209,11 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4-2-6">le cours</flowPara></flowRoot>      <path
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4-2-6">the </flowPara><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara1">course</flowPara></flowRoot>
+      <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path1881-37-9-9-6"
@@ -4179,7 +4246,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-21-4-3-6" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-7-6-7-0"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-4</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-4</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -4213,7 +4281,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-1-4-6-4" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-17-2-0-9"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-3</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-3</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -4247,7 +4316,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-6-1-0-2-2" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-1-6-1-4-4"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">0</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -4281,7 +4351,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-80-9-8-4" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-8-6-6-7"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-2</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-2</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -4315,7 +4386,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-9-7-3-6-8" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-4-5-6-8-7"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-6</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-6</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -4349,7 +4421,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-8-1-1-7-5" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-2-5-0-0-1"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-7</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-7</flowPara></flowRoot>
+      </g>
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -4383,7 +4456,8 @@
                width="12.621017"
                id="rect13808-0-2-6-4-7-1-4-7-6-62-5-2-9-1-9-5-8-9-5-2" /></flowRegion><flowPara
              id="flowPara13810-86-4-1-6-0-3-1-5-6-3-8-0-9-1-0-4-5-4-3-7"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-1</flowPara></flowRoot>      </g>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1">-1</flowPara></flowRoot>
+      </g>
     </g>
     <g
        transform="translate(135.79072,0.71638063)"
@@ -4411,8 +4485,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-5-6-5">root</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-5-6-5">root</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.38159"
          x="47.00436"
@@ -4435,8 +4510,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1-1-4">Lisez</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-6-1-1-4">Read</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.50864"
          x="77.37999"
@@ -4448,7 +4524,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-9-8-9-5"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-65.030511,311.32524)"
+         transform="matrix(0.46625822,0,0,0.48923181,-66.163357,310.90042)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-4-0-8-6"
@@ -4459,8 +4535,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-3-7-6-0">le</flowPara></flowRoot>      <rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-3-7-6-0">the</flowPara></flowRoot>
+      <rect
          ry="7.0121269"
          y="265.35635"
          x="107.72686"
@@ -4472,7 +4549,7 @@
          xml:space="preserve"
          id="flowRoot13804-4-7-0-9-8-2-0-3-6-70-9-2-0"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="matrix(0.46625822,0,0,0.48923181,-37.329467,311.173)"
+         transform="matrix(0.46625822,0,0,0.48923181,-38.320707,310.46497)"
          inkscape:transform-center-x="0.37417738"
          inkscape:transform-center-y="0.37417772"><flowRegion
            id="flowRegion13806-0-4-1-8-8-9-1-6-0-76-3-0-3"
@@ -4483,8 +4560,9 @@
              x="318.19806"
              y="-85.272057"
              style="fill:#000000" /></flowRegion><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
-           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4-0">cours</flowPara></flowRoot>      <path
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000"
+           id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4-0">course</flowPara></flowRoot>
+      <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path1881-37-9-8"
@@ -4547,22 +4625,21 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot13804-4-7-0-9-8-2-0-3-6-90-8"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;text-anchor:middle;text-align:center;"
-       transform="matrix(0.46625822,0,0,0.48923181,-59.798596,165.24251)"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.46625822,0,0,0.48923181,-58.804015,168.22625)"
        inkscape:transform-center-x="0.37417738"
        inkscape:transform-center-y="0.37417772"><flowRegion
          id="flowRegion13806-0-4-1-8-8-9-1-6-0-98-7"
-         style="fill:#000000;text-anchor:middle;text-align:center;"><rect
+         style="text-align:center;text-anchor:middle;fill:#000000"><rect
            id="rect13808-0-2-6-4-7-1-4-7-6-8-1"
            width="98.182365"
            height="26.983229"
            x="318.19806"
            y="-85.272057"
            style="text-align:center;text-anchor:middle;fill:#000000" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.81818022px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr;text-anchor:middle;fill:#000000;line-height:50%"
-         id="flowPara13810-86-4-1-6-0-3-1-5-6-5-0">choisir les meilleurs </flowPara><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.81818022px;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr;text-anchor:middle;fill:#000000;line-height:50%"
-         id="flowPara13880">arcs entrants</flowPara></flowRoot>    <path
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.8182px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
+         id="flowPara13880">Choose best in arcs</flowPara></flowRoot>
+    <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend-7-26)"
        d="m 183.68081,158.56993 -91.249483,38.6176"
        id="path13818-7"
@@ -4583,8 +4660,9 @@
            x="318.19806"
            y="-85.272057"
            style="text-align:center;text-anchor:middle;fill:#000000" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.81818008px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
-         id="flowPara13880-5">mettre à jour les poids</flowPara></flowRoot>    <path
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.8182px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
+         id="flowPara13880-5">Update the weights</flowPara></flowRoot>
+    <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend-7-46)"
        d="m 128.07184,214.51309 h 31.22083"
        id="path13818-6"
@@ -4605,30 +4683,15 @@
            x="318.19806"
            y="-85.272057"
            style="text-align:center;text-anchor:middle;fill:#000000" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.81818008px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
-         id="flowPara13880-59">Contracter</flowPara></flowRoot>    <path
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.8182px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
+         id="flowPara13880-59">Contract</flowPara></flowRoot>
+    <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend-7-26-8)"
        d="M 163.8932,222.10166 80.703093,255.94022"
        id="path13818-7-0"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot13804-4-7-0-9-8-2-0-3-6-90-8-7"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.43478715,-0.16839495,0.17669214,0.45621009,-43.949865,341.3028)"
-       inkscape:transform-center-x="-0.04927711"
-       inkscape:transform-center-y="1.147477"><flowRegion
-         id="flowRegion13806-0-4-1-8-8-9-1-6-0-98-7-8"
-         style="text-align:center;text-anchor:middle;fill:#000000"><rect
-           id="rect13808-0-2-6-4-7-1-4-7-6-8-1-5"
-           width="188.86612"
-           height="20.099794"
-           x="318.19806"
-           y="-85.272057"
-           style="text-align:center;text-anchor:middle;fill:#000000" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.81818008px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
-         id="flowPara13880-7">choisir les meilleurs arcs entrants</flowPara></flowRoot>    <path
+    <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend-7-46-2)"
        d="M 99.815732,274.18105 H 131.03656"
        id="path13818-6-7"
@@ -4649,34 +4712,51 @@
            x="318.19806"
            y="-85.272057"
            style="text-align:center;text-anchor:middle;fill:#000000" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.81818008px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
-         id="flowPara13880-59-3">Etendre</flowPara></flowRoot>    <flowRoot
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.8182px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
+         id="flowPara13880-59-3">Extend</flowPara></flowRoot>
+    <flowRoot
        xml:space="preserve"
        id="flowRoot13804-4-7-0-9-8-2-0-3-6-70-9-2-0-9"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.46625822,0,0,0.48923181,80.991791,281.9166)"
+       transform="matrix(0.46625822,0,0,0.48923181,80.991791,285.29595)"
        inkscape:transform-center-x="0.37417738"
        inkscape:transform-center-y="0.37417772"><flowRegion
          id="flowRegion13806-0-4-1-8-8-9-1-6-0-76-3-0-3-9"
          style="fill:#ff0000;fill-opacity:1"><rect
            id="rect13808-0-2-6-4-7-1-4-7-6-7-2-2-2-8"
-           width="388.90872"
-           height="66.46804"
+           width="79.784966"
+           height="45.016018"
            x="318.19806"
            y="-85.272057"
            style="fill:#ff0000;fill-opacity:1" /></flowRegion><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1"
-         id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4-0-7">éliminer cet arc</flowPara><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1"
-         id="flowPara21494">puisqu'il existe</flowPara><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1"
-         id="flowPara21496">un autre entrant</flowPara><flowPara
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86363506px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1"
-         id="flowPara21498">au nœud</flowPara></flowRoot>    <path
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1"
+         id="flowPara13810-86-4-1-6-0-3-1-5-6-4-4-4-0-7">delete this arc</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1"
+         id="flowPara21494">since there exists</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.86364px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1"
+         id="flowPara21498">an other in one</flowPara></flowRoot>
+    <path
        style="fill:none;stroke:#ff0000;stroke-width:0.30000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend-7-46-7)"
        d="m 241.66103,258.46108 -5.76127,10.67232"
        id="path13818-6-6"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot13804-4-7-0-9-8-2-0-3-6-90-8-6"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:0%;font-family:'Crimson Text';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.43131686,-0.17709458,0.18582043,0.45256881,-23.369214,336.66097)"
+       inkscape:transform-center-x="0.1750648"
+       inkscape:transform-center-y="1.1463821"><flowRegion
+         id="flowRegion13806-0-4-1-8-8-9-1-6-0-98-7-7"
+         style="text-align:center;text-anchor:middle;fill:#000000"><rect
+           id="rect13808-0-2-6-4-7-1-4-7-6-8-1-5"
+           width="98.182365"
+           height="26.983229"
+           x="318.19806"
+           y="-85.272057"
+           style="text-align:center;text-anchor:middle;fill:#000000" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.8182px;line-height:50%;font-family:'Crimson Text';-inkscape-font-specification:'Crimson Text, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
+         id="flowPara13880-3">Choose best in arcs</flowPara></flowRoot>
   </g>
 </svg>
