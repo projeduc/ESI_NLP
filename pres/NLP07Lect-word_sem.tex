@@ -35,9 +35,9 @@
 	\end{exampleblock}
 	
 	\begin{itemize}
-		\item Does the word ``\expword{wing}" mean the same thing in all four sentences?
-		\item How can we know the meaning of a word in this case?
-		\item The meanings of the word ``\expword{wing}": \url{http://wordnetweb.princeton.edu/perl/webwn?s=wing}
+		\item Do all occurrences of the word ``\expword{wing}'' have the same meaning?
+		\item How can we determine the intended meaning of a word in context?
+		\item Possible senses of ``\expword{wing}'': \url{http://wordnetweb.princeton.edu/perl/webwn?s=wing}
 	\end{itemize}
 
 \end{frame}
@@ -60,47 +60,54 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle}
 	\framesubtitle{\insertsection}
-
+	
 	\begin{itemize}
-		\item A database containing a language's vocabulary
-		\item Word information: PoS, lemma, frequency, etc.
+		\item A lexical database is a structured resource that stores a language's vocabulary along with linguistic information.
+		\item Lexical information may include:
+		\begin{itemize}
+			\item PoS tags, lemmas, frequencies;
+			\item Morphological and syntactic properties;
+			\item Semantic relations (e.g., \expword{synonymy, hypernymy}).
+		\end{itemize}
 	\end{itemize}
-
+	
 	\begin{figure}
 		\centering 
 		\hgraphpage[.5\textwidth]{exp-bd-lex.pdf}
-		\caption{Example of categories and their relations in a lexical base \cite{2019-white-al}}
+		\caption{Example of categories and their relations in a lexical database \cite{2019-white-al}}
 	\end{figure}
 	
 \end{frame}
+
 
 \subsection{Semantic relations}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Reminder}
-
+	
 	\begin{itemize}
-		\item \optword{Synonymy}: having similar meanings given a context.
-		\item \optword{Antonymy}: having opposite meanings given a context.
-		\item Taxonomic (classification) relations
+		\item \optword{Synonymy}: words that have similar meanings (in a given context).
+		\item \optword{Antonymy}: words that have opposite meanings (in a given context).
+		\item Taxonomic (classification) relations:
 		\begin{itemize}
-			\item \optword{Hyponymy}: be more specific than another meaning. It results in a \keyword{IS-A} relation. E.g. \expword{car IS-A vehicle}.
-			\item \optword{Hyperonymy}: to be more generic than another meaning.
-			\item \optword{Meronymy}: to be part of a thing. E.g. \expword{wheel is a meronym of car; car is the holonym of wheel}
+			\item \optword{Hyponymy}: a relation where a concept is more specific than another. It corresponds to an \keyword{IS-A} relation. E.g. \expword{car IS-A vehicle}.
+			\item \optword{Hypernymy}: a relation where a concept is more general than another.
+			\item \optword{Meronymy}: a part–whole relation. E.g. \expword{wheel is part of a car; car is the holonym of wheel}.
 		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
 
-\subsection{Wordnet}
+
+\subsection{WordNet}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
 
 	\vspace{-6pt}
-	\begin{exampleblock}{Example of WordNet : \small\url{http://wordnetweb.princeton.edu/perl/webwn}}
+	\begin{exampleblock}{Example from WordNet: \small\url{http://wordnetweb.princeton.edu/perl/webwn}}
 		\fontsize{6}{6}\selectfont
 		%		\begin{alltt}
 		{\small\bfseries Noun}
@@ -123,24 +130,23 @@
 	
 \end{frame}
 
-
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Description}
 	
 	\begin{itemize}
-		\item English lexical database \cite{1995-miller}.
-		\item Three parts: (1) nouns (2) verbs (3) adjectives and adverbs.
-		\item Each sens is represented by an identifier (\keyword{synset}).
+		\item A lexical database for English \cite{1995-miller}
+		\item Four parts of speech: nouns, verbs, adjectives, and adverbs
+		\item Each sense is represented by a synset identifier (\keyword{synset}).
 		\begin{itemize}
-			\item \keyword{synset} (Synonyms set): combines words with the same meaning. 
+			\item \keyword{synset} (set of synonyms): groups words that share the same sense.
 			\item E.g. \expword{05659525: reason\#3, understanding\#4, intellect\#2}
 		\end{itemize}
-		\item Each sens is defined by a glossary (\keyword{gloss}).
+		\item Each sense is defined by a \keyword{gloss}.
 		\begin{itemize}
-			\item E.g. \expword{05659525: (the capacity for rational thought or inference or discrimination) "we are told that man is endowed with reason and capable of distinguishing good from evil"}
+			\item E.g. \expword{05659525: (the capacity for rational thought or inference or discrimination) "we are told that man is endowed with reason and capable of distinguishing good from evil"}.
 		\end{itemize}
-		\item Each sens has a lexicographic category (\keyword{supersense}).
+		\item Each sense has a lexicographic category (\keyword{supersense}).
 		\begin{itemize}
 			\item E.g. \expword{05659525: noun.cognition}
 		\end{itemize}
@@ -149,11 +155,12 @@
 	
 \end{frame}
 
+
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Lexicographic categories (supersense)}
 	
-	\begin{block}{WordNet nouns lexicographic categories \cite{2019-jurafsky-martin}}
+	\begin{block}{WordNet nouns lexicographic categories \cite{2019-jurafsky-martin} (Modified)}
 		\fontsize{8}{12}\selectfont\bfseries
 		\centering
 		\begin{tblr}{
@@ -166,15 +173,15 @@
 		} 
 			\textcolor{white}{Category} & \textcolor{white}{Example} & \textcolor{white}{Category} & \textcolor{white}{Example} &\textcolor{white}{Category} & \textcolor{white}{Example} \\
 	%		\hline
-			ACT & service & GROUP & place & PLANT & tree \\
+			ACT & service & GROUP & team & PLANT & tree \\
 			ANIMAL &  dog & LOCATION & area & POSSESSION & price \\
 			ARTIFACT & car & MOTIVE & reason & PROCESS & process \\
-			ATTRIBUTE & quality & NATURAL EVENT & experience & QUANTITY & amount \\
-			BODY & hair & NATURAL OBJECT & flower & RELATION & portion \\
-			COGNITION & way & OTHER & stuff & SHAPE & square\\
+			ATTRIBUTE & quality & NATURAL EVENT & earthquake & QUANTITY & amount \\
+			BODY & hair & NATURAL OBJECT & flower & RELATION & connection \\
+			COGNITION & idea & OTHER & stuff & SHAPE & square\\
 			COMMUNICATION & review & PERSON & people & STATE & pain\\
-			FEELING & discomfort & PHENOMENON & result & SUBSTANCE & oil \\
-			FOOD & food & & & TIME & day\\
+			FEELING & discomfort & PHENOMENON & effect & SUBSTANCE & oil \\
+			FOOD & bread & & & TIME & day\\
 	%		\hline\hline
 		\end{tblr}
 	\end{block}
@@ -185,7 +192,7 @@
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Semantic relations (Nouns)}
 
-	\begin{block}{Some nouns relations \cite{2019-jurafsky-martin}}
+	\begin{block}{Some nouns relations \cite{2019-jurafsky-martin} (Modified)}
 		\fontsize{7}{14}\selectfont\bfseries\centering
 		\begin{tblr}{
 				colspec = {lll},
@@ -196,14 +203,14 @@
 				colsep=4pt,
 			} 
 			\textcolor{white}{Relation} & \textcolor{white}{Definition} & \textcolor{white}{Example} \\
-			Hypernym & from a specific concept to a more generic one & \expword{breakfast\textsuperscript{1} \textrightarrow\ meal\textsuperscript{1} }\\
-			Hyponym & from a generic concept to a more specific one  & \expword{meal\textsuperscript{1} \textrightarrow\ lunch\textsuperscript{1}} \\
+			Hypernym & from a specific concept to a more general one & \expword{breakfast\textsuperscript{1} \textrightarrow\ meal\textsuperscript{1} }\\
+			Hyponym & from a general concept to a more specific one  & \expword{meal\textsuperscript{1} \textrightarrow\ lunch\textsuperscript{1}} \\
 			Instance Hypernym & from an instance to its concept & \expword{Austen\textsuperscript{1} \textrightarrow\ author\textsuperscript{1}} \\
-			Instance Hyponym & from an instance to its concept & \expword{composer\textsuperscript{1} \textrightarrow\ Bach\textsuperscript{1}} \\
-			Part Meronym & from an entire concept to its part & \expword{table\textsuperscript{2} \textrightarrow\ leg\textsuperscript{3}} \\
-			Part Holonym & from a part to its entirety & \expword{course\textsuperscript{7} \textrightarrow\ meal\textsuperscript{1}} \\
-			Antonym & from a concept to its semantic opposition & \expword{leader\textsuperscript{1} $ \leftrightarrow $ follower\textsuperscript{1}}\\
-			Derivation & from a word to another having the same root & \expword{destruction\textsuperscript{1} $ \leftrightarrow $ destroy\textsuperscript{1}} \\
+			Instance Hyponym & from a concept to its instances & \expword{composer\textsuperscript{1} \textrightarrow\ Bach\textsuperscript{1}} \\
+			Part Meronym & from a whole to its part & \expword{table\textsuperscript{2} \textrightarrow\ leg\textsuperscript{3}} \\
+			Part Holonym & from a part to its entirety & \expword{wheel\textsuperscript{7} \textrightarrow\ car\textsuperscript{1}} \\
+			Antonym & between concepts with opposite meanings & \expword{leader\textsuperscript{1} $ \leftrightarrow $ follower\textsuperscript{1}}\\
+			Derivation & from a word to a morphologically related word & \expword{destruction\textsuperscript{1} $ \leftrightarrow $ destroy\textsuperscript{1}} \\
 		\end{tblr}
 	\end{block}
 	
@@ -213,7 +220,7 @@
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Semantic relations (Verbs)}
 	
-	\begin{block}{Some verbs relations \cite{2019-jurafsky-martin}}
+	\begin{block}{Some verbs relations \cite{2019-jurafsky-martin} (Modified)}
 		\fontsize{7}{14}\selectfont\bfseries\centering
 		\begin{tblr}{
 				colspec = {lll},
@@ -224,10 +231,10 @@
 				colsep=4pt,
 			} 
 			\textcolor{white}{Relation} & \textcolor{white}{Definition} & \textcolor{white}{Example} \\
-			Hypernym & from a specific event to a more generic one & \expword{fly\textsuperscript{9} \textrightarrow\ travel\textsuperscript{5}} \\
-			Troponym & from a generic event to a more specific one & \expword{walk\textsuperscript{1} \textrightarrow\ stroll\textsuperscript{1}} \\
-			Entails & from an event to another that it entails & \expword{snore\textsuperscript{1} \textrightarrow\ sleep\textsuperscript{1}} \\ 
-			Antonym & from an event to its semantic opposition & \expword{increase\textsuperscript{1} $ \leftrightarrow $ decrease\textsuperscript{1}} \\
+			Hypernym & from a more specific verb to a more general one & \expword{fly\textsuperscript{9} \textrightarrow\ travel\textsuperscript{5}} \\
+			Troponym & from a general verb to a more specific one & \expword{walk\textsuperscript{1} \textrightarrow\ stroll\textsuperscript{1}} \\
+			Entails & from a verb to another event that is necessarily implied & \expword{snore\textsuperscript{1} \textrightarrow\ sleep\textsuperscript{1}} \\ 
+			Antonym & between verbs with opposite meanings & \expword{increase\textsuperscript{1} $ \leftrightarrow $ decrease\textsuperscript{1}} \\
 %			\hline\hline
 		\end{tblr}
 	\end{block}
@@ -239,17 +246,17 @@
 	\framesubtitle{\insertsubsection: Some resources}
 	
 	\begin{itemize}
-		\item Some APIs
+		\item WordNet APIs and libraries:
 		\begin{itemize}
 			\item NLTK (Python): \url{https://www.nltk.org/howto/wordnet.html}
 			\item JWI (Java): \url{http://projects.csail.mit.edu/jwi}
 			\item Wordnet (Ruby): \url{https://github.com/wordnet/wordnet}
-			\item OpenNlp (C\#): \url{https://github.com/AlexPoint/OpenNlp}
+			\item OpenNlp (.NET port, unofficial): \url{https://github.com/AlexPoint/OpenNlp}
 		\end{itemize}
-		\item Other languages
+		\item Multilingual WordNet resources:
 		\begin{itemize}
 			\item Global WordNet Association: \url{http://globalwordnet.org/resources/wordnets-in-the-world/}
-			\item Open Multilingual Wordnet: \url{http://compling.hss.ntu.edu.sg/omw/}
+			\item Open Multilingual WordNet: \url{http://compling.hss.ntu.edu.sg/omw/}
 		\end{itemize}
 	\end{itemize}
 	
@@ -262,18 +269,18 @@
 	\begin{itemize}
 		\item Let us define some measures over concepts $c_i$ and $c_j$:
 		\begin{itemize}
-			\item $len(c_i, c_j)$: the length of the shortest IS-A path from $c_i$ to $c_j$
-			\item $lso(c_i, c_j)$: the lowest common subsumer (most specific ancestor node)
-			\item $depth(c_i)$: the length of the path from $c_i$ to the root entity
-			\item $deep\_max$: the max $depth(c_i)$ of the taxonomy
-			\item $IC(c_i)$: the probability of the concept given a corpus
+			\item $len(c_i, c_j)$: the length of the shortest path between $c_i$ and $c_j$ in the IS-A taxonomy;
+			\item $lcs(c_i, c_j)$: the lowest common subsumer (most specific ancestor node);
+			\item $depth(c_i)$: the depth of $c_i$ in the taxonomy (distance from the root);
+			\item $depth_{max}$: the max $depth(c_i)$ of the taxonomy;
+			\item $IC(c_i)$: the information content of $c_i$, defined as $-\log P(c_i)$ (Corpus-based).
 		\end{itemize}
-		\item Similarity measures
+		\item Similarity measures:
 		\begin{itemize}
 			\item \optword{Path similarity}: $sim_{path}(c_i, c_j) = \frac{1}{1+len(c_i, c_j)}$
-			\item \optword{Leacock Chodorow Similarity}: $sim_{lch}(c_i, c_j) = -\log\frac{len(c_i, c_j)}{2*deep\_max}$
-			\item \optword{Wu-Palmer Similarity}: $sim_{wup}(c_i, c_j) = \frac{2*depth(lso(c_i, c_j))}{len(c_i, c_j)+2*depth(lso(c_i, c_j))}$
-			\item \optword{Lin Similarity}: $sim_{lin}(c_i, c_j) = \frac{2*IC(lso(c_i, c_j))}{IC(c_i)+IC(c_j)}$ 
+			\item \optword{Leacock Chodorow Similarity}: $sim_{lch}(c_i, c_j) = -\log \left( \frac{len(c_i, c_j)}{2 \cdot depth_{max}} \right)$
+			\item \optword{Wu-Palmer Similarity}: $sim_{wup}(c_i, c_j) = \frac{2 \cdot depth(lcs(c_i, c_j))}{depth(c_i) + depth(c_j)}$
+			\item \optword{Lin Similarity}: $sim_{lin}(c_i, c_j) = \frac{2*IC(lcs(c_i, c_j))}{IC(c_i)+IC(c_j)}$ 
 			\item ...
 		\end{itemize}
 	\end{itemize}
@@ -301,15 +308,15 @@
 	\begin{itemize}
 		\item \optword{FrameNet} 
 		\begin{itemize}
-			\item Based on frame semantics theory.
+			\item It is based on frame semantics theory.
 			\item A frame can be an event, a relation or an entity with its participants.
-			\item E.g. \expword{The concept ``Cook" imply a cook (person), prepared food, a container and a heating instrument}.
+			\item E.g. \expword{The frame ``Cooking'' implies a cook (person), food being prepared, a container, and a heating instrument.}.
 			\item Each frame is activated by a set of \keyword{lexical units}. E.g. \expword{bake, cook, fry, grill, prepare, roast}.
 		\end{itemize}
 		\item \optword{VerbNet}:
 		\begin{itemize}
-			\item A lexical base for verbs.
-			\item It includes 30 principal thematic roles.
+			\item It is a lexical base for verbs.
+			\item It includes +30 principal thematic roles.
 			\item The verbs are organized in classes.
 		\end{itemize}
 		\item \textbf{We will see these two DBs again in the next chapter.}
@@ -344,7 +351,7 @@
 	\begin{itemize}
 		\item A word can be represented using \keyword{One-Hot} encoding:
 		\begin{itemize}
-			\item It does not represent semantic relations between words: similarity (E.g. \expword{cat, dog}) and proximity (E.g. \expword{coffee, cup}).
+			\item One-Hot vectors do not encode semantic similarity (e.g., \expword{cat vs. dog}) or contextual proximity (e.g., \expword{coffee vs. cup}).
 			\item How to represent a document/sentence using this representation?
 		\end{itemize}
 	
@@ -356,7 +363,7 @@
 	
 		\item \optword{Term-term}:
 		\begin{itemize}
-			\item A term is represented using other terms.
+			\item A term is represented using co-occurrence with other terms.
 		\end{itemize}
 	
 		\item \optword{Term-concept-document}:
@@ -364,6 +371,9 @@
 			\item Terms and documents are represented using a vector of concepts.
 			\item E.g. \expword{Latent Semantic Analysis (LSA)}.
 			\item Welcome to \keyword{Word embedding}!
+			\begin{itemize}
+				\item Word embeddings are dense vector representations of words, not necessarily learned via neural networks.
+			\end{itemize}
 		\end{itemize}
 	
 	\end{itemize}
@@ -378,11 +388,12 @@
 	\framesubtitle{\insertsubsection}
 
 	\begin{itemize}
-		\item A document/sentence sens can be represented using the words it contains. 
-		\item Word's frequency in a document/sentence is called \keyword{term frequency (TF)}.
-		\item There are words that are repeated a lot, which have no added meaning (E.g. \expword{
+		\item A document can be represented using the words it contains.
+		\item Word's frequency in a document is called \keyword{term frequency (TF)}.
+		\item There are words that are repeated a lot, which have no added meaning (e.g. \expword{
 		Prepositions}).
 		\item Words that appear in multiple documents are less important.
+		\item High TF-IDF → word is frequent in this document but rare in the corpus → likely important.
 	\end{itemize}
 	
 	\begin{block}{TF-IDF calculation}
@@ -431,9 +442,10 @@
 
 	\begin{minipage}{.68\textwidth}
 	\begin{itemize}
+		\item Cosine similarity measures the angle between the vectors; 1 means identical orientation, 0 means orthogonal (no similarity).
 		\item Let $a$ and $b$ be two documents represented by two vectors $\overrightarrow{a}$ and $\overrightarrow{b}$ respectively.
 		\item The representation can be vocabulary words (TF or TF-IDF) or other document features.
-		\item Let these vectors' length be $n$
+		\item Let the vectors have length $n$.
 	\end{itemize}
 	\end{minipage}
 	\begin{minipage}{.3\textwidth}
@@ -458,9 +470,9 @@
 	\begin{itemize}
 		\item Words can be represented using other vocabulary words based on co-occurrence.
 		\item To represent all words of a vocabulary $ V $, a matrix $|V| \times |V|$ must be used.
-		\item Each word is represented by $|V|$ words called \keyword{context}.
+		\item Each word is represented by a vector of length $|V|$, where each entry counts its co-occurrence with a \keyword{context} word.
 		\item Co-occurrence can be calculated according to documents, sentences or windows around the word.
-		\item An example of a window: \expword{2 words before and 2 after}.
+		\item For example, \expword{a context window of size 2-2 considers the 2 words before and 2 words after the target word}.
 	\end{itemize}
 
 \end{frame}
@@ -504,14 +516,13 @@
 	\framesubtitle{\insertsubsection: Cosine similarity}
 
 	\begin{itemize}
-		\item Similarity between two words can be calculated.
-		\item Using cosine similarity (previously seen) or other similarity measures such as: Euclidean distance and dot product.
+		\item Similarity between two words can be calculated using cosine similarity (previously seen) or other similarity measures such as: Euclidean distance and dot product.
 	\end{itemize}
 	
-	\begin{exampleblock}{Example of cosine similarity between ``computer" and ``you"}
+	\begin{exampleblock}{Example of cosine similarity between ``computer'' and ``you''}
 		\fontsize{6}{16}\selectfont\bfseries\boldmath
 		\begin{align*}
-		& \text{Cos(``computer", ``you")} \\ 
+		& \text{Cos(``computer'', ``you'')} \\ 
 		& = \frac{4*0 + 2*1 + 1*2 + 0*1 + 1*1 + 0*1 + 1*3 + 0*1 + 1*0 + 1*0}{\sqrt{4^2 + 2^2 + 1^2 + 0^2 + 1^2 + 0^2 + 1^2 + 0^2 + 1^2 + 1^2} \sqrt{0^2 + 1^2 + 2^2 + 1^2 + 1^2 + 1^2 + 3^2 + 1^2 + 0^2 + 0^2}}\\
 		& = \frac{8}{\sqrt{25}\sqrt{18}}\\
 		& = \frac{8}{3*5*\sqrt{2}}\\
@@ -527,20 +538,20 @@
 	\framesubtitle{\insertsubsection}
 
 	\begin{itemize}
-		\item Term-document matrix $X[N, M]$ has ...
+		\item The term-document matrix $X \in \mathbb{R}^{N \times M}$ is usually:
 		\begin{itemize}
-			\item a big dimension;
-			\item a lot of zeros (see TF example).
+			\item high-dimensional;
+			\item sparse (many zeros, see TF example).
 		\end{itemize}
-		\item $L$ anonymous concepts can be used to represent ...
+		\item $L$ latent (hidden) concepts (topics) can be used to represent:
 		\begin{itemize}
-			\item terms: $T[N, L]$;
-			\item documents: $D[M, L]$.
+			\item terms: $T \in \mathbb{R}^{N \times L}$;
+			\item documents: $D \in \mathbb{R}^{M \times L}$.
 		\end{itemize}
 		\item $L \le \min(N, M)$
 		\item $X$ can be decomposed using \keyword{Singular value decomposition (SVD)}
 		\begin{itemize}
-			\item $X = T \times S \times D^\top$
+			\item $X = T \times S \times D^\top$, where $S$ is diagonal with singular values.
 		\end{itemize}
 	\end{itemize}
 
@@ -551,12 +562,21 @@
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: SVD formulation}
 	
+%	\[
+%	X_{N \times M} = 
+%	\overbrace{T_{N \times L}}^{\text{term-concept}}
+%	\; 
+%	\overbrace{S_{L \times L}}^{\text{singular values}}
+%	\;
+%	\overbrace{D_{M \times L}^\top}^{\text{concept-document}}
+%	\]
+	
 	\begin{itemize}
-		\item $T^\top T = \mathbb{I}_{L \times L}$ 
-		\item $D^\top D = \mathbb{I}_{L \times L}$ 
-		\item $S$: concepts weights with a decreasing order $s_{11} \ge ... \ge s_{LL} > 0$
-		\item SVD can be computed using methods such as \keyword{Lanczos algorithm} and \keyword{QR algorithm}
+		\item $T^\top T = \mathbb{I}_{L \times L}$, $D^\top D = \mathbb{I}_{L \times L}$
+		\item $S$ is diagonal with decreasing values: $s_{11} \ge s_{22} \ge ... \ge s_{LL} > 0$
+		\item Computation methods: \keyword{Lanczos algorithm}, \keyword{QR algorithm}
 	\end{itemize}
+	
 	
 	\begin{block}{SVD of term-document matrix}
 		\scriptsize\bfseries
@@ -568,7 +588,7 @@
 			\vdots & \ddots & \ddots & \ddots &\vdots \\
 			x_{N1} & \ldots & \ldots & \ldots & x_{NM} \\ 
 			\end{bmatrix}
-		}^{X \text{ : term-document}}
+		}^{X \text{: term-document}}
 		=
 		\overbrace{
 			\left[
@@ -588,7 +608,7 @@
 			t_{NL} \\ 
 			\end{bmatrix}
 			\right]
-		}^{T \text{ : term-concept}}
+		}^{T \text{: term-concept}}
 		\times 
 		\overbrace{
 			\begin{bmatrix}
@@ -596,7 +616,7 @@
 			0 & \ddots & 0 \\
 			0 & \ldots & s_{LL} \\
 			\end{bmatrix}
-		}^{S \text{ : concept-concept}}
+		}^{S \text{: concept-concept}}
 		\times 
 		\overbrace{
 			\begin{bmatrix}
@@ -608,7 +628,7 @@
 			d_{L1} & \ldots & \ldots & \ldots & d_{LM} \\
 			\end{bmatrix}\\
 			\end{bmatrix}
-		}^{D^\top \text{ : concept-document}}
+		}^{D^\top \text{: concept-document}}
 		\]
 		
 	\end{block}
@@ -623,16 +643,15 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle}
 	\framesubtitle{\insertsection}
-
+	
 	\begin{itemize}
-		\item document-term and term-term representations occupy a large memory space.
-		\item They are difficult to manage. 
-		\item Using \keyword{LSA}, a word's representation is compacted to a much smaller vector of real numbers.
-		\item This is called: \keyword{Word embedding}.
-		\item In this course, we will focus on neural networks based word embedding.
-		\item This technique allows learning some relations between words.
+		\item Document-term and term-term matrices are large and sparse, making them computationally expensive to store and process.
+		\item Using \keyword{Latent Semantic Analysis (LSA)}, words can be represented by low-dimensional vectors in a continuous space.
+		\item This representation is referred to as a \keyword{word embedding}.
+		\item In this course, we focus on neural network-based word embeddings.
+		\item Such embeddings capture semantic and syntactic relations between words, including similarity and analogy.
 	\end{itemize}
-
+	
 \end{frame}
 
 
@@ -652,22 +671,21 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
-
+	
 	\begin{itemize}
-		\item Using term-term representation, we saw the \keyword{context} notion:
+		\item In term-term representations, a word is represented based on its neighboring words (\keyword{context}):
 		\begin{itemize}
-			\item A word is represented based on the neighboring words.
-			\item The vector represents co-occurrence frequencies.
-			\item The vector's size is that of the vocabulary (very large).
-			\item A word can have co-occurrences with few words (Too much zeros).
+			\item Most words co-occur with only a small subset of the vocabulary, resulting in sparse vectors;
+			\item The vectors are high-dimensional and mostly zero-valued.
 		\end{itemize}
-		\item Word2vec is a tool provided by Google. It implements two methods of \keyword{Word embedding} \cite{2013-mikolov-al}:
+		\item Word2Vec (Google) implements two neural network-based methods for \keyword{word embedding} \cite{2013-mikolov-al}:
 		\begin{itemize}
-			\item \optword{CBOW}: Continuous Bag-of-Words;
-			\item \optword{Skip-gram}: Continuous Skip-gram.
+			\item \optword{CBOW}: Continuous Bag-of-Words, which predicts a word from its context.
+			\item \optword{Skip-gram}: predicts context words from a target word.
 		\end{itemize}
-		\item Encoding words using a small vector (50-1000) based on context (using an encoder-decoder).
+		\item Each word is encoded as a dense, low-dimensional vector (50–1000 dimensions) that captures semantic similarity.
 	\end{itemize}
+	
 
 \end{frame}
 
@@ -676,16 +694,19 @@
 	\framesubtitle{\insertsubsection: CBOW}
 	
 	\begin{minipage}{.63\textwidth}
+		
 		\begin{itemize}
-			\item Infer a word $w_i$ given a context.
-			\item In this example, the context is 2 words before and 2 after.
-			\item Let $T$ be the number of words in the corpus.
+			\item Predict the target word $w_i$ from its surrounding context.
+			\item The context window consists of the two preceding and two succeeding words.
+			\item Let $T$ denote the total number of words in the corpus.
 		\end{itemize}
-		\begin{block}{Loss function}
-			\[%
-			J(\theta) = \frac{-1}{T} \sum_{i=1}^{T} \log p(w_i |w_{i-2}, w_{i-1}, w_{i+1}, w_{i+2})
+		
+		\begin{block}{CBOW Loss Function}
+			\[
+			J(\theta) = -\frac{1}{T} \sum_{i=1}^{T} \log p(w_i \mid w_{i-2}, w_{i-1}, w_{i+1}, w_{i+2})
 			\]
 		\end{block}
+		
 	\end{minipage}
 	\begin{minipage}{.36\textwidth}
 		\hgraphpage{word2vec-cbow.pdf}
@@ -699,15 +720,17 @@
 	
 	\begin{minipage}{.58\textwidth}
 		\begin{itemize}
-			\item Infer a context given a word $w_i$.
-			\item In this example, the context is 2 words before and 2 after.
-			\item Let $T$ be the number of words in the corpus.
+			\item Predict the surrounding context words given the target word $w_i$.
+			\item The context window consists of the two preceding and two succeeding words.
+			\item Let $T$ denote the total number of words in the corpus.
 		\end{itemize}
-		\begin{block}{Loss function}
-			\[%
-			J(\theta) = \frac{-1}{T} \sum_{i=1}^{T} \sum_{j= i-2; j \ne i}^{i+2} \log p(w_j |w_i)
+		
+		\begin{block}{Skip-gram Loss Function}
+			\[
+			J(\theta) = -\frac{1}{T} \sum_{i=1}^{T} \sum_{j=i-2, j \ne i}^{i+2} \log p(w_j \mid w_i)
 			\]
 		\end{block}
+		
 	\end{minipage}
 	\begin{minipage}{.4\textwidth}
 		\hgraphpage{word2vec-skip.pdf}
@@ -720,14 +743,21 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
-
+	
 	\begin{itemize}
-		\item \keyword{GloVe}: Global Vectors.
-		\item A method developed at Stanford \cite{2014-pennington-al}.
-		\item Trying to exploit both approaches: term-term matrix (such as in LSA) and learning from context (such as in CBOW)
-		\item $X[V, V]$ is a term-term matrix where $X_{ij}$ is the number of word $w_j$'s occurrence in the context of the word $w_i$, and $X_i$ is the number of word $w_i$'s occurrences in the corpus.
-		\item $P_{ij} = \frac{X_{ij}}{X_i}$ is occurrence probability of $w_j$ in the context of $w_i$.
+		\item \keyword{GloVe}: Global Vectors, developed at Stanford \cite{2014-pennington-al}.
+		\item GloVe leverages both approaches: global co-occurrence statistics (as in LSA) and local context information (as in CBOW).
+		\item Let $X[V, V]$ be the term-term co-occurrence matrix, where:
+		\begin{itemize}
+			\item $X_{ij}$ = number of times word $w_j$ appears in the context of word $w_i$;
+			\item $X_i = \sum_j X_{ij}$ is the total number of occurrences of $w_i$ in the corpus.
+		\end{itemize}
+		\item The probability of observing $w_j$ in the context of $w_i$ is:
+		\[
+		P_{ij} = \frac{X_{ij}}{X_i}
+		\]
 	\end{itemize}
+	
 
 \end{frame}
 
@@ -738,10 +768,11 @@
 	\vspace{6pt}
 	\begin{minipage}{.5\textwidth}
 		\begin{itemize}
-			\item We want to find the relation between $w_i = ice$ and $w_j = steam$.
-			\item $P_{ik},\ P_{jk}$: probabilities of a word $w_k$ given these two words.
-			\item We calculate the ratio: $\frac{P_{ik}}{P_{jk}}$.
+			\item Consider $w_i = \text{ice}$ and $w_j = \text{steam}$.
+			\item Let $p_{ik}, p_{jk}$ denote the probabilities of context word $w_k$ occurring with $w_i$ and $w_j$ respectively.
+			\item Define the co-occurrence ratio $\frac{p_{ik}}{p_{jk}}$.
 		\end{itemize}
+		
 	\end{minipage}
 	\begin{minipage}{.48\textwidth}
 			\fontsize{6}{10}\selectfont\bfseries
@@ -775,8 +806,8 @@
 			\item If $R(w_k, w_i) \wedge R(w_k, w_j)$, the ratio will be close to $1$. E.g. \expword{water}.
 			\item If $\neg R(w_k, w_i) \wedge \neg R(w_k, w_j)$, the ratio will be close to $1$. E.g. \expword{fashion}.
 		\end{itemize}
-		\item We want to train a function $F$ on $w_i$, $w_j$ and $\tilde{w_k}$ representations.
-		\[F(w_i, w_j, \tilde{w_k}) = \frac{P_{ik}}{P_{jk}}\]
+		\item The idea is to train a function $F$ on $w_i$, $w_j$ and $\tilde{w_k}$ representations:
+		\[F(w_i, w_j, \tilde{w_k}) = \frac{p_{ik}}{p_{jk}}\]
 	\end{itemize}
 	
 \end{frame}
@@ -786,20 +817,27 @@
 	\framesubtitle{\insertsubsection: Formulation (intuition)}
 	
 	\begin{itemize}
-		\item We want to restrict the function $F$ using substraction:
-		\[F(w_i - w_j, \tilde{w_k}) = \frac{P_{ik}}{P_{jk}}\]
+		\item We impose a constraint on $F$ using the difference of word vectors:
+		\[
+		F(w_i - w_j, \tilde{w_k}) = \frac{p_{ik}}{p_{jk}}
+		\]
+		\item Map the vector difference to a scalar via the dot product:
+		\[
+		F((w_i - w_j)^\top \tilde{w_k}) = \frac{p_{ik}}{p_{jk}}
+		\]
+		\item Considering symmetry ($w \leftrightarrow \tilde{w}$ and $X \leftrightarrow X^\top$), 
+		$F$ must satisfy the homomorphism property:
+		\[
+		F((w_i - w_j)^\top \tilde{w_k}) = \frac{F(w_i^\top \tilde{w_k})}{F(w_j^\top \tilde{w_k})}
+		\]
+		\item Therefore, we set:
+		$F(w_i^\top \tilde{w_k}) = p_{ik} = \frac{X_{ik}}{X_i}$
+	
+		\item Choosing $F = \exp$ satisfies the property, yielding:
+		\[w_i^\top \tilde{w_k} = \log X_{ik} - \log X_i\]
 		
-		\item We want to transform the argument to a scalar using dot product:
-		\[F((w_i - w_j)^\top \tilde{w_k}) = \frac{P_{ik}}{P_{jk}}\]
-		
-		\item We want: $w \leftrightarrow \tilde{w}$ and $X \leftrightarrow X^\top$. 
-		So, $F$ must be a homomorphism between $(\mathbb{R}, +)$ and $(\mathbb{R}_{>0}, \times)$:
-		\[F((w_i - w_j)^\top \tilde{w_k}) = \frac{F(w_i^\top \tilde{w_k})}{F(w_j^\top \tilde{w_k})}\]
-		
-		\item So, $F(w_i^\top \tilde{w_k}) = P_{ik} = \frac{X_{ik}}{X_i}$
-		
-		\item The solution is $F = exp$. So $w_i^\top \tilde{w_k} = \log X_{ik} - \log X_i$
 	\end{itemize}
+	
 	
 \end{frame}
 
@@ -808,13 +846,12 @@
 	\framesubtitle{\insertsubsection: Formulation (Final version)}
 	
 	\begin{itemize}
-		\item $log X_i$ is independent from $k$. 
-		So, we can train a bias $b_i$ over $w_i$. 
-		To respect symmetry, another bias $\tilde{b_k}$ must be trained over $\tilde{w_k}$.
-		\item Loss function $J$ is \keyword{least squares method}.
+		\item $\log X_i$ is independent of $j$, so we introduce a bias term $b_i$ for $w_i$.
+		\item To maintain symmetry, we also introduce a bias $\tilde{b_j}$ for $\tilde{w_j}$.
+		\item The loss function $J$ is based on \keyword{weighted least squares}:
 		\begin{itemize}
-			\item $J$ must not weight co-occurrences alike: rare co-occurrences must have less impact on $J$.
-			\item In this case, $J$ is weighted using a function over $X_{ij}$.
+			\item Co-occurrences contribute unequally: rare co-occurrences have less impact.
+			\item We apply a weighting function $f(X_{ij})$ to control the contribution.
 		\end{itemize}
 	\end{itemize}
 	
@@ -822,8 +859,8 @@
 		\[w_i^\top \tilde{w_j} + b_i + \tilde{b_j} = \log X_{ij} \]
 		\[J(\theta) = \sum_{i=1}^{V} \sum_{j=1}^{V} f(X_{ij}) (w_i^\top \tilde{w_j} + b_i + \tilde{b_j} - \log X_{ij})^2\]
 		\vskip-2pt\[f(x) = \begin{cases}
-		\frac{x}{x_{max}} & \text{if } x < x_{max} \\
-		1 & \text{ otherwise}
+			\frac{x}{x_{max}} & \text{if } x < x_{max} \\
+			1 & \text{otherwise}
 		\end{cases}\]
 	\end{block}
 	
@@ -843,39 +880,39 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection}
-
-	\begin{exampleblock}{Example of polysemy (word with many senses)}
+	\framesubtitle{\insertsubsection: Contextual embedding}
+	
+	\begin{exampleblock}{Example of polysemy (word with multiple senses)}
 		\begin{itemize}
-			\item My cat is always chasing a \expword{mouse}. (rodent, animal)
+			\item My cat is always chasing a \expword{mouse}. (rodent)
 			\item The computer's \expword{mouse} is a pointing device. (electronic device)
 			\item You are such a \expword{mouse}! (timid person)
 		\end{itemize}
 	\end{exampleblock}
 	
 	\begin{itemize}
-		\item Can Word2vec and GloVe reflect relations between \expword{mouse} and the words cat, computer and timid? How?
-		\item Can they distinguish different senses of the word \expword{mouse}? Why?
+		\item To what extent can Word2vec or GloVe capture the semantic relations between \expword{mouse} and words such as \expword{cat}, \expword{computer}, or \expword{timid}? Explain why.
+		\item Are these embeddings capable of distinguishing between the different senses of \expword{mouse}? Justify your answer.
 	\end{itemize}
-
+	
 \end{frame}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: ELMo}
-
+	
 	\begin{minipage}{.65\textwidth}
-	\begin{itemize}
-		\item \keyword{ELMo}: Embeddings from Language Models.
-		\item \url{http://allennlp.org/elmo}
-		\item \cite{2018-peters-al}
-		\item Representation Characteristics:
 		\begin{itemize}
-			\item Contextual: takes into account the whole context (sentence).
-			\item Deep: combines all intermediate representations of neural network.
-			\item Based on characters: allows morphological characteristics and out-of-vocabulary words.
+			\item \keyword{ELMo}: Embeddings from Language Models
+			\item \url{http://allennlp.org/elmo} 
+			\item \cite{2018-peters-al}
+			\item Key Characteristics of ELMo Representations:
+			\begin{itemize}
+				\item \textbf{Contextual}: captures the meaning of a word based on its full sentence context.
+				\item \textbf{Deep}: integrates all intermediate representations from the neural network layers.
+				\item \textbf{Character-based}: captures morphological features and handles out-of-vocabulary words.
+			\end{itemize}
 		\end{itemize}
-	\end{itemize}
 	\end{minipage}
 	\begin{minipage}{.33\textwidth}
 		\vspace{1.8cm}
@@ -883,6 +920,7 @@
 	\end{minipage}
 	
 \end{frame}
+
 
 
 \begin{frame}
@@ -898,30 +936,35 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: ELMo (Description)}
-
+%	\small
 	\begin{itemize}
-		\item Given a word $w_k$, its representation $x_k$ is calculated based on its characters (see \cite{2015-kim-al}).
-		\item $L$ layers of bidirectional LSTM are used. 
-		\item For each sentence of $N$ words, maximize\\ 
+		\item Each word $w_k$ is represented by an embedding $x_k$, computed from its character-level representation (\cite{2015-kim-al}).
+		\item The model uses $L$ layers of bidirectional LSTMs to capture context.
+		\item For a sentence of length $N$, the model maximizes:
 		\begin{center}
-			$\sum_{k=1}^{N} 
-		\log P(w_k | w_1,\ldots,w_{k-1}; \Theta_x, \overrightarrow{\Theta}_{LSTM}, \Theta_s)
-		+
-		\log P(w_k | w_{k+1},\ldots,w_{N}; \Theta_x, \overleftarrow{\Theta}_{LSTM}, \Theta_s)
-		$
+			$\sum_{k=1}^{N} (
+			\log P(w_k | w_1,\ldots,w_{k-1}; \Theta_x, \overrightarrow{\Theta}_{LSTM}, \Theta_s)
+			+
+			\log P(w_k | w_{k+1},\ldots,w_{N}; \Theta_x, \overleftarrow{\Theta}_{LSTM}, \Theta_s)
+			)
+			$
 		\end{center}
 		
-		\item $R_k = \{x_k^{LM}, \overrightarrow{h}_{LM}^{k, j}, \overleftarrow{h}_{LM}^{k, j} | j= 1 \ldots L \}
-		= \{h_{LM}^{k, j} | j= 0 \ldots L \}
-		$
+		\item The set of representations for $w_k$ is:
+		\[
+		R_k = \{x_k^{LM}, \overrightarrow{h}_{LM}^{k, j}, \overleftarrow{h}_{LM}^{k, j} \mid j= 1 \ldots L \} 
+		= \{ h_{LM}^{k, j} \mid j=0 \ldots L \}
+		\]
 		
-		\item To integrate ELMo into a $task$, additional parameters $\Theta^{task}$ must be trained to combine intermediate words representations into just one which is task-related:\\
-		\begin{center}
-			$ELMo_k^{task} = E(R_k; \Theta^{task}) = \gamma^{task} \sum_{j=0}^{L} \theta_j^{task} h_{LM}^{k, j}$
-		\end{center}
+		\item To adapt ELMo for a downstream task, additional parameters $\Theta^{task}$ are trained to combine the intermediate representations into a single task-specific embedding:
+		\vspace{-8pt}
+		\[
+		ELMo_k^{task} = E(R_k; \Theta^{task}) = \gamma^{task} \sum_{j=0}^{L} \theta_j^{task} h_{LM}^{k, j}
+		\]
 	\end{itemize}
-
+	
 \end{frame}
+
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -933,21 +976,22 @@
 	
 \end{frame}
 
+
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: BERT}
-
+	
 	\begin{minipage}{.71\textwidth}
 		\begin{itemize}
-			\item \keyword{BERT}: Bidirectional Encoder Representations from Transformers.
+			\item \keyword{BERT}: Bidirectional Encoder Representations from Transformers
 			\item \url{https://github.com/google-research/bert}
 			\item \cite{2019-devlin-al}
-			\item Representation Characteristics:
+			\item Representation characteristics:
 			\begin{itemize}
-				\item Contextual: takes into account the whole context (sentence).
-				\item Totally bidirectional: considers direct relations with all sentence's words. 
-				\item Based on tokens: words are split into radical + suffixes.
-				\item Transfer learning
+				\item \textbf{Contextual}: embeddings depend on the entire sentence;
+				\item \textbf{Fully bidirectional}: captures relationships among all words using self-attention;
+				\item \textbf{Token-based}: uses WordPiece subword tokenization to handle rare words and morphological variations;
+				\item \textbf{Supports transfer learning}: pre-trained on large corpora, fine-tuned for downstream tasks.
 			\end{itemize}
 		\end{itemize}
 	\end{minipage}
@@ -957,6 +1001,7 @@
 	\end{minipage}
 	
 \end{frame}
+
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -971,48 +1016,50 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: BERT (Input)}
-
+	
 	\begin{itemize}
-		\item Text is tokenized using \keyword{Wordpiece} (see \cite{2016-wu-al}).
-		\item The input is a sequence of tokens of maximum length $T = 512$:
+		\item Text is tokenized using \keyword{WordPiece} \cite{2016-wu-al}.
+		\item Input sequence of tokens has maximum length $T = 512$:
 		\begin{itemize}
-			\item The first token is a special token ``\keyword{[CLS]}" used for classification.
-			\item The rest is the words of sentences separated by a token ``\keyword{[SEP]}".
+			\item The first token is a special token ``\keyword{[CLS]}'' for classification.
+			\item The remaining tokens correspond to the sentence(s), with ``\keyword{[SEP]}'' separating sentences or segments.
 		\end{itemize}
-		\item Each token is represented by 3 embeddings of size $N$:
+		\item Each token is represented by a vector of size $N$, obtained by summing three embeddings:
 		\begin{itemize}
-			\item \optword{Token embedding}: MLP transforming vocabulary OneHot representation of size $V$ into a vector of size $N$.
-			\item \optword{Position embedding}: MLP transforming position OneHot representation of size $T$ into a vector of size $N$.
-			\item \optword{Segment embedding}: MLP transforming segment OneHot representation of size $2$ (sentence1 or sentence2) into a vector of size $N$.
+			\item \optword{Token embedding}: learned embedding for each vocabulary token (size $V \times N$).
+			\item \optword{Position embedding}: learned embedding for each position in the sequence (size $T \times N$).
+			\item \optword{Segment embedding}: learned embedding for sentence segment (size $2 \times N$ for sentence1 or sentence2).
 		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
+
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: BERT (Pre-training)}
 	
 	\begin{itemize}
-		\item The model is based on \keyword{Transformers}: The encoder part (see \cite{2017-vaswani-al})
-		\item It is trained on two different tasks.
-		\item \optword{Masked language model}:
+		\item The model is based on \keyword{Transformers} (encoder only) \cite{2017-vaswani-al}.
+		\item Pre-trained on two tasks:
 		\begin{itemize}
-			\item randomly masking 15\% of tokens and trying to infer them.
-			\item using a special token \keyword{[MASK]}.
-			\item this token will not appear in fine-tuning step.
-			This is why just 80\% of replacements use this token.
-			\item 10\% with a random token and 10\% without change. 
+			\item \optword{Masked Language Model (MLM)}:
+			\begin{itemize}
+				\item Randomly mask 15\% of tokens in input.
+				\item Use special token \keyword{[MASK]} (appears only in pre-training).
+				\item 80\% replaced by \keyword{[MASK]}, 10\% by a random token, 10\% left unchanged.
+			\end{itemize}
+			\item \optword{Next Sentence Prediction (NSP)}:
+			\begin{itemize}
+				\item Given two input sentences, predict whether the second follows the first.
+				\item For classification, the \keyword{[CLS]} token's final hidden state is used to predict ``\textbf{IsNext}'' or ``\textbf{NotNext}''.
+			\end{itemize}
 		\end{itemize}
-		\item \optword{Next sentence prediction}:
-		\begin{itemize}
-			\item Given two sentences in input, predict if the second follow the first. 
-			\item For classification purpose, the output of token ``\keyword{[CLS]}" ($CLS \in \{IsNext, NotNext\}$) is used.
-		\end{itemize}
-		\item Once the model is trained, it can be fine-tuned on another task.
+		\item After pre-training, BERT can be fine-tuned for downstream tasks
 	\end{itemize}
 	
 \end{frame}
+
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -1034,56 +1081,55 @@
 	
 \end{frame}
 
-
-\subsection{Model evaluation}
-
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Intrinsic evaluation}
-
+	
 	\begin{itemize}
-		\item  WordSimilarity-353 Test Collection \cite{2002-finkelstein-al}:
+		\item \optword{WordSimilarity-353 Test Collection} \cite{2002-finkelstein-al}:
 		\begin{itemize}
-			\item Manually annotated similarities between words (0 et 10).
-			\item To test a model's performance, Spearman correlation is used between model's cosine similarities and manual similarities.
+			\item Manually annotated word pairs with similarity scores from 0 to 10.
+			\item Model performance is measured using Spearman correlation between cosine similarities and human judgments.
 		\end{itemize}
 		
-		\item SimLex-999 \cite{2015-hill-al}:
+		\item \optword{SimLex-999} \cite{2015-hill-al}:
 		\begin{itemize}
-			\item The same as the past.
-			\item Testing similarity (\expword{coast, shore}) but not association (\expword{clothes, closet}).
+			\item Similar to WordSimilarity-353 but focused on genuine similarity rather than association.
+			\item E.g. \expword{coast, shore} are similar, \expword{clothes, closet} are associated but not similar.
 		\end{itemize}
-	
-		\item Words analogies \cite{2013-mikolov-al2}:
+		
+		\item \optword{Word analogies} \cite{2013-mikolov-al2}:
 		\begin{itemize}
-			\item Dataset is formatted as $(w_{i1}:w_{j1} :: w_{i2}:w_{j2})$.
-			\item Test the capacity of embeddings to represent the relations: $w_{j2} = w_{i1} - w_{i2} + w_{j1}$
-			\item E.g. \expword{(King:Queen :: Man:Woman) \textrightarrow King - Man + Woman = Queen}
+			\item Dataset format: $(w_{i1}:w_{j1} :: w_{i2}:w_{j2})$
+			\item Tests the ability of embeddings to capture semantic relations: $w_{j2} \approx w_{i1} - w_{i2} + w_{j1}$.
+			\item E.g. \expword{(King:Queen :: Man:Woman) $\Rightarrow$ King - Man + Woman $\approx$ Queen}
 		\end{itemize}
-	
+		
 	\end{itemize}
 	
 \end{frame}
+
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Extrinsic evaluation and bias}
 	
 	\begin{itemize}
-		\item  \optword{Extrinsic evaluation}: Evaluate the models based on a task:
+		\item \optword{Extrinsic evaluation}: Assess models based on their performance on downstream tasks.
 		\begin{itemize}
-			\item Evaluate a new model with respect to a known one according to a task.
-			\item E.g. GloVe surpassed LSA in NER task \cite{2014-pennington-al}.
+			\item Compare a new model with a baseline on a specific task.
+			\item E.g. GloVe outperformed LSA on Named Entity Recognition (NER) \cite{2014-pennington-al}.
 		\end{itemize}
-		\item \optword{Bias}: Models can learn biased analogies.
+		\item \optword{Bias in embeddings}: Word embeddings can encode and reproduce societal stereotypes.
 		\begin{itemize}
-			\item Learn stereotypes such as \expword{she} with \expword{homemaker, nurse, receptionist} and \expword{he} with \expword{maestro, skipper, protege} \cite{2017-caliskan-al}.
-			\item This can affect some tasks' performance. 
-			\item E.g. \expword{Anaphora resolution can fail to link the pronoun ``she" with ``doctor"}.
+			\item Gendered associations: \expword{she → homemaker, nurse, receptionist}, \expword{he → maestro, skipper, protege} \cite{2017-caliskan-al}.
+			\item Such biases can negatively impact the performance of downstream NLP tasks.
+			\item E.g. \expword{Anaphora resolution may fail to correctly link the pronoun ``she'' with a professional role such as ``doctor''}.
 		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
+
 
 %===================================================================================
 \section{Word Sense Disambiguation (WSD)}
@@ -1092,25 +1138,24 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle}
 	\framesubtitle{\insertsection}
-
+	
 	\begin{itemize}
-		\item Selecting the correct meaning of a word.
-		\item Useful for multiple tasks:
+		\item Determining the intended sense of a word in context.
+		\item WSD is important for several NLP tasks:
 		\begin{itemize}
-			\item Parsing.
-			
-			\expword{I \underline{fish} in the river} (Verb or noun?)
-			
-			\expword{The \underline{fish} was too big} (Verb or noun?)
-			
-			\item Machine translation.
-			
-			\expword{I withdrew money from the \underline{bank}} (``sloping land" or ``coin bank"?)
-			
-			\expword{I fish on the \underline{bank}} (``sloping land" or ``coin bank"?)
+			\item \textbf{Parsing:}
+			\begin{itemize}
+				\item \expword{I \underline{fish} in the river} (Is ``fish'' a verb or a noun?)
+				\item \expword{The \underline{fish} was too big} (Is ``fish'' a verb or a noun?)
+			\end{itemize}
+			\item \textbf{Machine translation:}
+			\begin{itemize}
+				\item \expword{I withdrew money from the \underline{bank}} (Does ``bank'' refer to a financial institution or a river edge?)
+				\item \expword{I fish on the \underline{bank}} (Does ``bank'' refer to a financial institution or a river edge?)
+			\end{itemize}
 		\end{itemize}
 	\end{itemize}
-
+	
 \end{frame}
 
 \subsection{Knowledge bases based}
@@ -1118,28 +1163,27 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Lesk algorithm}
-
+	
 	\begin{block}{Lesk algorithm}
 		\footnotesize\vspace{-3pt}
 		\begin{algorithm}[H]
 			\KwData{a word $w$; a sentence $s$ containing $w$}
-			\KwResult{The sens of $w$ in $s$}
+			\KwResult{The sense of $w$ in $s$}
 			
-			best\_sens \textleftarrow most frequent sens of $w$\;
-			superposition\_max \textleftarrow 0\;
-			context \textleftarrow set of words of $s$\; 
+			best\_sense \textleftarrow most frequent sense of $w$\;
+			overlap\_max \textleftarrow 0\;
+			context \textleftarrow set of words in $s$\; 
 			
-			\ForEach{sens $w_i$ of $w$}{ 
-				signature \textleftarrow set of words in \textbf{gloss} and examples of sens $w_i$\;
-				superposition \textleftarrow number of common words between \textbf{context} and \textbf{signature}\;
-				\If{superposition $>$ superposition\_max}{
-					superposition\_max \textleftarrow superposition\;
-					best\_sens \textleftarrow $w_i$\;
+			\ForEach{sense $w_i$ of $w$}{ 
+				signature \textleftarrow set of words in the gloss and example usages of sense $w_i$\;
+				overlap \textleftarrow number of common words between \textbf{context} and \textbf{signature}\;
+				\If{overlap $>$ overlap\_max}{
+					overlap\_max \textleftarrow overlap\;
+					best\_sense \textleftarrow $w_i$\;
 				}
 			}
 			
-			\Return best\_sens \;
-	%		\vspace{-3pt}
+			\Return best\_sense \;
 		\end{algorithm}
 	\end{block}
 \end{frame}
@@ -1150,24 +1194,24 @@
 	
 	\begin{itemize}
 		\item Example: \url{http://babelfy.org/} \cite{2014-moro-al}
-		\item \optword{Step 1: Semantic signatures construction}
+		\item \optword{Step 1: Semantic signature construction}
 		\begin{itemize}
-			\item Using a semantic network, attribute a weight for each arc linking two concepts based on the number of triangles linking them.
-			\item Calculate a conditional probability of a concept given another based on these weights.
-			\item Minimize this graph using ``\keyword{Random walk with restart}".
+			\item Assign a weight to each edge connecting two concepts, proportional to the number of triangles they participate in.
+			\item Compute the conditional probability of a concept given a neighboring concept using these weights.
+			\item Propagate importance using the \keyword{Random Walk with Restart} algorithm.
 		\end{itemize}
-		\item \optword{Step 2: Candidates identification}
+		\item \optword{Step 2: Candidate identification}
 		\begin{itemize}
-			\item Apply PoS tagging on the input text.
-			\item Extract all possible senses of words and expressions.
+			\item Apply \keyword{POS tagging} to the input text.
+			\item Extract all possible senses of words and multi-word expressions.
 		\end{itemize}
-		\item \optword{Step 3: Candidates disambiguation}
+		\item \optword{Step 3: Candidate disambiguation}
 		\begin{itemize}
-			\item Construct a graph based on semantic signature and candidates.
-			\item Create a sub-graph by eliminating weak links.
+			\item Construct a graph based on semantic signatures and candidate senses.
+			\item Build a subgraph by pruning edges with low weights.
 		\end{itemize}
 	\end{itemize}
-
+	
 \end{frame}
 
 \subsection{ML-based}
@@ -1177,12 +1221,12 @@
 	\framesubtitle{\insertsubsection: Supervised ML}
 	
 	\begin{itemize}
-		\item Using an annotated corpus (E.g. \expword{SemCor})
-		\item Each word is followed by the number of the sens in a lexical base ( such as WordNet).
-		\item E.g. \expword{You will find9 that avocado1 is1 unlike1 other1 fruit1 you have ever1 tasted2}
-		\item The output of the model is a One-Hot encoded vector over all possible senses. 
-		\item In addition to the word, the words surrounding it can be taken as features.
-		\item Disambiguation of all words in a text is similar to PoS tagging task.
+		\item Uses an annotated corpus (e.g., \expword{SemCor}).
+		\item Each word is annotated with the corresponding sense ID from a lexical resource (e.g., \expword{WordNet}).
+		\item Example: \expword{You will find9 that avocado1 is1 unlike1 other1 fruit1 you have ever1 tasted2}.
+		\item The model outputs a One-Hot encoded vector over all possible senses.
+		\item Features can include the target word as well as its surrounding context words.
+		\item Disambiguating all words in a text can be approached as a sequence labeling task, similar to POS tagging.
 	\end{itemize}
 	
 \end{frame}
@@ -1190,15 +1234,17 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Contextual embedding}
-
+	
 	\begin{minipage}{.68\textwidth}
-	\begin{itemize}
-		\item 1-nearest-neighbor algorithm
-		\item Using contextual embedding (ELMo, BERT, etc.)
-		\item Train a model on an annotated corpus to get each token's embedding.
-		\item To get a sens embedding $v_s$, calculate the average of all words embeddings $c_i$ which has the same sens.
-		\[ v_s = \frac{1}{n} \sum_{i=1}^{n} c_i \] 
-	\end{itemize}
+		\begin{itemize}
+			\item 1-nearest-neighbor algorithm
+			\item Using contextual embeddings (\expword{ELMo, BERT, etc.})
+			\item Train a model on an annotated corpus to obtain embeddings for each token.
+			\item To obtain a sense embedding $v_s$, compute the average of all token embeddings $c_i$ corresponding to that sense:
+			\[
+			v_s = \frac{1}{n} \sum_{i=1}^{n} c_i
+			\] 
+		\end{itemize}
 	\end{minipage}
 	\begin{minipage}{.3\textwidth}
 		\begin{figure}
@@ -1206,8 +1252,9 @@
 			\caption{Example of WSD with 1-nearest-neighbor \cite{2019-jurafsky-martin}}
 		\end{figure}
 	\end{minipage}
-
+	
 \end{frame}
+
 
 \insertbibliography{NLP07}{*}
 

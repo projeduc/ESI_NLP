@@ -73,11 +73,11 @@
 	\framesubtitle{\insertsection}
 
 	\begin{itemize}
-		\item A sentence can be well formed syntactically but not semantically
+		\item A sentence can be well formed syntactically but not semantically.
 		\begin{itemize}
 			\item E.g. \expword{Green uncolored ideas sleep furiously.}
 		\end{itemize}
-		\item Several theories
+		\item Several theories:
 		\begin{itemize}
 			\item Generative grammar
 			\item Dependency grammar
@@ -97,13 +97,13 @@
 	\framesubtitle{\insertsubsection}
 
 	\begin{itemize}
-		\item Each word in a sentence has a \keyword{POS}
+		\item Each word in a sentence has a \keyword{POS}.
 		\begin{itemize}
-			\item E.g. \expword{The/\textsubscript{DT} course/\textsubscript{NN} is/\textsubscript{VB} interesting/\textsubscript{AJ}}
+			\item E.g. \expword{The/\textsubscript{DT} course/\textsubscript{NN} is/\textsubscript{VB} interesting/\textsubscript{AJ}}.
 		\end{itemize}
-		\item One or many words having certain POS form a \keyword{phrase}
+		\item One or many words having certain POS form a \keyword{phrase}.
 		\begin{itemize}
-			\item E.g. \expword{[ The/\textsubscript{DT} course/\textsubscript{NN} ]\textsubscript{NP} [ is/\textsubscript{VB} interesting/\textsubscript{AJ} ]\textsubscript{VP}}
+			\item E.g. \expword{[ The/\textsubscript{DT} course/\textsubscript{NN} ]\textsubscript{NP} [ is/\textsubscript{VB} interesting/\textsubscript{AJ} ]\textsubscript{VP}}.
 		\end{itemize}
 	\end{itemize}
 	
@@ -123,13 +123,13 @@
 	\begin{minipage}{.68\textwidth}
 	\begin{itemize}
 		\item $G = (\Sigma, N, P, S)$ is a grammar.
-		\item $\Sigma$ is the set of terminal symbols (vocabulary)
+		\item $\Sigma$ is the set of terminal symbols (vocabulary).
 		\begin{itemize}
-			\item \expword{$\Sigma$ = \{the, little, cat, eats, a, fish, ...\}}
+			\item E.g. \expword{$\Sigma$ = \{the, little, cat, eats, a, fish, ...\}}.
 		\end{itemize}
-		\item $N$ is the set of non-terminal symbols (variables) 
+		\item $N$ is the set of non-terminal symbols (variables).
 		\begin{itemize}
-			\item \expword{$N$ = \{S, NP, VP, DT, N, AJ, ...\}}
+			\item E.g. \expword{$N$ = \{S, NP, VP, DT, N, AJ, ...\}}.
 		\end{itemize}
 	\end{itemize}
 	\end{minipage}
@@ -138,9 +138,9 @@
 	\end{minipage}
 	
 	\begin{itemize}
-		\item $S \in N$ is the start symbol
-		\item $P$ is the set of production rules
-		\item Production rules have the form $A \rightarrow \beta$, where $A \in N$ and $\beta \in (\Sigma \cup N)^*$
+		\item $S \in N$ is the start symbol.
+		\item $P$ is the set of production rules.
+		\item Production rules have the form $A \rightarrow \beta$, where $A \in N$ and $\beta \in (\Sigma \cup N)^*$.
 		\begin{itemize}
 			\item \expword{S \textrightarrow NP VP}
 			\item \expword{NP \textrightarrow DT AJ N \textbar\ DT N}
@@ -155,12 +155,12 @@
 	\framesubtitle{\insertsubsection: Probabilistic CFG (PCFG)}
 
 	\begin{itemize}
-		\item \textbf{Problem}: CFGs may generate multiple parse trees for the same sentence
-		\item \textbf{Solution}: Assign a probability to each production rule
-		\item Let $G = (\Sigma, N, P, S)$ be a grammar
-		\item Rules have the form $A \rightarrow \beta \; [p]$, where $A \in N$ and $\beta \in (\Sigma \cup N)^*$
-		\item $p$ is the probability of the rule
-		\item This probability is estimated using an annotated corpus (\keyword{Treebank})
+		\item \textbf{Problem}: CFGs may generate multiple parse trees for the same sentence.
+		\item \textbf{Solution}: Assign a probability to each production rule.
+		\item Let $G = (\Sigma, N, P, S)$ be a grammar.
+		\item Rules have the form $A \rightarrow \beta \; [p]$, where $A \in N$ and $\beta \in (\Sigma \cup N)^*$.
+		\item $p$ is the probability of the rule.
+		\item This probability is estimated using an annotated corpus (\keyword{Treebank}).
 	\end{itemize}
 	
 	\begin{block}{Rules probability estimation}
@@ -178,16 +178,16 @@
 	\framesubtitle{\insertsubsection}
 
 	\begin{itemize}
-		\item \keyword{Syntactic functions} are expressed by words or groups of words
+		\item \keyword{Syntactic functions} are expressed by words or groups of words.
 		
 		\begin{itemize}
-			\item e.g., syntactic functions: \expword{subject, object, etc.}
+			\item E.g., syntactic functions: \expword{subject, object, etc.}
 		\end{itemize}
-		\item Syntactic links between words in a sentence are called \keyword{dependencies}
+		\item Syntactic links between words in a sentence are called \keyword{dependencies}.
 		\begin{itemize}
-			\item e.g., \expword{The cat eats a fish}: here ``cat'' is the \expword{subject} of the verb ``eats''
+			\item E.g., \expword{The cat eats a fish}: here ``cat'' is the \expword{subject} of the verb ``eats''.
 		\end{itemize}
-		\item A dependency relation connects a word called \keyword{syntactic head} with another called \keyword{dependent}
+		\item A dependency relation connects a word called \keyword{syntactic head} with another called \keyword{dependent}.
 	\end{itemize}
 	
 	\includegraphics[width=\textwidth]{../img/intro/dep_gram_.pdf}
@@ -238,11 +238,11 @@
 	\framesubtitle{\insertsection}
 
 	\begin{itemize}
-		\item Context-Free grammar (CFG): A widely used formalism to model constituency structure
-		\item Parsing 
+		\item Context-Free grammar (CFG): A widely used formalism to model constituency structure.
+		\item Parsing:
 		\begin{itemize}
-			\item \optword{bottom-up (ascending)}: Starting from the words, we combine them into phrases using grammar rules until reaching the start symbol \keyword{S}.
-			\item \optword{top-down (descending)}: Starting from \keyword{S}, we apply grammar rules to generate the sentence, guided by the input words.
+			\item \optword{Bottom-up (ascending)}: Starting from the words, we combine them into phrases using grammar rules until reaching the start symbol \keyword{S}.
+			\item \optword{Top-down (descending)}: Starting from \keyword{S}, we apply grammar rules to generate the sentence, guided by the input words.
 		\end{itemize}
 	\end{itemize}
 	
@@ -388,8 +388,8 @@
 	\end{exampleblock}\vspace{-6pt}
 	
 	\begin{itemize}
-		\item Analyze the sentence \expword{the fish form a little form} using CKY 
-		\item Analyze the sentence \expword{the cat eats a little fish} using CKY
+		\item Analyze the sentence \expword{the fish form a little form} using CKY.
+		\item Analyze the sentence \expword{the cat eats a little fish} using CKY.
 	\end{itemize}
 
 \end{frame}
@@ -426,13 +426,13 @@
 	\framesubtitle{\insertsubsection}
 
 	\begin{itemize}
-		\item Given a probabilistic context-free grammar (PCFG) $G = (\Sigma, N, P, S)$
-		\item The new rules created by CNF have a probability equal to $1$
-		\item Given a sentence to be parsed $w = w_1 \ldots w_n$
-		\item The probability of a parse tree $T$ given a sentence $w$:
+		\item Given a probabilistic context-free grammar (PCFG) $G = (\Sigma, N, P, S)$,
+		\item the new rules created by CNF have a probability equal to $1$.
+		\item Given a sentence to be parsed $w = w_1 \ldots w_n$,
+		\item the probability of a parse tree $T$ given a sentence $w$:
 		\[p(T \mid\ w) = \prod\limits_{(A_i \rightarrow \beta_i) \in T} p(A_i \rightarrow \beta_i)\]
-		\item Given the different parse trees $\mathcal{T}(w)$ of $w$
-		\item The parse tree is the most probable one:
+		\item Given the different parse trees $\mathcal{T}(w)$ of $w$,
+		\item the parse tree is the most probable one:
 		\[\hat{T} = \arg\max\limits_{T \in \mathcal{T}(w)} p(T \mid\ w)\]
 	\end{itemize}
 
@@ -487,7 +487,7 @@
 	\begin{itemize}
 		\item \optword{Transition-based parsing} 
 		\begin{itemize}
-			\item \textbf{Configuration}:  $C = (\sigma, \beta, A)$ where $\sigma$ is a stack, $\beta$ is an input buffer and $A$ is the set of dependency arcs
+			\item \textbf{Configuration}:  $C = (\sigma, \beta, A)$ where $\sigma$ is a stack, $\beta$ is an input buffer and $A$ is the set of dependency arcs.
 			\item $C_{\text{initial}} = ([\text{ROOT}], w_1 \ldots w_n, \emptyset)$
 			\item $C_{\text{final}} = ([\text{ROOT}], \varnothing, A)$
 		\end{itemize}
@@ -504,8 +504,8 @@
 		\begin{itemize}
 			\item \optword{Graph-based parsing}
 			\begin{itemize}
-				\item \textbf{Graph}: $G = (V, E)$ where $V$ is a set of nodes (words) and $E$ is the set of possible dependency arcs
-				\item \textbf{Output}: $T = (V, F)$ is a subgraph of $G$ which represents dependency relations
+				\item \textbf{Graph}: $G = (V, E)$ where $V$ is a set of nodes (words) and $E$ is the set of possible dependency arcs.
+				\item \textbf{Output}: $T = (V, F)$ is a subgraph of $G$ which represents dependency relations.
 			\end{itemize}
 		\end{itemize}
 	\end{minipage}
@@ -544,7 +544,7 @@
 			\item $\beta$: remove the first word or replace it;
 			\item $A$: add a dependency arc between two words.
 		\end{itemize}
-		\item \textbf{Oracle}: a mechanism (rule-based or learned) that decides the next transition
+		\item \textbf{Oracle}: a mechanism (rule-based or learned) that decides the next transition.
 	\end{itemize}
 
 \end{frame}
@@ -554,8 +554,8 @@
 	\framesubtitle{\insertsubsection: Parsing algorithm}
 
 	\begin{itemize}
-		\item \texttt{Oracle} model chooses a transition \texttt{t}
-		\item The function \texttt{Apply} executes \texttt{t} on the configuration \texttt{C}'
+		\item \texttt{Oracle} model chooses a transition \texttt{t}.
+		\item The function \texttt{Apply} executes \texttt{t} on the configuration \texttt{C}'.
 	\end{itemize}
 	
 	\begin{block}{Dependency parsing using transitions}
@@ -582,7 +582,7 @@
 	\framesubtitle{\insertsubsection: Oracle model (training)}
 
 	\begin{itemize}
-		\item ``Oracle'' model learns to predict the transition $\hat{t}$ given:
+		\item \texttt{Oracle} model learns to predict the transition $\hat{t}$ given:
 		\begin{itemize}
 			\item current configuration: $ C = (\sigma, \beta, A) $;
 			\item the set of predicted transitions $T$;
@@ -591,9 +591,9 @@
 		\end{itemize}
 		\[ \hat{t} = \arg\max\limits_{t \in T} \Psi(t, C, w; \theta) \]
 	
-		\item The annotated text must be transformed to a sequence of transitions
-		\item To train the ``Oracle'' model, the parsing algorithm is used to generate gold transition sequences
-		\item The function $\Psi$ can be implemented using MaxEnt (most common), SVM, or neural networks
+		\item The annotated text must be transformed to a sequence of transitions.
+		\item To train the \texttt{Oracle} model, the parsing algorithm is used to generate gold transition sequences.
+		\item The function $\Psi$ can be implemented using MaxEnt (most common), SVM, or neural networks.
 	\end{itemize}
 
 \end{frame}
@@ -634,13 +634,13 @@
 	\framesubtitle{\insertsubsection: Arc-standard (possible transitions)}
 
 	\begin{itemize}
-		\item \optword{SHIFT}: Move the first word from the buffer to the stack
+		\item \optword{SHIFT}: Move the first word from the buffer to the stack.
 		\[ (\sigma, w_i|\beta, A) \Rightarrow  (\sigma|w_i, \beta, A) \]
 		
-		\item \optword{ARC-LEFT}: Create an arc from the first word in the buffer to the top of the stack
+		\item \optword{ARC-LEFT}: Create an arc from the first word in the buffer to the top of the stack.
 		\[ (\sigma|w_i, w_j|\beta, A) \Rightarrow  (\sigma, w_j|\beta, A \cup \{w_j \rightarrow w_i \}) \] 
 		
-		\item \optword{ARC-RIGHT}: Create an arc from the top of the stack to the first word in the buffer
+		\item \optword{ARC-RIGHT}: Create an arc from the top of the stack to the first word in the buffer.
 		\[ (\sigma|w_i, w_j|\beta, A) \Rightarrow  (\sigma, w_i|\beta, A \cup \{w_i \rightarrow w_j \}) \] 
 	\end{itemize}
 
@@ -689,16 +689,16 @@
 	\framesubtitle{\insertsubsection: Arc-eager (possible transitions)}
 
 	\begin{itemize}
-		\item \optword{SHIFT}: Move the first word from the buffer to the stack
+		\item \optword{SHIFT}: Move the first word from the buffer to the stack.
 		\[ (\sigma, w_i|\beta, A) \Rightarrow  (\sigma|w_i, \beta, A) \]
 		
-		\item \optword{ARC-LEFT}: Create an arc from the first word in the buffer to the top of the stack
+		\item \optword{ARC-LEFT}: Create an arc from the first word in the buffer to the top of the stack.
 		\[ (\sigma|w_i, w_j|\beta, A) \xRightarrow{\nexists w_k : (w_k \rightarrow w_i) \in A}  (\sigma, w_j|\beta, A \cup \{w_j \rightarrow w_i \}) \] 
 		
-		\item \optword{ARC-RIGHT}: Create an arc from the top of the stack to the first word in the buffer
+		\item \optword{ARC-RIGHT}: Create an arc from the top of the stack to the first word in the buffer.
 		\[ (\sigma|w_i, w_j|\beta, A) \Rightarrow  (\sigma|w_i w_j, \beta, A \cup \{w_i \rightarrow w_j \}) \] 
 		
-		\item \optword{REDUCE}: Pop the top of the stack if it already has a head
+		\item \optword{REDUCE}: Pop the top of the stack if it already has a head.
 		\[ (\sigma|w_i, \beta, A) \xRightarrow{\exists w_k (w_k \rightarrow w_i) \in A} (\sigma, \beta, A) \] 
 	%	\[ (\sigma|w_i, \beta, \mathcal{A}) \overset{\exists w_k (w_k \rightarrow w_i) \in \mathcal{A}}{\Longrightarrow} (\sigma, \beta, \mathcal{A}) \] 
 	\end{itemize}
@@ -754,8 +754,8 @@
 		\begin{itemize}
 			\item Graph-based parsing
 			\begin{itemize}
-				\item \textbf{Graph}: $G = (V, E)$ where $V$ is the set of nodes (words) and $E$ is the set of arcs (dependency relations)
-				\item \textbf{Output}: $T = (V, F)$ is a subgraph of $G$ which represents dependency relations
+				\item \textbf{Graph}: $G = (V, E)$ where $V$ is the set of nodes (words) and $E$ is the set of arcs (dependency relations).
+				\item \textbf{Output}: $T = (V, F)$ is a subgraph of $G$ which represents dependency relations.
 			\end{itemize}
 		\end{itemize}
 	\end{minipage}
@@ -764,13 +764,13 @@
 	\end{minipage}
 	
 	\begin{itemize}
-		\item $\Psi$ is a scoring function, $ \mathcal{T}(G) $ is the set of all valid dependency trees over $G$
+		\item $\Psi$ is a scoring function, and $ \mathcal{T}(G) $ is the set of all valid dependency trees over $G$.
 		\[ \hat{T} = \arg\max\limits_{T \in \mathcal{T}(G)} \Psi(T, w; \theta) \]
 		
 		\item The global score is computed as the sum of scores of individual arcs:
 		\[ \Psi(T, w; \theta) = \sum_{e \in F,\, T = (V, F)} \psi(e, w; \theta) \]
 		
-		\item where $\psi$ is a local scoring function for individual arcs
+		\item where $\psi$ is a local scoring function for individual arcs.
 	\end{itemize}
 
 \end{frame}
@@ -780,14 +780,14 @@
 	\framesubtitle{\insertsubsection: scoring and training}
 
 	\begin{itemize}
-		\item Arcs scores depend on some features ($K$ features)
+		\item Arcs scores depend on some features ($K$ features):
 		\[ \psi(e, w; \theta) = \sum_{k = 1}^{K} \theta_k f_k(e, w)  \]
 		
-		\item Some features
+		\item Some features:
 		\begin{itemize}
-			\item Syntactic head, its POS, its lemma, its prefixes and suffixes
-			\item Arc direction (left or right)
-			\item Distance between the head and the dependent
+			\item Syntactic head, its POS, its lemma, its prefixes and suffixes;
+			\item Arc direction (left or right);
+			\item Distance between the head and the dependent;
 			\item \ldots
 		\end{itemize}	
 	\end{itemize}
@@ -799,12 +799,12 @@
 	\framesubtitle{\insertsubsection: Chu-Liu/Edmonds parsing}
 
 	\begin{itemize}
-		\item A new node (ROOT) is created, which has arcs to all existing nodes 
-		\item Arcs are weighted where the weight of an arc $e$ is denoted by $G.p(e)$
+		\item A new node (ROOT) is created, which has arcs to all existing nodes.
+		\item Arcs are weighted where the weight of an arc $e$ is denoted by $G.w(e)$
 		\item A \keyword{maximum spanning tree} is constructed from $G$
 		\item \keyword{maximum spanning tree}: A directed spanning tree rooted at ROOT where each node (except ROOT) has exactly one incoming arc, and the sum of arc weights is maximized.
-		\item \optword{Contract}: a function that merges two nodes $u$ and $v$ making a cycle $C$
-		\item \optword{Extend}: a function that splits the two nodes $u$ and $v$ of a cycle $C$. The arc that violates the condition ``\textit{no more than one entering arc}" is deleted
+		\item \optword{Contract}: a function that merges two nodes $u$ and $v$ making a cycle $C$.
+		\item \optword{Extend}: a function that splits the two nodes $u$ and $v$ of a cycle $C$. The arc that violates the condition ``\textit{no more than one entering arc}" is deleted.
 	\end{itemize}
  
 \end{frame}

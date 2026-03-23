@@ -9,33 +9,45 @@
 
 \input{options}
 
-\subtitle[05- PoS tagging]{Chapter 05\\Part-of-speech tagging} 
+\subtitle[05- POS tagging]{Chapter 05\\Part-of-speech tagging} 
 
 \changegraphpath{../img/pos/}
 
 \begin{document}
-	
+
 \begin{frame}
 	\frametitle{\inserttitle}
 	\framesubtitle{\insertshortsubtitle: Introduction}
-
-	\begin{exampleblock}{Example of two sentences}
+	
+	\begin{exampleblock}{Ambiguous sentences}
 		\begin{center}
-			\Huge\bfseries
-			We can can the can
-			
+			\Large\bfseries
+			We can can the can.\\[0.3em]
 			Will Will will the will to Will?
 		\end{center}
 	\end{exampleblock}
 	
 	\begin{itemize}
-		\item Did you understand these two sentences?
-		\item Find nouns, verbs, determiners, etc.
-		\item \optword{can}: (1) V: have the possibility (2) V: put in a container (3) N: container
-		\item \optword{will}: (1) V: express the future (2) N: masculine proper noun (3) V: determine by choice (4) N: testament
+%		\item These sentences illustrate lexical and syntactic ambiguity.
+		\item Identify the part of speech of each word.
+		\item \optword{can}:
+		\begin{itemize}
+			\item Verb (modal): express ability
+			\item Verb (lexical): preserve/put into a container
+			\item Noun: container
+		\end{itemize}
+		
+		\item \optword{will}:
+		\begin{itemize}
+			\item Modal auxiliary verb: express future
+			\item Lexical verb: intend or wish
+			\item Noun: testament
+			\item Proper noun: a person's name
+		\end{itemize}
 	\end{itemize}
-
+	
 \end{frame}
+
 
 \begin{frame}
 	\frametitle{\inserttitle}
@@ -59,7 +71,7 @@
 \end{frame}
 
 %===================================================================================
-\section{Sequences labeling}
+\section{Sequence labeling}
 %===================================================================================
 
 \begin{frame}
@@ -67,12 +79,12 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item Mostly, we talk about sequence of words
-		\item Each word has its own class
-		\item This class does not depend only on the word's features
-		\item It depends, also, on approximate classes
-		\item Some tasks classify chunks of words and not each word
-		\item In this case, we can use \keyword{IOB} notation seen in \keyword{chapter 02}
+		\item In most cases, we consider a sequence of words.
+		\item Each word is assigned a label (or tag).
+		\item This label does not depend solely on the word's features.
+		\item It also depends on the labels of neighboring words.
+		\item Some tasks assign labels to spans (chunks) of words rather than individual tokens.
+		\item In such cases, the \keyword{IOB} notation (introduced in \textbf{Chapter~02}) is commonly used.
 	\end{itemize}
 	
 \end{frame}
