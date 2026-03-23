@@ -122,7 +122,7 @@
 
 	\begin{minipage}{.68\textwidth}
 	\begin{itemize}
-		\item $G = (\Sigma, N, P, S)$ is a grammar.
+		\item $G = (\Sigma, N, \mathcal{P}, S)$ is a grammar.
 		\item $\Sigma$ is the set of terminal symbols (vocabulary).
 		\begin{itemize}
 			\item E.g. \expword{$\Sigma$ = \{the, little, cat, eats, a, fish, ...\}}.
@@ -139,7 +139,7 @@
 	
 	\begin{itemize}
 		\item $S \in N$ is the start symbol.
-		\item $P$ is the set of production rules.
+		\item $\mathcal{P}$ is the set of production rules.
 		\item Production rules have the form $A \rightarrow \beta$, where $A \in N$ and $\beta \in (\Sigma \cup N)^*$.
 		\begin{itemize}
 			\item \expword{S \textrightarrow NP VP}
@@ -157,7 +157,7 @@
 	\begin{itemize}
 		\item \textbf{Problem}: CFGs may generate multiple parse trees for the same sentence.
 		\item \textbf{Solution}: Assign a probability to each production rule.
-		\item Let $G = (\Sigma, N, P, S)$ be a grammar.
+		\item Let $G = (\Sigma, N, \mathcal{P}, S)$ be a grammar.
 		\item Rules have the form $A \rightarrow \beta \; [p]$, where $A \in N$ and $\beta \in (\Sigma \cup N)^*$.
 		\item $p$ is the probability of the rule.
 		\item This probability is estimated using an annotated corpus (\keyword{Treebank}).
@@ -275,7 +275,7 @@
 	
 	\begin{minipage}{.4\textwidth}
 		\begin{definition}[CNF]
-			\[G = (\Sigma, N, P, S)\]
+			\[G = (\Sigma, N, \mathcal{P}, S)\]
 			\[A \rightarrow  B C \text{ where } A, B, C \in N\]
 			\[A \rightarrow w \text{ where } w \in \Sigma\]
 		\end{definition}
@@ -284,11 +284,11 @@
 		\begin{block}{CNF building}
 		\tiny
 		\begin{algorithm}[H]
-			\KwData{A proper grammar $G = (\Sigma, N, P, S)$}
-			\KwResult{CNF grammar $G' = (\Sigma, N', P', S)$}
+			\KwData{A proper grammar $G = (\Sigma, N, \mathcal{P}, S)$}
+			\KwResult{CNF grammar $G' = (\Sigma, N', \mathcal{P}', S)$}
 			
 			Replace all terminals $\sigma$ in each rule's right-hand side by a variable $v$\;
-			Add the rule $v \rightarrow\ \sigma$ to $P'$\;
+			Add the rule $v \rightarrow\ \sigma$ to $\mathcal{P}'$\;
 			\ForEach{rule $A \rightarrow\  \alpha $}{
 				\If{$\alpha$ has more than 2 variables}{
 					Keep the first variable and create a new rule\;
@@ -309,17 +309,17 @@
 	\begin{block}{CKY: Sentence Recognition}
 		\scriptsize\vspace{-3pt}
 		\begin{algorithm}[H]
-			\KwData{A grammar $G = (\Sigma, N, P, S)$ in CNF; a sentence $w = w_1 \ldots w_n$}
+			\KwData{A grammar $G = (\Sigma, N, \mathcal{P}, S)$ in CNF; a sentence $w = w_1 \ldots w_n$}
 			\KwResult{$T[n, n]$}
 			
 			\lFor(\tcp*[f]{Initialize the diagonal}){$ i = 1 \ldots n$}{
-				$T[i, i] \leftarrow \{ (A, 0, 0, 0) / (A \rightarrow w_i) \in P \} $ 
+				$T[i, i] \leftarrow \{ (A, 0, 0, 0) / (A \rightarrow w_i) \in \mathcal{P} \} $ 
 			}
 			
 			\For(\tcp*[f]{Browse rows from bottom to top (no diagonal cells)}){$ i = (n-1) \ldots 2$}{
 				\For(\tcp*[f]{Browse columns from diagonal+1 to end}){$ j = (i+1) \ldots n $}{
 					\For(\tcp*[f]{Combine left and right spans via rules A → B C}){$ k = i \ldots (j-1) $}{
-						\ForEach{$A$ such as $(A \rightarrow B C) \in P $, $B \in T[i, k]$ and $C \in T[k+1, j]$}{
+						\ForEach{$A$ such as $(A \rightarrow B C) \in \mathcal{P} $, $B \in T[i, k]$ and $C \in T[k+1, j]$}{
 							$iB \leftarrow index(B, T[i, k])$ ;
 							$iC \leftarrow index(C, T[k+1, j])$ \;
 							$T[i, j] \leftarrow T[i, j] \cup \{(A, k, iB, iC)\}$ \;
@@ -426,14 +426,14 @@
 	\framesubtitle{\insertsubsection}
 
 	\begin{itemize}
-		\item Given a probabilistic context-free grammar (PCFG) $G = (\Sigma, N, P, S)$,
+		\item Given a probabilistic context-free grammar (PCFG) $G = (\Sigma, N, \mathcal{P}, S)$,
 		\item the new rules created by CNF have a probability equal to $1$.
 		\item Given a sentence to be parsed $w = w_1 \ldots w_n$,
 		\item the probability of a parse tree $T$ given a sentence $w$:
-		\[p(T \mid\ w) = \prod\limits_{(A_i \rightarrow \beta_i) \in T} p(A_i \rightarrow \beta_i)\]
+		\[P(T \mid\ w) = \prod\limits_{(A_i \rightarrow \beta_i) \in T} P(A_i \rightarrow \beta_i)\]
 		\item Given the different parse trees $\mathcal{T}(w)$ of $w$,
 		\item the parse tree is the most probable one:
-		\[\hat{T} = \arg\max\limits_{T \in \mathcal{T}(w)} p(T \mid\ w)\]
+		\[\hat{T} = \arg\max\limits_{T \in \mathcal{T}(w)} P(T \mid\ w)\]
 	\end{itemize}
 
 \end{frame}
@@ -445,18 +445,18 @@
 	\begin{block}{Probabilistic CKY: Sentence Recognition}
 		\scriptsize\vspace{-3pt}
 		\begin{algorithm}[H]
-			\KwData{A grammar $G = (\Sigma, N, P, S)$ in CNF; a sentence $w = w_1 \ldots w_n$}
+			\KwData{A grammar $G = (\Sigma, N, \mathcal{P}, S)$ in CNF; a sentence $w = w_1 \ldots w_n$}
 			\KwResult{$T[n, n, |N|]$}
 			
 			\lFor{$ i = 1 \ldots n$}{
-				$T[i, i, A] \leftarrow \{ (p(A \rightarrow w_i), 0, A, A) / (A \rightarrow w_i) \in P \} $
+				$T[i, i, A] \leftarrow \{ (P(A \rightarrow w_i), 0, A, A) / (A \rightarrow w_i) \in \mathcal{P} \} $
 			}
 			
 			\For{$ i = (n-1) \ldots 1$ }{
 				\For{$ j = (i+1) \ldots n $}{
 					\For{$ k = i \ldots (j-1) $}{
-						\ForEach{$A$ such as $(A \rightarrow B C) \in P $, $T[i, k, B] > 0$ and $T[k+1, j, C] > 0$}{
-							$p \leftarrow p(A \rightarrow B C) * T[i, k, B][1] * T[k+1, j, C][1]$\;
+						\ForEach{$A$ such as $(A \rightarrow B C) \in \mathcal{P} $, $T[i, k, B] > 0$ and $T[k+1, j, C] > 0$}{
+							$p \leftarrow P(A \rightarrow B C) * T[i, k, B][1] * T[k+1, j, C][1]$\;
 							\If{$p > T[i, j, A][1]$}{
 								$T[i, j, A] \leftarrow (p, k, B, C)$ \;
 							}

@@ -703,7 +703,7 @@
 		
 		\begin{block}{CBOW Loss Function}
 			\[
-			J(\theta) = -\frac{1}{T} \sum_{i=1}^{T} \log p(w_i \mid w_{i-2}, w_{i-1}, w_{i+1}, w_{i+2})
+			J(\theta) = -\frac{1}{T} \sum_{i=1}^{T} \log P(w_i \mid w_{i-2}, w_{i-1}, w_{i+1}, w_{i+2})
 			\]
 		\end{block}
 		
@@ -727,7 +727,7 @@
 		
 		\begin{block}{Skip-gram Loss Function}
 			\[
-			J(\theta) = -\frac{1}{T} \sum_{i=1}^{T} \sum_{j=i-2, j \ne i}^{i+2} \log p(w_j \mid w_i)
+			J(\theta) = -\frac{1}{T} \sum_{i=1}^{T} \sum_{j=i-2, j \ne i}^{i+2} \log P(w_j \mid w_i)
 			\]
 		\end{block}
 		
@@ -769,8 +769,8 @@
 	\begin{minipage}{.5\textwidth}
 		\begin{itemize}
 			\item Consider $w_i = \text{ice}$ and $w_j = \text{steam}$.
-			\item Let $p_{ik}, p_{jk}$ denote the probabilities of context word $w_k$ occurring with $w_i$ and $w_j$ respectively.
-			\item Define the co-occurrence ratio $\frac{p_{ik}}{p_{jk}}$.
+			\item Let $P_{ik}, P_{jk}$ denote the probabilities of context word $w_k$ occurring with $w_i$ and $w_j$ respectively.
+			\item Define the co-occurrence ratio $\frac{P_{ik}}{P_{jk}}$.
 		\end{itemize}
 		
 	\end{minipage}
@@ -807,7 +807,7 @@
 			\item If $\neg R(w_k, w_i) \wedge \neg R(w_k, w_j)$, the ratio will be close to $1$. E.g. \expword{fashion}.
 		\end{itemize}
 		\item The idea is to train a function $F$ on $w_i$, $w_j$ and $\tilde{w_k}$ representations:
-		\[F(w_i, w_j, \tilde{w_k}) = \frac{p_{ik}}{p_{jk}}\]
+		\[F(w_i, w_j, \tilde{w_k}) = \frac{P_{ik}}{P_{jk}}\]
 	\end{itemize}
 	
 \end{frame}
@@ -819,11 +819,11 @@
 	\begin{itemize}
 		\item We impose a constraint on $F$ using the difference of word vectors:
 		\[
-		F(w_i - w_j, \tilde{w_k}) = \frac{p_{ik}}{p_{jk}}
+		F(w_i - w_j, \tilde{w_k}) = \frac{P_{ik}}{P_{jk}}
 		\]
 		\item Map the vector difference to a scalar via the dot product:
 		\[
-		F((w_i - w_j)^\top \tilde{w_k}) = \frac{p_{ik}}{p_{jk}}
+		F((w_i - w_j)^\top \tilde{w_k}) = \frac{P_{ik}}{P_{jk}}
 		\]
 		\item Considering symmetry ($w \leftrightarrow \tilde{w}$ and $X \leftrightarrow X^\top$), 
 		$F$ must satisfy the homomorphism property:
@@ -831,7 +831,7 @@
 		F((w_i - w_j)^\top \tilde{w_k}) = \frac{F(w_i^\top \tilde{w_k})}{F(w_j^\top \tilde{w_k})}
 		\]
 		\item Therefore, we set:
-		$F(w_i^\top \tilde{w_k}) = p_{ik} = \frac{X_{ik}}{X_i}$
+		$F(w_i^\top \tilde{w_k}) = P_{ik} = \frac{X_{ik}}{X_i}$
 	
 		\item Choosing $F = \exp$ satisfies the property, yielding:
 		\[w_i^\top \tilde{w_k} = \log X_{ik} - \log X_i\]

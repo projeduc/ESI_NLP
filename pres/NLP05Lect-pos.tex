@@ -96,22 +96,23 @@
 	\framesubtitle{\insertsubsection}
 
 	\begin{itemize}
-		\item \textbf{Goal}: assigning labels to elements of a sequence.
-		\item \textbf{Example}: \expword{Assigning PoS tags to a sentence's words}.
+		\item \textbf{Goal}: Assigning labels to the elements of a sequence.
+		\item \textbf{Example}: \expword{Assigning POS tags to the words in a sentence}.
 	\end{itemize}
 	
 	\begin{block}{Problem formulation}
 		\begin{itemize}
-			\item $w = w_1, \ldots, w_n$: input words sequence
-			\item $t = t_1, \ldots, t_n$: output labels sequence
+			\item $w = (w_1, \ldots, w_n)$: input word sequence
+			\item $t = (t_1, \ldots, t_n)$: output label sequence
 		\end{itemize}
 		\begin{center}
-			$ \arg\max\limits_t P(t | w)$
+			$\arg\max\limits_t P(t \mid w)$
 		\end{center}
 		
 		\begin{itemize}
-			\item \optword{Generative models} $ \arg\max\limits_t P(t | w) = \arg\max\limits_t P(t) P(w | t) $
-			\item \optword{Discriminative models} estimating $\arg\max\limits_t P(t | w)$ directly
+			\item \optword{Generative models}: 
+			$\arg\max\limits_t P(t \mid w) = \arg\max\limits_t P(t)\,P(w \mid t)$ % \quad (since $P(w)$ is constant)
+			\item \optword{Discriminative models}: directly estimate $\arg\max\limits_t P(t \mid w)$
 		\end{itemize}
 	\end{block}
 
@@ -123,19 +124,20 @@
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
 
-	%eisenstein
 	\begin{itemize}
 		\item Named Entity Recognition (NER)
 		\begin{itemize}
-			\item Find people, organizations, places, numbers, etc. in a sentence
+			\item Identify entities such as persons, organizations, and locations in a sentence
 		\end{itemize}
-		\item PoS tagging
+		
+		\item POS Tagging
 		\begin{itemize}
-			\item Find words PoS tags (noun, verb, etc.)
+			\item Assign part-of-speech (POS) tags (e.g., noun, verb) to each word
 		\end{itemize}
+		
 		\item Chunking
 		\begin{itemize}
-			\item Find different phrases in a sentence (such as nominal phrase)
+			\item Identify syntactic phrases (e.g., noun phrases) in a sentence
 		\end{itemize}
 	\end{itemize}
 
@@ -154,7 +156,7 @@
 	\begin{figure}
 		\centering
 		\hgraphpage{exp-pos2_.pdf}
-		\caption{Example of PoS tagging [\url{https://corenlp.run/}]}
+		\caption{Example of POS tagging [\url{https://corenlp.run/}]}
 	\end{figure}
 
 \end{frame}
@@ -169,16 +171,18 @@
 \framesubtitle{Task description}
 
 	\begin{itemize}
-		\item \textbf{Objective}: find the PoS of each word in a sentence
-		\item Define PoS
+		\item \textbf{Objective}: assign a part-of-speech (POS) tag to each word in a sentence
+		
+		\item POS tag sets:
 		\begin{itemize}
-			\item General: \expword{N (noun), V (verb), J (adjective), A (adverb), P (preposition), Determiner (D)}
-			\item Specific: \expword{NN (noun), NNP (proper noun), V (present verb), VP (past verb) ...}
+			\item General: \expword{NOUN, VERB, ADJ, ADV, ADP, DET}
+			\item Specific: \expword{NN (noun), NNP (proper noun), VB (base verb), VBD (past tense), ...}
 		\end{itemize}
-		\item Annotate a corpus using these tags
+		
+		\item Corpus annotation:
 		\begin{itemize}
-			\item Manually annotate a test corpus
-			\item Another one for training if we want to use machine learning
+			\item A test corpus is manually annotated.
+			\item A separate corpus is used for training in supervised learning settings.
 		\end{itemize}
 	\end{itemize}
 
@@ -233,15 +237,15 @@
 	ashore\keyword{/RB} 375\keyword{/CD} years\keyword{/NNS} ago\keyword{/RB} .\keyword{/.}
 	\end{alltt}\vspace{-6pt}
 	\end{tcolorbox}
-	\caption{Example from Penn TreeBank \cite{2003-taylor}}
+	\caption{Example from Penn Treebank \cite{2003-taylor}}
 	\end{figure}
 	
 	\begin{itemize}
-		\item Universal TreeBank (\url{https://universaldependencies.org/}) \cite{2012-petrov-al}
+		\item Universal Treebank (\url{https://universaldependencies.org/}) \cite{2012-petrov-al}
 		\begin{itemize}
-			\item Open community project
-			\item It aims to provide annotated corpora for several languages
-			\item It uses the same PoS for all languages
+			\item It is an open community project.
+			\item It aims to provide annotated corpora for several languages.
+			\item It uses the same PoS for all languages.
 		\end{itemize}
 	\end{itemize}
 
@@ -256,18 +260,20 @@
 	\begin{itemize}
 		\item \optword{Ambiguity}
 		\begin{itemize}
-			\item There are words having several PoS
-			\item E.g. \expword{We can can the can}
+			\item Some words can have multiple POS tags.
+			\item E.g., \expword{We can can the can.}
 		\end{itemize}
+		
 		\item \optword{Unknown words}
 		\begin{itemize}
-			\item Out of vocabulary words (from the training corpus)
-			\item Languages are always in evolution (creating new words and abbreviations)
+			\item Out-of-vocabulary (OOV) words (i.e., not seen in the training corpus).
+			\item Languages are constantly evolving, leading to the creation of new words and abbreviations.
 		\end{itemize}
+		
 		\item \optword{Tag inconsistency}
 		\begin{itemize}
-			\item When there are several tags, we can find inconsistencies in the annotation
-			\item E.g. \expword{In ``Brown" and ``WSJ" corpora, the word ``to" has the tag ``TO". In ``Switchboard" corpus, it has the tag ``TO" when it indicates the infinitive, otherwise ``IN" when it is a preposition.}
+			\item Differences in tag sets may lead to inconsistencies in annotation
+			\item E.g., \expword{In the ``Brown'' and ``WSJ'' corpora, the word ``to'' is tagged as ``TO''. In the ``Switchboard'' corpus, it is tagged as ``TO'' when marking the infinitive, and as ``IN'' when used as a preposition.}
 		\end{itemize}
 	\end{itemize}
 
@@ -277,12 +283,45 @@
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Tools}
 
+%	\begin{itemize}
+%		\item \url{https://nlp.stanford.edu/software/tagger.shtml}
+%		\item \url{https://github.com/sloria/textblob}
+%		\item \url{https://www.nltk.org/api/nltk.tag.html}
+%		\item \url{https://spacy.io/}
+%		\item \url{https://github.com/clips/pattern}
+%	\end{itemize}
+
 	\begin{itemize}
-		\item \url{https://nlp.stanford.edu/software/tagger.shtml}
-		\item \url{https://github.com/sloria/textblob}
-		\item \url{https://www.nltk.org/api/nltk.tag.html}
-		\item \url{https://spacy.io/}
-		\item \url{https://github.com/clips/pattern}
+		\item \textbf{Stanford POS Tagger}
+		\begin{itemize}
+			\item \url{https://nlp.stanford.edu/software/tagger.shtml}
+			\item A classical probabilistic POS tagging system
+		\end{itemize}
+		
+		\item \textbf{NLTK}
+		\begin{itemize}
+			\item \url{https://www.nltk.org/api/nltk.tag.html}
+			\item A widely used educational NLP toolkit in Python
+		\end{itemize}
+		
+		\item \textbf{spaCy}
+		\begin{itemize}
+			\item \url{https://spacy.io/}
+			\item A modern, efficient library for industrial NLP applications
+		\end{itemize}
+		
+		\item \textbf{TextBlob}
+		\begin{itemize}
+			\item \url{https://github.com/sloria/textblob}
+			\item A simple NLP library built on top of NLTK
+		\end{itemize}
+		
+		\item \textbf{Pattern}
+		\begin{itemize}
+			\item \url{https://github.com/clips/pattern}
+			\item A lightweight NLP library for Python
+		\end{itemize}
+		
 	\end{itemize}
 
 \end{frame}
@@ -305,15 +344,16 @@
 \frametitle{Part-of-speech tagging}
 \framesubtitle{Approaches}
 
-\begin{itemize}
-	\item Manual Rules
-	\item Machine Learning
 	\begin{itemize}
-		\item Learn the rules: \expword{Transformation-Based Learning (TBL)}
-		\item Statistical Models: \expword{Hidden Markov Model, Maximum Entropy Based Markov Model, Conditional Random Fields (CRF)}
-		\item Neural Networks: \expword{RNNs, Transformers}
+		\item Rule-based approaches
+		
+		\item Machine learning approaches
+		\begin{itemize}
+			\item Transformation-Based Learning (TBL)
+			\item Statistical models: \expword{Hidden Markov Models (HMMs), Maximum Entropy Markov Models (MEMMs), Conditional Random Fields (CRFs)}
+			\item Neural models: \expword{Recurrent Neural Networks (RNNs), Transformers}
+		\end{itemize}
 	\end{itemize}
-\end{itemize}
 
 \end{frame}
 
@@ -322,17 +362,19 @@
 \begin{frame}[fragile]
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
-
+	
 	\begin{itemize}
-		\item $Q = \{t_1, t_2, \ldots, t_N\}$: tags are considered as states
-		\item $A$: Transitions probability matrix where $\sum_j a_{ij} = 1,\, \forall i$
-		\item $W = w_1 w_2 \ldots w_T$ : words sequence
-		\item $B = b_i(w_t)$: Observation probabilities (\keyword{Emission probability}); probability of generating a word $w_t$ in a state $q_i \in Q$
-		\item $\pi = [\pi_1, \pi_2, \ldots, \pi_n ]$: initial states probability distribution, where $\sum_i \pi_i = 1$
+		\item $Q = \{t_1, t_2, \ldots, t_N\}$: set of tags (states)
+		\item $A$: transition probability matrix, where $\sum_j a_{ij} = 1,\ \forall i$
+		\item $W = (w_1, w_2, \ldots, w_T)$: word sequence
+		\item $B$: emission probabilities $b_i(w_t)$; probability of generating word $w_t$ in state $t_i \in Q$
+		\item $\pi = (\pi_1, \pi_2, \ldots, \pi_N)$: initial state distribution, where $\sum_i \pi_i = 1$
 		
-		\item $\hat{t} = \arg\max\limits_t P(t | w) = \arg\max\limits_t \frac{P(w|t) P(t)}{P(w)} \approx \arg\max\limits_t P(t) P(w|t)$
-		\item $P(t) = P(t_1 \ldots t_T) \approx \pi_{t_1} \prod\limits_{i=1}^N P(t_i|t_{i-1}) $ where $P(t_i|t_{i-1}) \in A$ (Bi-gram) 
-		\item $P(w|t) = P(w_1 \ldots w_T|t_1 \ldots t_T) = \prod\limits_{i=1}^N P(w_i|t_i) $ where $P(w_i|t_i) \in B$
+		\item $\hat{t} = \arg\max\limits_t P(t \mid w) = \arg\max\limits_t P(t)\,P(w \mid t)$
+		
+		\item $P(t) = P(t_1, \ldots, t_T) \approx \pi_{t_1} \prod\limits_{i=2}^{T} P(t_i \mid t_{i-1})$ \quad (bigram assumption)
+		
+		\item $P(w \mid t) = \prod\limits_{i=1}^{T} P(w_i \mid t_i)$
 	\end{itemize}
 
 \end{frame}
@@ -362,36 +404,44 @@
 
 \end{frame}
 
-\begin{frame}
-	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Exercise}
-	
-	\begin{itemize}
-		\item Use the previous corpus (example)
-		\item Calculate $A$, $B$ and $Pi$ (train a HMM model)
-		\item Calculate the approximate probability $P(PN\ VB\ VB | he\ can\ help)$
-		\item Using greedy decoding, find tag sequence of the sentence \expword{he can help}
-		\item Redo the same thing using Viterbi decoding
-		\item Redo the same thing using Beam Search (K=3)
-	\end{itemize}
-	
-\end{frame}
+%\begin{frame}
+%	\frametitle{\insertshortsubtitle: \insertsection}
+%	\framesubtitle{\insertsubsection: Exercise}
+%	
+%	\begin{itemize}
+%		\item Use the example training corpus from the previous slide.
+%		\item Estimate HMM parameters: transition matrix $A$, emission matrix $B$, and initial distribution $\pi$.
+%		\item Calculate the approximate probability $P(PN\ VB\ VB \mid he\ can\ help)$.
+%		\item Using greedy decoding, determine the tag sequence for the sentence \expword{he can help}.
+%		\item Repeat the procedure using Viterbi decoding.
+%		\item Repeat using Beam Search decoding with $K=3$.
+%	\end{itemize}
+%	
+%\end{frame}
 
-\subsection{Maximum entropy Markov model}
+\subsection{Maximum Entropy Markov Model}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
 
 	\begin{itemize}
-		\item Let us denote $x_{n}^{m} = x_n x_{n+1} \ldots x_{m-1} x_m$
-		\item Given  
+		\item We denote a subsequence: $x_n^m = (x_n, x_{n+1}, \ldots, x_m)$.
+		\item Given:
 		\begin{itemize}
-			\item a words sequence: $w = w_1 w_2 \ldots w_n$
-			\item a set of feature functions $f$ defined on a window of words $w_{i-l}^{i+l}$ and some past tags $t_{i-k}^{i-1}$
+			\item a word sequence: $w = (w_1, w_2, \ldots, w_n)$
+			\item a set of feature functions $f_j$ defined on a window of words $w_{i-l}^{i+l}$ and the previous $k$ tags $t_{i-k}^{i-1}$,
 		\end{itemize}
-		\item $\hat{t} = \arg\max\limits_t P(t | w) \approx \arg\max\limits_t \prod\limits_{i}  P(t_i | w_{i-l}^{i+l}, t_{i-k}^{i-1})$
-		\item $P(t_i | w_{i-l}^{i+l}, t_{i-k}^{i-1}) = Softmax(\sum_j \theta_j f_j(t_i, w_{i-l}^{i+l}, t_{i-k}^{i-1}))$
+		\item tag sequence prediction:
+		\[
+		\hat{t} = \arg\max_{t} P(t \mid w) \approx \arg\max_{t} \prod_{i=1}^{n} P(t_i \mid w_{i-l}^{i+l}, t_{i-k}^{i-1})
+		\]
+		\item Conditional probability (softmax over features):
+		\[
+		P(t_i \mid w_{i-l}^{i+l}, t_{i-k}^{i-1}) =
+		\frac{\exp\left(\sum_j \theta_j f_j(t_i, w_{i-l}^{i+l}, t_{i-k}^{i-1})\right)}
+		{\sum_{t'_i} \exp\left(\sum_j \theta_j f_j(t'_i, w_{i-l}^{i+l}, t_{i-k}^{i-1})\right)}
+		\]
 	\end{itemize}
 
 \end{frame}
@@ -401,44 +451,44 @@
 	\framesubtitle{\insertsubsection: Features}
 
 	\begin{itemize}
-		\item $w_i$ (considering words as features)
-		\item previous tags 
-		\item $w_i$ contains a prefix from a list ($len(prefix) \le 4$) 
-		\item $w_i$ contains a suffix from a list  ($len(suffix) \le 4$) 
-		\item $w_i$ contains a number 
-		\item $w_i$ contains un uppercase letter
-		\item $w_i$ contains a hyphen 
-		\item $w_i$ is completely in uppercase
-		\item $w_i$'s template (E.g. \expword{X.X.X}) 
-		\item $w_i$ is uppercase with a hyphen and a number (E.g. \expword{CFC-12}) 
-		\item $w_i$ is uppercase followed by words: Co., Inc., etc. after a maximum of 3 words
+		\item Current word $w_i$ (words themselves as features)
+		\item Previous tags $t_{i-1}, t_{i-2}, \dots$
+		\item $w_i$ contains a prefix from a predefined list ($\text{length} \le 4$)
+		\item $w_i$ contains a suffix from a predefined list ($\text{length} \le 4$)
+		\item $w_i$ contains a digit
+		\item $w_i$ contains an uppercase letter
+		\item $w_i$ contains a hyphen
+		\item $w_i$ is entirely uppercase
+		\item $w_i$ template (e.g., \expword{X.X.X})
+		\item $w_i$ is uppercase with a hyphen and a number (e.g., \expword{CFC-12})
+		\item $w_i$ is uppercase followed by an abbreviation (e.g., \expword{Co., Inc.}) within a window of up to 3 words
 	\end{itemize}
 
 \end{frame}
 
-\begin{frame}
-	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Exercise}
-	
-	\begin{itemize}
-		\item Use the previous corpus (HMM's example)
-		\item Let us use the following features:
-		\begin{itemize}
-			\item Past, current and future words encoded using ordinal encoding (alphabetical order)
-			\item Past and current PoS encoded using ordinal encoding (alphabetical order)
-			\item Current word having a suffix "s" (1 or 0)
-		\end{itemize}
-		\item Manually train a MEMM model using these specifications:
-		\begin{itemize}
-			\item Parameters are initialized to 1; no bias
-			\item Instead of \textbf{Softmax} use \textbf{Average normalization} as activation function
-			\item Instead of \textbf{cross entropy} loss, use $J = -\sum_{i=1}^{M} t_i \hat{t}_i$
-			\item Learning rate $\alpha=1$ 
-			\item 3 iterations
-		\end{itemize}
-	\end{itemize}
-	
-\end{frame}
+%\begin{frame}
+%	\frametitle{\insertshortsubtitle: \insertsection}
+%	\framesubtitle{\insertsubsection: Exercise}
+%	
+%	\begin{itemize}
+%		\item Use the training corpus from the previous HMM example.
+%		\item We will use the following features:
+%		\begin{itemize}
+%			\item Past, current, and future words, encoded using ordinal encoding (alphabetical order).
+%			\item Past and current PoS tags, encoded using ordinal encoding (alphabetical order).
+%			\item Indicator feature: current word ends with the suffix "s" (1 if yes, 0 otherwise).
+%		\end{itemize}
+%		\item Manually train a MEMM model with the following specifications:
+%		\begin{itemize}
+%			\item Parameters are initialized to 1; no bias term is used.
+%			\item Use \textbf{average normalization} instead of Softmax as the activation function.
+%			\item Replace cross-entropy loss with $J = -\sum_{i=1}^{M} t_i \hat{t}_i$.
+%			\item Learning rate $\alpha = 1$.
+%			\item Number of iterations: 3.
+%		\end{itemize}
+%	\end{itemize}
+%	
+%\end{frame}
 
 \subsection{Neural model}
 
