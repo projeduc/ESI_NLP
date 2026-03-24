@@ -31,15 +31,43 @@
 	\end{exampleblock}
 	
 	\begin{itemize}
-		\item What instrument did the cat use to catch the mouse? How? With who?
-		\item The last sentence means: 
+		\item Which instrument or manner did the cat use to catch the mouse?
+		\item Who participated in the action?
+		\item The last sentence can be interpreted in two ways:
 		\begin{itemize}
-			\item My cat caught two animals: a mouse and another mouse.
-			\item The two cats caught a mouse.
+			\item Two cats together caught a mouse.
+			\item The cat caught two animals: a mouse and another cat.
 		\end{itemize}
 	\end{itemize}
 
 \end{frame}
+
+\begin{frame}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Introduction}
+	
+	Different ways to represent the meaning of a sentence:
+	
+	\begin{itemize}
+		\item \optword{Distributional / Vector-based semantics}
+		\begin{itemize}
+			\item Centroid, concatenation, embeddings, ...
+		\end{itemize}
+		\item \optword{Logical / Symbolic representations}
+		\begin{itemize}
+			\item First-order logic (FOL), SQL, ...
+		\end{itemize}
+		\item \optword{Graph-based representations}
+		\begin{itemize}
+			\item AMR, semantic role labeling, ...
+		\end{itemize}
+	\end{itemize}
+	
+	\vspace{0.2cm}
+	\footnotesize
+	Note: Distributional semantics is already discussed; here we focus on symbolic and structured representations for explicit reasoning and compositionality.
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{\inserttitle}
@@ -70,15 +98,28 @@
 	\frametitle{\insertshortsubtitle}
 	\framesubtitle{\insertsection}
 	
-	\begin{center}
-		Blank page 
+	\begin{itemize}
+		\item \optword{Grammatical / Syntactic roles:} define how words function in a sentence.
+		\begin{itemize}
+			\item Examples: \expword{Subject, Object, Indirect Object, Modifier}
+			\item Captured by dependency or constituency parses
+		\end{itemize}
 		
-		...
+		\item \optword{Semantic roles:} define the underlying participant functions in events or actions.
+		\begin{itemize}
+			\item Examples: \expword{Agent, Patient, Experiencer, Theme, Instrument}
+			\item Abstract away from surface syntax
+			\item Provide \textbf{meaning-level understanding} for tasks like SRL, AMR, question answering
+		\end{itemize}
 		
-		Blank like my mind trying to think what to put in here
-	\end{center}
-	
+		\item Example:
+		\begin{itemize}
+			\item Syntax: John (subject) was hit by the ball (object)
+			\item Semantics: ball = Agent, John = Patient
+		\end{itemize}
+	\end{itemize}
 \end{frame}
+
 
 \subsection{Thematic roles}
 
@@ -123,7 +164,7 @@
 			
 			INSTRUMENT &
 			An instrument used in an event &
-			\expword{\underline{a rock} broke the window.}\\
+			\expword{Karim broke the window with \underline{a rock}.}\\
 			
 			BENEFICIARY &
 			The beneficiary of an event &
@@ -141,7 +182,7 @@
 			The specification of the place where the action or event designated by the predicate takes place &
 			\expword{I live in \underline{Jijel}.}\\
 		\end{tblr}
-		\caption{Some thematic roles, adapted from \cite{2019-jurafsky-martin}}
+		\caption{Illustrative thematic roles, adapted from \cite{2019-jurafsky-martin}}
 	\end{table}
 	
 \end{frame}
@@ -152,26 +193,29 @@
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
 
-	\begin{minipage}{.68\textwidth}
+	\begin{minipage}{.75\textwidth}
+		
 		\begin{itemize}
 			\item {\scriptsize \url{https://framenet.icsi.berkeley.edu/fndrupal/}}
 			\item {\scriptsize \url{https://www.nltk.org/howto/framenet.html}}
-			\item Resource used to represent meaning
-			\item based on``\keyword{Frame semantics}" theory of \keyword{Fillmore}
-			\item annotated manually
-			\item Many semantic roles
+			\item FrameNet is a lexical resource used to represent meaning through frames.
+			\item Based on the \keyword{Frame semantics} theory of \keyword{Fillmore}.
+			\item Examples are manually annotated with semantic roles (frame elements).
+			\item Each frame contains multiple semantic roles.
 		\end{itemize}
 	\end{minipage}
-	\begin{minipage}{.3\textwidth}
+	\begin{minipage}{.23\textwidth}
 		\hgraphpage{frameNet-logo.jpg}
 	\end{minipage}
 	
-	\begin{exampleblock}{Example of sentences having the same frame}
+	\begin{exampleblock}{Example sentences evoking the same frame}
 		The price of petrol increased.
 		
 		The price of petrol rose.
 		
 		There has been a rise in the price of petrol.
+		
+		\small{\textit{(All sentences evoke the frame ``Increase\_price''.)}}
 	\end{exampleblock}
 
 \end{frame}
@@ -181,25 +225,25 @@
 	\framesubtitle{\insertsubsection: Structure}
 	
 	\begin{itemize}
-		\item \optword{Frame}: schematic relation of a situation.
+		\item \optword{Frame}: a schematic representation of a situation.
 		\begin{itemize}
-			\item name, definition, semantic type, frame elements, lexical units, examples and relations with other frames
+			\item Includes a name, definition, semantic type, frame elements, lexical units, examples, and relations to other frames.
 		\end{itemize}
-	
+		
 		\item \optword{Frame Element (FE)}: a semantic role specific to a frame. 
 		\begin{itemize}
-			\item It describes a participant or a situation of the frame.
-			\item Two types of FE: important (\keyword{Core}) and secondary (\keyword{Non-Core}).
+			\item Describes a participant, property, or attribute of the frame.
+			\item Two types: central (\keyword{Core}) and peripheral (\keyword{Non-Core}).
 		\end{itemize}
-	
-		\item \optword{Lexical Units (LU)}: lemmas with their PoS.
+		
+		\item \optword{Lexical Units (LU)}: lemmas associated with their part-of-speech (POS).
 		\begin{itemize}
-			\item A lexical unit triggers the frame when encountered.
+			\item A lexical unit evokes the frame.
 		\end{itemize}
-	
-		\item \optword{Relations}: inter-frames relations.
+		
+		\item \optword{Relations}: relations between frames.
 		\begin{itemize}
-			\item Example, \expword{inheritance}.
+			\item For example, \expword{inheritance}.
 		\end{itemize}
 	\end{itemize}
 	
@@ -444,25 +488,16 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
-
 	
-	%\begin{minipage}{.68\textwidth}
 	\begin{itemize}
 		\item {\scriptsize \url{https://propbank.github.io/}}
 		\item {\scriptsize \url{https://www.nltk.org/howto/propbank.html}}
-		\item Annotated corpus based on Predicate-Arguments structure
-		\item Less semantic roles 
+		\item A corpus annotated with predicate--argument structures.
+		\item Uses a small set of general semantic roles (ARG0--ARG5).
 		\begin{itemize}
-			\item \optword{Proto-Agent}
-			\begin{itemize}
-				\item voluntarily participate in an event or state
-				\item cause an event or a state change of another participant
-			\end{itemize}
-			\item \optword{Proto-Patient}
-			\begin{itemize}
-				\item experience a change of state
-				\item be affected by another participant
-			\end{itemize}
+			\item \optword{ARG0}: typically the agent (doer of the action)
+			\item \optword{ARG1}: typically the patient or theme
+			\item Other arguments (ARG2--ARG5) depend on the predicate
 		\end{itemize}
 	\end{itemize}
 	
@@ -473,30 +508,30 @@
 	\framesubtitle{\insertsubsection: Structure}
 	
 	\begin{itemize}
-		\item \optword{Roleset id}: Verbs are annotated by their meanings.
+		\item \optword{Roleset ID}: Each verb sense is associated with a roleset identifier.
 		\begin{itemize}
-			\item E.g. \expword{know.01: be cognizant of, realize ; know.02: be familiar with, have experienced}		
+			\item E.g., \expword{know.01: be cognizant of, realize; know.02: be familiar with, have experienced}
 		\end{itemize}
 		
-		\item \optword{Roles}: Each verb/meaning has a set of possible arguments.  
+		\item \optword{Roles}: Each verb sense has a set of possible arguments.
 		\begin{itemize}
-			\item \optword{Arg0}: PROTO-AGENT
-			\item \optword{Arg1}: PROTO-PATIENT
-			\item \optword{Arg2}: in general; beneficiary, instrument, attribute, or end state.
-			\item \optword{Arg3}: in general; start point, beneficiary, instrument, or attribute.
-			\item \optword{Arg4}: end point
-			\item Arg2 ... Arg5 are not consistent in the corpus
+			\item \optword{Arg0}: typically agent-like
+			\item \optword{Arg1}: typically patient-like or theme
+			\item \optword{Arg2}: often expresses a beneficiary, instrument, attribute, or end state
+			\item \optword{Arg3}: often expresses a starting point, beneficiary, instrument, or attribute
+			\item \optword{Arg4}: typically endpoint
+			\item Arg2--Arg5 are verb-specific; less consistently defined across predicates
 		\end{itemize}
-	
-		\item \optword{Modifiers}: Marked by \keyword{ArgM}  
+		
+		\item \optword{Modifiers}: marked by \keyword{ArgM}  
 		\begin{itemize}
-			\item \optword{ArgM-TMP}: When?
-			\item \optword{ArgM-LOC}: Where?
-			\item \optword{ArgM-MNR}: How? 
+			\item \optword{ArgM-TMP}: temporal (when)
+			\item \optword{ArgM-LOC}: locative (where)
+			\item \optword{ArgM-MNR}: manner (how)
 			\item ...
 		\end{itemize}
 		
-		\item \optword{Annotated examples} 
+		\item \optword{Annotated examples}: illustrate predicate--argument structures
 	\end{itemize}
 	
 \end{frame}
@@ -534,23 +569,24 @@
 		\end{itemize}
 		\end{tcolorbox}
 			
-		\caption{ProBank annotation excerpt of predicate ``know" \url{http://verbs.colorado.edu/propbank/framesets-english-aliases/know.html}}
+		\caption{PropBank annotation excerpt of predicate ``know" \url{http://verbs.colorado.edu/propbank/framesets-english-aliases/know.html}}
 	\end{figure}
 	
 \end{frame}
 
 
 %===================================================================================
-\section{Semantic roles labeling (SRL)}
+\section{Semantic Role Labeling (SRL)}
 %===================================================================================
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle}
-	\framesubtitle{\insertsection\ (Example)}
+	\framesubtitle{\insertsection\ (Illustrative example)}
 
 	\begin{figure}
 		\hgraphpage{exp-srl_.pdf}
-		\caption{Example of ProbBank-based SRL [\url{https://demo.allennlp.org/semantic-role-labeling/}]}
+		\caption{Example of PropBank-based semantic role labeling. 
+			Source: \url{https://demo.allennlp.org/semantic-role-labeling/}}
 	\end{figure}
 	
 \end{frame}
@@ -560,38 +596,45 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item Rule-based / Linguistic Approaches.
-		
-		e.g. \expword{"NP [subject] + verb + NP [object]" → Agent + Verb + Patient}
-		
-		\item Statistical / Feature-based Machine Learning
-		
-		\item Neural-based
+		\item \optword{Rule-based (linguistic) approach}
 		\begin{itemize}
-			\item RNN-based
-			\item Transformer-based
+			\item Use syntactic rules and linguistic knowledge
+			\item e.g., \expword{NP [subject] + verb + NP [object]} 
+			$\rightarrow$ Agent + Predicate + Patient (heuristic)
+		\end{itemize}
+		
+		\item \optword{Statistical (feature-based) machine learning approach}
+		\begin{itemize}
+			\item Rely on manually designed features (POS tags, parse trees, etc.)
+		\end{itemize}
+		
+		\item \optword{Neural approach}
+		\begin{itemize}
+			\item RNN-based models
+			\item Transformer-based models
 		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
 
-\subsection{Features-based}
+\subsection{Feature-based}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
-		\item \optword{Idea}: browse the parse tree and classify the nodes.
+		\item \optword{Idea}: traverse the parse tree and classify syntactic constituents.
 		\begin{itemize}
-			\item \optword{Input}: features on the node (phrase) and the predicate.
-			\item \optword{Output}: classes are those of FrameNet or PropBank + \keyword{None} to mark a node with no role
+			\item \optword{Input}: features extracted from the node (phrase) and the predicate.
+			\item \optword{Output}: labels correspond to FrameNet or PropBank roles, plus \keyword{None} for non-arguments.
 		\end{itemize} 
-		\item The classification process can be optimized
+		
+		\item The classification process can be optimized through:
 		\begin{enumerate}
-			\item \optword{Pruning}: eliminate classification constituents using heuristics.
-			\item \optword{Identification}: classify the nodes in \keyword{Argument} or \keyword{None}.
-			\item \optword{Classification}: classes are those of FrameNet or PropBank.
+			\item \optword{Pruning}: eliminate candidate constituents using heuristics.
+			\item \optword{Identification}: classify nodes as \keyword{Argument} or \keyword{None}.
+			\item \optword{Classification}: assign specific semantic role labels (FrameNet or PropBank).
 		\end{enumerate} 
 	\end{itemize}
 	
@@ -599,12 +642,13 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Example of annotated parse tree}
+	\framesubtitle{\insertsubsection: Example of an annotated parse tree}
 	
 	\vspace{-0.2cm}
 	\begin{figure}
 		\hgraphpage{srl-tree.pdf}
-		\caption{Example of a parse tree with a path from a phrase to the main predicate \cite{2019-jurafsky-martin}}
+		\caption{Example of a parse tree illustrating the path from a constituent to the predicate, used for feature extraction in SRL \cite{2019-jurafsky-martin}}
+		
 	\end{figure}
 	
 \end{frame}
@@ -612,15 +656,15 @@
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Some features}
-
+	
 	\begin{itemize}
-		\item Sentence's main predicate. E.g. \expword{Using computers \underline{enhances} work.};
+		\item Target predicate. E.g. \expword{Using computers \underline{enhances} work.};
 		\item Phrase type. E.g. \expword{NP, S, PP};
-		\item Phrase head (main) word. E.g. \expword{The extremely good \underline{weather}}; 
-		\item Head word's PoS. E.g. \expword{The extremely good weather/\underline{NOUN}};
-		\item Path from the current node to the predicate. E.g. \expword{NP\textuparrow S\textdownarrow VP \textdownarrow VPD};
+		\item Phrase head word. E.g. \expword{The extremely good \underline{weather}}; 
+		\item Part-of-speech (POS) of the head word. E.g. \expword{weather/\underline{NOUN}};
+		\item Path from the current constituent to the predicate. E.g. \expword{NP\textuparrow S\textdownarrow VP \textdownarrow VBD};
 		\item Voice: active or passive;
-		\item Relative position to the predicate: before or after;
+		\item Relative position with respect to the predicate: before or after;
 		\item ...
 	\end{itemize}
 	
@@ -630,19 +674,26 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection}
-
-	\begin{minipage}{.48\textwidth}
+	\framesubtitle{\insertsubsection: Example \cite{2017-he-al}}
+	
+	\begin{itemize}
+		\item \optword{Input}: Word embeddings + predicate indicator (binary feature).
+		\item \optword{Output}: Sequence of semantic role labels (PropBank ARG0--ARG5, ArgM-*).
+%		\item Labels are typically encoded using \keyword{IOB} notation.
+%		\item Formulated as a sequence labeling task.
+	\end{itemize}
+	\begin{minipage}{.30\textwidth}
 		\begin{itemize}
-			\item \optword{Input}: Words embeddings + predicate indicator (predicate or not).
-			\item \optword{Output}: PropBank senses probabilities.  
-			\item Using \keyword{IOB} notation
+%			\item \optword{Input}: Word embeddings + predicate indicator (binary feature).
+%			\item \optword{Output}: Sequence of semantic role labels (PropBank ARG0--ARG5, ArgM-*).
+			\item Labels are typically encoded using \keyword{IOB} notation.
+			\item Formulated as a sequence labeling task.
 		\end{itemize}
 	\end{minipage}
-	\begin{minipage}{.5\textwidth}
+	\begin{minipage}{.68\textwidth}
 		\begin{figure}
 			\hgraphpage{srl-lstm.pdf}
-			\caption{SRL system using LSTM \cite{2017-he-al}}
+			\caption{SRL system based on LSTM \cite{2017-he-al}}
 		\end{figure}
 	\end{minipage}
 	
@@ -652,56 +703,60 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection\ \cite{2023-mohammadshahi-henderson}}
+	\framesubtitle{\insertsubsection: Example}
 	\begin{figure}
 		\centering
 		\vgraphpage[0.7\textheight]{SynG2G-Tr_.pdf}
-		\caption{Architecture of SynG2G-Tr \cite{2023-mohammadshahi-henderson}}
+		\caption{Architecture of the SynG2G-Tr model for semantic role labeling \cite{2023-mohammadshahi-henderson}}
 	\end{figure}
 	
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection\ \cite{2023-chanin}}
+	\framesubtitle{\insertsubsection: Example \cite{2023-chanin}}
 	
-	3 subtasks as sequence-to-sequence tasks performed by T5 model
+	The approach formulates three subtasks as sequence-to-sequence problems, solved using the T5 model:
+	
 	\begin{itemize}
-		\item Trigger identification
+		\item \optword{Trigger identification:} detect the predicate trigger in the sentence.
 		{\scriptsize\bfseries\color{olivegreen} 
-		\begin{verbatim}
-				input: "TRIGGER: It was no use trying the lift."
+			\begin{verbatim}
+				input:  "TRIGGER: It was no use trying the lift."
 				output: "It was no use *trying the *lift."
-		\end{verbatim}
+			\end{verbatim}
 		}
-		\item Frame classification
+		
+		\item \optword{Frame classification:} predict the frame triggered by the predicate.
 		{\scriptsize\bfseries\color{olivegreen} 
-		\begin{verbatim}
-				input: "FRAME Body_movement Building_subparts Cause_motion Cause_to_end 
-				        Connecting_architecture Theft: It was no use trying the *lift."
+			\begin{verbatim}
+				input:  "FRAME Body_movement Building_subparts Cause_motion Cause_to_end 
+				         Connecting_architecture Theft: It was no use trying the *lift."
 				output: "Connecting_architecture"
-		\end{verbatim}
+			\end{verbatim}
 		}
-		\item Argument extraction
+		
+		\item \optword{Argument extraction:} predict the frame elements (arguments) and their spans.
 		{\scriptsize\bfseries\color{olivegreen} 
-		\begin{verbatim}
-				input: "ARGS Connecting_architecture | Part Connected_locations Creator 
-				        Descriptor Direction Goal Material Orientation Source Whole: 
-				        It was no use trying the *lift."
+			\begin{verbatim}
+				input:  "ARGS Connecting_architecture | Part Connected_locations Creator 
+				         Descriptor Direction Goal Material Orientation Source Whole: 
+				         It was no use trying the *lift."
 				output: "Part='the lift'"
-		\end{verbatim}
+			\end{verbatim}
 		}
 	\end{itemize}
 	
+	\vspace{-12pt}
 	\begin{verbatim}
-		>> pip install frame-semantic-transformer
+		>> pip install frame-semantic-transformer 
 	\end{verbatim}
 	
 \end{frame}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection\ \cite{2020-kalyanpur}}
+	\framesubtitle{\insertsubsection: Example \cite{2020-kalyanpur}}
 	
 	\begin{minipage}{.58\textwidth}
 		\small
@@ -739,29 +794,59 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item There are several ways to express the same meaning.
+		\item The same meaning can be expressed in multiple ways:
 		\begin{itemize}
 			\item \expword{The student has prepared a report.}
 			\item \expword{A report has been prepared by the student.}
 		\end{itemize}
-	
-		\item Sentences in natural languages can be ambiguous
+		
+		\item Natural language sentences can be syntactically or semantically ambiguous:
 		\begin{itemize}
 			\item \expword{John floated the boat between the rocks.}
-			\item See more: \url{https://plato.stanford.edu/entries/ambiguity/}
+			\item For further reading: \url{https://plato.stanford.edu/entries/ambiguity/}
 		\end{itemize}
-	
-		\item Multiple tasks can benefit from semantic representation:
+		
+		\item Multiple tasks can benefit from semantic representations:
 		\begin{itemize}
-			\item Natural language understanding (NLU)
-			\item Question-Answering
-			\item Information retrieval (IR)
-			\item Machine translation
-			\item Automatic text summarization
+			\item Natural Language Understanding (NLU)
+			\item Question Answering
+			\item Information Retrieval (IR)
+			\item Machine Translation
+			\item Automatic Text Summarization
 		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{Why parse into logical forms?}
+	\scriptsize
+	Even with PLMs, parsing into FOL or other logical forms remains useful:
+	
+	\begin{itemize}
+		\item \textbf{Explicit reasoning}: Logical forms allow deduction, multi-step inference, and consistency checks.
+		PLMs are great at pattern recognition and generating text, but they do not explicitly reason over entities, relations, and rules.
+		
+		\item \textbf{Compositionality}: Captures how meanings combine systematically (e.g., quantifiers, nested clauses).
+		PLMs often struggle with rare compositions or longer chains of reasoning, especially for unseen combinations.
+		
+		\item \textbf{Cross-domain generalization}: A single reasoning engine can handle multiple domains once sentences are mapped to logic.
+		PLMs might need extensive retraining or prompting for new domains.
+		
+		\item \textbf{Explainability}: Logical forms are human-readable, verifiable, and interpretable.
+		PLMs' reasoning is opaque (``black box''), making it harder to trust outputs for sensitive decisions.
+		
+		\item \textbf{Integration with symbolic systems}: Enables database queries, knowledge graph reasoning, and robotics control.
+		
+		
+		\item \textbf{Benchmarking reasoning ability}: Provides ground truth for testing PLMs' logical reasoning and compositional generalization.
+		
+		\item \textbf{Neuro-symbolic approaches}: Combines PLMs' flexibility with rigorous symbolic reasoning.
+	\end{itemize}
+	
+\end{frame}
+
 
 \subsection{First order logic}
 
@@ -770,68 +855,125 @@
 	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
-		\item \optword{term}: an object.
+		\item \optword{Term}: an expression representing an object.
 		\begin{itemize}
-			\item \optword{constant}: a specific object
-			%
-			\expword{Karim, ESI, Algeria}
+			\item \optword{Constant}: a specific object (domain-specific).  
+			E.g. \expword{Karim, ESI, Algeria}
 			
-			\item \optword{function}: return an object based on others
-			%
-			\expword{LocationOf(ESI)}
+			\item \optword{Function}: returns an object based on one or more input terms mapping terms to a term in the domain.  
+			E.g. \expword{LocationOf(ESI)}
 			
-			\item \optword{variable}: anonymous object 
-			%
-			\expword{x, y, z}
-			
+			\item \optword{Variable}: a symbol representing an unspecified object.
+			E.g. \expword{x, y, z}
 		\end{itemize}
-		\item \optword{predicate}: a relation 
 		
-		\expword{University(ESI), TeacherAt(Karim, ESI)}
+		\item \optword{Predicate}: a relation over terms.
+		E.g. \expword{University(ESI), TeacherAt(Karim, ESI)}
 		
-		\item \optword{connective}: AND ($ \wedge $), OR ($ \vee $), NOT ($ \neg $ ), IMPLY ($\rightarrow$) and EQUIVALENT ($ \Leftrightarrow $)
+		\item \optword{Connective}: logical operators;
+		AND ($\wedge$), OR ($\vee$), NOT ($\neg$), IMPLY ($\rightarrow$), EQUIVALENT ($\Leftrightarrow$).
+		E.g. \expword{TeacherAt(Karim, ESI) $\wedge$ University(ESI)}
 		
-		\expword{TeacherAt(Karim, ESI) $\wedge$ University(ESI)}
+		\item \optword{Quantifier}: expresses existence or universality;
+		EXISTS ($\exists$) and FOR ALL ($\forall$)  
 		
-		\item \optword{quantifier}: EXISTS ($\exists$) and ALL ($\forall$)
-		
-		\expword{I eat at a restaurant near ESI.}
-		
-		\expword{$\exists$ x Restaurant(x) $\wedge$ Near(LocationOf(x), LocationOf(ESI)) $\wedge$  Eat(Interlocutor, x)}
+		\expword{Natural sentence: "I eat at a restaurant near ESI."} 
+		 
+		\expword{FOL: $\exists x \, (Restaurant(x) \wedge Near(LocationOf(x), LocationOf(ESI)) \wedge Eat(Interlocutor, x))$}
 	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Formalism}
+	\framesubtitle{\insertsubsection: Components in FOL systems}
 	
-	\begin{figure}
-%		\vgraphpage[0.6\textheight]{LPO-gram_.pdf}
-		\scriptsize
-		\begin{tabular}{rcl}
-			\hline\hline
-			Formula & \textrightarrow & AtomicFormula \\
-			        & \textbar        & Formula Connective Formula \\
-			        & \textbar        & Quantifier Variable, ... Formula \\
-			        & \textbar        & $\textlnot$ Formula \\
-			        & \textbar        & (Formula) \\
-			AtomicFormula & \textrightarrow & Predicate (Term, ...) \\
-			Term    & \textrightarrow & Function(Term, ...) \\
-			        & \textbar        & Constant \\
-			        & \textbar        & Variable \\
-			Connective & \textrightarrow & $\wedge$ \textbar $\vee$ \textbar $\Rightarrow$ \\
-			Quantifier & \textrightarrow & $\forall$ \textbar $\exists$ \\
-			Constant & \textrightarrow & ESI \textbar Karim \textbar Algérie ...\\
-			Variable & \textrightarrow & x \textbar y \textbar ... \\
-			Predicate & \textrightarrow & Ecole \textbar EnseignatA \textbar Utiliser \textbar ... \\
-			Function & \textrightarrow & EmplacementDe \textbar ... \\
-			\hline\hline
-		\end{tabular}
-		\caption{A grammar specifying first order logic syntax \cite{2019-jurafsky-martin} (Adapted from \cite{2002-russell-norvig})}
-	\end{figure}
+	\begin{itemize}
+		\item \textbf{Variable components:} can differ between FOL systems
+		\begin{itemize}
+			\item \optword{Constants}: specific objects present in the domain
+			\item \optword{Functions}: used to generate objects not represented as constants
+			\item \optword{Predicates}: depend on which relations or properties the system designer chooses to represent
+		\end{itemize}
+		
+		\item \textbf{Fixed components:} common to all FOL systems
+		\begin{itemize}
+			\item \optword{Variables}: generic placeholders
+			\item \optword{Connectives}: AND, OR, NOT, IMPLY, EQUIVALENT
+			\item \optword{Quantifiers}: EXISTS ($\exists$), FOR ALL ($\forall$)
+		\end{itemize}
+		
+	\end{itemize}
 	
 \end{frame}
+
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Expressiveness of FOL systems}
+	
+	\begin{itemize}
+		\item The choice of \textbf{constants} and \textbf{functions} depends on the domain:
+		\begin{itemize}
+			\item If the domain lacks specific constants, \textbf{functions} can generate objects.
+			\item Example: \expword{LocationOfESI} vs. \expword{LocationOf(ESI)}.
+		\end{itemize}
+		
+		\item The \textbf{arity of predicates} can limit expressivity:
+		\begin{itemize}
+			\item Standard FOL predicates have fixed arity; e.g., \expword{Eat(Person,Food)}.
+			\item Different syntactic forms (I ate, I ate lunch, I ate at my desk, etc.) may require different numbers of arguments.
+		\end{itemize}
+		
+		\item \textbf{Neo-Davidsonian event representation} addresses this:
+		\begin{itemize}
+			\item Introduce an \textbf{event variable} for each event: \expword{$\exists e\ Eating(e)$}.
+			\item Attach roles as separate predicates linked to the event:  \\
+			\expword{Eater(e,Speaker) $\wedge$ Eaten(e,TurkeySandwich) $\wedge$ Location(e,Desk)}
+			\item Benefits:
+			\begin{itemize}
+				\item No need to fix the number of arguments per predicate.
+				\item Can represent additional roles (Time, Location, Instrument, etc.) flexibly.
+				\item Logical connections are preserved without extra inference.
+			\end{itemize}
+		\end{itemize}
+		
+%		\item Choosing constants, functions, and predicates carefully remains essential for accurate and efficient semantic representation.
+	\end{itemize}
+	
+\end{frame}
+
+
+%\begin{frame}
+%	\frametitle{\insertshortsubtitle: \insertsection}
+%	\framesubtitle{\insertsubsection: Formalism}
+%	
+%	\begin{figure}
+%%		\vgraphpage[0.6\textheight]{LPO-gram_.pdf}
+%		\scriptsize
+%		\begin{tabular}{rcl}
+%			\hline\hline
+%			Formula & \textrightarrow & AtomicFormula \\
+%			        & \textbar        & Formula Connective Formula \\
+%			        & \textbar        & Quantifier Variable, ... Formula \\
+%			        & \textbar        & $\textlnot$ Formula \\
+%			        & \textbar        & (Formula) \\
+%			AtomicFormula & \textrightarrow & Predicate (Term, ...) \\
+%			Term    & \textrightarrow & Function(Term, ...) \\
+%			        & \textbar        & Constant \\
+%			        & \textbar        & Variable \\
+%			Connective & \textrightarrow & $\wedge$ \textbar $\vee$ \textbar $\Rightarrow$ \\
+%			Quantifier & \textrightarrow & $\forall$ \textbar $\exists$ \\
+%			Constant & \textrightarrow & ESI \textbar Karim \textbar Jijel \textbar Algeria ...\\
+%			Variable & \textrightarrow & x \textbar y \textbar z \textbar ... \\
+%			Predicate & \textrightarrow & University \textbar TeacherAt \textbar Use \textbar ... \\
+%			Function & \textrightarrow & LocationOf \textbar ... \\
+%			\hline\hline
+%		\end{tabular}
+%		\caption{A grammar specifying first order logic syntax \cite{2019-jurafsky-martin} (Adapted from \cite{2002-russell-norvig})}
+%	\end{figure}
+%	
+%\end{frame}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -843,7 +985,7 @@
 	
 \end{frame}
 
-\subsection{Graphs (AMR)}
+\subsection{Abstract Meaning Representation (AMR)}
 
 \begin{frame}[fragile]
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -851,11 +993,11 @@
 	
 	\begin{itemize}
 		\item Abstract Meaning Representation \cite{2013-banarescu-al}
-		\item A rooted, labeled, directed and acyclic graph
-		\item It uses \keyword{PropBank} concepts
+		\item Rooted, labeled, directed, acyclic grap, using  \keyword{PropBank} concepts.
+		\item AMR ignores tense, number, and modality, focusing on **who did what to whom**, which simplifies the representation while capturing core meaning.
 	\end{itemize}
 
-	\begin{exampleblock}{Threes formats: Example ``The boy wants to go"}
+	\begin{exampleblock}{Threes formats: Example --- ``The boy wants to go''}
 		\begin{minipage}{.3\textwidth}
 			\optword{Logic format}
 			
@@ -899,7 +1041,7 @@
 	\framesubtitle{\insertsubsection: Relations}
 	
 	\begin{itemize}
-		\item \optword{frame arguments}: following PropBank
+		\item \optword{Frame arguments}: following PropBank
 		\begin{itemize}
 			\item :arg0, :arg1, :arg2, :arg3, :arg4, :arg5
 		\end{itemize}
@@ -980,21 +1122,50 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection}
+	
+	\begin{itemize}
+		\item \textbf{Semantic parsing}: the process of mapping natural language sentences to a formal meaning representation.
+		\begin{itemize}
+			\item Converts text into logical forms, AMR graphs, or structured queries.
+			\item Enables reasoning, question answering, database querying, and NLU tasks.
+		\end{itemize}
+		
+		\item \textbf{Challenges}:
+		\begin{itemize}
+			\item Ambiguity in natural language
+			\item Variable numbers of arguments, complex sentence structure
+			\item Maintaining compositionality for larger sentences
+		\end{itemize}
+		
+		\item \textbf{Role of $\lambda$-calculus}:
+		\begin{itemize}
+			\item Provides a formal way to express functions over entities and events
+			\item Allows composition of sentence meanings from smaller units (words or phrases)
+			\item Facilitates variable binding and reduction, simplifying logical representation
+		\end{itemize}
+	\end{itemize}
+	
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: Lambda notation}
 	
 	\begin{itemize}
-		\item \keyword{$ \lambda $-Expression}
+		\item \keyword{$\lambda$-Expression}
 		\begin{itemize}
-			\item Anonymous function
-			\item \keyword{$ \lambda $x.P(x)}
-			\item Example: \expword{$ \lambda $x.USE(x, BERT)} to express the clause \expword{x uses BERT}
+			\item Represents an anonymous function
+			\item \keyword{$\lambda$x.P(x)} an anonymous function that takes an argument $x$ and returns $P(x)$
+			\item Example: \expword{$\lambda$x.USE(x, BERT)} to express the clause \expword{x uses BERT}
 		\end{itemize}
 		
-		\item \keyword{$ \lambda $-Reduction}
+		\item \keyword{$\lambda$-Reduction}
 		\begin{itemize}
 			\item Substitute a variable by an expression
-			\item \keyword{$ \phi (\psi) $}
-			\item Example: \expword{$ \lambda $x.USE(x, BERT)\ KARIM = USE(KARIM, BERT)}
+			\item \keyword{$ \phi(\psi) $} means ``apply function $\phi$ to argument $\psi$''.
+			\item Example: \expword{$\lambda$x.USE(x, BERT)\ KARIM = USE(KARIM, BERT)}
 		\end{itemize}
 		
 		\item For fun: \url{http://davidmarino.nfshost.com/lambdalinguist/index.html}
@@ -1077,7 +1248,7 @@
 	\frametitle{\insertshortsubtitle: \insertsection}
 	\framesubtitle{\insertsubsection: NLTK example}
 	
-	\begin{exampleblock}{Example pf semantic parsing using NLTK}
+	\begin{exampleblock}{Example of semantic parsing using NLTK}
 		\optword{Code:}
 		{\scriptsize
 			\begin{lstlisting}[language=Python]
@@ -1104,6 +1275,31 @@ all z2.(dog(z2) -> exists z1.(bone(z1) & give(angus,z1,z2)))
 	\end{itemize}
 	
 \end{frame}
+
+\begin{frame}
+	\frametitle{\insertshortsubtitle: \insertsection}
+	\framesubtitle{\insertsubsection: Neural approaches to logical form generation}
+	
+	\begin{itemize}
+		\item Recent work uses pretrained LLMs for semantic parsing.
+		\item They can map natural language to logical forms directly.
+		\item \textbf{Advantages}:
+		\begin{itemize}
+			\item No need for hand-crafted grammar rules.
+			\item Can handle diverse domains and complex sentences.
+			\item Flexible handling of quantifiers, events, and argument structure.
+		\end{itemize}
+		\item \textbf{Example workflow}:
+		\begin{itemize}
+			\item \expword{Input: ``Every student uses BERT''}
+			\item \expword{Output (LogicLLaMA/T5): $\forall x\ (Student(x) \rightarrow USE(x, BERT))$}
+		\end{itemize}
+		\item These methods can also produce FOL, lambda calculus, or AMR representations.
+		\item LogicLLaMA (FOL, English): \url{https://github.com/gblackout/LogicLLaMA}
+	\end{itemize}
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
