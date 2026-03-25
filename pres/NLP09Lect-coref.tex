@@ -33,6 +33,26 @@
 
 \end{frame}
 
+\begin{frame}
+	\frametitle{\inserttitle}
+	\framesubtitle{\insertshortsubtitle: Why still resolve coreferences?}
+	
+	\begin{itemize}
+		\item \textbf{Long-range reasoning:} PLMs may fail to track entities across long documents.
+		\item \textbf{Explainability:} Coreference chains provide interpretable links between mentions.
+		\item \textbf{Improves downstream tasks:} 
+		\begin{itemize}
+			\item Summarization, QA, relation extraction
+			\item Ensures pronouns are linked correctly
+		\end{itemize}
+		\item \textbf{Data efficiency:} Structured coreference features reduce the need for huge labeled datasets.
+		\item \textbf{Domain adaptation:} PLMs may misinterpret pronouns or rare entities in specialized domains.
+		\item \textbf{Explicit vs. implicit knowledge:} Guarantees consistent, repeatable entity linking across a document.
+	\end{itemize}
+	
+\end{frame}
+
+
 
 \begin{frame}
 	\frametitle{\inserttitle}
