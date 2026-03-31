@@ -32,7 +32,8 @@
 				1 & \text{if } z^{(i)} \ge 0 \\
 				0 & \text{otherwise}
 			\end{cases} $
-			\item $ w_j = w_j + \nabla w_j$ where $ \nabla w_j = \frac{1}{M}\sum_{i=0}^{M} (y^{(i)} - \hat{y}^{(i)}) * x_j^{(i)} $
+			\item $ w_j = w_j + \Delta w_j$ where $ \Delta w_j = \frac{1}{M}\sum_{i=1}^{M} (y^{(i)} - \hat{y}^{(i)}) * x_j^{(i)} $
+			\item $ b = b + \Delta b$ where $ \Delta b = \frac{1}{M}\sum_{i=1}^{M} (y^{(i)} - \hat{y}^{(i)})$
 		\end{itemize}
 	\end{minipage}
 	
@@ -59,23 +60,23 @@
 		\begin{minipage}{0.79\textwidth}
 			\scriptsize
 			\begin{itemize}
-				\item Initially, $ W = [w_1, w_2, b] = [0, 0, 0] $.
+				\item Initially, $ W = [w_1, w_2] = [0, 0]; b = 0 $.
 				
-				\item It1: $ Z = \hat{Y} = [0, 0, 0, 0] $, 
-				$ \nabla W = [\frac{1}{4}, \frac{1}{4}, \frac{1}{4}] $, 
-				$ W = [\frac{1}{4}, \frac{1}{4}, \frac{1}{4}] $.
+				\item It1: $ Z = \hat{Y} = [0, 0, 0, 0] $;
+				$ \Delta W = [\frac{1}{4}, \frac{1}{4}], \Delta b = \frac{1}{4} $;
+				$ W = [\frac{1}{4}, \frac{1}{4}], b = \frac{1}{4}$.
 				
-				\item It2: $ Z = [\frac{1}{4}, \frac{2}{4}, \frac{2}{4}, \frac{3}{4}] $, 
-				$ \hat{Y} = [1, 1, 1, 1] $, 
-				$ \nabla W = [\frac{-1}{4}, \frac{-1}{4}, \frac{-3}{4}] $,
-				$ W = [0, 0, \frac{-1}{2}] $.
+				\item It2: $ Z = [\frac{1}{4}, \frac{2}{4}, \frac{2}{4}, \frac{3}{4}]$; 
+				$ \hat{Y} = [1, 1, 1, 1] $;
+				$ \Delta W = [\frac{-1}{4}, \frac{-1}{4}], \Delta b = \frac{-3}{4} $;
+				$ W = [0, 0], b = \frac{-1}{2} $.
 				
-				\item It3: $ Z = [\frac{-1}{2}, \frac{-1}{2}, \frac{-1}{2}, \frac{-1}{2}] $, 
-				$ \hat{Y} = [1, 1, 1, 1] $, 
-				$ \nabla W = [\frac{1}{4}, \frac{1}{4}, \frac{1}{4}] $,
-				$ W = [\frac{1}{4}, \frac{1}{4}, \frac{-1}{4}] $.
+				\item It3: $ Z = [\frac{-1}{2}, \frac{-1}{2}, \frac{-1}{2}, \frac{-1}{2}] $; 
+				$ \hat{Y} = [1, 1, 1, 1] $; 
+				$ \Delta W = [\frac{1}{4}, \frac{1}{4}], \Delta b = \frac{1}{4} $;
+				$ W = [\frac{1}{4}, \frac{1}{4}], b = \frac{-1}{4} $.
 				
-				\item It4: $ Z = [\frac{-1}{4}, 0, 0, \frac{1}{4}] $, 
+				\item It4: $ Z = [\frac{-1}{4}, 0, 0, \frac{1}{4}] $;
 				$ \hat{Y} = Y = [0, 0, 0, 1] $ (STOP)
 			\end{itemize}
 		\end{minipage}
@@ -88,21 +89,25 @@
 	\framesubtitle{ML: Algorithms and abbreviations}
 	
 	\begin{itemize}
-		\item Traditional ML algorithms
+		\item Classical Machine Learning Models
 		\begin{itemize}
-			\item \optword{NB}: Naive Bayes
-			\item \optword{LR}: Logistic regression
-			\item \optword{SVM}: Support-Vector Machine
+			\item \optword{NB}: Naïve Bayes
+			\item \optword{LR}: Logistic Regression
+			\item \optword{SVM}: Support Vector Machine
 			\item \optword{HMM}: Hidden Markov Model
-			\item \optword{MEMM}: Maximum-Entropy Markov Model
-			\item \optword{CRF}: Conditional Random Field
+			\item \optword{MEMM}: Maximum Entropy Markov Model
+			\item \optword{CRF}: Conditional Random Fields
 		\end{itemize}
-		\item \optword{FFNN}: Feed Forward Neural Network
+		
+		\item Neural Network Architectures
 		\begin{itemize}
-			\item \optword{MLP}: Multi-Layer Perceptron
-			\item \optword{CNN}: Convolutional Neural Network
-		\end{itemize} 
-		\item \optword{RNN}: Recurrent Neural Network
+			\item \optword{FFNN}: Feedforward Neural Network
+			\begin{itemize}
+				\item \optword{MLP}: Multilayer Perceptron
+				\item \optword{CNN}: Convolutional Neural Network
+			\end{itemize}
+			\item \optword{RNN}: Recurrent Neural Network
+		\end{itemize}
 	\end{itemize}
 	
 \end{frame}
@@ -140,11 +145,16 @@
 	\vfill
 	
 	\begin{itemize}
-		\item \optword{Generative model}: a model that learns to generate features given a class:
-		\[\hat{Y} = \arg\max_k P(Y_k) P(X | Y_k)\]
+		\item \optword{Generative models}: learn the joint distribution
+		\[
+		P(X, Y) = P(Y)P(X \mid Y), \quad
+		\hat{Y} = \arg\max_k P(Y_k)P(X \mid Y_k)
+		\]
 		
-		\item \optword{Discriminative model}: a model that learns to estimate a class given some features: 
-		\[\hat{Y} = \arg\max_k P(Y_k | X)\]
+		\item \optword{Discriminative models}: learn the conditional distribution
+		\[
+		\hat{Y} = \arg\max_k P(Y_k \mid X)
+		\]
 	\end{itemize}
 	
 \end{frame}
@@ -155,16 +165,17 @@
 	\framesubtitle{NLP: Text classification}
 	
 	\begin{itemize}
-		\item Entire text classifying:
+		\item Document-level classification:
 		\begin{itemize}
-			\item \optword{Sentiment analysis}: text (such as tweets) classifying into positive, negative or neutral sentiment.
-			\item \optword{Spam detection}: message classifying as spam ou not spam.
-			\item \optword{Figurative language detection}: text classifying as metaphor, irony, etc.
+			\item \optword{Sentiment analysis}: classifying text into positive, negative, or neutral sentiment.
+			\item \optword{Spam detection}: classifying a message as spam or not spam.
+			\item \optword{Figurative language detection}: classifying text as metaphorical, ironic, etc.
 		\end{itemize}
-		\item One sentence at the time classifying:
+		
+		\item Sentence-level classification:
 		\begin{itemize}
-			\item \optword{Automatic text summarization}: sentence classifying as belonging to the summary or not.
-			\item \optword{Textual implication}: checking whether a sentence implies another.
+			\item \optword{Extractive summarization}: classifying sentences as belonging to the summary or not.
+			\item \optword{Textual entailment (NLI)}: determining whether one sentence entails another.
 		\end{itemize}
 	\end{itemize}
 	
@@ -173,14 +184,18 @@
 
 \begin{frame}
 	\frametitle{\inserttitle}
-	\framesubtitle{NLP: Sequence classification}
+	\framesubtitle{NLP: Sequence labeling}
 	
 	\begin{itemize}
-		\item Given a sentence, each word must be classified separately.
-		\item Example, \expword{Assign a part of speech to each word}.
-		\item The word, as well as its class, can depend on the preceding (or/and following) words.
-		\item \textbf{Problem}: how to classify a sequence of words that have the same (non-atomic) class?
-		\item Example, \expword{[\textit{Abdelkrime Aries}]\textsubscript{\bfseries PERSON} is a teacher at the [\textit{Ecole nationale Supérieure d'Informatique}]\textsubscript{\bfseries INSTITUTE}}
+		\item Given a sentence, a label is assigned to each word.
+		
+		\item Example: \expword{Assigning a part-of-speech to each word}.
+		
+		\item The class of a word may depend on preceding and/or following words.
+		
+		\item \textbf{Problem}: how to assign labels to contiguous sequences of words (multi-token entities)?
+		
+		\item Example: \expword{[\textit{Abdelkrime Aries}]\textsubscript{\bfseries PERSON} is a teacher at the [\textit{Ecole nationale Supérieure d'Informatique}]\textsubscript{\bfseries INSTITUTE}}
 	\end{itemize}
 	
 \end{frame}
@@ -188,15 +203,22 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{NLP: Sequence classification (IOB representation)}
+	\framesubtitle{NLP: Sequence classification (BIO representation)}
 	
 	\begin{itemize}
-		\item \keyword{IOB}: Inside, Outside, Beginning
-		\item For each class \textbf{CLS}, two different classes (\textbf{B-CLS} and \textbf{I-CLS}) are created.
-		\item \optword{B-CLS} marks the beginning of the class.
-		\item \optword{I-CLS} marks the continuation of the class.
-		\item \optword{O} means "no class".
-		\item Example, \expword{Abdelkrime/\textsubscript{\bfseries B-PERSON} Aries/\textsubscript{\bfseries I-PERSON}  is/\textsubscript{\bfseries O} a/\textsubscript{\bfseries O} teacher/\textsubscript{\bfseries O} at/\textsubscript{\bfseries O} the/\textsubscript{\bfseries O} Ecole/\textsubscript{\bfseries B-INSTITUTE} nationale/\textsubscript{\bfseries I-INSTITUTE} Supérieure/\textsubscript{\bfseries I-INSTITUTE} d'/\textsubscript{\bfseries I-INSTITUTE} Informatique/\textsubscript{\bfseries I-INSTITUTE}}.
+		\item \keyword{BIO}: Beginning, Inside, Outside
+		
+		\item For each class \textbf{CLS}, two labels are defined: \textbf{B-CLS} and \textbf{I-CLS}.
+		
+		\item \optword{B-CLS} marks the beginning of an entity.
+		
+		\item \optword{I-CLS} marks the continuation of the same entity.
+		
+		\item \optword{O} indicates that the token does not belong to any class.
+		
+		\item Ensures correct identification of boundaries between adjacent entities.
+		
+		\item Example: \expword{Abdelkrime/\textsubscript{\bfseries B-PERSON} Aries/\textsubscript{\bfseries I-PERSON} is/\textsubscript{\bfseries O} a/\textsubscript{\bfseries O} teacher/\textsubscript{\bfseries O} at/\textsubscript{\bfseries O} the/\textsubscript{\bfseries O} Ecole/\textsubscript{\bfseries B-INSTITUTE} nationale/\textsubscript{\bfseries I-INSTITUTE} Supérieure/\textsubscript{\bfseries I-INSTITUTE} d'/\textsubscript{\bfseries I-INSTITUTE} Informatique/\textsubscript{\bfseries I-INSTITUTE}}
 	\end{itemize}
 \end{frame}
 
@@ -206,10 +228,12 @@
 	\framesubtitle{NLP: Text generation}
 	
 	\begin{itemize}
-		\item It is simply the task of finding the next word given the past ones
+		\item Text generation is the task of generating a sequence of tokens by modeling conditional probabilities over a vocabulary.
 	\end{itemize}
 	
-	\[\hat{w}_i = \arg\max\limits_{w_i} P(w_i | \hat{w}_{1}, \cdots, \hat{w}_{i-1})\]
+	\[
+	\hat{w}_i = \arg\max_{w_i} P(w_i \mid \hat{w}_1, \dots, \hat{w}_{i-1})
+	\]
 	
 \end{frame}
 
@@ -227,7 +251,7 @@
 
 
 %===================================================================================
-\section{Traditional ML and MLP-only architectures}
+\section{Traditional ML and MLP-based architectures}
 %===================================================================================
 
 \begin{frame}
@@ -235,16 +259,18 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item For text classification, we have to ensure a fixed sized encoding for all texts (vector)
-		\item For sequence classification/tagging
+		\item Text classification requires a fixed-size representation of each text (i.e., a vector).
+		
+		\item Sequence labeling:
 		\begin{itemize}
-			\item HMMs are traditionally used
-			\item MLPs and other algorithms can be used in a Markovian fashion 
+			\item Hidden Markov Models (HMMs) have been traditionally used.
+			\item MLPs and other models can be applied using a fixed-size context window, approximating Markov assumptions.
 		\end{itemize}
-		\item For text generation
+		
+		\item Text generation:
 		\begin{itemize}
-			\item Bigrams are traditionally used
-			\item MLPs and other algorithms can be used in a Markovian fashion 
+			\item n-gram language models (e.g., bigrams) have been traditionally used.
+			\item MLPs and other models can also be applied using fixed-size context windows.
 		\end{itemize}
 	\end{itemize}
 	
@@ -261,7 +287,7 @@
 	
 \end{frame}
 
-\subsection{Sequence classification}
+\subsection{Sequence labeling}
 
 
 \begin{frame}
@@ -376,10 +402,11 @@
 	\framesubtitle{\insertsubsection: HMM Training}
 	
 	\begin{itemize}
-			\item States are tags (categories) $t_i$.
-			\item Let's define \keyword{START} as sentences' start tag.
-			\item The observations $o_i$ are the words $w_i$.
-			\item \keyword{C}: Number of occurrences in the training corpus.
+			\item States correspond to tags (categories) $t_i$.
+			\item We define a special start-of-sentence tag \keyword{START}.
+			\item Observations $o_i$ correspond to words $w_i$.
+			\item \keyword{C}: frequency (count) in the training corpus.
+			
 		\end{itemize}
 	
 	\begin{block}{HMM training}
@@ -400,10 +427,11 @@
 	\begin{itemize}
 			\item Given
 			\begin{itemize}
-					\item a Markov model $\lambda = (A, B)$,
-					\item an observations' sequence (words): $w = w_1 w_2 \ldots w_n$
-				\end{itemize}
-			\item Estimate a labels' sequence $\hat{t} = \hat{t}_1 \hat{t}_2 \ldots \hat{t}_n$
+				\item a Hidden Markov Model $\lambda = (A, B, \pi)$,
+				\item a sequence of observations $w = w_1 w_2 \ldots w_n$,
+				\item $t_0 = START$
+			\end{itemize}
+			\item Estimate a sequence of labels $\hat{t} = \hat{t}_1 \hat{t}_2 \ldots \hat{t}_n$
 		\end{itemize}
 	
 	\begin{block}{Labels' decoding using HMM}
@@ -412,9 +440,9 @@
 			\]
 			
 			\[ 
-			P(w | t) \approx \prod\limits_{i=1}^n P(w_i|t_i) 
+			P(w | t) = \prod\limits_{i=1}^n P(w_i|t_i) 
 			\hskip2cm
-			P(t) \approx \prod\limits_{i=1}^n P(t_i|t_{i-1}) 
+			P(t) = \prod\limits_{i=1}^n P(t_i|t_{i-1}) 
 			\]
 			
 			\[
@@ -431,7 +459,7 @@
 			\scriptsize
 			\begin{algorithm}[H]
 		%				\vskip-1em
-					\KwData{$w = w_1 \ldots w_T$, HMM $\lambda = (A, B)$ with $N$ states}
+					\KwData{$w = w_1 \ldots w_T$, HMM $\lambda = (A, B, \pi)$ with $N$ states}
 					\KwResult{$best\_path$, $prob\_path$}
 					
 					Create a matrix $viterbi[N, T]$\;
@@ -463,18 +491,18 @@
 	\framesubtitle{\insertsubsection: MEMM/MLP}
 	
 	\begin{itemize}
-			\item Let $x_{n}^{m} = x_n x_{n+1} \ldots x_{m-1} x_m$
+			\item Let $x_{n}^{m} = x_n x_{n+1} \ldots x_{m-1} x_m$ denote a subsequence.
 			\item Given 
 			\begin{itemize}
-					\item an observations sequence (words): $w = w_1 w_2 \ldots w_n$
-					\item a set of features $f$ defined on the sequences (such as: majuscule word)
-				\end{itemize}
-			\item Estimate tags sequence $\hat{t} = \hat{t}_1 \hat{t}_2 \ldots \hat{t}_n$
+				\item a sequence of observations $w = w_1 w_2 \ldots w_n$,
+				\item a set of feature functions $f_j$ defined on the sequence (e.g., whether a word is capitalized),
+			\end{itemize}
+			\item Estimate a sequence of tags $\hat{t} = \hat{t}_1 \hat{t}_2 \ldots \hat{t}_n$
 		\end{itemize}
 	
-	\begin{block}{Labels decoding using MEMM}
+	\begin{block}{Decoding with MEMM}
 			\[
-			\hat{t} = \arg\max\limits_t P(t | w) = \arg\max\limits_t \prod\limits_{i}  P(t_i | w_i, t_{i-1})
+			\hat{t} = \arg\max_t P(t | w) = \arg\max_{t} \prod_{i=1}^{n} P(t_i \mid w_{i-l}^{i+l}, t_{i-k}^{i-1})
 			\]
 			
 			\[
@@ -494,20 +522,22 @@
 	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
-		\item Using NGrams with a size N
-		\item The probability of each word $ w_i $ is calculated based on $N-1$ past words
-		\item The most probable word is chosen
-		\[\hat{w}_i = \arg\max\limits_{w_i} P(w_i | w_{i-N+1}, \cdots, w_{i-1})\]
-		\item The probabilities of NGrams are estimated based on a training corpus
-		\item \keyword{This will be seen in "Language models" chapter}
-		\item MLPs can be used in the same fashion
+		\item Using n-grams of size \(n\),
+		\item The probability of a word \(w_i\) is conditioned on the preceding \(n-1\) words.
+		\item The predicted word is the one with the highest conditional probability:
+		\[
+		\hat{w}_i = \arg\max\limits_{w_i} P(w_i \mid w_{i-n+1}, \dots, w_{i-1})
+		\]
+		\item N-gram probabilities are estimated from a training corpus.
+		\item This topic will be discussed in the \keyword{``Language Models''} chapter.
+		\item Multi-Layer Perceptrons (MLPs) can also model word probabilities using a fixed-size context window, analogous to n-grams.
 	\end{itemize}
 	
 \end{frame}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: MLP-based text generation (example)}
+	\framesubtitle{\insertsubsection: MLP-based text generation (Example)}
 	
 	\[\hat{w}_i = \arg\max\limits_{w_i} P(w_i | \hat{w}_{i-N+1}, \cdots, \hat{w}_{i-1})\]
 	
@@ -517,7 +547,7 @@
 	
 \end{frame}
 
-\subsection{Embedding Layer}
+\subsection{Embedding layer}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -542,18 +572,20 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item For text classification, 
+		\item Text classification:
 		\begin{itemize}
-			\item we have to ensure a fixed sized encoding for all texts (matrix)
-			\item an MLP is used as output 
+			\item Requires a fixed-size representation for all texts (e.g., embedding matrix).
+			\item A fully connected layer (MLP) is used to produce class probabilities.
 		\end{itemize}
-		\item For sequence classification/tagging
+		
+		\item Sequence labeling:
 		\begin{itemize}
-			\item Like classification, but past tags can be used as a second channel 
+			\item Similar to text classification, but previous predicted tags can be incorporated as an additional input channel to capture label dependencies.
 		\end{itemize}
-		\item For text generation
+		
+		\item Text generation:
 		\begin{itemize}
-			\item Like classification; but instead of a class, the next word is estimated
+			\item Similar to classification; instead of predicting a class, the model predicts the next word in the sequence, typically using a softmax over the vocabulary.
 		\end{itemize}
 	\end{itemize}
 	
@@ -566,16 +598,15 @@
 	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
-			\item For each word of the text, a vector representation must be defined (vector of \keyword{N} elements).
-			\item Representations are concatenated vertically (\keyword{M} words).
-			\item This will result in a matrix of \keyword{M X N} elements.
-			\item A one-dimensional convolution (dimension = \keyword{K}) is applied; i.e. a \keyword{K X N} dimension filter.
-			\item Several filters can be used to learn several representations.
-			\item Pooling can also be used.
-			\item A \keyword{MLP} layer (or several) is used at the end to estimate the class.
-			\item \textbf{Problem}: Technically, we cannot define a neural network with a variable number of words.
-			\item \textbf{Solution}: \textcolor{yellow!30}{A maximum number must be defined; if the number of words is lower, padding is added; otherwise, extra words are deleted.}
-		\end{itemize}
+		\item Each word in the text is represented by a vector of dimension $N$ (word embedding).
+		\item Word vectors are stacked to form a matrix of size $M \times N$, where $M$ is the number of words.
+		\item A one-dimensional convolution with a filter of size $K \times N$ is applied (covering $K$ words at a time).
+		\item Several filters can be used to learn multiple representations.
+		\item Pooling (e.g., max-pooling) can also be applied.
+		\item A fully connected layer (MLP) is used at the end to predict the class.
+		\item \textbf{Problem}: Neural networks require a fixed-size input; variable-length texts cannot be processed directly.
+		\item \textbf{Solution}: \textcolor{yellow!30}{Define a maximum sequence length: pad shorter texts with zeros and truncate longer texts.}
+	\end{itemize}
 	
 \end{frame}
 
@@ -587,7 +618,7 @@
 	
 \end{frame}
 
-\subsection{Sequence classification}
+\subsection{Sequence labeling}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -618,20 +649,23 @@
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item For text classification, 
+		\item Text classification:
 		\begin{itemize}
-			\item the last state is used as input to an MLP
-			\item the MLP estimates the class
+			\item The final hidden state of the RNN is fed into a fully connected layer (MLP).
+			\item The MLP predicts the class label.
 		\end{itemize}
-		\item For sequence classification/tagging
+		
+		\item Sequence tagging:
 		\begin{itemize}
-			\item An MLP is used to encode each word's state
+			\item Each hidden state produced by the RNN is passed through a fully connected layer (MLP) to predict the corresponding label.
 		\end{itemize}
-		\item For text generation
+		
+		\item Text generation:
 		\begin{itemize}
-			\item The next word is estimated until reaching "end of sentence" tag
+			\item The model predicts the next word at each time step until an end-of-sentence token is generated.
 		\end{itemize}
 	\end{itemize}
+	
 	
 \end{frame}
 
@@ -642,27 +676,27 @@
 	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
-		\item For each word of the text, a vector representation must be defined (vector of \keyword{N} elements).
-		\item The RNN network creates M cells corresponding to the \keyword{M} words.
-		\item Each cell calculates an intermediate state (vector) and passes it to the next cell.
-		\item The last cell generates a representation of the text (the probability of the last word's occurrence given the past words).
-		\item This representation is introduced to a \keyword{MLP} to estimate the class of the text.
-		\item \textbf{Problem}: Technically, during training, words of different sizes cannot be processed with a single matrix operation.
-		\item \textbf{Solution}: \textcolor{yellow!30}{A maximum number must be defined; if the words number is lower, padding is added; otherwise, extra words are deleted}
+		\item Each word in the text is represented by a vector of dimension $N$ (word embedding).
+		\item The RNN processes the sequence of $M$ words, producing $M$ hidden states (one per word).
+		\item Each cell computes a hidden state that is passed to the next time step.
+		\item The last hidden state summarizes the entire text and is fed into a fully connected layer (MLP) to predict the text's class.
+		\item \textbf{Problem}: Neural networks require fixed-size inputs; sequences of different lengths cannot be processed directly.
+		\item \textbf{Solution}: \textcolor{yellow!30}{Define a maximum sequence length: pad shorter texts and truncate longer ones.}
 	\end{itemize}
+	
 	
 \end{frame}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: Examples}
+	\framesubtitle{\insertsubsection: Example}
 	
 	\vgraphpage{text_class_RNN_exp.pdf}
 	
 \end{frame}
 
 
-\subsection{Sequence classification}
+\subsection{Sequence labeling}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
@@ -672,7 +706,7 @@
 	
 \end{frame}
 
-% TODO RNN for Text generation
+
 \subsection{Text generation}
 
 \begin{frame}
@@ -702,19 +736,20 @@
 \section{Transformer-based architectures}
 %===================================================================================
 
-% TODO
+
 \begin{frame}
 	\frametitle{\insertshortsubtitle}
 	\framesubtitle{\insertsection}
 	
 	\begin{itemize}
-		\item Transformers can be used for the 3 tasks
+		\item Transformers can be applied to the three main NLP tasks:
 		\begin{itemize}
-			\item Both encoder and decoder based ones can be used for classification
-			\item encoder based ones are more adapt for sequence classification
-			\item decoder based ones are more adapt for text generation
+			\item Both encoder-only and encoder-decoder architectures can be used for text classification.
+			\item Encoder-only architectures are better suited for sequence labeling/classification tasks.
+			\item Decoder-only architectures are better suited for text generation tasks.
 		\end{itemize}
 	\end{itemize}
+	
 	
 \end{frame}
 
@@ -723,7 +758,7 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: encoder-based (example)}
+	\framesubtitle{\insertsubsection: Encoder-based (Example)}
 	
 	\begin{center}
 		\vgraphpage{text_class_bert_exp.pdf}
@@ -733,7 +768,7 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: decoder-based (example)}
+	\framesubtitle{\insertsubsection: Decoder-based (Example)}
 	
 	\hgraphpage{gpt-arch_.pdf}
 	
@@ -741,18 +776,18 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: full-transformer (example)}
+	\framesubtitle{\insertsubsection: Full-transformer (Example)}
 	
 	\hgraphpage{t5-arch_.pdf}
 	
 \end{frame}
 
 
-\subsection{Sequence classification}
+\subsection{Sequence labeling}
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: encoder-based (example)}
+	\framesubtitle{\insertsubsection: Encoder-based (Example)}
 	
 	\begin{center}
 		\vgraphpage{text_seq_bert_exp.pdf}
@@ -762,21 +797,20 @@
 
 \begin{frame}
 	\frametitle{\insertshortsubtitle: \insertsection}
-	\framesubtitle{\insertsubsection: decoder-based and full-transformer}
+	\framesubtitle{\insertsubsection: Decoder-based and Full-transformer}
 	
 	\begin{itemize}
-		\item Some ideas (\keyword{not based on existing research articles})
-		\item Input the text and generate the tags one by one
-		\item For full transformers
+		\item Conceptual ideas (not derived from published research):
+		\item Sequence tagging can be formulated as generating tags one by one (autoregressive).
+		\item For full (encoder-decoder) transformers:
 		\begin{itemize}
-			\item the encoder has the sentence as input 
-			\item the decoder has the past generated tags as input to output next tag  
+			\item The encoder receives the sentence as input.
+			\item The decoder receives the previously predicted tags and attends to the encoder outputs to predict the next tag.
 		\end{itemize}
-		\item For decoder-based architectures
+		\item For decoder-only architectures:
 		\begin{itemize}
-			\item the decoder has the sentence as input 
-			\item a separator
-			\item and past generated tags.
+			\item The decoder receives a concatenation of the sentence and previously predicted tags.
+			\item An optional separator token can distinguish sentence tokens from tag tokens.
 		\end{itemize}
 	\end{itemize}
 	
@@ -791,14 +825,15 @@
 	\framesubtitle{\insertsubsection}
 	
 	\begin{itemize}
-		\item Decoder-based language models are inherently designed to generate text
-		\item Encoder-based language models
+		\item Decoder-only language models are naturally suited for autoregressive text generation.
+		\item Encoder-only language models:
 		\begin{itemize}
-			\item Masked Language Modeling (MLM) for Fill-in-the-Blanks
-			\item Training a generator based on their outputs
-			\item etc.
+			\item Use Masked Language Modeling (MLM) for tasks such as text infilling.
+			\item Their outputs can be fed into a separate decoder to generate sequences.
+			\item Other generation approaches are also possible based on encoder representations.
 		\end{itemize}
 	\end{itemize}
+	
 	
 \end{frame}
 
